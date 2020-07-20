@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Example.Core.Account;
+using Example.Core.Account.Dtos;
 using Example.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -15,15 +16,20 @@ namespace Example.Controllers
     public class IdentityController : Controller
     {
         private readonly IAccountService _accountService;
-        public IdentityController(IAccountService accountService)
+        private readonly SingletonConfigModel _singletonConfigModel;
+        public IdentityController(IAccountService accountService, SingletonConfigModel singletonConfigModel)
         {
 
             _accountService = accountService;
+            _singletonConfigModel = singletonConfigModel;
+
+
         }
 
         [HttpGet]
         public IActionResult SignIn()
         {
+            _singletonConfigModel.VisitNum++;
             return View();
         }
 

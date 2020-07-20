@@ -41,7 +41,36 @@ namespace WFw.Extensions.Di
             {
                 action(scope);
             }
+            return builder;
+        }
 
+        /// <summary>
+        /// 使用线程作用域的IServiceProvider初始化
+        /// </summary>
+        /// <param name="builder"></param>
+        /// <param name="action"></param>
+        /// <returns></returns>
+        public static IApplicationBuilder Init(this IApplicationBuilder builder, Action<IServiceProvider> action)
+        {
+            using (var scope = builder.ApplicationServices.CreateScope())
+            {
+                action(scope.ServiceProvider);
+            }
+            return builder;
+        }
+
+        /// <summary>
+        /// 使用全局作用域的IServiceProvider和线程作用域的IServiceProvider初始化
+        /// </summary>
+        /// <param name="builder"></param>
+        /// <param name="action"></param>
+        /// <returns></returns>
+        public static IApplicationBuilder Init(this IApplicationBuilder builder, Action<IServiceProvider, IServiceProvider> action)
+        {
+            using (var scope = builder.ApplicationServices.CreateScope())
+            {
+                action(builder.ApplicationServices, scope.ServiceProvider);
+            }
             return builder;
         }
 

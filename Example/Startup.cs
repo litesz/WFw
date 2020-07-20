@@ -1,4 +1,5 @@
 using Example.Core.Account;
+using Example.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -42,7 +43,7 @@ namespace Example
 
 
             services.AddScoped<IAccountService, AccountService>();
-
+            services.AddSingleton<SingletonConfigModel>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -80,6 +81,8 @@ namespace Example
             app.Init(scope =>
             {
 
+                var d = scope.ServiceProvider.GetService<SingletonConfigModel>();
+                d.VisitNum++;
                 var accountService = scope.ServiceProvider.GetService<IAccountService>();
                 accountService.InitTable();
 

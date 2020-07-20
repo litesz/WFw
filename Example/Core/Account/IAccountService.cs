@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using WFw.DbContext;
 using Microsoft.Extensions.DependencyInjection;
 using Example.Core.Account.Entities;
-using Example.Models;
 using WFw.Exceptions;
 using WFw.Utils.Security;
+using Example.Core.Account.Dtos;
 
 namespace Example.Core.Account
 {
