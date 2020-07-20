@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace WFw
+namespace WFw.Utils
 {
     /// <summary>
     /// 自动化

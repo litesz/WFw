@@ -9,6 +9,7 @@ using Example.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using WFw.Exceptions;
 
 namespace Example.Controllers
@@ -17,13 +18,13 @@ namespace Example.Controllers
     {
         private readonly IAccountService _accountService;
         private readonly SingletonConfigModel _singletonConfigModel;
-        public IdentityController(IAccountService accountService, SingletonConfigModel singletonConfigModel)
+        private readonly ILogger<IdentityController> _logger;
+        public IdentityController(IAccountService accountService, SingletonConfigModel singletonConfigModel, ILogger<IdentityController> logger)
         {
 
             _accountService = accountService;
             _singletonConfigModel = singletonConfigModel;
-
-
+            _logger = logger;
         }
 
         [HttpGet]
@@ -37,6 +38,8 @@ namespace Example.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SignIn(SignInInputDto inputDto)
         {
+            _logger.LogInformation("start SignIn");
+
             if (ModelState.IsValid)
             {
                 try

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WFw.Entity;
-using WFw.Extensions.Utils;
+using WFw.Utils;
 
 namespace Example.Core.Account.Entities
 {

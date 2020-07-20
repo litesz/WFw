@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using WFw.Dto;
 
-namespace WFw.SqlSugar.Extensions.Utils
+namespace WFw.DbContext
 {
     public static class SugarQueryExtensions
     {

@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using WFw.DbContext;
 
-namespace WFw.Extensions.Di
+namespace WFw
 {
     public static class ServiceCollectionExtensions
     {
@@ -15,10 +15,6 @@ namespace WFw.Extensions.Di
 
             services.AddScoped(typeof(IRepository<,>), typeof(DefaultRepository<,>));
 
-            //services.AddScoped(typeof(IWInsertable<>), typeof(SugarWInsertable<>));
-            //services.AddScoped(typeof(IWQueryable<>), typeof(SugarWQueryable<>));
-            //services.AddScoped(typeof(IWUpdatable<>), typeof(SugarWUpdatable<>));
-            //services.AddScoped(typeof(IWDeletable<>), typeof(SugarWDeletable<>));
             return services;
         }
 
@@ -29,11 +25,6 @@ namespace WFw.Extensions.Di
 
             services.AddScoped(typeof(IWDbContext), typeof(SqlSugarDbContext));
             services.AddScoped(typeof(IRepository<,>), typeof(DefaultRepository<,>));
-
-            //services.AddScoped(typeof(IWInsertable<>), typeof(SugarWInsertable<>));
-            //services.AddScoped(typeof(IWQueryable<>), typeof(SugarWQueryable<>));
-            //services.AddScoped(typeof(IWUpdatable<>), typeof(SugarWUpdatable<>));
-            //services.AddScoped(typeof(IWDeletable<>), typeof(SugarWDeletable<>));
 
             return services;
         }

@@ -1,8 +1,4 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using WFw.Identity;
 

@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Reflection;
 
-namespace WFw.Extensions.Utils
+namespace WFw.Utils
 {
     public static class AttributeExtensions
     {

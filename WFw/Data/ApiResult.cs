@@ -1,4 +1,6 @@
-﻿namespace WFw.Data
+﻿using WFw.Exceptions;
+
+namespace WFw.Data
 {
 
     public class ApiResult
@@ -9,6 +11,12 @@
 
         public ApiResult()
         {
+        }
+
+        public ApiResult(BadRequestException exception)
+        {
+            this.code = exception.OperationResult;
+            this.msg = exception.Message;
         }
 
         public ApiResult(OperationResultType code, string msg)

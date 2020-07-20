@@ -4,7 +4,9 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <Authors>litesz</Authors>
     <Description>为自己简单封装的webapi开发框架,暂时只有smschinese的调用</Description>
-    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageLicenseFile></PackageLicenseFile>
+    <PackageLicenseExpression>https://licenses.nuget.org/MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/litesz/WFw</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,13 +16,6 @@
 
   <ItemGroup>
     <Folder Include="Models\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="..\LICENSE">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
   </ItemGroup>
 
 </Project>

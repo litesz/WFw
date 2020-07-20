@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using WFw.Identity;
 
-namespace WFw.Extensions.Di
+namespace WFw
 {
     public static class ServiceCollectionExtensions
     {

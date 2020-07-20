@@ -4,7 +4,8 @@ using System.Threading.Tasks;
 
 namespace WFw.Http.Services
 {
-    public class SmsChineseService
+
+    public class SmsChineseService : ISmsService
     {
         private readonly HttpClient _httpClient;
         private readonly string _key;
@@ -16,7 +17,7 @@ namespace WFw.Http.Services
             _uid = configuration["Sms:Uid"];
         }
 
-        public Task<string> Send(string phone, string msg, string key)
+        public Task<string> Send(string phone, string msg)
         {
             var requestUri = $"/?Uid={_uid}&Key={_key}&smsMob={phone}&smsText={msg}";
 

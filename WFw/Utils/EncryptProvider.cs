@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace WFw.Utils.Security
+namespace WFw.Utils
 {
     public class EncryptProvider
     {

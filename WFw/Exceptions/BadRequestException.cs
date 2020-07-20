@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using WFw.Data;
-using WFw.Extensions.Utils;
+using WFw.Utils;
 
 namespace WFw.Exceptions
 {
