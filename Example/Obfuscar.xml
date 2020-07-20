@@ -1,0 +1,10 @@
+﻿<?xml version='1.0'?>
+<Obfuscator>
+  <Var name="InPath" value="." />
+  <Var name="OutPath" value=".\Obfuscator_Output" />
+  <Var name="UseUnicodeNames" value="true" />
+
+  <Module file="$(InPath)\WFw.dll" />
+  <Module file="$(InPath)\WFw.MemoryCache.dll" />
+  <Module file="$(InPath)\WFw.SqlSugar.dll" />
+</Obfuscator>
