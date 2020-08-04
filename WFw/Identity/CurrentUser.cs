@@ -1,36 +1,75 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http.Headers;
 using System.Security.Claims;
 using WFw.Exceptions;
+using WFw.Results;
 
 namespace WFw.Identity
 {
+    /// <summary>
+    /// 当前用户信息
+    /// </summary>
     public class CurrentUser : ICurrentUser
     {
-        public bool IsAuthenticated { get; set; }
-        public string GroupId => GetByOrder(ClaimTypes.GroupSid, "groupid");
-        public string UserId => GetByOrder(ClaimTypes.NameIdentifier, "userid");
-        public string Phone => GetByOrder(ClaimTypes.MobilePhone, "phone");
-        public string[] Roles => GetByOrder(ClaimTypes.Role, "role")?.Split("&&") ?? new string[0];
+        private static readonly string[] _separatingStrings = { "&&" };
 
+        /// <summary>
+        /// 已登录
+        /// </summary>
+        public bool IsAuthenticated { get; set; }
+        /// <summary>
+        /// 组id
+        /// </summary>
+        public string GroupId => GetByOrder(ClaimTypes.GroupSid, "groupid");
+        /// <summary>
+        /// 用户id
+        /// </summary>
+        public string UserId => GetByOrder(ClaimTypes.NameIdentifier, "userid");
+
+        /// <summary>
+        /// 手机号
+        /// </summary>
+        public string Phone => GetByOrder(ClaimTypes.MobilePhone, "phone");
+
+        /// <summary>
+        /// 角色
+        /// </summary>
+        public string[] Roles => GetByOrder(ClaimTypes.Role, "role")?.Split(_separatingStrings, StringSplitOptions.RemoveEmptyEntries) ?? new string[0];
+
+        /// <summary>
+        /// 票据集合
+        /// </summary>
         private readonly Dictionary<string, string> _claims = new Dictionary<string, string>();
 
+        /// <summary>
+        /// 添加
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
         public void AddClaim(string key, string value)
         {
-
-            if (_claims.ContainsKey(key))
+            if (string.IsNullOrWhiteSpace(key) || string.IsNullOrWhiteSpace(value))
             {
-                _claims[key] = _claims[key] + "&&" + value;
+                throw new BadRequestException(OperationResultType.IsEmpty, "claim");
+            }
+
+            string lowKey = key.ToLower();
+            if (_claims.ContainsKey(lowKey))
+            {
+                _claims[lowKey] = _claims[lowKey] + "&&" + value;
             }
             else
             {
-                _claims.Add(key, value);
-
+                _claims.Add(lowKey, value);
             }
         }
 
+        /// <summary>
+        /// 获得
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public string this[string key]
         {
             get
@@ -43,24 +82,11 @@ namespace WFw.Identity
             }
         }
 
-        public T UserIdAs<T>()
-        {
-            if (UserId == null)
-            {
-                throw new BadRequestException(Data.OperationResultType.NotExist, "签名用户");
-            }
-            return (T)Convert.ChangeType(UserId, typeof(T));
-        }
-
-        public T GroupIdAs<T>()
-        {
-            if (GroupId == null)
-            {
-                throw new BadRequestException(Data.OperationResultType.NotExist, "签名组");
-            }
-            return (T)Convert.ChangeType(GroupId, typeof(T));
-        }
-
+        /// <summary>
+        /// 是否包含指定角色
+        /// </summary>
+        /// <param name="role"></param>
+        /// <returns></returns>
         public bool ContainRole(string role)
         {
             if (!IsAuthenticated)
@@ -71,6 +97,12 @@ namespace WFw.Identity
             return Roles.Contains(role);
         }
 
+        /// <summary>
+        /// 获得
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public T Get<T>(string key)
         {
             if (_claims.ContainsKey(key))
@@ -89,18 +121,11 @@ namespace WFw.Identity
             return default;
         }
 
-        public string Get(string key)
-        {
-            if (_claims.ContainsKey(key))
-            {
-                return _claims[key];
-            }
-            return default;
-        }
-
-        public int GetInt(string key) => Get<int>(key);
-
-
+        /// <summary>
+        /// 顺序获得
+        /// </summary>
+        /// <param name="keys"></param>
+        /// <returns></returns>
         public string GetByOrder(params string[] keys)
         {
             if (keys == null || keys.Length == 0)

@@ -1,4 +1,5 @@
 ﻿using System;
+using WFw.IMapping;
 
 namespace WFw.Mapping
 {

@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using WFw.Dto;
+using WFw.Dtos.Responses;
+using WFw.IDbContext;
+using WFw.IDtos.Responses;
 
 namespace WFw.DbContext
 {
@@ -140,6 +142,8 @@ namespace WFw.DbContext
             return _queryable.ToArray();
         }
 
+      
+
         public IList<T> ToList()
         {
             return _queryable.ToList();
@@ -150,19 +154,19 @@ namespace WFw.DbContext
             return await _queryable.ToListAsync();
         }
 
-        public PagedResult<T> ToPageList(int pageIndex, int pageSize)
+        public IPagedResponseDataDto<T> ToPageList(int pageIndex, int pageSize)
         {
             int total = 0;
             var list = _queryable.ToPageList(pageIndex, pageSize, ref total);
 
-            return new PagedResult<T>(list, total, pageIndex, pageSize);
+            return new PagedResponseDataDto<T>(list, total, pageIndex, pageSize);
         }
 
-        public async Task<PagedResult<T>> ToPageListAsync(int pageIndex, int pageSize)
+        public async Task<IPagedResponseDataDto<T>> ToPageListAsync(int pageIndex, int pageSize)
         {
             RefAsync<int> total = new RefAsync<int>();
             var list = await _queryable.ToPageListAsync(pageIndex, pageSize, total);
-            return new PagedResult<T>(list, total.Value, pageIndex, pageSize);
+            return new PagedResponseDataDto<T>(list, total.Value, pageIndex, pageSize);
         }
 
         public IWQueryable<T> Where(string expression)

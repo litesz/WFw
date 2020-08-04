@@ -1,14 +1,20 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using WFw.Entity;
+using WFw.IDbContext;
 using WFw.Identity;
-using Microsoft.Extensions.DependencyInjection;
-using System.Linq;
+using WFw.IEntity;
+using WFw.IEntity.IAudit;
 
 namespace WFw.DbContext
 {
+    /// <summary>
+    /// 默认仓储
+    /// </summary>
+    /// <typeparam name="TEntity"></typeparam>
+    /// <typeparam name="TPrimary"></typeparam>
     public partial class DefaultRepository<TEntity, TPrimary> : IRepository<TEntity, TPrimary> where TEntity : class, IEntity<TPrimary>, new()
     {
 
@@ -34,19 +40,32 @@ namespace WFw.DbContext
         }
 
 
-        private ICurrentUser _user => _serviceProvider.GetService<ICurrentUser>();
-        private IWDbContext _dbContext => _serviceProvider.GetService<IWDbContext>();
+        private ICurrentUser User => _serviceProvider.GetService<ICurrentUser>();
+        private IWDbContext DbContext => _serviceProvider.GetService<IWDbContext>();
         private readonly IServiceProvider _serviceProvider;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="serviceProvider"></param>
         public DefaultRepository(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
 
         }
 
-        public IWQueryable<TEntity> Query => _dbContext
+        /// <summary>
+        /// 查询
+        /// </summary>
+        public IWQueryable<TEntity> Query => DbContext
             .Queryable<TEntity>()
             .WhereIF(IsSoftDelete, $"({nameof(ISoftDeletable.IsDeleted)}=0)");
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public bool CheckExists(Expression<Func<TEntity, bool>> predicate, TPrimary id = default)
         {
             var pId = Where(predicate).Select(u => u.Id).First();
@@ -65,7 +84,12 @@ namespace WFw.DbContext
                 return pId.Equals(id);
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<bool> CheckExistsAsync(Expression<Func<TEntity, bool>> predicate, TPrimary id = default)
         {
             var pId = await Where(predicate).Select(u => u.Id).FirstAsync();
@@ -84,7 +108,11 @@ namespace WFw.DbContext
                 return pId.Equals(id);
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entities"></param>
+        /// <returns></returns>
         public int Delete(params TEntity[] entities)
         {
             if (DeleteEntitiesAudit(entities))
@@ -94,18 +122,26 @@ namespace WFw.DbContext
                 {
                     ids[i] = entities[i].Id;
                 }
-                return _dbContext.Deletable<TEntity>(ids).ExecuteCommand();
+                return DbContext.Deletable<TEntity>(ids).ExecuteCommand();
             }
 
             return Update(entities);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public int Delete(TPrimary key)
         {
             TEntity entity = Get(key);
             return Delete(entity);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entities"></param>
+        /// <returns></returns>
         public Task<int> DeleteAsync(params TEntity[] entities)
         {
             if (DeleteEntitiesAudit(entities))
@@ -116,102 +152,183 @@ namespace WFw.DbContext
                     ids[i] = entities[i].Id;
                 }
 
-                return _dbContext.Deletable<TEntity>(ids).ExecuteCommandAsync();
+                return DbContext.Deletable<TEntity>(ids).ExecuteCommandAsync();
             }
 
             return UpdateAsync(entities);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public async Task<int> DeleteAsync(TPrimary key)
         {
             TEntity entity = await GetAsync(key);
             return await DeleteAsync(entity);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public TEntity Get(TPrimary key)
         {
             return GetFirst(u => u.Id.Equals(key));
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IList<TEntity> GetAll()
         {
             return Query.ToList();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public Task<IList<TEntity>> GetAllAsync()
         {
             return Query.ToListAsync();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public Task<TEntity> GetAsync(TPrimary key)
         {
             return GetFirstAsync(u => u.Id.Equals(key));
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
         public TEntity GetFirst(Expression<Func<TEntity, bool>> predicate)
         {
             return Where(predicate).First();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
         public Task<TEntity> GetFirstAsync(Expression<Func<TEntity, bool>> predicate)
         {
             return Where(predicate).FirstAsync();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="initData"></param>
         public void Init(params TEntity[] initData)
         {
-            _dbContext.Init<TEntity>(initData);
+            DbContext.Init<TEntity>(initData);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entities"></param>
+        /// <returns></returns>
         public bool Insert(params TEntity[] entities)
         {
             InsertEntitiesAudit(entities);
-            return _dbContext.Insertable<TEntity>(entities).ExecuteCommand() == entities.Length;
+            return DbContext.Insertable<TEntity>(entities).ExecuteCommand() == entities.Length;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entities"></param>
+        /// <returns></returns>
         public async Task<bool> InsertAsync(params TEntity[] entities)
         {
             InsertEntitiesAudit(entities);
-            return await _dbContext.Insertable<TEntity>(entities).ExecuteCommandAsync() == entities.Length;
+            return await DbContext.Insertable<TEntity>(entities).ExecuteCommandAsync() == entities.Length;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
         public TPrimary InsertReturnId(TEntity entity)
         {
             InsertEntitiesAudit(entity);
-            _dbContext.Insertable(entity).ExecuteCommandIdentityIntoEntity();
+            DbContext.Insertable(entity).ExecuteCommandIdentityIntoEntity();
             return entity.Id;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
         public async Task<TPrimary> InsertReturnIdAsync(TEntity entity)
         {
             InsertEntitiesAudit(entity);
-            await _dbContext.Insertable(entity).ExecuteCommandIdentityIntoEntityAsync();
+            await DbContext.Insertable(entity).ExecuteCommandIdentityIntoEntityAsync();
             return entity.Id;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entities"></param>
+        /// <returns></returns>
         public int Update(params TEntity[] entities)
         {
             UpdateEntitiesAudit(entities);
 
-            return _dbContext.Updatable(entities).ExecuteCommand();
+            return DbContext.Updatable(entities).ExecuteCommand();
         }
         //TODO 添加审计信息
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <param name="updateor"></param>
+        /// <returns></returns>
         public int Update(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TEntity>> updateor)
         {
-            return _dbContext.Updatable<TEntity>().SetColumns(updateor).Where(predicate).ExecuteCommand();
+            return DbContext.Updatable<TEntity>().SetColumns(updateor).Where(predicate).ExecuteCommand();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entities"></param>
+        /// <returns></returns>
         public Task<int> UpdateAsync(params TEntity[] entities)
         {
             UpdateEntitiesAudit(entities);
-            return _dbContext.Updatable(entities).ExecuteCommandAsync();
+            return DbContext.Updatable(entities).ExecuteCommandAsync();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="expression"></param>
+        /// <returns></returns>
         public IWQueryable<TEntity> Where(Expression<Func<TEntity, bool>> expression)
         {
             return Query.Where(expression);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        public bool Any(Expression<Func<TEntity, bool>> predicate)
+        {
+            return Where(predicate).Any();
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        public Task<bool> AnyAsync(Expression<Func<TEntity, bool>> predicate)
+        {
+            return Where(predicate).AnyAsync();
+        }
 
         protected void InsertEntitiesAudit(params TEntity[] entities)
         {
@@ -222,7 +339,7 @@ namespace WFw.DbContext
             DateTime now = DateTime.Now;
             if (IsAddAuditedByUser)
             {
-                TPrimary id = _user.IsAuthenticated ? _user.UserIdAs<TPrimary>() : default;
+                TPrimary id = User.IsAuthenticated ? User.UserIdAs<TPrimary>() : default;
                 foreach (TEntity entity in entities)
                 {
                     ICreatedAuditedByUser<TPrimary> audited = (ICreatedAuditedByUser<TPrimary>)entity;
@@ -256,7 +373,7 @@ namespace WFw.DbContext
 
             if (IsUpdateAuditedByUser)
             {
-                TPrimary id = _user.IsAuthenticated ? _user.UserIdAs<TPrimary>() : default;
+                TPrimary id = User.IsAuthenticated ? User.UserIdAs<TPrimary>() : default;
 
                 foreach (TEntity entity in entities)
                 {
@@ -289,7 +406,7 @@ namespace WFw.DbContext
                     ISoftDeletableByUser<TPrimary> deleteAudited = (ISoftDeletableByUser<TPrimary>)entity;
                     deleteAudited.IsDeleted = true;
                     deleteAudited.DeletedTime = now;
-                    deleteAudited.DeletedUserId = _user.UserIdAs<TPrimary>();
+                    deleteAudited.DeletedUserId = User.UserIdAs<TPrimary>();
                 }
             }
             else
@@ -305,7 +422,6 @@ namespace WFw.DbContext
 
             return false;
         }
-
 
     }
 }

@@ -1,10 +1,13 @@
 ﻿using SqlSugar;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using WFw.Dto;
+using WFw.IDtos.Requests;
 
 namespace WFw.DbContext
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class SugarQueryExtensions
     {
         /// <summary>
@@ -29,7 +32,7 @@ namespace WFw.DbContext
         /// <param name="query"></param>
         /// <param name="requestDto"></param>
         /// <returns></returns>
-        public static Task<(IEnumerable<T> Items, int Total)> ToPageListWithTotalAsync<T>(this ISugarQueryable<T> query, PagedResultRequestDto requestDto)
+        public static Task<(IEnumerable<T> Items, int Total)> ToPageListWithTotalAsync<T>(this ISugarQueryable<T> query, IPagedResultRequestDto requestDto)
         {
             return ToPageListWithTotalAsync(query, requestDto.PageIndex, requestDto.PageSize);
         }

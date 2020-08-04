@@ -4,6 +4,9 @@ using System.Reflection;
 
 namespace WFw.Utils
 {
+    /// <summary>
+    /// 扩展
+    /// </summary>
     public static class AttributeExtensions
     {
         /// <summary>

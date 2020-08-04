@@ -1,6 +1,6 @@
 ﻿using SqlSugar;
-using System;
 using System.Threading.Tasks;
+using WFw.IDbContext;
 
 namespace WFw.DbContext
 {
@@ -17,7 +17,7 @@ namespace WFw.DbContext
 
         public int ExecuteCommand()
         {
-          return  _insertable.ExecuteCommand();
+            return _insertable.ExecuteCommand();
         }
 
         public Task<int> ExecuteCommandAsync()
@@ -44,6 +44,18 @@ namespace WFw.DbContext
         {
             return _insertable.ExecuteReturnIdentityAsync();
         }
+
+        public long ExecuteReturnLongIdentity()
+        {
+            return _insertable.ExecuteReturnBigIdentity();
+        }
+
+        public Task<long> ExecuteReturnLongIdentityAsync()
+        {
+            return _insertable.ExecuteReturnBigIdentityAsync();
+        }
+
+     
     }
 
 }

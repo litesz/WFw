@@ -4,16 +4,28 @@ using WFw.Identity;
 
 namespace WFw.Middlewares
 {
-
+    /// <summary>
+    /// 登录用户信息中间件
+    /// </summary>
     public class WFwCurrentUserMiddleware
     {
         private readonly RequestDelegate _next;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="next"></param>
         public WFwCurrentUserMiddleware(RequestDelegate next)
         {
             _next = next;
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="_currentIdentity"></param>
+        /// <returns></returns>
         public async Task Invoke(HttpContext context, ICurrentUser _currentIdentity)
         {
             if (context.User.Identity.IsAuthenticated)

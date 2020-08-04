@@ -1,4 +1,6 @@
-﻿namespace WFw.Entity
+﻿using WFw.IEntity;
+
+namespace WFw.Entity
 {
     public abstract class OrganizationEntity<T> : EntityBase<T>, IOrganizationEntity<T>
     {

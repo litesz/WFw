@@ -1,10 +1,13 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using WFw.Cache;
+using WFw.ICache;
 using WFw.MemoryCache;
 
 namespace WFw
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class ServiceCollectionExtensions
     {
         /// <summary>

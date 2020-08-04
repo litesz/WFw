@@ -5,8 +5,16 @@ using WFw.Http.Services;
 
 namespace WFw
 {
+    /// <summary>
+    /// 扩展
+    /// </summary>
     public static class ServiceCollectionExtensions
     {
+        /// <summary>
+        /// 添加smschinese短信平台
+        /// </summary>
+        /// <param name="services"></param>
+        /// <returns></returns>
         public static IServiceCollection AddSmsChinese(this IServiceCollection services)
         {
             services.AddHttpClient<ISmsService, SmsChineseService>(c =>

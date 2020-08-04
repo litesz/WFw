@@ -1,6 +1,6 @@
 ﻿using SqlSugar;
-using System;
 using System.Threading.Tasks;
+using WFw.IDbContext;
 
 namespace WFw.DbContext
 {

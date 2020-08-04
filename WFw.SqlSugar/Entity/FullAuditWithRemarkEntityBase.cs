@@ -1,4 +1,5 @@
 ﻿using SqlSugar;
+using WFw.IEntity;
 
 namespace WFw.Entity
 {

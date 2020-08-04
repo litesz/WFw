@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WFw.DbContext;
 using Microsoft.Extensions.DependencyInjection;
 using Example.Core.Account.Entities;
 using WFw.Exceptions;
-using WFw.Utils.Security;
+using WFw.Utils;
 using Example.Core.Account.Dtos;
+using WFw.Results;
+using WFw.IDbContext;
 
 namespace Example.Core.Account
 {
@@ -38,12 +39,12 @@ namespace Example.Core.Account
             var entity = await UserRepository.GetFirstAsync(u => u.UserName == inputDto.UserName);
             if (entity == null)
             {
-                throw new BadRequestException(WFw.Data.OperationResultType.IsErr, "用户名或密码");
+                throw new BadRequestException(OperationResultType.IsErr, "用户名或密码");
             }
 
             if (!entity.Pwd.Equals(EncryptProvider.GetMd5($"{ inputDto.Password}{entity.PwdSalt}")))
             {
-                throw new BadRequestException(WFw.Data.OperationResultType.IsErr, "用户名或密码");
+                throw new BadRequestException(OperationResultType.IsErr, "用户名或密码");
             }
 
             return new SignInOutputDto

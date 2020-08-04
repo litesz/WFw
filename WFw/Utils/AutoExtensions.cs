@@ -8,7 +8,12 @@ namespace WFw.Utils
     /// </summary>
     public static class AutoExtensions
     {
-
+        /// <summary>
+        /// 反射映射
+        /// </summary>
+        /// <typeparam name="TTarget"></typeparam>
+        /// <param name="source"></param>
+        /// <returns></returns>
         public static TTarget MapTo<TTarget>(this object source)
         {
             if (source == null)

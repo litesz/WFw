@@ -1,13 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <Configurations>Debug;Release;DT</Configurations>
     <Authors>litesz</Authors>
     <Description>为自己简单封装的webapi开发框架,数据库的sqlsugar实现</Description>
     <PackageLicenseFile></PackageLicenseFile>
     <PackageProjectUrl>https://github.com/litesz/WFw</PackageProjectUrl>
-    <PackageLicenseExpression>https://licenses.nuget.org/MIT</PackageLicenseExpression>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Version>1.1.0</Version>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>

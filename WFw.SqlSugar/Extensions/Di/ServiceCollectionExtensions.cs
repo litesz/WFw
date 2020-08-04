@@ -2,11 +2,21 @@
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using WFw.DbContext;
+using WFw.IDbContext;
 
 namespace WFw
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class ServiceCollectionExtensions
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="configurationSection"></param>
+        /// <returns></returns>
         public static IServiceCollection AddSqlSugar(this IServiceCollection services, IConfigurationSection configurationSection)
         {
             services.Configure<DbOptions>(configurationSection);
@@ -18,7 +28,12 @@ namespace WFw
             return services;
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="action"></param>
+        /// <returns></returns>
         public static IServiceCollection AddSqlSugar(this IServiceCollection services, Action<DbOptions> action)
         {
             services.Configure<DbOptions>(action);

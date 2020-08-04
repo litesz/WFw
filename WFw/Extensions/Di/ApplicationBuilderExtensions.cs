@@ -5,6 +5,9 @@ using WFw.Middlewares;
 
 namespace WFw
 {
+    /// <summary>
+    /// 扩展
+    /// </summary>
     public static class ApplicationBuilderExtensions
     {
         /// <summary>
@@ -14,7 +17,7 @@ namespace WFw
         /// <returns></returns>
         public static IApplicationBuilder UseErrorHandling(this IApplicationBuilder builder)
         {
-            builder.UseMiddleware<ErrorHandlingMiddleware>();
+            builder.UseMiddleware<WFwErrorHandlingMiddleware>();
             return builder;
         }
 

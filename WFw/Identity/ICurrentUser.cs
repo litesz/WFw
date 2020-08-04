@@ -31,42 +31,12 @@
         string Phone { get; }
 
         /// <summary>
-        /// 用户id
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        T UserIdAs<T>();
-
-        /// <summary>
-        /// 组id
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        T GroupIdAs<T>();
-
-        /// <summary>
         /// 获得claim值
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="key"></param>
         /// <returns></returns>
         T Get<T>(string key);
-
-        /// <summary>
-        /// 获得claim值
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="key"></param>
-        /// <returns></returns>
-        string Get(string key);
-
-        /// <summary>
-        /// 获得claim值
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="key"></param>
-        /// <returns></returns>
-        int GetInt(string key);
 
         /// <summary>
         /// 添加claim值

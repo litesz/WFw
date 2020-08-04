@@ -3,15 +3,14 @@ using System.Text;
 
 namespace WFw.Utils
 {
-    public class EncryptProvider
+    /// <summary>
+    /// 加密
+    /// </summary>
+    public static class EncryptProvider
     {
 
-        private static readonly string Salt;
+        private const string md5Salt = "wm73UZkSKNM%";
 
-        static EncryptProvider()
-        {
-            Salt = "wm73UZkSKNM%";
-        }
 
         /// <summary>
         /// MD5密码加密
@@ -21,7 +20,7 @@ namespace WFw.Utils
         /// <returns></returns>
         public static string GetMd5Password(string password)
         {
-            return GetMd5Password(password, Salt);
+            return GetMd5Password(password, md5Salt);
         }
 
         /// <summary>

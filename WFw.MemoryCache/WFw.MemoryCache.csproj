@@ -1,12 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>litesz</Authors>
     <Description>为自己简单封装的webapi开发框架,cache接口的 memroycahce的实现</Description>
     <PackageLicenseFile></PackageLicenseFile>
     <PackageProjectUrl>https://github.com/litesz/WFw</PackageProjectUrl>
-    <PackageLicenseExpression>https://licenses.nuget.org/MIT</PackageLicenseExpression>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
