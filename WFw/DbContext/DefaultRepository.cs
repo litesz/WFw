@@ -14,6 +14,17 @@ namespace WFw.DbContext
     /// 默认仓储
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
+    public partial class DefaultRepository<TEntity> : DefaultRepository<TEntity, int>, IRepository<TEntity> where TEntity : class, IEntity<int>, new()
+    {
+        public DefaultRepository(IServiceProvider serviceProvider) : base(serviceProvider)
+        {
+        }
+    }
+
+    /// <summary>
+    /// 默认仓储
+    /// </summary>
+    /// <typeparam name="TEntity"></typeparam>
     /// <typeparam name="TPrimary"></typeparam>
     public partial class DefaultRepository<TEntity, TPrimary> : IRepository<TEntity, TPrimary> where TEntity : class, IEntity<TPrimary>, new()
     {

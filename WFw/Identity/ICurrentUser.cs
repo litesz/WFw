@@ -11,9 +11,19 @@
         bool IsAuthenticated { get; set; }
 
         /// <summary>
+        /// 主要组
+        /// </summary>
+        string PGroupId { get; }
+
+        /// <summary>
         /// 组号
         /// </summary>
         string GroupId { get; }
+
+        /// <summary>
+        /// 组号
+        /// </summary>
+        string[] GroupIds { get; }
 
         /// <summary>
         /// 用户id
@@ -62,5 +72,12 @@
         /// <returns></returns>
         bool ContainRole(string role);
 
+        /// <summary>
+        /// 获得数组
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        T[] GetArray<T>(string key);
     }
 }

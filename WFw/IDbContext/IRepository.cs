@@ -6,6 +6,20 @@ using WFw.IEntity;
 
 namespace WFw.IDbContext
 {
+
+    //TODO:insert返回entity
+
+
+    /// <summary>
+    /// 数据库上下文
+    /// </summary>
+    /// <typeparam name="TEntity"></typeparam>
+    public partial interface IRepository<TEntity> : IRepository<TEntity, int> where TEntity : class, IEntity<int>, new()
+    {
+
+    }
+
+
     /// <summary>
     /// 数据库上下文
     /// </summary>

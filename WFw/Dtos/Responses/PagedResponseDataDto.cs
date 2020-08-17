@@ -60,7 +60,7 @@ namespace WFw.Dtos.Responses
         /// 
         /// </summary>
         /// <param name="item"></param>
-        public PagedResponseDataDto(PagedResponseDataDto<TEntity> item)
+        public PagedResponseDataDto(IPagedResponseDataDto<TEntity> item)
         {
             Items = item.Items;
             Total = item.Total;

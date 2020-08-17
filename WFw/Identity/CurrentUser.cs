@@ -15,13 +15,31 @@ namespace WFw.Identity
         private static readonly string[] _separatingStrings = { "&&" };
 
         /// <summary>
+        /// 票据集合
+        /// </summary>
+        private readonly Dictionary<string, string> _claims = new Dictionary<string, string>();
+
+        /// <summary>
         /// 已登录
         /// </summary>
         public bool IsAuthenticated { get; set; }
+
         /// <summary>
         /// 组id
         /// </summary>
         public string GroupId => GetByOrder(ClaimTypes.GroupSid, "groupid");
+        /// <summary>
+        /// 主组id
+        /// </summary>
+        public string PGroupId => GetByOrder(ClaimTypes.PrimaryGroupSid, "pgroupid");
+
+        /// <summary>
+        /// 组id
+        /// </summary>
+        public string[] GroupIds => GetByOrder(ClaimTypes.GroupSid, "groupid")
+            ?.Split(_separatingStrings, StringSplitOptions.RemoveEmptyEntries)
+            ?? new string[0];
+
         /// <summary>
         /// 用户id
         /// </summary>
@@ -35,12 +53,9 @@ namespace WFw.Identity
         /// <summary>
         /// 角色
         /// </summary>
-        public string[] Roles => GetByOrder(ClaimTypes.Role, "role")?.Split(_separatingStrings, StringSplitOptions.RemoveEmptyEntries) ?? new string[0];
-
-        /// <summary>
-        /// 票据集合
-        /// </summary>
-        private readonly Dictionary<string, string> _claims = new Dictionary<string, string>();
+        public string[] Roles => GetByOrder(ClaimTypes.Role, "role")
+            ?.Split(_separatingStrings, StringSplitOptions.RemoveEmptyEntries)
+            ?? new string[0];
 
         /// <summary>
         /// 添加
@@ -119,6 +134,37 @@ namespace WFw.Identity
                 }
             }
             return default;
+        }
+
+        public T[] GetArray<T>(string key)
+        {
+            if (_claims.ContainsKey(key))
+            {
+                string[] infos = _claims[key]?.Split(_separatingStrings, StringSplitOptions.RemoveEmptyEntries);
+
+                if (infos == null || infos.Length == 0)
+                {
+                    return new T[0];
+                }
+
+                T[] output = new T[infos.Length];
+
+                var type = typeof(T);
+
+                for (int i = 0; i < infos.Length; i++)
+                {
+
+                    if (type.IsEnum)
+                    {
+                        output[i] = (T)Enum.Parse(type, infos[i]);
+                    }
+                    else
+                    {
+                        output[i] = (T)Convert.ChangeType(infos[i], type);
+                    }
+                }
+            }
+            return new T[0];
         }
 
         /// <summary>
