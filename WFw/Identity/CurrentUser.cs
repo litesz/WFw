@@ -28,10 +28,16 @@ namespace WFw.Identity
         /// 组id
         /// </summary>
         public string GroupId => GetByOrder(ClaimTypes.GroupSid, "groupid");
+
         /// <summary>
         /// 主组id
         /// </summary>
         public string PGroupId => GetByOrder(ClaimTypes.PrimaryGroupSid, "pgroupid");
+
+        /// <summary>
+        /// 用户名
+        /// </summary>
+        public string Name => GetByOrder(ClaimTypes.Name, "name");
 
         /// <summary>
         /// 组id
@@ -81,6 +87,27 @@ namespace WFw.Identity
         }
 
         /// <summary>
+        /// 添加
+        /// </summary>
+        /// <param name="claim"></param>
+        public void AddClaim(Claim claim)
+        {
+            AddClaim(claim.Type, claim.Value);
+        }
+
+        /// <summary>
+        /// 添加
+        /// </summary>
+        /// <param name="claims"></param>
+        public void AddClaims(IEnumerable<Claim> claims)
+        {
+            foreach (var item in claims)
+            {
+                AddClaim(item);
+            }
+        }
+
+        /// <summary>
         /// 获得
         /// </summary>
         /// <param name="key"></param>
@@ -89,9 +116,10 @@ namespace WFw.Identity
         {
             get
             {
-                if (_claims.ContainsKey(key))
+                var lowKey = key.ToLower();
+                if (_claims.ContainsKey(lowKey))
                 {
-                    return _claims[key];
+                    return _claims[lowKey];
                 }
                 return null;
             }
@@ -120,27 +148,35 @@ namespace WFw.Identity
         /// <returns></returns>
         public T Get<T>(string key)
         {
-            if (_claims.ContainsKey(key))
+            var lowKey = key.ToLower();
+            if (_claims.ContainsKey(lowKey))
             {
                 var type = typeof(T);
 
                 if (type.IsEnum)
                 {
-                    return (T)Enum.Parse(type, _claims[key]);
+                    return (T)Enum.Parse(type, _claims[lowKey]);
                 }
                 else
                 {
-                    return (T)Convert.ChangeType(_claims[key], type);
+                    return (T)Convert.ChangeType(_claims[lowKey], type);
                 }
             }
             return default;
         }
 
+        /// <summary>
+        /// 获得数组
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public T[] GetArray<T>(string key)
         {
-            if (_claims.ContainsKey(key))
+            var lowKey = key.ToLower();
+            if (_claims.ContainsKey(lowKey))
             {
-                string[] infos = _claims[key]?.Split(_separatingStrings, StringSplitOptions.RemoveEmptyEntries);
+                string[] infos = _claims[lowKey]?.Split(_separatingStrings, StringSplitOptions.RemoveEmptyEntries);
 
                 if (infos == null || infos.Length == 0)
                 {

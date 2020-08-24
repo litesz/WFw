@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\WFw.GeTui\WFw.GeTui.csproj" />
     <ProjectReference Include="..\WFw.MemoryCache\WFw.MemoryCache.csproj" />
     <ProjectReference Include="..\WFw.SqlSugar\WFw.SqlSugar.csproj" />
     <ProjectReference Include="..\WFw\WFw.csproj" />

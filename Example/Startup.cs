@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WFw;
-
+using WFw.GeTui.Services;
 
 namespace Example
 {
@@ -41,7 +41,6 @@ namespace Example
                 {
                     o.LoginPath = "/Identity/SignIn";
                 });
-
 
             services.AddScoped<IAccountService, AccountService>();
             services.AddSingleton<SingletonConfigModel>();
@@ -81,6 +80,7 @@ namespace Example
 
             app.Init(scope =>
             {
+            
 
                 var d = scope.ServiceProvider.GetService<SingletonConfigModel>();
                 d.VisitNum++;

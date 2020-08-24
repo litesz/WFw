@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using WFw.IDtos.Requests;
 using WFw.IDtos.Responses;
 
@@ -36,7 +38,7 @@ namespace WFw.Dtos.Responses
         /// <param name="pageSize"></param>
         public PagedResponseDataDto(IEnumerable<TEntity> items, int total, int pageIndex, int pageSize)
         {
-            Items = items;
+            Items = items ?? throw new ArgumentNullException("items");
             Total = total;
             PageIndex = pageIndex;
             PageSize = pageSize;
@@ -49,23 +51,26 @@ namespace WFw.Dtos.Responses
         /// <param name="total"></param>
         /// <param name="request"></param>
         public PagedResponseDataDto(IEnumerable<TEntity> items, int total, IPagedResultRequestDto request)
+            : this(items, total, request.PageIndex, request.PageSize)
         {
-            Items = items;
-            Total = total;
-            PageIndex = request.PageIndex;
-            PageSize = request.PageSize;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="items"></param>
+        /// <param name="total"></param>
+        /// <param name="request"></param>
+        public PagedResponseDataDto(IEnumerable<TEntity> items) : this(items, items?.Count() ?? 0, 1, items?.Count() ?? 0)
+        {
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="item"></param>
-        public PagedResponseDataDto(IPagedResponseDataDto<TEntity> item)
+        public PagedResponseDataDto(IPagedResponseDataDto<TEntity> item) : this(item.Items, item.Total, item.PageIndex, item.PageSize)
         {
-            Items = item.Items;
-            Total = item.Total;
-            PageIndex = item.PageIndex;
-            PageSize = item.PageSize;
         }
     }
 }

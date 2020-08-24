@@ -16,6 +16,11 @@
         string PGroupId { get; }
 
         /// <summary>
+        /// 用户名
+        /// </summary>
+        string Name { get; }
+
+        /// <summary>
         /// 组号
         /// </summary>
         string GroupId { get; }

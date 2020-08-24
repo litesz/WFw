@@ -27,6 +27,23 @@ namespace WFw.Identity
         public static int GetInt(this ICurrentUser currentUser, string key) => currentUser.Get<int>(key);
 
         /// <summary>
+        /// 以int64获得
+        /// </summary>
+        /// <param name="currentUser"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public static long GetLong(this ICurrentUser currentUser, string key) => currentUser.Get<long>(key);
+
+        /// <summary>
+        /// 以布尔获得
+        /// </summary>
+        /// <param name="currentUser"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public static bool GetBool(this ICurrentUser currentUser, string key) => currentUser.Get<bool>(key);
+
+
+        /// <summary>
         /// 泛型用户id
         /// </summary>
         /// <typeparam name="T"></typeparam>
