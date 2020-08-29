@@ -312,6 +312,7 @@ namespace WFw.DbContext
             UpdateEntitiesAudit(entities);
             return DbContext.Updatable(entities).ExecuteCommandAsync();
         }
+       
         /// <summary>
         /// 
         /// </summary>

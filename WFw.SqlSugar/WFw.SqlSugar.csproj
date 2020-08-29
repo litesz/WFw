@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Configurations>Debug;Release;DT</Configurations>
+    <Configurations>Debug;Release</Configurations>
     <Authors>litesz</Authors>
     <Description>为自己简单封装的webapi开发框架,数据库的sqlsugar实现</Description>
     <PackageLicenseFile></PackageLicenseFile>
@@ -10,6 +10,14 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Version>1.1.1.1</Version>
     <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>D:\Projects\WFw\WFw.SqlSugar\WFw.SqlSugar.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>D:\Projects\WFw\WFw.SqlSugar\WFw.SqlSugar.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

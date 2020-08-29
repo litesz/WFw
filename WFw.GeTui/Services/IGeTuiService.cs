@@ -8,7 +8,7 @@ namespace WFw.GeTui.Services
         /// 获得token
         /// </summary>
         /// <returns></returns>
-        Task LoadToken();
+        Task LoadToken(bool isRefresh = false);
 
         /// <summary>
         /// 注销token

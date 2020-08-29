@@ -22,6 +22,13 @@ namespace WFw.IDbContext
             return queryable.ToPageList(requestDto.PageIndex, requestDto.PageSize);
         }
 
+        /// <summary>
+        /// 分页结果
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="queryable"></param>
+        /// <param name="requestDto"></param>
+        /// <returns></returns>
         public static Task<IPagedResponseDataDto<T>> ToPageListAsync<T>(this IWQueryable<T> queryable, IPagedResultRequestDto requestDto)
         {
             return queryable.ToPageListAsync(requestDto.PageIndex, requestDto.PageSize);

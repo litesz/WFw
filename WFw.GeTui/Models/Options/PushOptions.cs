@@ -2,6 +2,9 @@
 
 namespace WFw.GeTui.Models.Options
 {
+    /// <summary>
+    /// 设置
+    /// </summary>
     public class PushOptions : IAuth
     {
         /// <summary>

@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example", "Example\Example.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WFw.Http", "WFw.Http\WFw.Http.csproj", "{8783D4F3-87D5-4E16-B521-FC00179D481E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WFw.GeTui", "WFw.GeTui\WFw.GeTui.csproj", "{C13D9153-C0F5-4D87-B4D2-583E1C3456BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WFw.GeTui", "WFw.GeTui\WFw.GeTui.csproj", "{C13D9153-C0F5-4D87-B4D2-583E1C3456BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,39 +1,46 @@
-﻿using Microsoft.Extensions.Options;
-using System;
-using WFw.GeTui.Models.Options;
+﻿using System;
 
 namespace WFw.GeTui.Stores
 {
+    /// <summary>
+    /// 令牌存储
+    /// </summary>
     public class GeTuiTokenStore
     {
-
-        private readonly long _inAdvance;
-        public bool IsLoading { get; set; }
-
+        /// <summary>
+        /// 令牌
+        /// </summary>
         public string Token { get; set; }
+
+        /// <summary>
+        /// 过期时间
+        /// </summary>
         public DateTime Expire { get; set; }
 
-        public GeTuiTokenStore(IOptions<PushOptions> options)
+        /// <summary>
+        /// 是否过期
+        /// </summary>
+        public bool IsExpire
         {
-            _inAdvance = options.Value.InAdvance;
-        }
-
-
-        public bool IsExpired()
-        {
-
-            if (string.IsNullOrWhiteSpace(Token))
+            get
             {
+                if (string.IsNullOrWhiteSpace(Token))
+                {
+                    return true;
+                }
+                if (Expire >= DateTime.Now.AddMinutes(-30))
+                {
+                    return true;
+                }
                 return false;
             }
-
-            if (DateTime.Now.AddSeconds(_inAdvance) >= Expire)
-            {
-
-                return false;
-            }
-            return true;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public GeTuiTokenStore()
+        {
+        }
     }
 }

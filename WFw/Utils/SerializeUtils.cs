@@ -11,16 +11,16 @@ namespace WFw.Utils
         /// <summary>
         /// 序列化JSON
         /// </summary>
-        /// <param name="obj"></param>
+        /// <param name="entity"></param>
         /// <returns></returns>
-        public static string SerializeJson<T>(this T obj) where T : class
+        public static string SerializeJson<T>(this T entity) where T : class
         {
-            if (obj == null)
+            if (entity == null)
             {
                 throw new BadRequestException(OperationResultType.ParamIsEmpty);
             }
 
-            return Newtonsoft.Json.JsonConvert.SerializeObject(obj);
+            return Newtonsoft.Json.JsonConvert.SerializeObject(entity);
         }
 
         /// <summary>
@@ -28,15 +28,25 @@ namespace WFw.Utils
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="entity"></param>
+        /// <param name="isIgnore">是否忽略值为null的对象</param>
         /// <returns></returns>
-        public static string SerializeByCamelCase<T>(this T entity) where T : class
+        public static string SerializeByCamelCase<T>(this T entity, bool isIgnore = false) where T : class
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(entity, Newtonsoft.Json.Formatting.Indented, new Newtonsoft.Json.JsonSerializerSettings
+            if (entity == null)
             {
-                ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver()
-            });
+                throw new BadRequestException(OperationResultType.ParamIsEmpty);
+            }
 
+            return Newtonsoft.Json.JsonConvert.SerializeObject(
+                entity,
+                Newtonsoft.Json.Formatting.Indented,
+                new Newtonsoft.Json.JsonSerializerSettings
+                {
+                    ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver(),
+                    NullValueHandling = isIgnore ? Newtonsoft.Json.NullValueHandling.Ignore : Newtonsoft.Json.NullValueHandling.Include
+                });
         }
+
 
         /// <summary>
         /// 反序列化

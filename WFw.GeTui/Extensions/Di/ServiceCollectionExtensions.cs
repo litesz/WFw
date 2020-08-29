@@ -13,7 +13,10 @@ namespace WFw
     /// </summary>
     public static class ServiceCollectionExtensions
     {
-        public const string baseUrl = "https://restapi.getui.com/v2/";
+        /// <summary>
+        /// 
+        /// </summary>
+        const string baseUrl = "https://restapi.getui.com/v2/";
 
         /// <summary>
         /// 添加个推APIV2接口
@@ -26,8 +29,8 @@ namespace WFw
             services.AddSingleton<GeTuiTokenStore>();
             services.AddHttpClient<IGeTuiService, GeTuiService>(c =>
             {
-                 c.BaseAddress = new Uri(baseUrl);
-             });
+                c.BaseAddress = new Uri(baseUrl);
+            });
 
             return services;
         }

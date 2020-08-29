@@ -1,0 +1,1231 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WFw.GeTui</name>
+    </assembly>
+    <members>
+        <member name="T:WFw.ServiceCollectionExtensions">
+            <summary>
+            扩展
+            </summary>
+        </member>
+        <member name="F:WFw.ServiceCollectionExtensions.baseUrl">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WFw.ServiceCollectionExtensions.AddGeTuiV2(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfigurationSection)">
+            <summary>
+            添加个推APIV2接口
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.ServiceCollectionExtensions.AddGeTuiV2(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{WFw.GeTui.Models.Options.PushOptions})">
+            <summary>
+            添加个推APIV2接口
+            </summary>
+            <param name="services"></param>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WFw.GeTui.JsonExtensions">
+            <summary>
+            json扩展
+            </summary>
+        </member>
+        <member name="M:WFw.GeTui.JsonExtensions.DeserializeObject``1(System.String)">
+            <summary>
+            反序列化
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.JsonExtensions.Serialize``1(``0)">
+            <summary>
+            序列化
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.JsonExtensions.SerializeByCamelCase``1(``0)">
+            <summary>
+            基于驼峰序列化
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.JsonExtensions.GetSelectedSection(System.String,System.String,System.Int32)">
+            <summary>
+            获得Data节点字符串
+            </summary>
+            <param name="content">文本</param>
+            <param name="key">节点名</param>
+            <param name="offset">初始偏移量</param>
+            <returns></returns>
+        </member>
+        <member name="T:WFw.GeTui.TimeConverterExtensions">
+            <summary>
+            时间转换
+            </summary>
+        </member>
+        <member name="M:WFw.GeTui.TimeConverterExtensions.ToMillisecondTimeStamp(System.DateTime)">
+            <summary>
+            时间转换 毫秒级别的时间戳
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.TimeConverterExtensions.ToDateTime(System.Int64)">
+            <summary>
+            毫秒时间戳转时间
+            </summary>
+            <param name="timeStamp"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WFw.GeTui.Models.Auth.AuthResponseData">
+            <summary>
+            鉴权结果
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Auth.AuthResponseData.Expire">
+            <summary>
+            过期时间戳
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Auth.AuthResponseData.Token">
+            <summary>
+            令牌
+            </summary>
+        </member>
+        <member name="T:WFw.GeTui.Models.Auth.IAuth">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Auth.IAuth.AppKey">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Auth.IAuth.MasterSecret">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:WFw.GeTui.Models.Options.PushOptions">
+            <summary>
+            设置
+            </summary>
+        </member>
+        <member name="F:WFw.GeTui.Models.Options.PushOptions.Position">
+            <summary>
+            节点名称
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Options.PushOptions.AppId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Options.PushOptions.AppKey">
+            <summary>
+            连接字符串
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Options.PushOptions.AppSecret">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Options.PushOptions.MasterSecret">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Options.PushOptions.InAdvance">
+            <summary>
+            提前刷新TOKEN时间
+            </summary>
+        </member>
+        <member name="T:WFw.GeTui.Models.Message.Audience">
+            <summary>
+            推送目标
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Message.Audience.Alias">
+            <summary>
+            别名
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Message.Audience.Cid">
+            <summary>
+            cid
+            </summary>
+        </member>
+        <member name="T:WFw.GeTui.Models.Message.Notification">
+            <summary>
+            通知
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Message.Notification.Title">
+            <summary>
+            通知消息标题，长度 ≤ 50
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Message.Notification.Body">
+            <summary>
+            通知消息内容，长度 ≤ 256
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Message.Notification.BigText">
+            <summary>
+            长文本消息内容，通知消息+长文本样式，与big_image二选一，两个都填写时报错，长度 ≤ 512
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Message.Notification.BigImage">
+            <summary>
+            大图的URL地址，通知消息+大图样式， 与big_text二选一，两个都填写时报错，长度 ≤ 1024
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Message.Notification.Logo">
+            <summary>
+            通知的图标名称，包含后缀名（需要在客户端开发时嵌入），如“push.png”，长度 ≤ 64
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Message.Notification.LogoUrl">
+            <summary>
+            通知图标URL地址，长度 ≤ 256
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Message.Notification.ChannelId">
+            <summary>
+            通知渠道id，长度 ≤ 64
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Message.Notification.ChannelName">
+            <summary>
+            通知渠道名称，长度 ≤ 64
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Message.Notification.ChannelLevel">
+            <summary>
+            设置通知渠道重要性（可以控制响铃，震动，浮动，闪灯等等）
+            android8.0以下
+            0，1，2:无声音，无振动，不浮动
+            3:有声音，无振动，不浮动
+            4:有声音，有振动，有浮动
+            android8.0以上
+            0：无声音，无振动，不显示；
+            1：无声音，无振动，锁屏不显示，通知栏中被折叠显示，导航栏无logo;
+            2：无声音，无振动，锁屏和通知栏中都显示，通知不唤醒屏幕;
+            3：有声音，无振动，锁屏和通知栏中都显示，通知唤醒屏幕;
+            4：有声音，有振动，亮屏下通知悬浮展示，锁屏通知以默认形式展示且唤醒屏幕;
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Message.Notification.ClickType">
+            <summary>
+            点击通知后续动作，
+            目前支持5种后续动作，
+            intent：打开应用内特定页面，
+            url：打开网页地址，
+            payload：启动应用加自定义消息内容，
+            startapp：打开应用首页，
+            none：纯通知，无后续动作
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Message.Notification.Intent">
+            <summary>
+            click_type为intent时必填
+            点击通知打开应用特定页面，长度 ≤ 2048;
+            示例：intent:#Intent;component=你的包名/你要打开的 activity 全路径;S.parm1=value1;S.parm2=value2;end
+            intent生成请参考
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Message.Notification.Url">
+            <summary>
+            click_type为url时必填
+            点击通知打开链接，长度 ≤ 1024
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Message.Notification.Payload">
+            <summary>
+            click_type为payload时必填
+            点击通知加自定义消息，长度 ≤ 3072
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Message.Notification.NotifyId">
+            <summary>
+            覆盖任务时会使用到该字段，两条消息的notify_id相同，新的消息会覆盖老的消息
+            </summary>
+        </member>
+        <member name="T:WFw.GeTui.Models.Message.PushChannel">
+            <summary>
+            推送通道
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Message.PushChannel.Ios">
+            <summary>
+            ios通道推送消息内容
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Message.PushChannel.Android">
+            <summary>
+            android通道推送消息内容
+            </summary>
+        </member>
+        <member name="T:WFw.GeTui.Models.Message.PushMessage">
+            <summary>
+            推送消息内容
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Message.PushMessage.Duration">
+            <summary>
+            手机端通知展示时间段，格式为毫秒时间戳段，两个时间的时间差必须大于10分钟，例如："1590547347000-1590633747000"
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Message.PushMessage.Transmission">
+            <summary>
+            纯透传消息内容，安卓和iOS均支持，与notification 二选一，两个都填写时报错，长度 ≤ 3072
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Message.PushMessage.Notification">
+            <summary>
+            通知消息内容，仅支持安卓系统，iOS系统不展示个推通知消息，与transmission二选一，两个都填写时报错
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:WFw.GeTui.Models.Push.ChannelLevel" -->
+        <member name="F:WFw.GeTui.Models.Push.ChannelLevel.None">
+            <summary>
+            android8.0以下
+            无声音，无振动，不浮动
+            android8.0以上
+            无声音，无振动，不显示；
+            </summary>
+        </member>
+        <member name="F:WFw.GeTui.Models.Push.ChannelLevel.Minimum">
+            <summary>
+            android8.0以下
+            无声音，无振动，不浮动
+            android8.0以上
+            无声音，无振动，锁屏不显示，通知栏中被折叠显示，导航栏无logo;
+            </summary>
+        </member>
+        <member name="F:WFw.GeTui.Models.Push.ChannelLevel.Low">
+            <summary>
+            /// <summary>
+            android8.0以下
+            无声音，无振动，不浮动
+            android8.0以上
+            无声音，无振动，锁屏和通知栏中都显示，通知不唤醒屏幕;
+            </summary>
+            </summary>
+        </member>
+        <member name="F:WFw.GeTui.Models.Push.ChannelLevel.Default">
+            <summary>
+            android8.0以下
+            有声音，有振动，有浮动
+            android8.0以上
+            有声音，无振动，锁屏和通知栏中都显示，通知唤醒屏幕;
+            </summary>
+        </member>
+        <member name="F:WFw.GeTui.Models.Push.ChannelLevel.Highest">
+            <summary>
+            android8.0以下
+            有声音，无振动，不浮动
+            android8.0以上
+            有声音，有振动，亮屏下通知悬浮展示，锁屏通知以默认形式展示且唤醒屏幕;   
+            </summary>
+        </member>
+        <member name="T:WFw.GeTui.Models.Push.PushTask">
+            <summary>
+            创建消息
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Push.PushTask.RequestId">
+            <summary>
+            请求唯一标识号，10-32位之间；如果request_id重复，会导致消息丢失
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Push.PushTask.Settings">
+            <summary>
+            推送条件设置
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Push.PushTask.Message">
+            <summary>
+            个推推送消息参数，详细内容见push_message
+            </summary>
+        </member>
+        <member name="T:WFw.GeTui.Models.Push.PushTaskSetting">
+            <summary>
+            推送条件设置
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Push.PushTaskSetting.Ttl">
+            <summary>
+            消息离线时间设置，单位毫秒，-1表示不设离线，-1 ～ 3 * 24 * 3600 * 1000(3天)之间
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Push.PushTaskSetting.Speed">
+            <summary>
+            定速推送，例如100，个推控制下发速度在100条/秒左右，0表示不限速
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Push.PushTaskSetting.Schedule">
+            <summary>
+            定时推送时间，格式：毫秒时间戳，此功能需要开通VIP，如需开通请联系 lieg@getui.com
+            </summary>
+        </member>
+        <member name="T:WFw.GeTui.Models.Push.Schedule.ScheduleItem">
+            <summary>
+            查询定时任务
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Push.Schedule.ScheduleItem.CreateTime">
+            <summary>
+            定时任务创建时间，毫秒时间戳
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Push.Schedule.ScheduleItem.Status">
+            <summary>
+            定时任务状态
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Push.Schedule.ScheduleItem.Content">
+            <summary>
+            透传内容
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Push.Schedule.ScheduleItem.PushTime">
+            <summary>
+            定时任务推送时间，毫秒时间戳
+            </summary>
+        </member>
+        <member name="T:WFw.GeTui.Models.Push.TaskIdData">
+            <summary>
+            任务数据
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Push.TaskIdData.TaskId">
+            <summary>
+            任务编号
+            </summary>
+        </member>
+        <member name="T:WFw.GeTui.Models.Push.ToApp.AllPushTask">
+            <summary>
+            群推
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Push.ToApp.AllPushTask.Audience">
+            <summary>
+            推送目标用户该接口audience 对应值为all，表示推送所有用户
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Push.ToApp.AllPushTask.GroupName">
+            <summary>
+            任务组名
+            </summary>
+        </member>
+        <member name="T:WFw.GeTui.Models.Push.ToApp.AudienceTag">
+            <summary>
+            推送条件
+            </summary>
+            <remarks>
+            不同key之间是交集，同一个key之间是根据opt_type操作
+            需要发送给城市在A,B,C里面，没有设置tagtest标签，手机型号为android的用户，用条件交并补功能可以实现，city(A|B|C) and !tag(tagtest) and phonetype(android)
+            </remarks>
+        </member>
+        <member name="P:WFw.GeTui.Models.Push.ToApp.AudienceTag.Key">
+            <summary>
+            查询条件(phone_type 手机类型; region 省市; custom_tag 用户标签
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Push.ToApp.AudienceTag.Values">
+            <summary>
+            查询条件值列表，其中
+            手机型号使用如下参数android和ios；
+            省市使用编号
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Push.ToApp.AudienceTag.Type">
+            <summary>
+            or(或),and(与),not(非)，values间的交并补操作
+            </summary>
+        </member>
+        <member name="T:WFw.GeTui.Models.Push.ToApp.CustomTagPushAudience">
+            <summary>
+            推送目标用户
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Push.ToApp.CustomTagPushAudience.CustomTag">
+            <summary>
+            使用用户标签筛选目标用户
+            </summary>
+        </member>
+        <member name="T:WFw.GeTui.Models.Push.ToApp.CustomTagPushTask">
+            <summary>
+            使用标签快速推送
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Push.ToApp.CustomTagPushTask.GroupName">
+            <summary>
+            任务组名
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Push.ToApp.CustomTagPushTask.Audience">
+            <summary>
+            推送目标用户
+            </summary>
+        </member>
+        <member name="T:WFw.GeTui.Models.Push.ToApp.TagPushAudience">
+            <summary>
+            推送目标用户
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Push.ToApp.TagPushAudience.Tag">
+            <summary>
+            推送条件
+            </summary>
+        </member>
+        <member name="T:WFw.GeTui.Models.Push.ToApp.TagPushTask">
+            <summary>
+            根据条件筛选用户推送
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Push.ToApp.TagPushTask.GroupName">
+            <summary>
+            任务组名
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Push.ToApp.TagPushTask.Audience">
+            <summary>
+            推送目标用户
+            </summary>
+        </member>
+        <member name="T:WFw.GeTui.Models.Push.ToList.ListPushMessage">
+            <summary>
+            批量推
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Push.ToList.ListPushMessage.IsAsync">
+            <summary>
+            是否异步推送，异步推送不会返回data
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Push.ToList.ListPushMessage.TaskId">
+            <summary>
+            使用创建消息接口返回的taskId
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Push.ToList.ListPushMessage.Audience">
+            <summary>
+            推送目标用户
+            </summary>
+        </member>
+        <member name="T:WFw.GeTui.Models.Push.ToList.ListPushTask">
+            <summary>
+            批量推任务
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Push.ToList.ListPushTask.GroupName">
+            <summary>
+            任务组名
+            </summary>
+        </member>
+        <member name="T:WFw.GeTui.Models.Push.ToSingle.PushResultStatus">
+            <summary>
+            推送结果 
+            </summary>
+        </member>
+        <member name="F:WFw.GeTui.Models.Push.ToSingle.PushResultStatus.Offline">
+            <summary>
+            离线下发(包含厂商通道下发)
+            </summary>
+        </member>
+        <member name="F:WFw.GeTui.Models.Push.ToSingle.PushResultStatus.Online">
+            <summary>
+            在线下发
+            </summary>
+        </member>
+        <member name="F:WFw.GeTui.Models.Push.ToSingle.PushResultStatus.Ignore">
+            <summary>
+            最近90天内不活跃用户不下发
+            </summary>
+        </member>
+        <member name="T:WFw.GeTui.Models.Push.ToSingle.SingleBatchPushTask">
+            <summary>
+            执行批量单推
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Push.ToSingle.SingleBatchPushTask.IsAsync">
+            <summary>
+            是否异步
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Push.ToSingle.SingleBatchPushTask.List">
+            <summary>
+            内容
+            </summary>
+        </member>
+        <member name="T:WFw.GeTui.Models.Push.ToSingle.SinglePushResult">
+            <summary>
+            执行单推结果
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Push.ToSingle.SinglePushResult.Items">
+            <summary>
+            执行单推结果内容
+            </summary>
+        </member>
+        <member name="T:WFw.GeTui.Models.Push.ToSingle.SinglePushResultItem">
+            <summary>
+            执行单推结果内容
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Push.ToSingle.SinglePushResultItem.Cid">
+            <summary>
+            cid
+            </summary>
+        </member>
+        <member name="T:WFw.GeTui.Models.Push.ToSingle.SinglePushTask">
+            <summary>
+            执行单推
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Push.ToSingle.SinglePushTask.Audience">
+            <summary>
+            推送目标用户，详细解释见下方audience说明
+            </summary>
+        </member>
+        <member name="T:WFw.GeTui.Models.Report.OnlineStatics">
+            <summary>
+            获取24个小时在线用户数
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Report.OnlineStatics.Items">
+            <summary>
+            在线用户统计数据
+            </summary>
+        </member>
+        <member name="T:WFw.GeTui.Models.Report.OnlineStaticsItem">
+            <summary>
+            在线用户统计数据
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Report.OnlineStaticsItem.DateTime">
+            <summary>
+            时间
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Report.OnlineStaticsItem.Number">
+            <summary>
+            数量
+            </summary>
+        </member>
+        <member name="T:WFw.GeTui.Models.Report.PushResultReport">
+            <summary>
+            推送结果
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Report.PushResultReport.Gt">
+            <summary>
+            个推
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Report.PushResultReport.Ios">
+            <summary>
+            apn
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Report.PushResultReport.St">
+            <summary>
+            坚果
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Report.PushResultReport.Hw">
+            <summary>
+            华为
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Report.PushResultReport.Xm">
+            <summary>
+            小米
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Report.PushResultReport.Vv">
+            <summary>
+            vivo
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Report.PushResultReport.Mz">
+            <summary>
+            魅族
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Report.PushResultReport.Op">
+            <summary>
+            Oppo
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Report.PushResultReport.Total">
+            <summary>
+            总计
+            </summary>
+        </member>
+        <member name="T:WFw.GeTui.Models.Report.PushResultWithDateReport">
+            <summary>
+            带日期的推送结果
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Report.PushResultWithDateReport.Date">
+            <summary>
+            日期
+            </summary>
+        </member>
+        <member name="T:WFw.GeTui.Models.Report.PushResultReportItem">
+            <summary>
+            推送结果
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Report.PushResultReportItem.Target">
+            <summary>
+            目标下发数
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Report.PushResultReportItem.Receive">
+            <summary>
+            消息接收数
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Report.PushResultReportItem.Display">
+            <summary>
+            消息展示数
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Report.PushResultReportItem.Click">
+            <summary>
+            消息点击数
+            </summary>
+        </member>
+        <member name="T:WFw.GeTui.Models.Report.PushResultWithGroupNameReport">
+            <summary>
+            带组名的推送结果
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Report.PushResultWithGroupNameReport.GroupName">
+            <summary>
+            任务组名
+            </summary>
+        </member>
+        <member name="T:WFw.GeTui.Models.Report.PushResultWithTaskIdReport">
+            <summary>
+            带任务编号的推送结果
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Report.PushResultWithTaskIdReport.TaskId">
+            <summary>
+            任务id
+            </summary>
+        </member>
+        <member name="T:WFw.GeTui.Models.Report.UserReport">
+            <summary>
+            用户数
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Report.UserReport.Accumulative">
+            <summary>
+            累计注册用户数
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Report.UserReport.Register">
+            <summary>
+            注册用户数
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Report.UserReport.Active">
+            <summary>
+            活跃用户数
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Report.UserReport.Online">
+            <summary>
+            在线用户数
+            </summary>
+        </member>
+        <member name="T:WFw.GeTui.Models.Response`1">
+            <summary>
+            通用返回
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:WFw.GeTui.Models.Response">
+            <summary>
+            仅验证状态
+            </summary>
+        </member>
+        <member name="T:WFw.GeTui.Services.GeTuiService">
+            <summary>
+            群推
+            </summary>
+            <summary>
+            
+            </summary>
+            <summary>
+            批量推
+            </summary>
+            <summary>
+            统计
+            </summary>
+            <summary>
+            单推
+            </summary>
+            <summary>
+            任务
+            </summary>
+        </member>
+        <member name="M:WFw.GeTui.Services.GeTuiService.PushAll(WFw.GeTui.Models.Push.ToApp.AllPushTask)">
+            <summary>
+            执行群推
+            </summary>
+            <param name="pushTask"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.GeTuiService.PushTag(WFw.GeTui.Models.Push.ToApp.TagPushTask)">
+            <summary>
+            根据条件筛选用户推送
+            </summary>
+            <param name="pushTask"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.GeTuiService.PushCustomTag(WFw.GeTui.Models.Push.ToApp.CustomTagPushTask)">
+            <summary>
+            根据条件筛选用户推送
+            </summary>
+            <param name="使用标签快速推送"></param>
+            <returns></returns>
+        </member>
+        <member name="F:WFw.GeTui.Services.GeTuiService._tokenStore">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:WFw.GeTui.Services.GeTuiService._httpClient">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:WFw.GeTui.Services.GeTuiService._pushOptions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WFw.GeTui.Services.GeTuiService.#ctor(System.Net.Http.HttpClient,Microsoft.Extensions.Options.IOptions{WFw.GeTui.Models.Options.PushOptions},WFw.GeTui.Stores.GeTuiTokenStore)">
+            <summary>
+            
+            </summary>
+            <param name="client"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:WFw.GeTui.Services.GeTuiService.LoadToken">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.GeTuiService.DeleteToken">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.GeTuiService.PostAsync(System.String,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="url"></param>
+            <param name="body"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.GeTuiService.PostAndCheckCodeAsync(System.String,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="url"></param>
+            <param name="body"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.GeTuiService.PostAndReturnAsync``1(System.String,System.Object)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="url"></param>
+            <param name="body"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.GeTuiService.DeleteAsync(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="url"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.GeTuiService.GetAsync(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="url"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.GeTuiService.GetDataStrAsync(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="url"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.GeTuiService.GetJTokensAsync(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="url"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.GeTuiService.CreatePushMessage(WFw.GeTui.Models.Push.ToList.ListPushTask)">
+            <summary>
+            创建消息
+            </summary>
+            <param name="pushTask"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.GeTuiService.PushList(WFw.GeTui.Models.Push.ToList.ListPushMessage)">
+            <summary>
+            执行cid批量推
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.GeTuiService.PushListByCid(System.String,System.String[])">
+            <summary>
+            执行别名批量推
+            </summary>
+            <param name="taskId"></param>
+            <param name="cids"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.GeTuiService.PushListByAlias(System.String,System.String[])">
+            <summary>
+            执行别名批量推
+            </summary>
+            <param name="taskId"></param>
+            <param name="alias"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.GeTuiService.GetPushReportByTaskId(System.String[])">
+            <summary>
+            获取推送结果
+            </summary>
+            <param name="taskIds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.GeTuiService.GetPushReportByTaskGroup(System.String)">
+            <summary>
+            任务组名查报表
+            </summary>
+            <param name="taskGroupName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.GeTuiService.GetPushReportByDate(System.DateTime)">
+            <summary>
+            获取单日推送数据
+            </summary>
+            <param name="date">目前只支持查询非当天的数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.GeTuiService.GetUserReportByDate(System.DateTime)">
+            <summary>
+            获取单日用户数据接口
+            </summary>
+            <param name="date"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.GeTuiService.GetOnlineUser">
+            <summary>
+            获取24个小时在线用户数
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.GeTuiService.PushSingle(WFw.GeTui.Models.Push.ToSingle.SinglePushTask)">
+            <summary>
+            单推，自动识别Cid或Alias
+            </summary>
+            <param name="pushTask"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.GeTuiService.PushSingleByCid(WFw.GeTui.Models.Push.ToSingle.SinglePushTask)">
+            <summary>
+            单推，cid
+            </summary>
+            <param name="pushTask"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.GeTuiService.PushSingleByAlias(WFw.GeTui.Models.Push.ToSingle.SinglePushTask)">
+            <summary>
+            单推,Alias
+            </summary>
+            <param name="pushTask"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.GeTuiService.PushSingleBatch(WFw.GeTui.Models.Push.ToSingle.SingleBatchPushTask)">
+            <summary>
+            
+            </summary>
+            <param name="pushTask"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.GeTuiService.PushSingleBatchByCid(WFw.GeTui.Models.Push.ToSingle.SingleBatchPushTask)">
+            <summary>
+            
+            </summary>
+            <param name="pushTask"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.GeTuiService.PushSingleBatchByAlias(WFw.GeTui.Models.Push.ToSingle.SingleBatchPushTask)">
+            <summary>
+            
+            </summary>
+            <param name="pushTask"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.GeTuiService.StopTask(System.String)">
+            <summary>
+            停止任务
+            </summary>
+            <param name="taskId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.GeTuiService.GetSchedule(System.String)">
+            <summary>
+            查询定时任务
+            </summary>
+            <param name="taskId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.GeTuiService.StopSchedule(System.String)">
+            <summary>
+            删除定时任务
+            用来删除还未下发的任务，删除后定时任务不再出发
+            </summary>
+            <param name="taskId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WFw.GeTui.Services.IGeTuiService">
+            <summary>
+            群推
+            </summary>
+            <summary>
+            批量推
+            </summary>
+            <summary>
+            统计
+            </summary>
+            <summary>
+            单推接口
+            </summary>
+            <summary>
+            任务
+            </summary>
+        </member>
+        <member name="M:WFw.GeTui.Services.IGeTuiService.PushAll(WFw.GeTui.Models.Push.ToApp.AllPushTask)">
+            <summary>
+            执行群推
+            注：此接口频次限制100次/天，每分钟不能超过5次(推送限制和接口根据条件筛选用户推送共享限制)，定时推送功能需要申请开通才可以使用，申请修改请联系邮箱：lieg@getui.com。
+            </summary>
+            <param name="pushTask"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.IGeTuiService.PushTag(WFw.GeTui.Models.Push.ToApp.TagPushTask)">
+            <summary>
+            根据条件筛选用户推送
+            注：此接口频次限制100次/天，每分钟不能超过5次(推送限制和接口执行群推共享限制)，定时推送功能需要申请开通才可以使用，申请修改请联系邮箱：lieg@getui.com。
+            </summary>
+            <param name="pushTask"></param>
+            <returns>taskId</returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.IGeTuiService.PushCustomTag(WFw.GeTui.Models.Push.ToApp.CustomTagPushTask)">
+            <summary>
+            根据条件筛选用户推送
+            该功能需要申请相关套餐，请联系邮箱：lieg@getui.com 。
+            </summary>
+            <param name="使用标签快速推送"></param>
+            <returns>taskId</returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.IGeTuiService.LoadToken">
+            <summary>
+            获得token
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.IGeTuiService.DeleteToken">
+            <summary>
+            注销token
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.IGeTuiService.CreatePushMessage(WFw.GeTui.Models.Push.ToList.ListPushTask)">
+            <summary>
+            创建消息
+            </summary>
+            <param name="pushTask"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.IGeTuiService.PushList(WFw.GeTui.Models.Push.ToList.ListPushMessage)">
+            <summary>
+            执行批量推
+            注：此接口频次限制200万次/天(和执行别名批量推共享限制)，申请修改请联系邮箱：lieg@getui.com。
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.IGeTuiService.PushListByCid(System.String,System.String[])">
+            <summary>
+            执行cid批量推
+            注：此接口频次限制200万次/天(和执行别名批量推共享限制)，申请修改请联系邮箱：lieg@getui.com。
+            </summary>
+            <param name="taskId"></param>
+            <param name="cids"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.IGeTuiService.PushListByAlias(System.String,System.String[])">
+            <summary>
+            执行别名批量推
+            注：此接口频次限制200万次/天(和执行cid批量推共享限制)，申请修改请联系邮箱：lieg@getui.com。
+            </summary>
+            <param name="taskId"></param>
+            <param name="alias"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.IGeTuiService.GetPushReportByTaskId(System.String[])">
+            <summary>
+            获取推送结果
+            </summary>
+            <param name="taskIds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.IGeTuiService.GetPushReportByTaskGroup(System.String)">
+            <summary>
+            任务组名查报表
+            </summary>
+            <param name="taskGroupName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.IGeTuiService.GetPushReportByDate(System.DateTime)">
+            <summary>
+            获取单日推送数据
+            </summary>
+            <param name="date">目前只支持查询非当天的数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.IGeTuiService.GetUserReportByDate(System.DateTime)">
+            <summary>
+            获取单日用户数据接口
+            </summary>
+            <param name="date"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.IGeTuiService.GetOnlineUser">
+            <summary>
+            查询当前时间一天内的在线用户数(10分钟一个点，1个小时六个点)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.IGeTuiService.PushSingle(WFw.GeTui.Models.Push.ToSingle.SinglePushTask)">
+            <summary>
+            单推，自动识别接口
+            </summary>
+            <param name="pushTask"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.IGeTuiService.PushSingleByCid(WFw.GeTui.Models.Push.ToSingle.SinglePushTask)">
+            <summary>
+            单推cid
+            </summary>
+            <param name="pushTask"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.IGeTuiService.PushSingleByAlias(WFw.GeTui.Models.Push.ToSingle.SinglePushTask)">
+            <summary>
+            单推alias
+            </summary>
+            <param name="pushTask"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.IGeTuiService.PushSingleBatch(WFw.GeTui.Models.Push.ToSingle.SingleBatchPushTask)">
+            <summary>
+            批量单推，自动识别
+            </summary>
+            <param name="pushTask"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.IGeTuiService.PushSingleBatchByCid(WFw.GeTui.Models.Push.ToSingle.SingleBatchPushTask)">
+            <summary>
+            批量单推cid
+            </summary>
+            <param name="pushTask"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.IGeTuiService.PushSingleBatchByAlias(WFw.GeTui.Models.Push.ToSingle.SingleBatchPushTask)">
+            <summary>
+            批量单推alias
+            </summary>
+            <param name="pushTask"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.IGeTuiService.StopTask(System.String)">
+            <summary>
+            停止任务
+            </summary>
+            <param name="taskId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.IGeTuiService.StopSchedule(System.String)">
+            <summary>
+            删除定时任务
+            用来删除还未下发的任务，删除后定时任务不再出发
+            </summary>
+            <param name="taskId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.IGeTuiService.GetSchedule(System.String)">
+            <summary>
+            查询定时任务
+            </summary>
+            <param name="taskId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WFw.GeTui.Stores.GeTuiTokenStore">
+            <summary>
+            令牌存储
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Stores.GeTuiTokenStore.Token">
+            <summary>
+            令牌
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Stores.GeTuiTokenStore.Expire">
+            <summary>
+            过期时间
+            </summary>
+        </member>
+        <member name="M:WFw.GeTui.Stores.GeTuiTokenStore.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>
