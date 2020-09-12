@@ -32,7 +32,7 @@ namespace WFw.GeTui.Services
         /// <summary>
         /// 根据条件筛选用户推送
         /// </summary>
-        /// <param name="使用标签快速推送"></param>
+        /// <param name="pushTask"></param>
         /// <returns></returns>
         public async Task<string> PushCustomTag(CustomTagPushTask pushTask)
         {

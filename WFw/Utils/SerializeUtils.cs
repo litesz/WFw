@@ -28,9 +28,9 @@ namespace WFw.Utils
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="entity"></param>
-        /// <param name="isIgnore">是否忽略值为null的对象</param>
+        /// <param name="isIgnoreNull">是否忽略值为null的对象</param>
         /// <returns></returns>
-        public static string SerializeByCamelCase<T>(this T entity, bool isIgnore = false) where T : class
+        public static string SerializeByCamelCase<T>(this T entity, bool isIgnoreNull = false) where T : class
         {
             if (entity == null)
             {
@@ -43,7 +43,7 @@ namespace WFw.Utils
                 new Newtonsoft.Json.JsonSerializerSettings
                 {
                     ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver(),
-                    NullValueHandling = isIgnore ? Newtonsoft.Json.NullValueHandling.Ignore : Newtonsoft.Json.NullValueHandling.Include
+                    NullValueHandling = isIgnoreNull ? Newtonsoft.Json.NullValueHandling.Ignore : Newtonsoft.Json.NullValueHandling.Include
                 });
         }
 

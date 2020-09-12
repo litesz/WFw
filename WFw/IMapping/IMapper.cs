@@ -1,5 +1,8 @@
 ﻿namespace WFw.IMapping
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IMapper
     {
         /// <summary>

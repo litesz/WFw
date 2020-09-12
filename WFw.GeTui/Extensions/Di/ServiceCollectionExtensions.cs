@@ -22,6 +22,7 @@ namespace WFw
         /// 添加个推APIV2接口
         /// </summary>
         /// <param name="services"></param>
+        /// <param name="configurationSection"></param>
         /// <returns></returns>
         public static IServiceCollection AddGeTuiV2(this IServiceCollection services, IConfigurationSection configurationSection)
         {

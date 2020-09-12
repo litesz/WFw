@@ -3,6 +3,9 @@ using WFw.IMapping;
 
 namespace WFw.Mapping
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class MapperExtensions
     {
         private static IMapper _mapper;
@@ -13,7 +16,6 @@ namespace WFw.Mapping
         /// <param name="mapper">映射执行者</param>
         public static void SetMapper(IMapper mapper)
         {
-            //  mapper.CheckNotNull("mapper");
             _mapper = mapper;
         }
 

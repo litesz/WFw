@@ -59,8 +59,6 @@ namespace WFw.Dtos.Responses
         /// 
         /// </summary>
         /// <param name="items"></param>
-        /// <param name="total"></param>
-        /// <param name="request"></param>
         public PagedResponseDataDto(IEnumerable<TEntity> items) : this(items, items?.Count() ?? 0, 1, items?.Count() ?? 0)
         {
         }

@@ -103,7 +103,7 @@ namespace WFw.GeTui.Services
             bodyJson.Headers.Add("token", _tokenStore.Token);
 
             var response = await _httpClient.PostAsync($"{_pushOptions.AppId}/{url}", bodyJson);
-
+            
             var content = await response.Content.ReadAsStringAsync();
             if (!response.IsSuccessStatusCode)
             {

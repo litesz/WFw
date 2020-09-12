@@ -13,9 +13,21 @@ namespace WFw.IDtos.Responses
     /// <typeparam name="TEntity"></typeparam>
     public interface IPagedResponseDataDto<TEntity> : IResponseDataDto
     {
+        /// <summary>
+        /// 
+        /// </summary>
         int Total { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         IEnumerable<TEntity> Items { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         int PageIndex { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         int PageSize { get; set; }
     }
 }

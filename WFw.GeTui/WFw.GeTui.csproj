@@ -8,6 +8,7 @@
     <Description>针对个推restapiv2的封装</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/litesz/WFw</PackageProjectUrl>
+    <Version>0.0.8</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

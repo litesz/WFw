@@ -56,15 +56,13 @@
         /// <summary>
         /// 添加claim值
         /// </summary>
-        /// <typeparam name="T"></typeparam>
         /// <param name="key"></param>
-        /// <returns></returns>
+        /// <param name="value"></param>
         void AddClaim(string key, string value);
 
         /// <summary>
         /// 获得claim值
         /// </summary>
-        /// <typeparam name="T"></typeparam>
         /// <param name="key"></param>
         /// <returns></returns>
         string this[string key] { get; }
@@ -72,8 +70,7 @@
         /// <summary>
         /// 是否包含角色
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="key"></param>
+        /// <param name="role"></param>
         /// <returns></returns>
         bool ContainRole(string role);
 

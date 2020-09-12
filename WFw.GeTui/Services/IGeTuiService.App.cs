@@ -28,7 +28,7 @@ namespace WFw.GeTui.Services
         /// 根据条件筛选用户推送
         /// 该功能需要申请相关套餐，请联系邮箱：lieg@getui.com 。
         /// </summary>
-        /// <param name="使用标签快速推送"></param>
+        /// <param name="pushTask"></param>
         /// <returns>taskId</returns>
         Task<string> PushCustomTag(CustomTagPushTask pushTask);
     }

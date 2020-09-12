@@ -18,6 +18,11 @@ namespace WFw.DbContext
         /// <summary>
         /// 
         /// </summary>
+        public IDbContext.IAdo Ado => new SugarAdo(Db.Ado);
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="dbOptions"></param>
         public SqlSugarDbContext(IOptions<DbOptions> dbOptions)
         {
@@ -28,6 +33,7 @@ namespace WFw.DbContext
                 InitKeyType = InitKeyType.Attribute,
                 IsAutoCloseConnection = true,
             });
+
         }
         /// <summary>
         /// 

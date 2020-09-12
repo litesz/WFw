@@ -7,9 +7,6 @@ using WFw.IEntity;
 namespace WFw.IDbContext
 {
 
-    //TODO:insert返回entity
-
-
     /// <summary>
     /// 数据库上下文
     /// </summary>
@@ -65,26 +62,13 @@ namespace WFw.IDbContext
         /// <param name="entities">更新后的实体对象</param>
         /// <returns>操作影响的行数</returns>
         int Update(params TEntity[] entities);
-        /// <summary>
-        /// 根据属性更新对象
-        /// </summary>
-        /// <param name="items"></param>
-        /// <returns></returns>
-        int Update(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TEntity>> updateor);
-        /// <summary>
-        /// 检查实体是否存在
-        /// </summary>
-        /// <param name="predicate">查询条件谓语表达式</param>
-        /// <param name="id">编辑的实体标识</param>
-        /// <returns>是否存在</returns>
-        [Obsolete("use any")]
-        bool CheckExists(Expression<Func<TEntity, bool>> predicate, TPrimary id = default);
+
         /// <summary>
         /// 查找指定主键的实体
         /// </summary>
         /// <param name="key">实体主键</param>
         /// <returns>符合主键的实体，不存在时返回null</returns>
-        TEntity Get(TPrimary key);
+        TEntity GetFirst(TPrimary key);
 
         /// <summary>
         /// 查找第一个符合条件的数据
@@ -92,11 +76,7 @@ namespace WFw.IDbContext
         /// <param name="predicate">数据查询谓语表达式</param>
         /// <returns>符合条件的实体，不存在时返回null</returns>
         TEntity GetFirst(Expression<Func<TEntity, bool>> predicate);
-        /// <summary>
-        /// 查询所有
-        /// </summary>
-        /// <returns></returns>
-        IList<TEntity> GetAll();
+
 
         /// <summary>
         /// 是否存在
@@ -104,6 +84,12 @@ namespace WFw.IDbContext
         /// <param name="predicate"></param>
         /// <returns></returns>
         bool Any(Expression<Func<TEntity, bool>> predicate);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        IList<TEntity> GetAll();
 
         #endregion
 
@@ -139,20 +125,15 @@ namespace WFw.IDbContext
         /// <param name="entities">更新后的实体对象</param>
         /// <returns>操作影响的行数</returns>
         Task<int> UpdateAsync(params TEntity[] entities);
-        /// <summary>
-        /// 检查实体是否存在
-        /// </summary>
-        /// <param name="predicate">查询条件谓语表达式</param>
-        /// <param name="id">编辑的实体标识</param>
-        /// <returns>是否存在</returns>
-        [Obsolete("use anyasync")]
-        Task<bool> CheckExistsAsync(Expression<Func<TEntity, bool>> predicate, TPrimary id = default);
+
+
+
         /// <summary>
         /// 查找指定主键的实体
         /// </summary>
         /// <param name="key">实体主键</param>
         /// <returns>符合主键的实体，不存在时返回null</returns>
-        Task<TEntity> GetAsync(TPrimary key);
+        Task<TEntity> GetFirstAsync(TPrimary key);
 
         /// <summary>
         /// 查找第一个符合条件的数据
@@ -160,12 +141,6 @@ namespace WFw.IDbContext
         /// <param name="predicate">数据查询谓语表达式</param>
         /// <returns>符合条件的实体，不存在时返回null</returns>
         Task<TEntity> GetFirstAsync(Expression<Func<TEntity, bool>> predicate);
-        /// <summary>
-        /// 从查询所有
-        /// </summary>
-        /// <returns></returns>
-        Task<IList<TEntity>> GetAllAsync();
-
 
         /// <summary>
         /// 是否存在
@@ -173,6 +148,12 @@ namespace WFw.IDbContext
         /// <param name="predicate"></param>
         /// <returns></returns>
         Task<bool> AnyAsync(Expression<Func<TEntity, bool>> predicate);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        Task<IList<TEntity>> GetAllAsync();
 
         #endregion
 
@@ -188,7 +169,16 @@ namespace WFw.IDbContext
         /// <returns></returns>
         IWQueryable<TEntity> Where(Expression<Func<TEntity, bool>> expression);
 
+        ///// <summary>
+        ///// 根据sql查询
+        ///// </summary>
+        ///// <param name="sql"></param>
+        ///// <returns></returns>
+        //IWQueryable<TEntity> SqlQueryable(string sql);
 
-
+        /// <summary>
+        /// ADO
+        /// </summary>
+        IAdo Ado { get; }
     }
 }

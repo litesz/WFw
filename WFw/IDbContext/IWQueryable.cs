@@ -13,6 +13,13 @@ namespace WFw.IDbContext
     public partial interface IWQueryable<T>
     {
         /// <summary>
+        /// 设置表名
+        /// </summary>
+        /// <param name="tableName"></param>
+        /// <returns></returns>
+        IWQueryable<T> As(string tableName);
+
+        /// <summary>
         /// 条件
         /// </summary>
         /// <param name="expression"></param>
@@ -207,5 +214,11 @@ namespace WFw.IDbContext
         /// <param name="pageSize"></param>
         /// <returns></returns>
         Task<IPagedResponseDataDto<T>> ToPageListAsync(int pageIndex, int pageSize);
+
+       /// <summary>
+       /// 获得sql
+       /// </summary>
+       /// <returns></returns>
+        string ToSql();
     }
 }

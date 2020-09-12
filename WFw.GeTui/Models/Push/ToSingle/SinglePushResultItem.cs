@@ -9,6 +9,9 @@
         /// cid
         /// </summary>
         public string Cid { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public PushResultStatus Status { get; set; }
     }
 }

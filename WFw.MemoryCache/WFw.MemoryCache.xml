@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WFw.MemoryCache</name>
+    </assembly>
+    <members>
+        <member name="T:WFw.ServiceCollectionExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WFw.ServiceCollectionExtensions.AddWFwMemoryCache(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            添加icachememroy 缓存
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WFw.MemoryCache.MemoryCacheManager">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WFw.MemoryCache.MemoryCacheManager.#ctor(Microsoft.Extensions.Caching.Memory.IMemoryCache)">
+            <summary>
+            
+            </summary>
+            <param name="memoryCache"></param>
+        </member>
+        <member name="M:WFw.MemoryCache.MemoryCacheManager.Set``1(System.String,``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="Entity"></typeparam>
+            <param name="key"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:WFw.MemoryCache.MemoryCacheManager.Set``1(System.String,``0,System.Int32)">
+            <summary>
+            
+            </summary>
+            <typeparam name="Entity"></typeparam>
+            <param name="key"></param>
+            <param name="value"></param>
+            <param name="cacheDurationInSeconds"></param>
+        </member>
+        <member name="M:WFw.MemoryCache.MemoryCacheManager.Get``1(System.String)">
+            <summary>
+            
+            </summary>
+            <typeparam name="Entity"></typeparam>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.MemoryCache.MemoryCacheManager.Get(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.MemoryCache.MemoryCacheManager.Del(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="keys"></param>
+        </member>
+        <member name="M:WFw.MemoryCache.MemoryCacheManager.ContainsKey``1(System.String)">
+            <summary>
+            
+            </summary>
+            <typeparam name="Entity"></typeparam>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.MemoryCache.MemoryCacheManager.ContainsKey(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.MemoryCache.MemoryCacheManager.Compare(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

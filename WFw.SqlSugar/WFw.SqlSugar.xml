@@ -1,0 +1,739 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WFw.SqlSugar</name>
+    </assembly>
+    <members>
+        <member name="T:WFw.DbContext.SqlSugarDbContext">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:WFw.DbContext.SqlSugarDbContext.Db">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:WFw.DbContext.SqlSugarDbContext.Ado">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WFw.DbContext.SqlSugarDbContext.#ctor(Microsoft.Extensions.Options.IOptions{WFw.DbContext.DbOptions})">
+            <summary>
+            
+            </summary>
+            <param name="dbOptions"></param>
+        </member>
+        <member name="M:WFw.DbContext.SqlSugarDbContext.InitTables(System.Type[])">
+            <summary>
+            
+            </summary>
+            <param name="tables"></param>
+        </member>
+        <member name="M:WFw.DbContext.SqlSugarDbContext.Init``1(``0[])">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="initData"></param>
+        </member>
+        <member name="M:WFw.DbContext.SqlSugarDbContext.Queryable``1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SqlSugarDbContext.Deletable``1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SqlSugarDbContext.Deletable``1(System.Object[])">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="ids"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SqlSugarDbContext.Updatable``1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SqlSugarDbContext.Updatable``1(``0[])">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="objs"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SqlSugarDbContext.Insertable``1(``0[])">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="insertObjs"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WFw.DbContext.SugarAdo">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:WFw.DbContext.SugarAdo.ado">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WFw.DbContext.SugarAdo.#ctor(SqlSugar.IAdo)">
+            <summary>
+            
+            </summary>
+            <param name="ado"></param>
+        </member>
+        <member name="M:WFw.DbContext.SugarAdo.BeginTransaction">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WFw.DbContext.SugarAdo.CommitTransaction">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WFw.DbContext.SugarAdo.ExecuteCommand(System.String,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="sql"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarAdo.ExecuteCommandAsync(System.String,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="sql"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarAdo.RollBackTransaction">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WFw.DbContext.SugarAdo.SqlQuery``1(System.String,System.Object)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="sql"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarAdo.SqlQueryAsync``1(System.String,System.Object)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="sql"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WFw.DbContext.SugarWDeletable`1">
+            <summary>
+            删除接口
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="F:WFw.DbContext.SugarWDeletable`1._deletable">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WFw.DbContext.SugarWDeletable`1.#ctor(SqlSugar.SqlSugarClient)">
+            <summary>
+            
+            </summary>
+            <param name="client"></param>
+        </member>
+        <member name="M:WFw.DbContext.SugarWDeletable`1.#ctor(SqlSugar.IDeleteable{`0})">
+            <summary>
+            
+            </summary>
+            <param name="able"></param>
+        </member>
+        <member name="M:WFw.DbContext.SugarWDeletable`1.ExecuteCommand">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarWDeletable`1.ExecuteCommandAsync">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:WFw.DbContext.SugarWInsertable`1">
+            <summary>
+            插入接口
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="F:WFw.DbContext.SugarWInsertable`1._insertable">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WFw.DbContext.SugarWInsertable`1.#ctor(SqlSugar.IInsertable{`0})">
+            <summary>
+            
+            </summary>
+            <param name="able"></param>
+        </member>
+        <member name="M:WFw.DbContext.SugarWInsertable`1.ExecuteCommand">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarWInsertable`1.ExecuteCommandAsync">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarWInsertable`1.ExecuteCommandIdentityIntoEntity">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarWInsertable`1.ExecuteCommandIdentityIntoEntityAsync">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarWInsertable`1.ExecuteReturnIdentity">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarWInsertable`1.ExecuteReturnIdentityAsync">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarWInsertable`1.ExecuteReturnLongIdentity">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarWInsertable`1.ExecuteReturnLongIdentityAsync">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:WFw.DbContext.SugarWQueryable`1">
+            <summary>
+            查询接口
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:WFw.DbContext.SugarWQueryable`1.#ctor(SqlSugar.SqlSugarClient)">
+            <summary>
+            
+            </summary>
+            <param name="client"></param>
+        </member>
+        <member name="M:WFw.DbContext.SugarWQueryable`1.#ctor(SqlSugar.ISugarQueryable{`0})">
+            <summary>
+            /
+            </summary>
+            <param name="queryable"></param>
+        </member>
+        <member name="M:WFw.DbContext.SugarWQueryable`1.Any(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarWQueryable`1.Any">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarWQueryable`1.AnyAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarWQueryable`1.AnyAsync">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarWQueryable`1.As(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="tableName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarWQueryable`1.Count">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarWQueryable`1.Count(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarWQueryable`1.CountAsync">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarWQueryable`1.CountAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarWQueryable`1.First">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarWQueryable`1.First(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarWQueryable`1.FirstAsync">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarWQueryable`1.FirstAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarWQueryable`1.OrderBy(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="expression"></param>
+            <param name="isAsc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarWQueryable`1.OrderByIF(System.Boolean,System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="isOrderBy"></param>
+            <param name="expression"></param>
+            <param name="isAsc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarWQueryable`1.Select``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarWQueryable`1.Single">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarWQueryable`1.Single(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarWQueryable`1.SingleAsync">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarWQueryable`1.SingleAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarWQueryable`1.Skip(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarWQueryable`1.Take(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="num"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarWQueryable`1.ToArray">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarWQueryable`1.ToList">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarWQueryable`1.ToListAsync">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarWQueryable`1.ToPageList(System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarWQueryable`1.ToPageListAsync(System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarWQueryable`1.ToSql">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarWQueryable`1.Where(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarWQueryable`1.Where(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarWQueryable`1.WhereIF(System.Boolean,System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            
+            </summary>
+            <param name="isWhere"></param>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarWQueryable`1.WhereIF(System.Boolean,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="isWhere"></param>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WFw.DbContext.SugarWUpdatable`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="F:WFw.DbContext.SugarWUpdatable`1._updateable">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WFw.DbContext.SugarWUpdatable`1.#ctor(SqlSugar.SqlSugarClient)">
+            <summary>
+            
+            </summary>
+            <param name="client"></param>
+        </member>
+        <member name="M:WFw.DbContext.SugarWUpdatable`1.#ctor(SqlSugar.IUpdateable{`0})">
+            <summary>
+            
+            </summary>
+            <param name="able"></param>
+        </member>
+        <member name="M:WFw.DbContext.SugarWUpdatable`1.ExecuteCommand">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarWUpdatable`1.ExecuteCommandAsync">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarWUpdatable`1.SetColumns(System.Linq.Expressions.Expression{System.Func{`0,`0}})">
+            <summary>
+            
+            </summary>
+            <param name="columns"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarWUpdatable`1.Where(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WFw.DbContext.SugarQueryExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WFw.DbContext.SugarQueryExtensions.ToPageListWithTotalAsync``1(SqlSugar.ISugarQueryable{``0},System.Int32,System.Int32)">
+            <summary>
+            分页查询扩展
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="query"></param>
+            <param name="index"></param>
+            <param name="size"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarQueryExtensions.ToPageListWithTotalAsync``1(SqlSugar.ISugarQueryable{``0},WFw.IDtos.Requests.IPagedResultRequestDto)">
+            <summary>
+            分页查询扩展
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="query"></param>
+            <param name="requestDto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WFw.Entity.EntityBase`1">
+            <summary>
+            自增主键
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:WFw.Entity.EntityBase`1.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:WFw.Entity.FullAudit`1">
+            <summary>
+            全审计信息
+            </summary>
+            <typeparam name="TUserId"></typeparam>
+        </member>
+        <member name="P:WFw.Entity.FullAudit`1.CreatedUserId">
+            <summary>
+            创建者
+            </summary>
+        </member>
+        <member name="P:WFw.Entity.FullAudit`1.CreatedTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:WFw.Entity.FullAudit`1.UpdatedUserId">
+            <summary>
+            更新者
+            </summary>
+        </member>
+        <member name="P:WFw.Entity.FullAudit`1.UpdatedTime">
+            <summary>
+            更新时间
+            </summary>
+        </member>
+        <member name="P:WFw.Entity.FullAudit`1.DeletedUserId">
+            <summary>
+            删除者
+            </summary>
+        </member>
+        <member name="P:WFw.Entity.FullAudit`1.DeletedTime">
+            <summary>
+            删除时间
+            </summary>
+        </member>
+        <member name="P:WFw.Entity.FullAudit`1.IsDeleted">
+            <summary>
+            软删除标志位
+            </summary>
+        </member>
+        <member name="T:WFw.Entity.FullAuditEntityBase">
+            <summary>
+            自增主键及全审计信息
+            </summary>
+        </member>
+        <member name="T:WFw.Entity.FullAuditEntityBase`1">
+            <summary>
+            自增主键及全审计信息
+            </summary>
+            <typeparam name="TUserId"></typeparam>
+        </member>
+        <member name="T:WFw.Entity.FullAuditEntityBase`2">
+            <summary>
+            自增主键及全审计信息
+            </summary>
+            <typeparam name="TPk"></typeparam>
+            <typeparam name="TUserId"></typeparam>
+        </member>
+        <member name="P:WFw.Entity.FullAuditEntityBase`2.Id">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="T:WFw.Entity.FullAuditWithRemarkEntityBase">
+            <summary>
+            自增主键，全审计，备注
+            </summary>
+        </member>
+        <member name="T:WFw.Entity.FullAuditWithRemarkEntityBase`1">
+            <summary>
+            自增主键，全审计，备注
+            </summary>
+            <typeparam name="TUserId"></typeparam>
+        </member>
+        <member name="T:WFw.Entity.FullAuditWithRemarkEntityBase`2">
+            <summary>
+            自增主键，全审计，备注
+            </summary>
+            <typeparam name="TPk"></typeparam>
+            <typeparam name="TUserId"></typeparam>
+        </member>
+        <member name="P:WFw.Entity.FullAuditWithRemarkEntityBase`2.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="T:WFw.Entity.OnlyPkEntityBase`1">
+            <summary>
+            仅主键
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:WFw.Entity.OnlyPkEntityBase`1.Id">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="T:WFw.Entity.OnlyPkFullAuditEntityBase">
+            <summary>
+            不自增主键及全审计信息
+            </summary>
+        </member>
+        <member name="T:WFw.Entity.OnlyPkFullAuditEntityBase`1">
+            <summary>
+            不自增主键及全审计信息
+            </summary>
+            <typeparam name="TUserId"></typeparam>
+        </member>
+        <member name="T:WFw.Entity.OnlyPkFullAuditEntityBase`2">
+            <summary>
+            不自增主键及全审计信息
+            </summary>
+            <typeparam name="TPk"></typeparam>
+            <typeparam name="TUserId"></typeparam>
+        </member>
+        <member name="P:WFw.Entity.OnlyPkFullAuditEntityBase`2.Id">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="T:WFw.Entity.OnlyPkFullAuditWithRemarkEntityBase">
+            <summary>
+            不自增，全审计，备注
+            </summary>
+        </member>
+        <member name="T:WFw.Entity.OnlyPkFullAuditWithRemarkEntityBase`1">
+            <summary>
+            不自增，全审计，备注
+            </summary>
+            <typeparam name="TUserId"></typeparam>
+        </member>
+        <member name="T:WFw.Entity.OnlyPkFullAuditWithRemarkEntityBase`2">
+            <summary>
+            不自增，全审计，备注
+            </summary>
+            <typeparam name="TPk"></typeparam>
+            <typeparam name="TUserId"></typeparam>
+        </member>
+        <member name="P:WFw.Entity.OnlyPkFullAuditWithRemarkEntityBase`2.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="T:WFw.ServiceCollectionExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WFw.ServiceCollectionExtensions.AddSqlSugar(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfigurationSection)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+            <param name="configurationSection"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.ServiceCollectionExtensions.AddSqlSugar(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{WFw.DbContext.DbOptions})">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

@@ -17,5 +17,9 @@
         /// 数据库类型
         /// </summary>
         public string DatabaseType { get; set; } = "mysql";
+        /// <summary>
+        /// 自动保存
+        /// </summary>
+        public bool IsAutoSave { get; set; } = true;
     }
 }

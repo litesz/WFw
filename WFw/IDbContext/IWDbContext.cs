@@ -6,6 +6,11 @@
     public interface IWDbContext
     {
         /// <summary>
+        /// 
+        /// </summary>
+        IAdo Ado { get; }
+
+        /// <summary>
         /// 初始化表格
         /// </summary>
         /// <typeparam name="TEntity"></typeparam>

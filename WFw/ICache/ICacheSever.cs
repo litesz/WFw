@@ -17,7 +17,6 @@
         /// <summary>
         /// 检查是否存在指定索引的缓存
         /// </summary>
-        /// <typeparam name="V"></typeparam>
         /// <param name="key"></param>
         /// <returns></returns>
         bool ContainsKey(string key);

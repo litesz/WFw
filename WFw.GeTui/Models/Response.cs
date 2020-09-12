@@ -6,7 +6,9 @@
     /// <typeparam name="T"></typeparam>
     public class Response<T> : Response
     {
-
+        /// <summary>
+        /// 
+        /// </summary>
         public T Data { get; set; }
     }
 
@@ -15,7 +17,13 @@
     /// </summary>
     public class Response
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public string Msg { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public int Code { get; set; }
     }
 

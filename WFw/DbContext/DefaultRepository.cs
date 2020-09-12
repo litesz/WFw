@@ -16,6 +16,10 @@ namespace WFw.DbContext
     /// <typeparam name="TEntity"></typeparam>
     public partial class DefaultRepository<TEntity> : DefaultRepository<TEntity, int>, IRepository<TEntity> where TEntity : class, IEntity<int>, new()
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="serviceProvider"></param>
         public DefaultRepository(IServiceProvider serviceProvider) : base(serviceProvider)
         {
         }
@@ -71,6 +75,12 @@ namespace WFw.DbContext
         public IWQueryable<TEntity> Query => DbContext
             .Queryable<TEntity>()
             .WhereIF(IsSoftDelete, $"({nameof(ISoftDeletable.IsDeleted)}=0)");
+
+        /// <summary>
+        /// ado
+        /// </summary>
+        public IAdo Ado => DbContext.Ado;
+
         /// <summary>
         /// 
         /// </summary>
@@ -145,7 +155,7 @@ namespace WFw.DbContext
         /// <returns></returns>
         public int Delete(TPrimary key)
         {
-            TEntity entity = Get(key);
+            TEntity entity = GetFirst(key);
             return Delete(entity);
         }
         /// <summary>
@@ -175,17 +185,8 @@ namespace WFw.DbContext
         /// <returns></returns>
         public async Task<int> DeleteAsync(TPrimary key)
         {
-            TEntity entity = await GetAsync(key);
+            TEntity entity = await GetFirstAsync(key);
             return await DeleteAsync(entity);
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="key"></param>
-        /// <returns></returns>
-        public TEntity Get(TPrimary key)
-        {
-            return GetFirst(u => u.Id.Equals(key));
         }
         /// <summary>
         /// 
@@ -208,9 +209,9 @@ namespace WFw.DbContext
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public Task<TEntity> GetAsync(TPrimary key)
+        public TEntity GetFirst(TPrimary key)
         {
-            return GetFirstAsync(u => u.Id.Equals(key));
+            return GetFirst(u => u.Id.Equals(key));
         }
         /// <summary>
         /// 
@@ -220,6 +221,15 @@ namespace WFw.DbContext
         public TEntity GetFirst(Expression<Func<TEntity, bool>> predicate)
         {
             return Where(predicate).First();
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public Task<TEntity> GetFirstAsync(TPrimary key)
+        {
+            return GetFirstAsync(u => u.Id.Equals(key));
         }
         /// <summary>
         /// 
@@ -291,17 +301,6 @@ namespace WFw.DbContext
 
             return DbContext.Updatable(entities).ExecuteCommand();
         }
-        //TODO 添加审计信息
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="predicate"></param>
-        /// <param name="updateor"></param>
-        /// <returns></returns>
-        public int Update(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TEntity>> updateor)
-        {
-            return DbContext.Updatable<TEntity>().SetColumns(updateor).Where(predicate).ExecuteCommand();
-        }
         /// <summary>
         /// 
         /// </summary>
@@ -312,7 +311,7 @@ namespace WFw.DbContext
             UpdateEntitiesAudit(entities);
             return DbContext.Updatable(entities).ExecuteCommandAsync();
         }
-       
+
         /// <summary>
         /// 
         /// </summary>
@@ -342,6 +341,10 @@ namespace WFw.DbContext
             return Where(predicate).AnyAsync();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entities"></param>
         protected void InsertEntitiesAudit(params TEntity[] entities)
         {
             if (!IsAddAudited)
@@ -375,6 +378,10 @@ namespace WFw.DbContext
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entities"></param>
         protected void UpdateEntitiesAudit(params TEntity[] entities)
         {
             if (!IsUpdateAudited)
@@ -404,6 +411,11 @@ namespace WFw.DbContext
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entities"></param>
+        /// <returns></returns>
         protected bool DeleteEntitiesAudit(params TEntity[] entities)
         {
             if (!IsSoftDelete)
@@ -435,5 +447,6 @@ namespace WFw.DbContext
             return false;
         }
 
+    
     }
 }

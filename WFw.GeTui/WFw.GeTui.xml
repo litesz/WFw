@@ -19,6 +19,7 @@
             添加个推APIV2接口
             </summary>
             <param name="services"></param>
+            <param name="configurationSection"></param>
             <returns></returns>
         </member>
         <member name="M:WFw.ServiceCollectionExtensions.AddGeTuiV2(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{WFw.GeTui.Models.Options.PushOptions})">
@@ -85,6 +86,32 @@
             </summary>
             <param name="timeStamp"></param>
             <returns></returns>
+        </member>
+        <member name="T:WFw.GeTui.Models.Auth.AuthRequest">
+            <summary>
+            鉴权
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Auth.AuthRequest.sign">
+            <summary>
+            签名
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Auth.AuthRequest.timestamp">
+            <summary>
+            时间戳
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Auth.AuthRequest.appkey">
+            <summary>
+            appkey
+            </summary>
+        </member>
+        <member name="M:WFw.GeTui.Models.Auth.AuthRequest.#ctor(WFw.GeTui.Models.Auth.IAuth)">
+            <summary>
+            
+            </summary>
+            <param name="auth"></param>
         </member>
         <member name="T:WFw.GeTui.Models.Auth.AuthResponseData">
             <summary>
@@ -277,6 +304,16 @@
             android通道推送消息内容
             </summary>
         </member>
+        <member name="T:WFw.GeTui.Models.Message.PushChannelAndroid">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:WFw.GeTui.Models.Message.PushChannelIos">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:WFw.GeTui.Models.Message.PushMessage">
             <summary>
             推送消息内容
@@ -297,7 +334,21 @@
             通知消息内容，仅支持安卓系统，iOS系统不展示个推通知消息，与transmission二选一，两个都填写时报错
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "T:WFw.GeTui.Models.Push.ChannelLevel" -->
+        <member name="T:WFw.GeTui.Models.Push.ChannelLevel">
+            <summary>
+            设置通知渠道重要性（可以控制响铃，震动，浮动，闪灯等等）
+            android8.0以下
+            0，1，2:无声音，无振动，不浮动
+            3:有声音，无振动，不浮动
+            4:有声音，有振动，有浮动
+            android8.0以上
+            0：无声音，无振动，不显示；
+            1：无声音，无振动，锁屏不显示，通知栏中被折叠显示，导航栏无logo;
+            2：无声音，无振动，锁屏和通知栏中都显示，通知不唤醒屏幕;
+            3：有声音，无振动，锁屏和通知栏中都显示，通知唤醒屏幕;
+            4：有声音，有振动，亮屏下通知悬浮展示，锁屏通知以默认形式展示且唤醒屏幕; 
+            </summary>                                                                                
+        </member>
         <member name="F:WFw.GeTui.Models.Push.ChannelLevel.None">
             <summary>
             android8.0以下
@@ -591,6 +642,11 @@
             cid
             </summary>
         </member>
+        <member name="P:WFw.GeTui.Models.Push.ToSingle.SinglePushResultItem.Status">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:WFw.GeTui.Models.Push.ToSingle.SinglePushTask">
             <summary>
             执行单推
@@ -762,9 +818,24 @@
             </summary>
             <typeparam name="T"></typeparam>
         </member>
+        <member name="P:WFw.GeTui.Models.Response`1.Data">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:WFw.GeTui.Models.Response">
             <summary>
             仅验证状态
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Response.Msg">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Models.Response.Code">
+            <summary>
+            
             </summary>
         </member>
         <member name="T:WFw.GeTui.Services.GeTuiService">
@@ -805,7 +876,7 @@
             <summary>
             根据条件筛选用户推送
             </summary>
-            <param name="使用标签快速推送"></param>
+            <param name="pushTask"></param>
             <returns></returns>
         </member>
         <member name="F:WFw.GeTui.Services.GeTuiService._tokenStore">
@@ -828,9 +899,10 @@
             
             </summary>
             <param name="client"></param>
-            <param name="configuration"></param>
+            <param name="options"></param>
+            <param name="tokenStore"></param>
         </member>
-        <member name="M:WFw.GeTui.Services.GeTuiService.LoadToken">
+        <member name="M:WFw.GeTui.Services.GeTuiService.LoadToken(System.Boolean)">
             <summary>
             
             </summary>
@@ -881,16 +953,24 @@
             <param name="url"></param>
             <returns></returns>
         </member>
-        <member name="M:WFw.GeTui.Services.GeTuiService.GetDataStrAsync(System.String)">
+        <member name="M:WFw.GeTui.Services.GeTuiService.GetAsync``1(System.String)">
             <summary>
             
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="url"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.GeTui.Services.GeTuiService.GetDataStrAsync(System.String)">
+            <summary>
+            查询data节点文本
             </summary>
             <param name="url"></param>
             <returns></returns>
         </member>
         <member name="M:WFw.GeTui.Services.GeTuiService.GetJTokensAsync(System.String)">
             <summary>
-            
+            查询jtoken
             </summary>
             <param name="url"></param>
             <returns></returns>
@@ -1061,10 +1141,10 @@
             根据条件筛选用户推送
             该功能需要申请相关套餐，请联系邮箱：lieg@getui.com 。
             </summary>
-            <param name="使用标签快速推送"></param>
+            <param name="pushTask"></param>
             <returns>taskId</returns>
         </member>
-        <member name="M:WFw.GeTui.Services.IGeTuiService.LoadToken">
+        <member name="M:WFw.GeTui.Services.IGeTuiService.LoadToken(System.Boolean)">
             <summary>
             获得token
             </summary>
@@ -1220,6 +1300,11 @@
         <member name="P:WFw.GeTui.Stores.GeTuiTokenStore.Expire">
             <summary>
             过期时间
+            </summary>
+        </member>
+        <member name="P:WFw.GeTui.Stores.GeTuiTokenStore.IsExpire">
+            <summary>
+            是否过期
             </summary>
         </member>
         <member name="M:WFw.GeTui.Stores.GeTuiTokenStore.#ctor">

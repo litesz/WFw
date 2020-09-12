@@ -9,6 +9,9 @@ namespace WFw.Entity
     /// <typeparam name="T"></typeparam>
     public abstract class EntityBase<T> : IEntity<T> where T : struct
     {
+        /// <summary>
+        /// 
+        /// </summary>
         [SugarColumn(IsPrimaryKey = true, IsIdentity = true)]
         public virtual T Id { get; set; }
     }

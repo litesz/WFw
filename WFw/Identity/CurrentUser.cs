@@ -70,7 +70,7 @@ namespace WFw.Identity
         /// <param name="value"></param>
         public void AddClaim(string key, string value)
         {
-            if (string.IsNullOrWhiteSpace(key) || string.IsNullOrWhiteSpace(value))
+            if (string.IsNullOrWhiteSpace(key))
             {
                 throw new BadRequestException(OperationResultType.IsEmpty, "claim");
             }
