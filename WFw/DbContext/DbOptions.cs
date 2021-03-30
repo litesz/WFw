@@ -21,5 +21,17 @@
         /// 自动保存
         /// </summary>
         public bool IsAutoSave { get; set; } = true;
+        /// <summary>
+        /// 自动关闭连接
+        /// </summary>
+        public bool IsAutoCloseConnection { get; set; } = true;
+        /// <summary>
+        /// 表初始化类型
+        /// </summary>
+        public string InitKeyType { get; set; } = "attribute";
+        /// <summary>
+        /// 共享内存
+        /// </summary>
+        public bool IsShardSameThread { get; set; }
     }
 }

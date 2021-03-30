@@ -1,10 +1,7 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using WFw.Tencent.Responses;
 
-namespace WFw.WxMiniProgram.Auth.Dtos
+namespace WFw.WxMiniProgram.Dtos.Sns
 {
     public class JsCode2SessionResponse : BaseResponse
     {

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using WFw.Tencent.Responses;
 
@@ -21,7 +19,7 @@ namespace WFw.Tencent
         protected async Task<T> Get<T>(string url) where T : BaseResponse
         {
             var response = await Client.GetAsync(url);
-            T output = Newtonsoft.Json.JsonConvert.DeserializeObject<T>(await response.Content.ReadAsStringAsync());
+            T output = JsonExtensions.Deserialize<T>(await response.Content.ReadAsStringAsync());
 
             if (output.Errcode != 0)
             {
@@ -35,13 +33,18 @@ namespace WFw.Tencent
         protected async Task<T> Post<T>(string url, string postData) where T : BaseResponse
         {
             var response = await Client.PostAsync(url, new StringContent(postData));
-            T output = Newtonsoft.Json.JsonConvert.DeserializeObject<T>(await response.Content.ReadAsStringAsync());
+            T output = JsonExtensions.Deserialize<T>(await response.Content.ReadAsStringAsync());
 
             if (output.Errcode != 0)
             {
                 throw new TencentHttpException(url, postData, output);
             }
             return output;
+        }
+
+        protected Task<T> Post<T>(string url, object data) where T : BaseResponse
+        {
+            return Post<T>(url, JsonExtensions.Serialize(data));
         }
 
     }

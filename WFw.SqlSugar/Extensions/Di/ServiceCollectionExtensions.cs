@@ -18,16 +18,9 @@ namespace WFw
         /// <param name="services"></param>
         /// <param name="configuration"></param>
         /// <returns></returns>
-        public static IServiceCollection AddSqlSugar(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddWFwSqlSugar(this IServiceCollection services, IConfiguration configuration)
         {
-            services.Configure<DbOptions>(configuration.GetSection(DbOptions.Position));
-            services.AddScoped<SqlSugarDbContext>();
-            services.AddScoped(typeof(IWDbContext), typeof(SqlSugarDbContext));
-
-            services.AddScoped(typeof(IRepository<,>), typeof(DefaultRepository<,>));
-            services.AddScoped(typeof(IRepository<>), typeof(DefaultRepository<>));
-
-            return services;
+            return services.AddWFwSqlSugar(configuration.GetSection(DbOptions.Position));
         }
 
 
@@ -37,16 +30,10 @@ namespace WFw
         /// <param name="services"></param>
         /// <param name="configurationSection"></param>
         /// <returns></returns>
-        public static IServiceCollection AddSqlSugar(this IServiceCollection services, IConfigurationSection configurationSection)
+        public static IServiceCollection AddWFwSqlSugar(this IServiceCollection services, IConfigurationSection configurationSection)
         {
             services.Configure<DbOptions>(configurationSection);
-            services.AddScoped<SqlSugarDbContext>();
-            services.AddScoped(typeof(IWDbContext), typeof(SqlSugarDbContext));
-
-            services.AddScoped(typeof(IRepository<,>), typeof(DefaultRepository<,>));
-            services.AddScoped(typeof(IRepository<>), typeof(DefaultRepository<>));
-
-            return services;
+            return AddScopeds(services);
         }
 
         /// <summary>
@@ -55,18 +42,21 @@ namespace WFw
         /// <param name="services"></param>
         /// <param name="action"></param>
         /// <returns></returns>
-        public static IServiceCollection AddSqlSugar(this IServiceCollection services, Action<DbOptions> action)
+        public static IServiceCollection AddWFwSqlSugar(this IServiceCollection services, Action<DbOptions> action)
         {
-            services.Configure<DbOptions>(action);
-            services.AddScoped<SqlSugarDbContext>();
-
-            services.AddScoped(typeof(IWDbContext), typeof(SqlSugarDbContext));
-            services.AddScoped(typeof(IRepository<,>), typeof(DefaultRepository<,>));
-            services.AddScoped(typeof(IRepository<>), typeof(DefaultRepository<>));
-
-            return services;
+            services.Configure(action);
+            return AddScopeds(services);
         }
 
+        private static IServiceCollection AddScopeds(IServiceCollection services)
+        {
+            services.AddScoped<SqlSugarDbContext>();
+            services.AddScoped(typeof(IWDbContext), typeof(SqlSugarDbContext));
+
+            services.AddScoped(typeof(IRepository<,>), typeof(DefaultRepository<,>));
+            services.AddScoped(typeof(IRepository<>), typeof(DefaultRepository<>));
+            return services;
+        }
 
 
 

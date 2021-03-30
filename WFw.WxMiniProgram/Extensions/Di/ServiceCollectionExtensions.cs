@@ -20,7 +20,7 @@ namespace WFw
         public static IServiceCollection AddWxMiniProgram(this IServiceCollection services, IConfiguration configuration)
         {
             services.Configure<WxMinProgramOptions>(configuration.GetSection(WxMinProgramOptions.Position));
-            services.AddHttpClient<IWxMiniProgramApiHttpClient, WxMiniProgramApiHttpClient>();
+            services.AddHttpClient<IWFwWxMiniProgramApiHttpClient, WFwWxMiniProgramApiHttpClient>();
 
             return services;
         }

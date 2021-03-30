@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
-using WFw.Exceptions;
-using WFw.Results;
 
 namespace WFw.Identity
 {
@@ -78,7 +76,7 @@ namespace WFw.Identity
         {
             if (string.IsNullOrWhiteSpace(key))
             {
-                throw new BadRequestException(OperationResultType.IsEmpty, "claim");
+                return;
             }
 
             string lowKey = key.ToLower();

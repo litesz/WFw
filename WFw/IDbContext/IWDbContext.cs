@@ -18,6 +18,11 @@
         void Init<TEntity>(params TEntity[] initData) where TEntity : class;
 
         /// <summary>
+        /// 如果不存在创建数据库
+        /// </summary>
+        void InitDatabase();
+
+        /// <summary>
         /// 查询
         /// </summary>
         /// <typeparam name="TEntity"></typeparam>

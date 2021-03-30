@@ -15,7 +15,7 @@ namespace WFw.IEntity.IAudit
         /// <summary>
         /// 
         /// </summary>
-        DateTime? DeletedTime { get; set; }
+        DateTime DeletedTime { get; set; }
     }
 }
 

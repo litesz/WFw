@@ -1,26 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using System;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using WFw.Tencent;
-using WFw.Tencent.Responses;
-using WFw.WxMiniProgram.Auth.Dtos;
+using WFw.WxMiniProgram.Dtos.Sns;
 using WFw.WxMiniProgram.Options;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 
 namespace WFw.WxMiniProgram
 {
-    public interface IWxMiniProgramApiHttpClient
+    public interface IWFwWxMiniProgramApiHttpClient
     {
         Task<JsCode2SessionResponse> JsCode2Session(string code);
     }
 
-    public class WxMiniProgramApiHttpClient : BaseTencentApiHttpClient, IWxMiniProgramApiHttpClient
+    public class WFwWxMiniProgramApiHttpClient : BaseTencentApiHttpClient, IWFwWxMiniProgramApiHttpClient
     {
         private readonly WxMinProgramOptions programOptions;
-        public WxMiniProgramApiHttpClient(HttpClient httpClient, IServiceProvider sp) : base(httpClient)
+        public WFwWxMiniProgramApiHttpClient(HttpClient httpClient, IServiceProvider sp) : base(httpClient)
         {
             programOptions = sp.GetService<IOptions<WxMinProgramOptions>>().Value;
         }

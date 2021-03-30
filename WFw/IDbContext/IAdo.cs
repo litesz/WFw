@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace WFw.IDbContext
@@ -57,5 +58,39 @@ namespace WFw.IDbContext
         /// 回滚
         /// </summary>
         void RollBackTransaction();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="action"></param>
+        /// <param name="errorCallBack"></param>
+        /// <returns></returns>
+        TranResult<bool> UseTran(Action action, Action<Exception> errorCallBack = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="action"></param>
+        /// <param name="errorCallBack"></param>
+        /// <returns></returns>
+        TranResult<T> UseTran<T>(Func<T> action, Action<Exception> errorCallBack = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="action"></param>
+        /// <param name="errorCallBack"></param>
+        /// <returns></returns>
+        Task<TranResult<bool>> UseTranAsync(Action action, Action<Exception> errorCallBack = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="action"></param>
+        /// <param name="errorCallBack"></param>
+        /// <returns></returns>
+        Task<TranResult<T>> UseTranAsync<T>(Func<T> action, Action<Exception> errorCallBack = null);
     }
 }

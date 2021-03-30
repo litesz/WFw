@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using SqlSugar;
 using System;
 using WFw.IDbContext;
@@ -24,25 +25,21 @@ namespace WFw.DbContext
         /// 
         /// </summary>
         /// <param name="dbOptions"></param>
-        public SqlSugarDbContext(IOptions<DbOptions> dbOptions)
+        public SqlSugarDbContext(IServiceProvider sp)
         {
+            var dbOptions = sp.GetService<IOptions<DbOptions>>().Value;
+            //IOptions<DbOptions> dbOptions
             Db = new SqlSugarClient(new ConnectionConfig()
             {
-                ConnectionString = dbOptions.Value.ConnectionString,
-                DbType = GetDbType(dbOptions.Value.DatabaseType),
-                InitKeyType = InitKeyType.Attribute,
-                IsAutoCloseConnection = true,
+                ConnectionString = dbOptions.ConnectionString,
+                DbType = GetDbType(dbOptions.DatabaseType),
+                InitKeyType = dbOptions.InitKeyType == "attribute" ? InitKeyType.Attribute : InitKeyType.SystemTable,
+                IsAutoCloseConnection = dbOptions.IsAutoCloseConnection,
+                IsShardSameThread = dbOptions.IsShardSameThread,
             });
 
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="tables"></param>
-        public void InitTables(params Type[] tables)
-        {
-            Db.CodeFirst.InitTables(tables);
-        }
+
 
         private DbType GetDbType(string type)
         {
@@ -62,6 +59,14 @@ namespace WFw.DbContext
         public void Init<TEntity>(params TEntity[] initData) where TEntity : class
         {
             Db.CodeFirst.InitTables<TEntity>();
+        }
+
+        /// <summary>
+        /// 如果不存在创建数据库
+        /// </summary>
+        public void InitDatabase()
+        {
+            Db.DbMaintenance.CreateDatabase();
         }
 
         /// <summary>
@@ -122,6 +127,8 @@ namespace WFw.DbContext
         {
             return new SugarWInsertable<TEntity>(Db.Insertable<TEntity>(insertObjs));
         }
+
+
     }
 
 }

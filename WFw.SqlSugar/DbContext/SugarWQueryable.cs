@@ -283,9 +283,9 @@ namespace WFw.DbContext
         /// 
         /// </summary>
         /// <returns></returns>
-        public async Task<IList<T>> ToListAsync()
+        public Task<IList<T>> ToListAsync()
         {
-            return await _queryable.ToListAsync();
+            return _queryable.ToListAsync();
         }
 
         /// <summary>

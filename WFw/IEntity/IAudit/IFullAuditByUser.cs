@@ -6,9 +6,8 @@ namespace WFw.IEntity
     /// 完整审计接口
     /// </summary>
     /// <typeparam name="TUserId"></typeparam>
-    public interface IFullAudit<TUserId> :
-        ICreatedAuditedByUser<TUserId>,
-        IUpdatedAuditedByUser<TUserId>,
+    public interface IFullAuditByUser<TUserId> :
+        IOnlyNewAuditedByUser<TUserId>,
         ISoftDeletableByUser<TUserId>
     {
     }

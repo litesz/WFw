@@ -77,9 +77,19 @@ namespace WFw.DbContext
             .WhereIF(IsSoftDelete, $"({nameof(ISoftDeletable.IsDeleted)}=0)");
 
         /// <summary>
+        /// 查询(包含软删除)
+        /// </summary>
+        public IWQueryable<TEntity> QueryNoFlag => DbContext.Queryable<TEntity>();
+
+
+
+        /// <summary>
         /// ado
         /// </summary>
         public IAdo Ado => DbContext.Ado;
+
+
+        
 
         /// <summary>
         /// 
@@ -188,6 +198,7 @@ namespace WFw.DbContext
             TEntity entity = await GetFirstAsync(key);
             return await DeleteAsync(entity);
         }
+
         /// <summary>
         /// 
         /// </summary>

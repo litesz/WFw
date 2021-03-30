@@ -163,6 +163,13 @@ namespace WFw.IDbContext
         IWQueryable<TEntity> Query { get; }
 
         /// <summary>
+        /// 查询(包含软删除)
+        /// </summary>
+        IWQueryable<TEntity> QueryNoFlag { get; }
+
+     
+
+        /// <summary>
         /// 查询
         /// </summary>
         /// <param name="expression"></param>

@@ -1,4 +1,4 @@
-﻿using WFw.WxMiniProgram.Dtos.Infos;
+﻿using WFw.WxMiniProgram.Infos;
 
 namespace WFw.WxMiniProgram.Utils
 {

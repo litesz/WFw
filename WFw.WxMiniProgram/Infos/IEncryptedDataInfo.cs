@@ -1,4 +1,4 @@
-﻿namespace WFw.WxMiniProgram.Dtos.Infos
+﻿namespace WFw.WxMiniProgram.Infos
 {
     public interface IEncryptedDataInfo
     {

@@ -10,7 +10,7 @@ namespace WFw.IEntity.IAudit
         /// <summary>
         /// 更新时间
         /// </summary>
-        DateTime? UpdatedTime { get; set; }
+        DateTime UpdatedTime { get; set; }
     }
 }
 

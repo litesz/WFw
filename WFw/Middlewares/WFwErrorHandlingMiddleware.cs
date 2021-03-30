@@ -36,7 +36,7 @@ namespace WFw.Middlewares
             {
                 await _next(context);
             }
-          
+
             catch (BadRequestException bad)
             {
                 logger?.LogError(bad.ToString());
@@ -77,8 +77,8 @@ namespace WFw.Middlewares
         {
             context.Response.ContentType = "application/json; charset=utf-8";
             context.Response.StatusCode = statusCode;
-            var str = SerializeUtils.SerializeJson(new ApiResult(type, message));
-            return context.Response.WriteAsync(str);
+            // var str = SerializeUtils.SerializeJson();
+            return context.Response.WriteAsync(new ApiResult(type, message).Serialize());
         }
     }
 }
