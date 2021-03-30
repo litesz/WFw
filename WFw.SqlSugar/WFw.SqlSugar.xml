@@ -540,7 +540,7 @@
             
             </summary>
         </member>
-        <member name="M:WFw.DbContext.SugarQueryExtensions.ToPageListWithTotalAsync``1(SqlSugar.ISugarQueryable{``0},System.Int32,System.Int32)">
+        <member name="M:WFw.DbContext.SugarQueryExtensions.ToPagedListWithTotalAsync``1(SqlSugar.ISugarQueryable{``0},System.Int32,System.Int32)">
             <summary>
             分页查询扩展
             </summary>
@@ -550,7 +550,7 @@
             <param name="size"></param>
             <returns></returns>
         </member>
-        <member name="M:WFw.DbContext.SugarQueryExtensions.ToPageListWithTotalAsync``1(SqlSugar.ISugarQueryable{``0},WFw.IDtos.Requests.IPagedResultRequestDto)">
+        <member name="M:WFw.DbContext.SugarQueryExtensions.ToPagedListWithTotalAsync``1(SqlSugar.ISugarQueryable{``0},WFw.IDtos.Requests.IPagedResultRequestDto)">
             <summary>
             分页查询扩展
             </summary>
@@ -630,6 +630,27 @@
             <typeparam name="TUserId"></typeparam>
         </member>
         <member name="P:WFw.Entity.FullAuditEntityBase`2.Id">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="T:WFw.Entity.FullAuditStatus">
+            <summary>
+            仅审计状态信息
+            </summary>
+        </member>
+        <member name="T:WFw.Entity.FullAuditStatusEntityBase">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:WFw.Entity.FullAuditStatusEntityBase`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TPk"></typeparam>
+        </member>
+        <member name="P:WFw.Entity.FullAuditStatusEntityBase`1.Id">
             <summary>
             主键
             </summary>
@@ -718,6 +739,14 @@
             <summary>
             
             </summary>
+        </member>
+        <member name="M:WFw.ServiceCollectionExtensions.AddSqlSugar(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
+            <returns></returns>
         </member>
         <member name="M:WFw.ServiceCollectionExtensions.AddSqlSugar(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfigurationSection)">
             <summary>

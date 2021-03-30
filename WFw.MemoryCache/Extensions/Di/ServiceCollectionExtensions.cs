@@ -18,6 +18,7 @@ namespace WFw
         public static IServiceCollection AddWFwMemoryCache(this IServiceCollection services)
         {
             services.TryAddSingleton<ICacheManager, MemoryCacheManager>();
+            services.AddMemoryCache();
             return services;
         }
 

@@ -354,7 +354,7 @@ namespace WFw.DbContext
             DateTime now = DateTime.Now;
             if (IsAddAuditedByUser)
             {
-                TPrimary id = User.IsAuthenticated ? User.UserIdAs<TPrimary>() : default;
+                TPrimary id = User != null && User.IsAuthenticated ? User.UserIdAs<TPrimary>() : default;
                 foreach (TEntity entity in entities)
                 {
                     ICreatedAuditedByUser<TPrimary> audited = (ICreatedAuditedByUser<TPrimary>)entity;
@@ -392,13 +392,11 @@ namespace WFw.DbContext
 
             if (IsUpdateAuditedByUser)
             {
-                TPrimary id = User.IsAuthenticated ? User.UserIdAs<TPrimary>() : default;
-
                 foreach (TEntity entity in entities)
                 {
                     IUpdatedAuditedByUser<TPrimary> audited = (IUpdatedAuditedByUser<TPrimary>)entity;
                     audited.UpdatedTime = now;
-                    audited.UpdatedUserId = id;
+                    audited.UpdatedUserId = User.UserIdAs<TPrimary>();
                 }
             }
             else
@@ -447,6 +445,6 @@ namespace WFw.DbContext
             return false;
         }
 
-    
+
     }
 }

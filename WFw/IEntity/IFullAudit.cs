@@ -12,5 +12,7 @@ namespace WFw.IEntity
         ISoftDeletableByUser<TUserId>
     {
     }
+
+
 }
 

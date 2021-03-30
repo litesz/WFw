@@ -41,7 +41,7 @@ namespace WFw.Results
         /// <summary>
         /// 错误
         /// </summary>
-        [Description("{0}错误")]
+        [Description("{0}")]
         IsErr,
 
         //权限100+
@@ -105,6 +105,10 @@ namespace WFw.Results
         [Description("验证码太过频繁")]
         VerificationCodeTooMuch,
 
-
+        /// <summary>
+        /// 腾讯接口请求错误
+        /// </summary>
+        [Description("腾讯接口请求错误:{0}")]
+        TencentHttpErr=400,
     }
 }

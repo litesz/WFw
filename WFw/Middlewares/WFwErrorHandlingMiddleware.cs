@@ -36,10 +36,16 @@ namespace WFw.Middlewares
             {
                 await _next(context);
             }
+          
             catch (BadRequestException bad)
             {
                 logger?.LogError(bad.ToString());
                 await WriteError(context, bad.OperationResult, bad.Message);
+            }
+            catch (WFwException wf)
+            {
+                logger?.LogError(wf.ToString());
+                await WriteError(context, wf.OperationResult, wf.Message);
             }
             catch (ArgumentNullException ae)
             {

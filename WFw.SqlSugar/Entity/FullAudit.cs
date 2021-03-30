@@ -47,5 +47,4 @@ namespace WFw.Entity
         /// </summary>
         public bool IsDeleted { get; set; }
     }
-
 }

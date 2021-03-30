@@ -34,7 +34,7 @@ namespace System.Linq
         /// <param name="ts"></param>
         /// <param name="requestDto"></param>
         /// <returns></returns>
-        public static IPagedResponseDataDto<T> ToPageList<T>(this IEnumerable<T> ts, IPagedResultRequestDto requestDto)
+        public static IPagedResponseDataDto<T> ToPagedList<T>(this IEnumerable<T> ts, IPagedResultRequestDto requestDto)
         {
             return new PagedResponseDataDto<T>(
                 ts.Skip(requestDto.Skip).Take(requestDto.PageSize).ToArray(),

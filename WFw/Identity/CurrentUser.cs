@@ -52,6 +52,12 @@ namespace WFw.Identity
         public string UserId => GetByOrder(ClaimTypes.NameIdentifier, "userid");
 
         /// <summary>
+        /// 安全id
+        /// </summary>
+        public string SId => GetByOrder(ClaimTypes.Sid, "sid");
+
+
+        /// <summary>
         /// 手机号
         /// </summary>
         public string Phone => GetByOrder(ClaimTypes.MobilePhone, "phone");

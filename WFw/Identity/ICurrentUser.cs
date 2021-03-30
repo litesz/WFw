@@ -41,6 +41,11 @@
         string[] Roles { get; }
 
         /// <summary>
+        /// 安全id
+        /// </summary>
+        string SId { get; }
+
+        /// <summary>
         /// 手机号
         /// </summary>
         string Phone { get; }

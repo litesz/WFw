@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Caching.Memory;
-using System;
+﻿using System;
 using WFw.ICache;
 
 namespace WFw.MemoryCache
