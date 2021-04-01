@@ -13,7 +13,7 @@ namespace WFw.Entity
         /// <summary>
         /// 更新时间
         /// </summary>
-        public DateTime UpdatedTime { get; set; } = new DateTime(2100, 1, 1);
+        public DateTime UpdatedTime { get; set; } = new DateTime(2000, 1, 1);
 
         /// <summary>
         /// 更新人
@@ -43,7 +43,7 @@ namespace WFw.Entity
         /// <summary>
         /// 更新时间
         /// </summary>
-        public DateTime UpdatedTime { get; set; } = new DateTime(2100, 1, 1);
+        public DateTime UpdatedTime { get; set; } = new DateTime(2000, 1, 1);
     }
 
 

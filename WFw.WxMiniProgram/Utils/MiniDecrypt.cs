@@ -55,7 +55,7 @@ namespace WFw.WxMiniProgram.Utils
                     }
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 throw new WFwException(Results.OperationResultType.IsErr, "解码失败");
             }

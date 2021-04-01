@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using System;
 using WFw.DbContext;
 using WFw.IDbContext;
@@ -50,11 +51,11 @@ namespace WFw
 
         private static IServiceCollection AddScopeds(IServiceCollection services)
         {
-            services.AddScoped<SqlSugarDbContext>();
-            services.AddScoped(typeof(IWDbContext), typeof(SqlSugarDbContext));
+            services.TryAddScoped<SqlSugarDbContext>();
+            services.TryAddScoped(typeof(IWDbContext), typeof(SqlSugarDbContext));
 
-            services.AddScoped(typeof(IRepository<,>), typeof(DefaultRepository<,>));
-            services.AddScoped(typeof(IRepository<>), typeof(DefaultRepository<>));
+            services.TryAddScoped(typeof(IRepository<,>), typeof(DefaultRepository<,>));
+            services.TryAddScoped(typeof(IRepository<>), typeof(DefaultRepository<>));
             return services;
         }
 

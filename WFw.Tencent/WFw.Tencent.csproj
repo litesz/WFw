@@ -6,7 +6,7 @@
     <Company>litesz</Company>
     <Product>WFw.Tencent</Product>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Version>0.0.1</Version>
+    <Version>0.0.2</Version>
   </PropertyGroup>
 
   <ItemGroup>

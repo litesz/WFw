@@ -156,7 +156,7 @@ namespace WFw.DbContext
                 return DbContext.Deletable<TEntity>(ids).ExecuteCommand();
             }
 
-            return Update(entities);
+            return    DbContext.Updatable(entities).ExecuteCommand();
         }
         /// <summary>
         /// 
@@ -186,7 +186,7 @@ namespace WFw.DbContext
                 return DbContext.Deletable<TEntity>(ids).ExecuteCommandAsync();
             }
 
-            return UpdateAsync(entities);
+            return DbContext.Updatable(entities).ExecuteCommandAsync();
         }
         /// <summary>
         /// 

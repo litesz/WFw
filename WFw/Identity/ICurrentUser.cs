@@ -86,5 +86,10 @@
         /// <param name="key"></param>
         /// <returns></returns>
         T[] GetArray<T>(string key);
+
+        /// <summary>
+        /// 清理
+        /// </summary>
+        void Clear();
     }
 }

@@ -8,7 +8,7 @@ namespace WFw.Entity
     /// </summary>
     /// <typeparam name="TPk"></typeparam>
     /// <typeparam name="TUserId"></typeparam>
-    public abstract class FullAuditWithRemarkByUserEntityBase<TPk, TUserId> : FullAduitByUserEntityBase<TPk, TUserId>, IRemark where TPk : struct
+    public abstract class FullAuditWithRemarkByUserEntityBase<TPk, TUserId> : FullAuditByUserEntityBase<TPk, TUserId>, IRemark where TPk : struct
     {
         /// <summary>
         /// 备注

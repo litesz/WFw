@@ -8,7 +8,7 @@
     <PackageLicenseFile></PackageLicenseFile>
     <PackageProjectUrl>https://github.com/litesz/WFw</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Version>1.1.4</Version>
+    <Version>1.1.7</Version>
     <LangVersion>8.0</LangVersion>
   </PropertyGroup>
 
@@ -21,7 +21,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="sqlSugarCore" Version="5.0.0.15" />
+    <PackageReference Include="sqlSugarCore" Version="5.0.2.8" />
   </ItemGroup>
 
   <ItemGroup>

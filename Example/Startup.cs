@@ -26,7 +26,7 @@ namespace Example
             services.AddControllersWithViews();
 
             //Ìí¼Ósqlsugar
-            services.AddSqlSugar(Option =>
+            services.AddWFwSqlSugar(Option =>
             {
                 Option.ConnectionString = "Data Source=D:\\DB.db";
                 Option.DatabaseType = "sqlite";

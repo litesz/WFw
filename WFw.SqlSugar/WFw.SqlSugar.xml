@@ -19,17 +19,11 @@
             
             </summary>
         </member>
-        <member name="M:WFw.DbContext.SqlSugarDbContext.#ctor(Microsoft.Extensions.Options.IOptions{WFw.DbContext.DbOptions})">
+        <member name="M:WFw.DbContext.SqlSugarDbContext.#ctor(System.IServiceProvider)">
             <summary>
             
             </summary>
-            <param name="dbOptions"></param>
-        </member>
-        <member name="M:WFw.DbContext.SqlSugarDbContext.InitTables(System.Type[])">
-            <summary>
-            
-            </summary>
-            <param name="tables"></param>
+            <param name="sp"></param>
         </member>
         <member name="M:WFw.DbContext.SqlSugarDbContext.Init``1(``0[])">
             <summary>
@@ -37,6 +31,11 @@
             </summary>
             <typeparam name="TEntity"></typeparam>
             <param name="initData"></param>
+        </member>
+        <member name="M:WFw.DbContext.SqlSugarDbContext.InitDatabase">
+            <summary>
+            如果不存在创建数据库
+            </summary>
         </member>
         <member name="M:WFw.DbContext.SqlSugarDbContext.Queryable``1">
             <summary>
@@ -146,6 +145,40 @@
             <typeparam name="TEntity"></typeparam>
             <param name="sql"></param>
             <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarAdo.UseTran(System.Action,System.Action{System.Exception})">
+            <summary>
+            
+            </summary>
+            <param name="action"></param>
+            <param name="errorCallBack"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarAdo.UseTranAsync(System.Action,System.Action{System.Exception})">
+            <summary>
+            
+            </summary>
+            <param name="action"></param>
+            <param name="errorCallBack"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarAdo.UseTran``1(System.Func{``0},System.Action{System.Exception})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="action"></param>
+            <param name="errorCallBack"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarAdo.UseTranAsync``1(System.Func{``0},System.Action{System.Exception})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="action"></param>
+            <param name="errorCallBack"></param>
             <returns></returns>
         </member>
         <member name="T:WFw.DbContext.SugarWDeletable`1">
@@ -535,204 +568,552 @@
             <param name="expression"></param>
             <returns></returns>
         </member>
-        <member name="T:WFw.DbContext.SugarQueryExtensions">
+        <member name="T:WFw.Entity.FullAudit">
+            <summary>
+            全审计信息
+            </summary>
+        </member>
+        <member name="P:WFw.Entity.FullAudit.CreatedTime">
             <summary>
             
             </summary>
         </member>
-        <member name="M:WFw.DbContext.SugarQueryExtensions.ToPagedListWithTotalAsync``1(SqlSugar.ISugarQueryable{``0},System.Int32,System.Int32)">
+        <member name="P:WFw.Entity.FullAudit.UpdatedTime">
             <summary>
-            分页查询扩展
+            
             </summary>
-            <typeparam name="T"></typeparam>
-            <param name="query"></param>
-            <param name="index"></param>
-            <param name="size"></param>
-            <returns></returns>
         </member>
-        <member name="M:WFw.DbContext.SugarQueryExtensions.ToPagedListWithTotalAsync``1(SqlSugar.ISugarQueryable{``0},WFw.IDtos.Requests.IPagedResultRequestDto)">
+        <member name="P:WFw.Entity.FullAudit.IsDeleted">
             <summary>
-            分页查询扩展
+            
+            </summary>
+        </member>
+        <member name="P:WFw.Entity.FullAudit.DeletedTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:WFw.Entity.FullAuditByUser`1">
+            <summary>
+            
             </summary>
             <typeparam name="T"></typeparam>
-            <param name="query"></param>
-            <param name="requestDto"></param>
-            <returns></returns>
+        </member>
+        <member name="P:WFw.Entity.FullAuditByUser`1.CreatedUserId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:WFw.Entity.FullAuditByUser`1.UpdatedUserId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:WFw.Entity.FullAuditByUser`1.DeletedUserId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:WFw.Entity.FullAuditByUser">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:WFw.Entity.CreatedAuditByUserEntityBase`1">
+            <summary>
+            新增审计
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:WFw.Entity.CreatedAuditByUserEntityBase`2">
+            <summary>
+            新增审计
+            </summary>
+            <typeparam name="TPk"></typeparam>
+            <typeparam name="TUserId"></typeparam>
+        </member>
+        <member name="P:WFw.Entity.CreatedAuditByUserEntityBase`2.CreatedUserId">
+            <summary>
+            创建人
+            </summary>
+        </member>
+        <member name="T:WFw.Entity.CreatedAuditByUserEntityBase">
+            <summary>
+            新增审计
+            </summary>
+        </member>
+        <member name="P:WFw.Entity.CreatedAuditByUserEntityBase.CreatedUserId">
+            <summary>
+            创建人
+            </summary>
+        </member>
+        <member name="T:WFw.Entity.CreatedAuditEntityBase">
+            <summary>
+            仅新增时间
+            </summary>
+        </member>
+        <member name="P:WFw.Entity.CreatedAuditEntityBase.CreatedTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="T:WFw.Entity.CreatedAuditEntityBase`1">
+            <summary>
+            仅新增时间
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:WFw.Entity.CreatedAuditEntityBase`1.CreatedTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="T:WFw.Entity.FullAuditByUserEntityBase`2">
+            <summary>
+            全审计
+            </summary>
+            <typeparam name="TPk"></typeparam>
+            <typeparam name="TUserId"></typeparam>
+        </member>
+        <member name="P:WFw.Entity.FullAuditByUserEntityBase`2.DeletedUserId">
+            <summary>
+            删除用户
+            </summary>
+        </member>
+        <member name="P:WFw.Entity.FullAuditByUserEntityBase`2.IsDeleted">
+            <summary>
+            删除标志
+            </summary>
+        </member>
+        <member name="P:WFw.Entity.FullAuditByUserEntityBase`2.DeletedTime">
+            <summary>
+            删除时间
+            </summary>
+        </member>
+        <member name="T:WFw.Entity.FullAuditByUserEntityBase`1">
+            <summary>
+            全审计
+            </summary>
+            <typeparam name="TPk"></typeparam>
+        </member>
+        <member name="T:WFw.Entity.FullAduitByUserEntityBase">
+            <summary>
+            全审计
+            </summary>
+        </member>
+        <member name="P:WFw.Entity.FullAduitByUserEntityBase.DeletedUserId">
+            <summary>
+            删除用户
+            </summary>
+        </member>
+        <member name="P:WFw.Entity.FullAduitByUserEntityBase.IsDeleted">
+            <summary>
+            删除标志
+            </summary>
+        </member>
+        <member name="P:WFw.Entity.FullAduitByUserEntityBase.DeletedTime">
+            <summary>
+            删除时间
+            </summary>
+        </member>
+        <member name="T:WFw.Entity.FullAduitEntityBase">
+            <summary>
+            全审计
+            </summary>
+        </member>
+        <member name="P:WFw.Entity.FullAduitEntityBase.DeletedTime">
+            <summary>
+            删除时间
+            </summary>
+        </member>
+        <member name="P:WFw.Entity.FullAduitEntityBase.IsDeleted">
+            <summary>
+            软删除标志位
+            </summary>
+        </member>
+        <member name="T:WFw.Entity.FullAduitEntityBase`1">
+            <summary>
+            全审计
+            </summary>
+            <typeparam name="TPk"></typeparam>
+        </member>
+        <member name="P:WFw.Entity.FullAduitEntityBase`1.IsDeleted">
+            <summary>
+            删除
+            </summary>
+        </member>
+        <member name="P:WFw.Entity.FullAduitEntityBase`1.DeletedTime">
+            <summary>
+            删除时间
+            </summary>
+        </member>
+        <member name="T:WFw.Entity.FullAuditWithRemarkByUserEntityBase`2">
+            <summary>
+             审计，备注
+            </summary>
+            <typeparam name="TPk"></typeparam>
+            <typeparam name="TUserId"></typeparam>
+        </member>
+        <member name="P:WFw.Entity.FullAuditWithRemarkByUserEntityBase`2.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="T:WFw.Entity.FullAuditWithRemarkByUserEntityBase`1">
+            <summary>
+            审计，备注
+            </summary>
+            <typeparam name="TPk"></typeparam>
+        </member>
+        <member name="T:WFw.Entity.FullAuditWithRemarkByUserEntityBase">
+            <summary>
+            审计，备注
+            </summary>
+        </member>
+        <member name="P:WFw.Entity.FullAuditWithRemarkByUserEntityBase.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="T:WFw.Entity.FullAuditWithRemarkEntityBase`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TPk"></typeparam>
+        </member>
+        <member name="P:WFw.Entity.FullAuditWithRemarkEntityBase`1.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="T:WFw.Entity.FullAuditWithRemarkEntityBase">
+            <summary>
+            全审计，备注
+            </summary>
+        </member>
+        <member name="P:WFw.Entity.FullAuditWithRemarkEntityBase.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="T:WFw.Entity.IncrCreatedAuditByUserEntityBase`2">
+            <summary>
+            新增审计
+            </summary>
+            <typeparam name="TPk"></typeparam>
+            <typeparam name="TUserId"></typeparam>
+        </member>
+        <member name="P:WFw.Entity.IncrCreatedAuditByUserEntityBase`2.CreatedUserId">
+            <summary>
+            创建人
+            </summary>
+        </member>
+        <member name="T:WFw.Entity.IncrCreatedAuditByUserEntityBase`1">
+            <summary>
+            新增审计
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:WFw.Entity.IncrCreatedAuditEntityBase`1">
+            <summary>
+            仅新增时间
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:WFw.Entity.IncrCreatedAuditEntityBase`1.CreatedTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="T:WFw.Entity.IncrFullAuditByUserEntityBase`2">
+            <summary>
+            全审计
+            </summary>
+            <typeparam name="TPk"></typeparam>
+            <typeparam name="TUserId"></typeparam>
+        </member>
+        <member name="P:WFw.Entity.IncrFullAuditByUserEntityBase`2.DeletedUserId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:WFw.Entity.IncrFullAuditByUserEntityBase`2.IsDeleted">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:WFw.Entity.IncrFullAuditByUserEntityBase`2.DeletedTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:WFw.Entity.IncrFullAuditByUserEntityBase`1">
+            <summary>
+            全审计
+            </summary>
+            <typeparam name="TPk"></typeparam>
+        </member>
+        <member name="T:WFw.Entity.IncrFullAuditEntityBase`1">
+            <summary>
+            全审计
+            </summary>
+            <typeparam name="TPk"></typeparam>
+        </member>
+        <member name="P:WFw.Entity.IncrFullAuditEntityBase`1.IsDeleted">
+            <summary>
+            删除
+            </summary>
+        </member>
+        <member name="P:WFw.Entity.IncrFullAuditEntityBase`1.DeletedTime">
+            <summary>
+            删除时间
+            </summary>
+        </member>
+        <member name="T:WFw.Entity.IncrFullAuditWithRemarkByUserEntityBase`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="TPk"></typeparam>
+            <typeparam name="TUserId"></typeparam>
+        </member>
+        <member name="P:WFw.Entity.IncrFullAuditWithRemarkByUserEntityBase`2.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="T:WFw.Entity.IncrFullAuditWithRemarkByUserEntityBase`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TPk"></typeparam>
+        </member>
+        <member name="T:WFw.Entity.IncrFullAuditWithRemarkEntityBase`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TPk"></typeparam>
+        </member>
+        <member name="P:WFw.Entity.IncrFullAuditWithRemarkEntityBase`1.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="T:WFw.Entity.IncrOnlyNewAuditByUserEntityBase`2">
+            <summary>
+            仅新增，更新
+            </summary>
+            <typeparam name="TPk"></typeparam>
+            <typeparam name="TUserId"></typeparam>
+        </member>
+        <member name="P:WFw.Entity.IncrOnlyNewAuditByUserEntityBase`2.UpdatedTime">
+            <summary>
+            更新时间
+            </summary>
+        </member>
+        <member name="P:WFw.Entity.IncrOnlyNewAuditByUserEntityBase`2.UpdatedUserId">
+            <summary>
+            更新人
+            </summary>
+        </member>
+        <member name="T:WFw.Entity.IncrOnlyNewAuditByUserEntityBase`1">
+            <summary>
+            仅新增，更新
+            </summary>
+            <typeparam name="TPk"></typeparam>
+        </member>
+        <member name="T:WFw.Entity.IncrOnlyNewAuditEntityBase`1">
+            <summary>
+            仅新增，更新
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:WFw.Entity.IncrOnlyNewAuditEntityBase`1.UpdatedTime">
+            <summary>
+            更新时间
+            </summary>
+        </member>
+        <member name="T:WFw.Entity.IncrSoftDeleteAuditByUserEntityBase`2">
+            <summary>
+            删除
+            </summary>
+            <typeparam name="TPk"></typeparam>
+            <typeparam name="TUserId"></typeparam>
+        </member>
+        <member name="P:WFw.Entity.IncrSoftDeleteAuditByUserEntityBase`2.DeletedUserId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:WFw.Entity.IncrSoftDeleteAuditByUserEntityBase`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TPk"></typeparam>
+        </member>
+        <member name="T:WFw.Entity.IncrSoftDeleteAuditEntityBase`1">
+            <summary>
+            仅删除
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:WFw.Entity.IncrSoftDeleteAuditEntityBase`1.IsDeleted">
+            <summary>
+            删除标志
+            </summary>
+        </member>
+        <member name="P:WFw.Entity.IncrSoftDeleteAuditEntityBase`1.DeletedTime">
+            <summary>
+            删除时间
+            </summary>
+        </member>
+        <member name="T:WFw.Entity.OnlyNewAuditByUserEntityBase`2">
+            <summary>
+            仅新增，更新
+            </summary>
+            <typeparam name="TPk"></typeparam>
+            <typeparam name="TUserId"></typeparam>
+        </member>
+        <member name="P:WFw.Entity.OnlyNewAuditByUserEntityBase`2.UpdatedTime">
+            <summary>
+            更新时间
+            </summary>
+        </member>
+        <member name="P:WFw.Entity.OnlyNewAuditByUserEntityBase`2.UpdatedUserId">
+            <summary>
+            更新人
+            </summary>
+        </member>
+        <member name="T:WFw.Entity.OnlyNewAuditByUserEntityBase`1">
+            <summary>
+            仅新增，更新
+            </summary>
+            <typeparam name="TPk"></typeparam>
+        </member>
+        <member name="T:WFw.Entity.OnlyNewAuditByUserEntityBase">
+            <summary>
+            仅新增，更新
+            </summary>
+        </member>
+        <member name="P:WFw.Entity.OnlyNewAuditByUserEntityBase.UpdatedUserId">
+            <summary>
+            更新人
+            </summary>
+        </member>
+        <member name="P:WFw.Entity.OnlyNewAuditByUserEntityBase.UpdatedTime">
+            <summary>
+            更新时间
+            </summary>
+        </member>
+        <member name="T:WFw.Entity.OnlyNewAuditEntityBase`1">
+            <summary>
+            仅新增，更新
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:WFw.Entity.OnlyNewAuditEntityBase`1.UpdatedTime">
+            <summary>
+            更新时间
+            </summary>
+        </member>
+        <member name="T:WFw.Entity.OnlyNewAuditEntityBase">
+            <summary>
+             仅新增，更新
+            </summary>
+        </member>
+        <member name="P:WFw.Entity.OnlyNewAuditEntityBase.UpdatedTime">
+            <summary>
+            更新时间
+            </summary>
+        </member>
+        <member name="T:WFw.Entity.SoftDeleteAuditByUserEntityBase">
+            <summary>
+            删除
+            </summary>
+        </member>
+        <member name="P:WFw.Entity.SoftDeleteAuditByUserEntityBase.DeletedUserId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:WFw.Entity.SoftDeleteAuditByUserEntityBase`2">
+            <summary>
+            删除
+            </summary>
+            <typeparam name="TPk"></typeparam>
+            <typeparam name="TUserId"></typeparam>
+        </member>
+        <member name="P:WFw.Entity.SoftDeleteAuditByUserEntityBase`2.DeletedUserId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:WFw.Entity.SoftDeleteAuditByUserEntityBase`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TPk"></typeparam>
+        </member>
+        <member name="T:WFw.Entity.SoftDeleteAuditEntityBase">
+            <summary>
+            仅删除
+            </summary>
+        </member>
+        <member name="P:WFw.Entity.SoftDeleteAuditEntityBase.IsDeleted">
+            <summary>
+            删除标志
+            </summary>
+        </member>
+        <member name="P:WFw.Entity.SoftDeleteAuditEntityBase.DeletedTime">
+            <summary>
+            删除时间
+            </summary>
+        </member>
+        <member name="T:WFw.Entity.SoftDeleteAuditEntityBase`1">
+            <summary>
+            仅删除
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:WFw.Entity.SoftDeleteAuditEntityBase`1.IsDeleted">
+            <summary>
+            删除标志
+            </summary>
+        </member>
+        <member name="P:WFw.Entity.SoftDeleteAuditEntityBase`1.DeletedTime">
+            <summary>
+            删除时间
+            </summary>
         </member>
         <member name="T:WFw.Entity.EntityBase`1">
             <summary>
-            自增主键
+            值主键
             </summary>
             <typeparam name="T"></typeparam>
         </member>
         <member name="P:WFw.Entity.EntityBase`1.Id">
             <summary>
-            
+            主键
             </summary>
         </member>
-        <member name="T:WFw.Entity.FullAudit`1">
+        <member name="T:WFw.Entity.EntityBase">
             <summary>
-            全审计信息
-            </summary>
-            <typeparam name="TUserId"></typeparam>
-        </member>
-        <member name="P:WFw.Entity.FullAudit`1.CreatedUserId">
-            <summary>
-            创建者
+            字符串主键
             </summary>
         </member>
-        <member name="P:WFw.Entity.FullAudit`1.CreatedTime">
-            <summary>
-            创建时间
-            </summary>
-        </member>
-        <member name="P:WFw.Entity.FullAudit`1.UpdatedUserId">
-            <summary>
-            更新者
-            </summary>
-        </member>
-        <member name="P:WFw.Entity.FullAudit`1.UpdatedTime">
-            <summary>
-            更新时间
-            </summary>
-        </member>
-        <member name="P:WFw.Entity.FullAudit`1.DeletedUserId">
-            <summary>
-            删除者
-            </summary>
-        </member>
-        <member name="P:WFw.Entity.FullAudit`1.DeletedTime">
-            <summary>
-            删除时间
-            </summary>
-        </member>
-        <member name="P:WFw.Entity.FullAudit`1.IsDeleted">
-            <summary>
-            软删除标志位
-            </summary>
-        </member>
-        <member name="T:WFw.Entity.FullAuditEntityBase">
-            <summary>
-            自增主键及全审计信息
-            </summary>
-        </member>
-        <member name="T:WFw.Entity.FullAuditEntityBase`1">
-            <summary>
-            自增主键及全审计信息
-            </summary>
-            <typeparam name="TUserId"></typeparam>
-        </member>
-        <member name="T:WFw.Entity.FullAuditEntityBase`2">
-            <summary>
-            自增主键及全审计信息
-            </summary>
-            <typeparam name="TPk"></typeparam>
-            <typeparam name="TUserId"></typeparam>
-        </member>
-        <member name="P:WFw.Entity.FullAuditEntityBase`2.Id">
+        <member name="P:WFw.Entity.EntityBase.Id">
             <summary>
             主键
             </summary>
         </member>
-        <member name="T:WFw.Entity.FullAuditStatus">
+        <member name="T:WFw.Entity.IncrEntityBase`1">
             <summary>
-            仅审计状态信息
-            </summary>
-        </member>
-        <member name="T:WFw.Entity.FullAuditStatusEntityBase">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="T:WFw.Entity.FullAuditStatusEntityBase`1">
-            <summary>
-            
-            </summary>
-            <typeparam name="TPk"></typeparam>
-        </member>
-        <member name="P:WFw.Entity.FullAuditStatusEntityBase`1.Id">
-            <summary>
-            主键
-            </summary>
-        </member>
-        <member name="T:WFw.Entity.FullAuditWithRemarkEntityBase">
-            <summary>
-            自增主键，全审计，备注
-            </summary>
-        </member>
-        <member name="T:WFw.Entity.FullAuditWithRemarkEntityBase`1">
-            <summary>
-            自增主键，全审计，备注
-            </summary>
-            <typeparam name="TUserId"></typeparam>
-        </member>
-        <member name="T:WFw.Entity.FullAuditWithRemarkEntityBase`2">
-            <summary>
-            自增主键，全审计，备注
-            </summary>
-            <typeparam name="TPk"></typeparam>
-            <typeparam name="TUserId"></typeparam>
-        </member>
-        <member name="P:WFw.Entity.FullAuditWithRemarkEntityBase`2.Remark">
-            <summary>
-            备注
-            </summary>
-        </member>
-        <member name="T:WFw.Entity.OnlyPkEntityBase`1">
-            <summary>
-            仅主键
+            自增主键
             </summary>
             <typeparam name="T"></typeparam>
         </member>
-        <member name="P:WFw.Entity.OnlyPkEntityBase`1.Id">
+        <member name="P:WFw.Entity.IncrEntityBase`1.Id">
             <summary>
             主键
-            </summary>
-        </member>
-        <member name="T:WFw.Entity.OnlyPkFullAuditEntityBase">
-            <summary>
-            不自增主键及全审计信息
-            </summary>
-        </member>
-        <member name="T:WFw.Entity.OnlyPkFullAuditEntityBase`1">
-            <summary>
-            不自增主键及全审计信息
-            </summary>
-            <typeparam name="TUserId"></typeparam>
-        </member>
-        <member name="T:WFw.Entity.OnlyPkFullAuditEntityBase`2">
-            <summary>
-            不自增主键及全审计信息
-            </summary>
-            <typeparam name="TPk"></typeparam>
-            <typeparam name="TUserId"></typeparam>
-        </member>
-        <member name="P:WFw.Entity.OnlyPkFullAuditEntityBase`2.Id">
-            <summary>
-            主键
-            </summary>
-        </member>
-        <member name="T:WFw.Entity.OnlyPkFullAuditWithRemarkEntityBase">
-            <summary>
-            不自增，全审计，备注
-            </summary>
-        </member>
-        <member name="T:WFw.Entity.OnlyPkFullAuditWithRemarkEntityBase`1">
-            <summary>
-            不自增，全审计，备注
-            </summary>
-            <typeparam name="TUserId"></typeparam>
-        </member>
-        <member name="T:WFw.Entity.OnlyPkFullAuditWithRemarkEntityBase`2">
-            <summary>
-            不自增，全审计，备注
-            </summary>
-            <typeparam name="TPk"></typeparam>
-            <typeparam name="TUserId"></typeparam>
-        </member>
-        <member name="P:WFw.Entity.OnlyPkFullAuditWithRemarkEntityBase`2.Remark">
-            <summary>
-            备注
             </summary>
         </member>
         <member name="T:WFw.ServiceCollectionExtensions">
@@ -740,7 +1121,7 @@
             
             </summary>
         </member>
-        <member name="M:WFw.ServiceCollectionExtensions.AddSqlSugar(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+        <member name="M:WFw.ServiceCollectionExtensions.AddWFwSqlSugar(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             
             </summary>
@@ -748,7 +1129,7 @@
             <param name="configuration"></param>
             <returns></returns>
         </member>
-        <member name="M:WFw.ServiceCollectionExtensions.AddSqlSugar(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfigurationSection)">
+        <member name="M:WFw.ServiceCollectionExtensions.AddWFwSqlSugar(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfigurationSection)">
             <summary>
             
             </summary>
@@ -756,7 +1137,7 @@
             <param name="configurationSection"></param>
             <returns></returns>
         </member>
-        <member name="M:WFw.ServiceCollectionExtensions.AddSqlSugar(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{WFw.DbContext.DbOptions})">
+        <member name="M:WFw.ServiceCollectionExtensions.AddWFwSqlSugar(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{WFw.DbContext.DbOptions})">
             <summary>
             
             </summary>

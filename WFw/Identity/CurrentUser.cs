@@ -230,5 +230,13 @@ namespace WFw.Identity
 
             return null;
         }
+
+        /// <summary>
+        /// 清理
+        /// </summary>
+        public void Clear()
+        {
+            _claims.Clear();
+        }
     }
 }

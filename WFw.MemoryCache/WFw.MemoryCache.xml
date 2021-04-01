@@ -4,6 +4,139 @@
         <name>WFw.MemoryCache</name>
     </assembly>
     <members>
+        <member name="T:WFw.Cache.CacheExtensions">
+            <summary>
+            缓存扩展
+            </summary>
+        </member>
+        <member name="M:WFw.Cache.CacheExtensions.Get(WFw.Cache.ICache,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="cache"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Cache.CacheExtensions.ContainsKey(WFw.Cache.ICache,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="cache"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Cache.CacheExtensions.Set``1(WFw.Cache.ICache,System.String,``0,System.DateTimeOffset)">
+            <summary>
+            绝对过期设置
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="cache"></param>
+            <param name="key"></param>
+            <param name="value"></param>
+            <param name="absoluteExpiration"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Cache.CacheExtensions.Set``1(WFw.Cache.ICache,System.String,``0,System.TimeSpan)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="cache"></param>
+            <param name="key"></param>
+            <param name="value"></param>
+            <param name="absoluteExpirationRelativeToNow"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Cache.CacheExtensions.Set``1(WFw.Cache.ICache,System.String,``0,System.Int32)">
+            <summary>
+            滑动过期设置
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="cache"></param>
+            <param name="key"></param>
+            <param name="value"></param>
+            <param name="slidingExpirationSec"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Cache.CacheExtensions.GetOrCreate``1(WFw.Cache.ICache,System.String,System.Func{``0},System.Nullable{System.Int32})">
+            <summary>
+            获得或创建缓存
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="cache"></param>
+            <param name="key"></param>
+            <param name="func"></param>
+            <param name="slidingExpirationSec"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WFw.Cache.CacheItemOptions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:WFw.Cache.CacheItemOptions.AbsoluteExpiration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:WFw.Cache.CacheItemOptions.AbsoluteExpirationRelativeToNow">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:WFw.Cache.CacheItemOptions.SlidingExpiration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WFw.Cache.CacheItemOptions.GetAbsluteExpirationSecs">
+            <summary>
+            返回过期秒
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Cache.CacheItemOptions.GetSlidingExpirationSecs">
+            <summary>
+            返回滑动过期秒
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:WFw.Cache.ICache">
+            <summary>
+            缓存接口
+            </summary>
+        </member>
+        <member name="M:WFw.Cache.ICache.GetValue``1(System.String)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Cache.ICache.Get``1(System.String)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Cache.ICache.Remove(System.String[])">
+            <summary>
+            移除
+            </summary>
+            <param name="keys"></param>
+        </member>
+        <member name="M:WFw.Cache.ICache.Set``1(System.String,``0,WFw.Cache.CacheItemOptions)">
+            <summary>
+            写入
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <param name="value"></param>
+            <param name="options"></param>
+        </member>
         <member name="T:WFw.ServiceCollectionExtensions">
             <summary>
             
@@ -16,76 +149,74 @@
             <param name="services"></param>
             <returns></returns>
         </member>
-        <member name="T:WFw.MemoryCache.MemoryCacheManager">
+        <member name="T:WFw.MemoryCache.WFwMemoryCache">
             <summary>
             
             </summary>
         </member>
-        <member name="M:WFw.MemoryCache.MemoryCacheManager.#ctor(Microsoft.Extensions.Caching.Memory.IMemoryCache)">
+        <member name="M:WFw.MemoryCache.WFwMemoryCache.#ctor(Microsoft.Extensions.Caching.Memory.IMemoryCache)">
             <summary>
             
             </summary>
             <param name="memoryCache"></param>
         </member>
-        <member name="M:WFw.MemoryCache.MemoryCacheManager.Set``1(System.String,``0)">
+        <member name="M:WFw.MemoryCache.WFwMemoryCache.GetValue``1(System.String)">
             <summary>
             
             </summary>
-            <typeparam name="Entity"></typeparam>
-            <param name="key"></param>
-            <param name="value"></param>
-        </member>
-        <member name="M:WFw.MemoryCache.MemoryCacheManager.Set``1(System.String,``0,System.Int32)">
-            <summary>
-            
-            </summary>
-            <typeparam name="Entity"></typeparam>
-            <param name="key"></param>
-            <param name="value"></param>
-            <param name="cacheDurationInSeconds"></param>
-        </member>
-        <member name="M:WFw.MemoryCache.MemoryCacheManager.Get``1(System.String)">
-            <summary>
-            
-            </summary>
-            <typeparam name="Entity"></typeparam>
+            <typeparam name="T"></typeparam>
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="M:WFw.MemoryCache.MemoryCacheManager.Get(System.String)">
+        <member name="M:WFw.MemoryCache.WFwMemoryCache.Get``1(System.String)">
             <summary>
             
             </summary>
+            <typeparam name="T"></typeparam>
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="M:WFw.MemoryCache.MemoryCacheManager.Del(System.String[])">
+        <member name="M:WFw.MemoryCache.WFwMemoryCache.GetAsync``1(System.String,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.MemoryCache.WFwMemoryCache.Remove(System.String[])">
             <summary>
             
             </summary>
             <param name="keys"></param>
         </member>
-        <member name="M:WFw.MemoryCache.MemoryCacheManager.ContainsKey``1(System.String)">
-            <summary>
-            
-            </summary>
-            <typeparam name="Entity"></typeparam>
-            <param name="key"></param>
-            <returns></returns>
-        </member>
-        <member name="M:WFw.MemoryCache.MemoryCacheManager.ContainsKey(System.String)">
+        <member name="M:WFw.MemoryCache.WFwMemoryCache.RemoveAsync(System.String,System.Threading.CancellationToken)">
             <summary>
             
             </summary>
             <param name="key"></param>
+            <param name="token"></param>
             <returns></returns>
         </member>
-        <member name="M:WFw.MemoryCache.MemoryCacheManager.Compare(System.String,System.String)">
+        <member name="M:WFw.MemoryCache.WFwMemoryCache.Set``1(System.String,``0,WFw.Cache.CacheItemOptions)">
             <summary>
             
             </summary>
+            <typeparam name="T"></typeparam>
             <param name="key"></param>
             <param name="value"></param>
+            <param name="options"></param>
+        </member>
+        <member name="M:WFw.MemoryCache.WFwMemoryCache.SetAsync``1(System.String,``0,WFw.Cache.CacheItemOptions,System.Threading.CancellationToken)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <param name="value"></param>
+            <param name="options"></param>
+            <param name="token"></param>
             <returns></returns>
         </member>
     </members>

@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WFw.Http</name>
+    </assembly>
+    <members>
+        <member name="T:WFw.ServiceCollectionExtensions">
+            <summary>
+            扩展
+            </summary>
+        </member>
+        <member name="M:WFw.ServiceCollectionExtensions.AddSmsChinese(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            添加smschinese短信平台
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WFw.Http.Services.ISmsService">
+            <summary>
+            短信接口
+            </summary>
+        </member>
+        <member name="M:WFw.Http.Services.ISmsService.Send(System.String,System.String)">
+            <summary>
+            发送短信
+            </summary>
+            <param name="phone"></param>
+            <param name="msg"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WFw.Http.Services.SmsChineseService">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WFw.Http.Services.SmsChineseService.#ctor(System.Net.Http.HttpClient,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="client"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:WFw.Http.Services.SmsChineseService.Send(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="phone"></param>
+            <param name="msg"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

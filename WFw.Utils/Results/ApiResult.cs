@@ -57,7 +57,10 @@ namespace WFw.Results
             this.data = data;
         }
     }
-
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class ApiResult<T>
     {
         /// <summary>

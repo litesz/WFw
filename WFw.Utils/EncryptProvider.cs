@@ -38,9 +38,10 @@ namespace WFw.Utils
         /// <summary>
         /// md5加密
         /// </summary>
-        /// <param name="source">字符串</param>
+        /// <param name="source"></param>
+        /// <param name="isLower"></param>
         /// <returns></returns>
-        public static string GetMd5(string source)
+        public static string GetMd5(string source, bool isLower = false)
         {
             using (MD5 md5Hash = MD5.Create())
             {
@@ -53,6 +54,10 @@ namespace WFw.Utils
                 }
 
                 string hash = sBuilder.ToString();
+                if (isLower)
+                {
+                    return hash.ToLower();
+                }
                 return hash.ToUpper();
             }
         }

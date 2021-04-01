@@ -1,0 +1,551 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WFw.Utils</name>
+    </assembly>
+    <members>
+        <member name="T:WFw.Utils.EncryptProvider">
+            <summary>
+            加密
+            </summary>
+        </member>
+        <member name="M:WFw.Utils.EncryptProvider.GetMd5Password(System.String)">
+            <summary>
+            MD5密码加密
+            md5+加盐+md5
+            </summary>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Utils.EncryptProvider.GetMd5Password(System.String,System.String)">
+            <summary>
+            MD5密码加密
+            md5+加盐+md5
+            </summary>
+            <param name="salt"></param>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Utils.EncryptProvider.GetMd5(System.String,System.Boolean)">
+            <summary>
+            md5加密
+            </summary>
+            <param name="source"></param>
+            <param name="isLower"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WFw.Utils.AttributeExtensions">
+            <summary>
+            扩展
+            </summary>
+        </member>
+        <member name="M:WFw.Utils.AttributeExtensions.GetEnumDescription(System.Enum)">
+            <summary>
+            获取枚举的描述
+            </summary>
+            <param name="en">枚举</param>
+            <returns>返回枚举的描述</returns>
+        </member>
+        <member name="T:WFw.Utils.AutoExtensions">
+            <summary>
+            自动化
+            </summary>
+        </member>
+        <member name="M:WFw.Utils.AutoExtensions.MapTo``1(System.Object)">
+            <summary>
+            反射映射
+            </summary>
+            <typeparam name="TTarget"></typeparam>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Utils.AutoExtensions.MapTo``2(``0,``1)">
+            <summary>
+            填充类
+            </summary>
+            <typeparam name="TTarget"></typeparam>
+            <typeparam name="TSource"></typeparam>
+            <param name="target"></param>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Utils.AutoExtensions.Filling``2(``0,``1)">
+            <summary>
+            填充类
+            </summary>
+            <typeparam name="TTarget"></typeparam>
+            <typeparam name="TSource"></typeparam>
+            <param name="target"></param>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Utils.AutoExtensions.Filling``1(``0,System.String,System.Char[])">
+            <summary>
+            填充类
+            </summary>
+            <typeparam name="TTarget"></typeparam>
+            <param name="target"></param>
+            <param name="source"></param>
+            <param name="separators"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Utils.AutoExtensions.Filling``1(``0,System.String,System.Char,System.Char,System.Char)">
+            <summary>
+            反射填充类
+            </summary>
+            <typeparam name="TTarget">目标类</typeparam>
+            <param name="target">目标类</param>
+            <param name="source">数据</param>
+            <param name="separators">数据端拆分字符</param>
+            <param name="dataseparators">数据拆分</param>
+            <param name="trimchar">数据字段待移除前后缀</param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Utils.AutoExtensions.HasNull``1(``0)">
+            <summary>
+            包含null值
+            </summary>
+            <typeparam name="TSource"></typeparam>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Utils.AutoExtensions.HasNullOrWhiteSpace``1(``0,System.String@)">
+            <summary>
+            包含控制
+            </summary>
+            <typeparam name="TSource"></typeparam>
+            <param name="source"></param>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Utils.AutoExtensions.EqualsWith``1(``0,``0)">
+            <summary>
+            比较两个类内部值是否相同
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="t">目标类</param>
+            <param name="other">对比类</param>
+            <returns></returns>
+        </member>
+        <member name="T:WFw.Utils.RandomExtensions">
+            <summary>
+            随机数<see cref="T:System.Random"/>类型的扩展辅助操作类
+            </summary>
+        </member>
+        <member name="M:WFw.Utils.RandomExtensions.NextBoolean(System.Random)">
+            <summary>
+            返回随机布尔值
+            </summary>
+            <param name="random"></param>
+            <returns>随机布尔值</returns>
+        </member>
+        <member name="M:WFw.Utils.RandomExtensions.NextEnum``1(System.Random)">
+            <summary>
+            返回指定枚举类型的随机枚举值
+            </summary>
+            <param name="random"></param>
+            <returns>指定枚举类型的随机枚举值</returns>
+        </member>
+        <member name="M:WFw.Utils.RandomExtensions.NextBytes(System.Random,System.Int32)">
+            <summary>
+            返回随机数填充的指定长度的数组
+            </summary>
+            <param name="random"></param>
+            <param name="length">数组长度</param>
+            <returns>随机数填充的指定长度的数组</returns>
+        </member>
+        <member name="M:WFw.Utils.RandomExtensions.NextItem``1(System.Random,``0[])">
+            <summary>
+            返回数组中的随机元素
+            </summary>
+            <typeparam name="T">元素类型</typeparam>
+            <param name="random"></param>
+            <param name="items">元素数组</param>
+            <returns>元素数组中的某个随机项</returns>
+        </member>
+        <member name="M:WFw.Utils.RandomExtensions.NextDateTime(System.Random,System.DateTime,System.DateTime)">
+            <summary>
+            返回指定时间段内的随机时间值
+            </summary>
+            <param name="random"></param>
+            <param name="minValue">时间范围的最小值</param>
+            <param name="maxValue">时间范围的最大值</param>
+            <returns>指定时间段内的随机时间值</returns>
+        </member>
+        <member name="M:WFw.Utils.RandomExtensions.NextDateTime(System.Random)">
+            <summary>
+            返回随机时间值
+            </summary>
+            <param name="random"></param>
+            <returns>随机时间值</returns>
+        </member>
+        <member name="M:WFw.Utils.RandomExtensions.NextNumberString(System.Random,System.Int32)">
+            <summary>
+            获取指定的长度的随机数字字符串
+            </summary>
+            <param name="random"></param>
+            <param name="length">要获取随机数长度</param>
+            <returns>指定长度的随机数字符串</returns>
+        </member>
+        <member name="M:WFw.Utils.RandomExtensions.NextLetterString(System.Random,System.Int32)">
+            <summary>
+            获取指定的长度的随机字母字符串
+            </summary>
+            <param name="random"></param>
+            <param name="length">要获取随机数长度</param>
+            <returns>指定长度的随机字母组成字符串</returns>
+        </member>
+        <member name="M:WFw.Utils.RandomExtensions.NextLetterAndNumberString(System.Random,System.Int32)">
+            <summary>
+            获取指定的长度的随机字母和数字字符串
+            </summary>
+            <param name="random"></param>
+            <param name="length">要获取随机数长度</param>
+            <returns>指定长度的随机字母和数字组成字符串</returns>
+        </member>
+        <member name="M:WFw.Utils.RandomExtensions.NextSurName(System.Random)">
+            <summary>
+            获取随机的姓名
+            </summary>
+        </member>
+        <member name="M:WFw.Utils.RandomExtensions.NextNationName(System.Random)">
+            <summary>
+            获取随机的民族
+            </summary>
+        </member>
+        <member name="M:WFw.Utils.RandomExtensions.NextPhoneNumber(System.Random,System.String[])">
+            <summary>
+            获取随机手机号
+            </summary>
+            <param name="random"></param>
+            <param name="sections">指定手机号段，号段字符串必须是7位数值</param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Utils.RandomExtensions.NextIdentityCardId(System.Random,System.String[])">
+            <summary>
+            获取随机身份证号
+            </summary>
+            <param name="random"></param>
+            <param name="areaCodes">指定的地区码</param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Utils.RandomExtensions.NextItems``1(System.Random,``0[],System.Int32,``0[])">
+            <summary>
+            从指定源集合中获取排除指定元素的指定个数的随机项集合
+            </summary>
+            <typeparam name="T">项类型</typeparam>
+            <param name="random"></param>
+            <param name="source">源集合</param>
+            <param name="count">要获取的子集合的项数量</param>
+            <param name="excepts">要排除的项集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Utils.RandomExtensions.NextItems(System.Random,System.Int32,System.Int32,System.Int32,System.Int32[])">
+            <summary>
+            从指定数值范围中获取排除指定数值外的指定个数随机数值集合
+            </summary>
+            <param name="random"></param>
+            <param name="min">数值范围小值</param>
+            <param name="max">数值范围大值</param>
+            <param name="count">要获取的子集合元素数量</param>
+            <param name="excepts">要排除的数值</param>
+            <returns></returns>
+        </member>
+        <member name="T:WFw.Utils.StringEncrpytProvider">
+            <summary>
+            字符串内容加密,如手机号，姓名
+            </summary>
+        </member>
+        <member name="M:WFw.Utils.StringEncrpytProvider.EncrpytPhone(System.String)">
+            <summary>
+            加密手机号
+            </summary>
+            <param name="phone"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Utils.StringEncrpytProvider.EncrpytName(System.String)">
+            <summary>
+            加密姓名
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Exceptions.BadRequestException.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WFw.Exceptions.BadRequestException.#ctor(WFw.Results.OperationResultType,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="result"></param>
+            <param name="value"></param>
+        </member>
+        <member name="T:WFw.WFwException">
+            <summary>
+            错误请求
+            </summary>
+        </member>
+        <member name="P:WFw.WFwException.OperationResult">
+            <summary>
+            错误类型
+            </summary>
+        </member>
+        <member name="P:WFw.WFwException.ContentText">
+            <summary>
+            显示描述
+            </summary>
+        </member>
+        <member name="P:WFw.WFwException.LogContent">
+            <summary>
+            日志记录错误
+            </summary>
+        </member>
+        <member name="M:WFw.WFwException.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WFw.WFwException.#ctor(WFw.Results.OperationResultType)">
+            <summary>
+            
+            </summary>
+            <param name="result"></param>
+        </member>
+        <member name="M:WFw.WFwException.#ctor(WFw.Results.OperationResultType,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="result"></param>
+            <param name="msg"></param>
+        </member>
+        <member name="M:WFw.WFwException.#ctor(WFw.Results.OperationResultType,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="result"></param>
+            <param name="msg"></param>
+            <param name="logMsg"></param>
+        </member>
+        <member name="T:WFw.JsonExtensions">
+            <summary>
+            json扩展
+            </summary>
+        </member>
+        <member name="M:WFw.JsonExtensions.Deserialize``1(System.String)">
+            <summary>
+            反序列化
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.JsonExtensions.Serialize``1(``0)">
+            <summary>
+            序列化
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.JsonExtensions.SerializeByCamelCase``1(``0,System.Boolean)">
+            <summary>
+            基于驼峰序列化
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="entity"></param>
+            <param name="isIgnoreNull">是否忽略值为null的对象</param>
+            <returns></returns>
+        </member>
+        <member name="T:WFw.Results.ApiResult">
+            <summary>
+            同一返回值
+            </summary>
+        </member>
+        <member name="P:WFw.Results.ApiResult.code">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:WFw.Results.ApiResult.msg">
+            <summary>
+            消息
+            </summary>
+        </member>
+        <member name="P:WFw.Results.ApiResult.data">
+            <summary>
+            数据
+            </summary>
+        </member>
+        <member name="M:WFw.Results.ApiResult.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WFw.Results.ApiResult.#ctor(WFw.WFwException)">
+            <summary>
+            
+            </summary>
+            <param name="exception"></param>
+        </member>
+        <member name="M:WFw.Results.ApiResult.#ctor(WFw.Results.OperationResultType,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="code"></param>
+            <param name="msg"></param>
+        </member>
+        <member name="M:WFw.Results.ApiResult.#ctor(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="T:WFw.Results.ApiResult`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:WFw.Results.ApiResult`1.code">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:WFw.Results.ApiResult`1.msg">
+            <summary>
+            消息
+            </summary>
+        </member>
+        <member name="P:WFw.Results.ApiResult`1.data">
+            <summary>
+            数据
+            </summary>
+        </member>
+        <member name="M:WFw.Results.ApiResult`1.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WFw.Results.ApiResult`1.#ctor(WFw.WFwException)">
+            <summary>
+            
+            </summary>
+            <param name="exception"></param>
+        </member>
+        <member name="M:WFw.Results.ApiResult`1.#ctor(WFw.Results.OperationResultType,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="code"></param>
+            <param name="msg"></param>
+        </member>
+        <member name="M:WFw.Results.ApiResult`1.#ctor(`0)">
+            <summary>
+            
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="T:WFw.Results.OperationResultType">
+            <summary>
+            状态代码
+            </summary>
+        </member>
+        <member name="F:WFw.Results.OperationResultType.Success">
+            <summary>
+            成功
+            </summary>
+        </member>
+        <member name="F:WFw.Results.OperationResultType.Text">
+            <summary>
+            成功且消息文本有意义
+            </summary>
+        </member>
+        <member name="F:WFw.Results.OperationResultType.Unexpected">
+            <summary>
+            意外状态
+            </summary>
+        </member>
+        <member name="F:WFw.Results.OperationResultType.IsExist">
+            <summary>
+            已存在
+            </summary>
+        </member>
+        <member name="F:WFw.Results.OperationResultType.NotExist">
+            <summary>
+            不存在
+            </summary>
+        </member>
+        <member name="F:WFw.Results.OperationResultType.IsEmpty">
+            <summary>
+            为空
+            </summary>
+        </member>
+        <member name="F:WFw.Results.OperationResultType.IsErr">
+            <summary>
+            错误
+            </summary>
+        </member>
+        <member name="F:WFw.Results.OperationResultType.Unauthorized">
+            <summary>
+            未登录或已超时
+            </summary>
+        </member>
+        <member name="F:WFw.Results.OperationResultType.UnauthorizedOperation">
+            <summary>
+            无权执行操作
+            </summary>
+        </member>
+        <member name="F:WFw.Results.OperationResultType.ParamIsEmpty">
+            <summary>
+            参数为空
+            </summary>
+        </member>
+        <member name="F:WFw.Results.OperationResultType.ParamIsErr">
+            <summary>
+            参数错误
+            </summary>
+        </member>
+        <member name="F:WFw.Results.OperationResultType.PhoneOrPasswordErr">
+            <summary>
+            电话号码或密码错误
+            </summary>
+        </member>
+        <member name="F:WFw.Results.OperationResultType.PhoneNotExist">
+            <summary>
+            电话号码{0}不存在
+            </summary>
+        </member>
+        <member name="F:WFw.Results.OperationResultType.PhoneIsExist">
+            <summary>
+            电话号码{0}已存在
+            </summary>
+        </member>
+        <member name="F:WFw.Results.OperationResultType.PhoneIsWrong">
+            <summary>
+            电话号[0}码错误
+            </summary>
+        </member>
+        <member name="F:WFw.Results.OperationResultType.VerificationCodeErr">
+            <summary>
+            验证码错误或已过期
+            </summary>
+        </member>
+        <member name="F:WFw.Results.OperationResultType.VerificationCodeNotExist">
+            <summary>
+            验证码已过期
+            </summary>
+        </member>
+        <member name="F:WFw.Results.OperationResultType.VerificationCodeTooMuch">
+            <summary>
+            验证码太过频繁
+            </summary>
+        </member>
+        <member name="F:WFw.Results.OperationResultType.TencentHttpErr">
+            <summary>
+            腾讯接口请求错误
+            </summary>
+        </member>
+    </members>
+</doc>

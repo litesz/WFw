@@ -1,8 +1,10 @@
 ﻿
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using WFw.Mp;
 using WFw.Mp.Options;
+using WFw.Mp.Utils;
 
 namespace WFw
 {
@@ -20,9 +22,9 @@ namespace WFw
         {
             services.Configure<MpOptions>(configuration.GetSection(MpOptions.Position));
 
-            services.AddScoped<WFwMpUrlBuilder>();
+            services.TryAddScoped<WFwMpUrlBuilder>();
 
-            services.AddHttpClient<WFwMpApiHttpClient, WFwMpApiHttpClient>();
+            services.AddHttpClient<IWFwMpApiHttpClient, WFwMpApiHttpClient>();
 
             return services;
         }

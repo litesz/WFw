@@ -38,11 +38,17 @@ namespace WFw
         /// 
         /// </summary>
         /// <param name="result"></param>
-        /// <param name="value"></param>
+        /// <param name="msg"></param>
         public WFwException(OperationResultType result, string msg) : this(result, msg, msg)
         {
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="result"></param>
+        /// <param name="msg"></param>
+        /// <param name="logMsg"></param>
         public WFwException(OperationResultType result, string msg, string logMsg) : base(string.Format(result.GetEnumDescription(), msg))
         {
             ContentText = msg;

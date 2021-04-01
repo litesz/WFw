@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using WFw.Identity;
 using WFw.Middlewares;
 
 namespace WFw

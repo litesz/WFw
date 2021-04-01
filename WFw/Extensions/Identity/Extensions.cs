@@ -42,6 +42,47 @@ namespace WFw.Identity
         /// <returns></returns>
         public static bool GetBool(this ICurrentUser currentUser, string key) => currentUser.Get<bool>(key);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="currentUser"></param>
+        /// <returns></returns>
+        public static int GetIntUserId(this ICurrentUser currentUser) => currentUser.UserIdAs<int>();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="currentUser"></param>
+        /// <returns></returns>
+        public static long GetLongUserId(this ICurrentUser currentUser) => currentUser.UserIdAs<long>();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="currentUser"></param>
+        /// <returns></returns>
+        public static Guid GetGuidUserId(this ICurrentUser currentUser) => currentUser.UserIdAs<Guid>();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="currentUser"></param>
+        /// <returns></returns>
+        public static int GetIntGroupId(this ICurrentUser currentUser) => currentUser.GroupIdAs<int>();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="currentUser"></param>
+        /// <returns></returns>
+        public static long GetLongGroupId(this ICurrentUser currentUser) => currentUser.GroupIdAs<long>();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="currentUser"></param>
+        /// <returns></returns>
+        public static Guid GetGuidGroupId(this ICurrentUser currentUser) => currentUser.GroupIdAs<Guid>();
 
         /// <summary>
         /// 泛型用户id

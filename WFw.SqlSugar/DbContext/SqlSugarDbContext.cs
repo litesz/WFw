@@ -24,7 +24,7 @@ namespace WFw.DbContext
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="dbOptions"></param>
+        /// <param name="sp"></param>
         public SqlSugarDbContext(IServiceProvider sp)
         {
             var dbOptions = sp.GetService<IOptions<DbOptions>>().Value;
