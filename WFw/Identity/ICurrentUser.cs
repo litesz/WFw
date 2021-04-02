@@ -88,8 +88,14 @@
         T[] GetArray<T>(string key);
 
         /// <summary>
-        /// 清理
+        /// 清理所有
         /// </summary>
         void Clear();
+
+        /// <summary>
+        /// 清理指定
+        /// </summary>
+        /// <param name="key"></param>
+        void Remove(string key);
     }
 }

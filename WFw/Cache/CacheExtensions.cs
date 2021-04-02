@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 
 namespace WFw.Cache
 {
@@ -18,6 +17,17 @@ namespace WFw.Cache
         public static (string output, bool IsOk) Get(this ICache cache, string key)
         {
             return cache.Get<string>(key);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cache"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public static string GetValue(this ICache cache, string key)
+        {
+            return cache.GetValue<string>(key);
         }
 
         /// <summary>
@@ -111,7 +121,56 @@ namespace WFw.Cache
             return output;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="cache"></param>
+        /// <param name="key"></param>
+        /// <param name="func"></param>
+        /// <param name="absoluteExpirationRelativeToNow"></param>
+        /// <returns></returns>
+        public static T GetOrCreate<T>(this ICache cache, string key, Func<T> func, TimeSpan absoluteExpirationRelativeToNow)
+        {
+            var (value, isOk) = cache.Get<T>(key);
+            if (isOk)
+            {
+                return value;
+            }
+            var output = func();
 
-       
+            cache.Set(key, output, new CacheItemOptions
+            {
+                AbsoluteExpirationRelativeToNow = absoluteExpirationRelativeToNow
+            });
+            return output;
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="cache"></param>
+        /// <param name="key"></param>
+        /// <param name="func"></param>
+        /// <param name="absoluteExpiration"></param>
+        /// <returns></returns>
+        public static T GetOrCreate<T>(this ICache cache, string key, Func<T> func, DateTimeOffset absoluteExpiration)
+        {
+            var (value, isOk) = cache.Get<T>(key);
+            if (isOk)
+            {
+                return value;
+            }
+            var output = func();
+
+            cache.Set(key, output, new CacheItemOptions
+            {
+                AbsoluteExpiration = absoluteExpiration
+            });
+            return output;
+        }
+
     }
 }

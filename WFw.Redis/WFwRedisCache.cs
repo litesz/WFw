@@ -7,7 +7,7 @@ namespace WFw.Redis
     /// <summary>
     /// 
     /// </summary>
-    public class WFwRedisCache : ICache
+    public partial class WFwRedisCache : IRedisCache
     {
 
         /// <summary>
@@ -41,12 +41,6 @@ namespace WFw.Redis
             if (!RedisHelper.Exists(key))
             {
                 return (default, false);
-            }
-
-            var sec = RedisHelper.HGet<int>(key, nameof(SlidingSecsField));
-            if (sec > 0)
-            {
-                RedisHelper.Expire(key, sec);
             }
 
             return (GetValue<T>(key), true);
@@ -93,5 +87,9 @@ namespace WFw.Redis
 
             return true;
         }
+
+
+
+
     }
 }

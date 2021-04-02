@@ -1,8 +1,4 @@
-﻿using Microsoft.Extensions.Caching.Distributed;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace WFw.Cache
+﻿namespace WFw.Cache
 {
     /// <summary>
     /// 缓存接口
@@ -41,6 +37,7 @@ namespace WFw.Cache
         /// <param name="value"></param>
         /// <param name="options"></param>
         bool Set<T>(string key, T value, CacheItemOptions options);
+
 
 
     }

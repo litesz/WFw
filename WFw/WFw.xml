@@ -4,6 +4,169 @@
         <name>WFw</name>
     </assembly>
     <members>
+        <member name="T:WFw.Cache.CacheExtensions">
+            <summary>
+            缓存扩展
+            </summary>
+        </member>
+        <member name="M:WFw.Cache.CacheExtensions.Get(WFw.Cache.ICache,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="cache"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Cache.CacheExtensions.GetValue(WFw.Cache.ICache,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="cache"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Cache.CacheExtensions.ContainsKey(WFw.Cache.ICache,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="cache"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Cache.CacheExtensions.Set``1(WFw.Cache.ICache,System.String,``0,System.DateTimeOffset)">
+            <summary>
+            绝对过期设置
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="cache"></param>
+            <param name="key"></param>
+            <param name="value"></param>
+            <param name="absoluteExpiration"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Cache.CacheExtensions.Set``1(WFw.Cache.ICache,System.String,``0,System.TimeSpan)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="cache"></param>
+            <param name="key"></param>
+            <param name="value"></param>
+            <param name="absoluteExpirationRelativeToNow"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Cache.CacheExtensions.Set``1(WFw.Cache.ICache,System.String,``0,System.Int32)">
+            <summary>
+            滑动过期设置
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="cache"></param>
+            <param name="key"></param>
+            <param name="value"></param>
+            <param name="slidingExpirationSec"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Cache.CacheExtensions.GetOrCreate``1(WFw.Cache.ICache,System.String,System.Func{``0},System.Nullable{System.Int32})">
+            <summary>
+            获得或创建缓存
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="cache"></param>
+            <param name="key"></param>
+            <param name="func"></param>
+            <param name="slidingExpirationSec"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Cache.CacheExtensions.GetOrCreate``1(WFw.Cache.ICache,System.String,System.Func{``0},System.TimeSpan)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="cache"></param>
+            <param name="key"></param>
+            <param name="func"></param>
+            <param name="absoluteExpirationRelativeToNow"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Cache.CacheExtensions.GetOrCreate``1(WFw.Cache.ICache,System.String,System.Func{``0},System.DateTimeOffset)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="cache"></param>
+            <param name="key"></param>
+            <param name="func"></param>
+            <param name="absoluteExpiration"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WFw.Cache.CacheItemOptions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:WFw.Cache.CacheItemOptions.AbsoluteExpiration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:WFw.Cache.CacheItemOptions.AbsoluteExpirationRelativeToNow">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:WFw.Cache.CacheItemOptions.SlidingExpiration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WFw.Cache.CacheItemOptions.GetAbsluteExpirationSecs">
+            <summary>
+            返回过期秒
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Cache.CacheItemOptions.GetSlidingExpirationSecs">
+            <summary>
+            返回滑动过期秒
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:WFw.Cache.ICache">
+            <summary>
+            缓存接口
+            </summary>
+        </member>
+        <member name="M:WFw.Cache.ICache.GetValue``1(System.String)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Cache.ICache.Get``1(System.String)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Cache.ICache.Remove(System.String[])">
+            <summary>
+            移除
+            </summary>
+            <param name="keys"></param>
+        </member>
+        <member name="M:WFw.Cache.ICache.Set``1(System.String,``0,WFw.Cache.CacheItemOptions)">
+            <summary>
+            写入
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <param name="value"></param>
+            <param name="options"></param>
+        </member>
         <member name="T:WFw.DbContext.DbOptions">
             <summary>
             数据库连接参数
@@ -1431,6 +1594,12 @@
             清理
             </summary>
         </member>
+        <member name="M:WFw.Identity.CurrentUser.Remove(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+        </member>
         <member name="T:WFw.Identity.ICurrentUser">
             <summary>
             当前用户信息
@@ -1520,8 +1689,14 @@
         </member>
         <member name="M:WFw.Identity.ICurrentUser.Clear">
             <summary>
-            清理
+            清理所有
             </summary>
+        </member>
+        <member name="M:WFw.Identity.ICurrentUser.Remove(System.String)">
+            <summary>
+            清理指定
+            </summary>
+            <param name="key"></param>
         </member>
         <member name="T:WFw.Identity.WFwCurrentUserEvents">
             <summary>
@@ -1754,88 +1929,6 @@
             备注信息
             </summary>
         </member>
-        <member name="T:WFw.IMapping.IMapper">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:WFw.IMapping.IMapper.MapTo``1(System.Object)">
-            <summary>
-            将对象映射为指定类型
-            </summary>
-            <typeparam name="TTarget">要映射的目标类型</typeparam>
-            <param name="source">源对象</param>
-            <returns>目标类型的对象</returns>
-        </member>
-        <member name="M:WFw.IMapping.IMapper.MapTo``2(``0,``1)">
-            <summary>
-            使用源类型的对象更新目标类型的对象
-            </summary>
-            <typeparam name="TSource">源类型</typeparam>
-            <typeparam name="TTarget">目标类型</typeparam>
-            <param name="source">源对象</param>
-            <param name="target">待更新的目标对象</param>
-            <returns>更新后的目标类型对象</returns>
-        </member>
-        <member name="T:WFw.Mapping.MapFromAttribute">
-            <summary>
-            标注当前类型映射到目标类型的Mapping映射关系
-            </summary>
-        </member>
-        <member name="M:WFw.Mapping.MapFromAttribute.#ctor(System.Type[])">
-            <summary>
-            初始化一个<see cref="T:WFw.Mapping.MapFromAttribute"/>类型的新实例
-            </summary>
-        </member>
-        <member name="P:WFw.Mapping.MapFromAttribute.TargetTypes">
-            <summary>
-            目标类型
-            </summary>
-        </member>
-        <member name="T:WFw.Mapping.MapperExtensions">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:WFw.Mapping.MapperExtensions.SetMapper(WFw.IMapping.IMapper)">
-            <summary>
-            设置对象映射执行者
-            </summary>
-            <param name="mapper">映射执行者</param>
-        </member>
-        <member name="M:WFw.Mapping.MapperExtensions.MapTo``1(System.Object)">
-            <summary>
-            将对象映射为指定类型
-            </summary>
-            <typeparam name="TTarget">要映射的目标类型</typeparam>
-            <param name="source">源对象</param>
-            <returns>目标类型的对象</returns>
-        </member>
-        <member name="M:WFw.Mapping.MapperExtensions.MapTo``2(``0,``1)">
-            <summary>
-            使用源类型的对象更新目标类型的对象
-            </summary>
-            <typeparam name="TSource">源类型</typeparam>
-            <typeparam name="TTarget">目标类型</typeparam>
-            <param name="source">源对象</param>
-            <param name="target">待更新的目标对象</param>
-            <returns>更新后的目标类型对象</returns>
-        </member>
-        <member name="M:WFw.Mapping.MapperExtensions.CheckMapper">
-            <summary>
-            验证映射执行者是否为空
-            </summary>
-        </member>
-        <member name="T:WFw.Mapping.MapperProfiles">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:WFw.Mapping.MapperProfiles.#ctor">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="T:WFw.Middlewares.WFwErrorHandlingMiddleware">
             <summary>
             错误处理中间件
@@ -1864,76 +1957,6 @@
             <param name="message"></param>
             <param name="statusCode"></param>
             <returns></returns>
-        </member>
-        <member name="T:WFw.NamedPipe.INamedPipe">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:WFw.NamedPipe.INamedPipe.ServiceName">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:WFw.NamedPipe.INamedPipe.PipeName">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:WFw.NamedPipe.INamedPipe.PipeDirection">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:WFw.NamedPipe.INamedPipe.PipeOptions">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:WFw.NamedPipe.INamedPipe.TokenImpersonationLevel">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:WFw.NamedPipe.INamedPipe.NamedPipeClient">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="T:WFw.NamedPipe.NamedPipe">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:WFw.NamedPipe.NamedPipe.ServiceName">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:WFw.NamedPipe.NamedPipe.PipeName">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:WFw.NamedPipe.NamedPipe.PipeDirection">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:WFw.NamedPipe.NamedPipe.PipeOptions">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:WFw.NamedPipe.NamedPipe.TokenImpersonationLevel">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:WFw.NamedPipe.NamedPipe.NamedPipeClient">
-            <summary>
-            
-            </summary>
         </member>
         <member name="T:WFw.Results.CheckParam">
             <summary>

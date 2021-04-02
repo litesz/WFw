@@ -17,6 +17,58 @@
             <param name="configuration"></param>
             <returns></returns>
         </member>
+        <member name="T:WFw.Redis.IRedisCache">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WFw.Redis.IRedisCache.HSet``1(System.String,System.String,``0,WFw.Cache.CacheItemOptions)">
+            <summary>
+            HSET
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <param name="field"></param>
+            <param name="value"></param>
+            <param name="options"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Redis.IRedisCache.HGet``1(System.String,System.String)">
+            <summary>
+            hget
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <param name="field"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Redis.IRedisCache.HGetValue``1(System.String,System.String)">
+            <summary>
+            hget
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <param name="field"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Redis.IRedisCache.HmSet(System.String,System.Object[],WFw.Cache.CacheItemOptions)">
+            <summary>
+            hmset
+            </summary>
+            <param name="key"></param>
+            <param name="keyValues"></param>
+            <param name="options"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Redis.IRedisCache.HmGet``1(System.String,System.String[])">
+            <summary>
+            hmget
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <param name="field"></param>
+            <returns></returns>
+        </member>
         <member name="T:WFw.Redis.Options.RedisOptions">
             <summary>
             
@@ -38,6 +90,9 @@
             </summary>
         </member>
         <member name="T:WFw.Redis.WFwRedisCache">
+            <summary>
+            
+            </summary>
             <summary>
             
             </summary>
@@ -89,6 +144,121 @@
             <param name="key"></param>
             <param name="value"></param>
             <param name="options"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Redis.WFwRedisCache.HSet``1(System.String,System.String,``0,WFw.Cache.CacheItemOptions)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <param name="field"></param>
+            <param name="value"></param>
+            <param name="options"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Redis.WFwRedisCache.HmSet(System.String,System.Object[],WFw.Cache.CacheItemOptions)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <param name="keyValues"></param>
+            <param name="options"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Redis.WFwRedisCache.HGet``1(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <param name="field"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Redis.WFwRedisCache.HGetValue``1(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <param name="field"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Redis.WFwRedisCache.HmGet``1(System.String,System.String[])">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <param name="field"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WFw.Redis.WFwRedisCacheExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WFw.Redis.WFwRedisCacheExtensions.HGet(WFw.Redis.IRedisCache,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="cache"></param>
+            <param name="key"></param>
+            <param name="field"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Redis.WFwRedisCacheExtensions.HGetValue(WFw.Redis.IRedisCache,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="cache"></param>
+            <param name="key"></param>
+            <param name="field"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Redis.WFwRedisCacheExtensions.HSet``1(WFw.Redis.IRedisCache,System.String,System.String,``0,System.DateTimeOffset)">
+            <summary>
+            绝对过期设置
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="cache"></param>
+            <param name="key"></param>
+            <param name="field"></param>
+            <param name="value"></param>
+            <param name="absoluteExpiration"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Redis.WFwRedisCacheExtensions.HSet``1(WFw.Redis.IRedisCache,System.String,System.String,``0,System.TimeSpan)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="cache"></param>
+            <param name="key"></param>
+            <param name="field"></param>
+            <param name="value"></param>
+            <param name="absoluteExpirationRelativeToNow"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Redis.WFwRedisCacheExtensions.HSet``1(WFw.Redis.IRedisCache,System.String,System.String,``0,System.Int32)">
+            <summary>
+            滑动过期设置
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="cache"></param>
+            <param name="key"></param>
+            <param name="field"></param>
+            <param name="value"></param>
+            <param name="slidingExpirationSec"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Redis.WFwRedisCacheExtensions.HmGet(WFw.Redis.IRedisCache,System.String,System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="cache"></param>
+            <param name="key"></param>
+            <param name="fields"></param>
             <returns></returns>
         </member>
     </members>

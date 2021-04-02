@@ -1,8 +1,6 @@
-﻿using Microsoft.Extensions.Caching.Distributed;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using WFw.Cache;
 using WFw.Redis;
 using WFw.Redis.Options;
 
@@ -24,7 +22,7 @@ namespace WFw
         public static IServiceCollection AddWFwRedis(this IServiceCollection services, IConfiguration configuration)
         {
             services.Configure<RedisOptions>(configuration.GetSection(RedisOptions.Position));
-            services.TryAddSingleton<ICache, WFwRedisCache>();
+            services.TryAddSingleton<IRedisCache, WFwRedisCache>();
             return services;
         }
 

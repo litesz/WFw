@@ -238,5 +238,18 @@ namespace WFw.Identity
         {
             _claims.Clear();
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        public void Remove(string key)
+        {
+            if (_claims.ContainsKey(key))
+            {
+                _claims.Remove(key);
+
+            }
+        }
     }
 }
