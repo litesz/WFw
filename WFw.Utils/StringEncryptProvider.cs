@@ -3,7 +3,7 @@
     /// <summary>
     /// 字符串内容加密,如手机号，姓名
     /// </summary>
-    public static class StringEncrpytProvider
+    public static class StringEncryptProvider
     {
         /// <summary>
         /// 加密手机号
@@ -34,9 +34,10 @@
 
             switch (name.Length)
             {
+                case 1: return name;
                 case 2: return $"{name.Substring(0, 1)}*";
                 case 3: return $"{name.Substring(0, 1)}*{name.Substring(2, 1)}";
-                default: return $"{name.Substring(0, 1)}*{name.Substring(name.Length - 1, 1)}";
+                default: return $"{name.Substring(0, 1)}{name.Substring(name.Length - 1, 1).PadLeft(name.Length - 3, '*')}";
             }
         }
 

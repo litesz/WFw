@@ -1,6 +1,5 @@
 ﻿using System;
 using WFw.Results;
-using WFw.Utils;
 
 namespace WFw
 {
@@ -27,6 +26,14 @@ namespace WFw
         /// 
         /// </summary>
         public WFwException() { }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="msg"></param>
+        public WFwException(string msg) : this(OperationResultType.IsErr, msg)
+
+        { }
         /// <summary>
         /// 
         /// </summary>

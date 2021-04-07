@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Reflection;
 
-namespace WFw.Utils
+namespace WFw
 {
     /// <summary>
     /// 扩展

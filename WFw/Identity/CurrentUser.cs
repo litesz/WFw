@@ -251,5 +251,28 @@ namespace WFw.Identity
 
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        public void AddOrUpdate(string key, string value)
+        {
+            if (string.IsNullOrWhiteSpace(key))
+            {
+                return;
+            }
+
+            string lowKey = key.ToLower();
+            if (_claims.ContainsKey(lowKey))
+            {
+                _claims[lowKey] = value;
+            }
+            else
+            {
+                _claims.Add(lowKey, value);
+            }
+        }
     }
 }

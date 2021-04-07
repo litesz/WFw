@@ -92,7 +92,7 @@ namespace WFw.Cache
 
             }
 
-            return -1;
+            return 25200;
 
         }
 

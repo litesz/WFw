@@ -35,6 +35,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "cache", "cache", "{8D4229AD
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demo", "demo", "{DAB32C65-54A1-4B4A-BCB1-89A76E4E26A4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WFw.Common", "WFw.Common\WFw.Common.csproj", "{7074D501-4744-4DCF-BBDB-CE49F1DB0D67}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WFw.TencentCloud", "WFw.TencentCloud\WFw.TencentCloud.csproj", "{F6BD9BBA-FB65-4B4F-9FED-E14CC837C5AE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -85,6 +89,14 @@ Global
 		{9843839C-8859-4AF5-99F3-176F9CAEFB90}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9843839C-8859-4AF5-99F3-176F9CAEFB90}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9843839C-8859-4AF5-99F3-176F9CAEFB90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7074D501-4744-4DCF-BBDB-CE49F1DB0D67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7074D501-4744-4DCF-BBDB-CE49F1DB0D67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7074D501-4744-4DCF-BBDB-CE49F1DB0D67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7074D501-4744-4DCF-BBDB-CE49F1DB0D67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6BD9BBA-FB65-4B4F-9FED-E14CC837C5AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6BD9BBA-FB65-4B4F-9FED-E14CC837C5AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6BD9BBA-FB65-4B4F-9FED-E14CC837C5AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6BD9BBA-FB65-4B4F-9FED-E14CC837C5AE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

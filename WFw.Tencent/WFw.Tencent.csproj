@@ -6,7 +6,7 @@
     <Company>litesz</Company>
     <Product>WFw.Tencent</Product>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Version>0.0.2</Version>
+    <Version>0.0.3</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WFw.Utils\WFw.Utils.csproj" />
+    <ProjectReference Include="..\WFw.Common\WFw.Common.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1600,6 +1600,13 @@
             </summary>
             <param name="key"></param>
         </member>
+        <member name="M:WFw.Identity.CurrentUser.AddOrUpdate(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <param name="value"></param>
+        </member>
         <member name="T:WFw.Identity.ICurrentUser">
             <summary>
             当前用户信息
@@ -1697,6 +1704,13 @@
             清理指定
             </summary>
             <param name="key"></param>
+        </member>
+        <member name="M:WFw.Identity.ICurrentUser.AddOrUpdate(System.String,System.String)">
+            <summary>
+            替换
+            </summary>
+            <param name="key"></param>
+            <param name="value"></param>
         </member>
         <member name="T:WFw.Identity.WFwCurrentUserEvents">
             <summary>
@@ -1970,6 +1984,25 @@
             <typeparam name="T"></typeparam>
             <param name="model"></param>
             <param name="name"></param>
+        </member>
+        <member name="T:System.Linq.HttpContextExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:System.Linq.HttpContextExtensions.IsAjax(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            判断是否是ajax
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Linq.HttpContextExtensions.IsWap(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            判断是否是手机端
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
         </member>
         <member name="T:System.Linq.LinqExtensions">
             <summary>

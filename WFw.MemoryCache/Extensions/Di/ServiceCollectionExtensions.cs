@@ -1,5 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using System;
 using WFw.Cache;
 using WFw.MemoryCache;
 
@@ -22,19 +24,7 @@ namespace WFw
             return services;
         }
 
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        ///// <param name="services"></param>
-        ///// <param name="configuration"></param>
-        ///// <returns></returns>
-        //public static IServiceCollection AddWFwMemoryCache(this IServiceCollection services, IConfiguration configuration)
-        //{
-        //    services.Configure<CacheItemOptions>(configuration.GetSection("123"));
-        //    services.TryAddSingleton<ICache, WFwMemoryCache>();
-        //    services.AddMemoryCache();
-        //    return services;
-        //}
+
 
 
         ///// <summary>
@@ -43,10 +33,15 @@ namespace WFw
         ///// <param name="services"></param>
         ///// <param name="setupAction"></param>
         ///// <returns></returns>
-        //public static IServiceCollection AddWFwMemoryCache(this IServiceCollection services, Action<MemoryCacheOptions> setupAction)
+        //public static IServiceCollection AddWFwMemoryCache(this IServiceCollection services, Action<WFwMemoryCacheOptions> setupAction)
         //{
-        //    services.TryAddSingleton<ICache, MemoryCacheManager>();
-        //    services.AddMemoryCache(setupAction);
+        //    services.TryAddSingleton<ICache, WFwMemoryCache>();
+        //    WFwMemoryCacheOptions options = new WFwMemoryCacheOptions();
+        //    setupAction.Invoke(options);
+        //    services.AddMemoryCache(opt =>
+        //    {
+        //        opt.SizeLimit = options.SizeLimit;
+        //    });
         //    return services;
         //}
 

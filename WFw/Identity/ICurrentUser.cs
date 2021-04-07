@@ -97,5 +97,12 @@
         /// </summary>
         /// <param name="key"></param>
         void Remove(string key);
+
+        /// <summary>
+        /// 替换
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        void AddOrUpdate(string key, string value);
     }
 }
