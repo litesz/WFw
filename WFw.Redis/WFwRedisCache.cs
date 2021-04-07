@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Options;
+using System.Linq;
 using WFw.Cache;
 using WFw.Redis.Options;
 
@@ -13,12 +14,16 @@ namespace WFw.Redis
         /// <summary>
         /// 滑动过期时间
         /// </summary>
-        const string SlidingSecsField = "slidingSecs";
+        private const string SlidingSecsField = "slidingSecs";
 
         /// <summary>
         /// 绝对值过期时间
         /// </summary>
-        const string ValueField = "value";
+        private const string ValueField = "value";
+        /// <summary>
+        /// 时间对象延迟时间(秒)
+        /// </summary>
+        private const int expireSettingKeyDelay = 5;
 
         /// <summary>
         /// 
@@ -26,41 +31,28 @@ namespace WFw.Redis
         /// <param name="options"></param>
         public WFwRedisCache(IOptions<RedisOptions> options)
         {
-            var csredis = new CSRedis.CSRedisClient(options.Value.Configuration);
+            var csredis = new CSRedis.CSRedisClient(options.Value.ToString());
             RedisHelper.Initialization(csredis);
         }
 
         /// <summary>
-        /// 获得对象
+        /// 非string获得过期设置key
         /// </summary>
-        /// <typeparam name="T"></typeparam>
         /// <param name="key"></param>
         /// <returns></returns>
-        public (T output, bool IsOk) Get<T>(string key)
-        {
-            if (!RedisHelper.Exists(key))
-            {
-                return (default, false);
-            }
-
-            return (GetValue<T>(key), true);
-        }
+        private string GetExpireSettingKey(string key) => $"{key}:Expire";
 
         /// <summary>
-        /// 获得对象值
+        /// 延时string
         /// </summary>
-        /// <typeparam name="T"></typeparam>
         /// <param name="key"></param>
-        /// <returns></returns>
-        public T GetValue<T>(string key)
+        private void ExpireKey(string key)
         {
             var sec = RedisHelper.HGet<int>(key, SlidingSecsField);
             if (sec > 0)
             {
                 RedisHelper.Expire(key, sec);
             }
-
-            return RedisHelper.HGet<T>(key, ValueField);
         }
 
         /// <summary>
@@ -70,8 +62,11 @@ namespace WFw.Redis
         /// <returns></returns>
         public long Remove(params string[] keys)
         {
+            string[] expireKeys = keys.Select(u => GetExpireSettingKey(u)).ToArray();
+            RedisHelper.Del(expireKeys);
             return RedisHelper.Del(keys);
         }
+
 
         /// <summary>
         /// 保存对象
@@ -89,6 +84,33 @@ namespace WFw.Redis
         }
 
 
+        /// <summary>
+        /// 获得对象
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public (T output, bool IsOk) Get<T>(string key)
+        {
+            if (!Exists(key))
+            {
+                return (default, false);
+            }
+
+            return (GetValue<T>(key), true);
+        }
+
+        /// <summary>
+        /// 获得对象值
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public T GetValue<T>(string key)
+        {
+            ExpireKey(key);
+            return RedisHelper.HGet<T>(key, ValueField);
+        }
 
 
     }

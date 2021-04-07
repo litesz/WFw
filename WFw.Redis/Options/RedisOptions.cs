@@ -21,5 +21,23 @@ namespace WFw.Redis.Options
         /// 
         /// </summary>
         public string Configuration { get; set; } = "127.0.0.1:6379,defaultDatabase=0";
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public ConfigurationOptions ConfigurationOptions { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            if (string.IsNullOrWhiteSpace(Configuration))
+            {
+                return ConfigurationOptions.ToString();
+            }
+            return Configuration;
+        }
     }
 }
