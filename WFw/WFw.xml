@@ -1943,6 +1943,29 @@
             备注信息
             </summary>
         </member>
+        <member name="T:WFw.ISms.ISmsClient">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WFw.ISms.ISmsClient.SendVerification(System.String,System.Int32,System.String)">
+            <summary>
+            发送验证码
+            </summary>
+            <param name="code"></param>
+            <param name="expireMin"></param>
+            <param name="phone"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.ISms.ISmsClient.SendSms(System.String,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="text"></param>
+            <param name="phone"></param>
+            <param name="templateId"></param>
+            <returns></returns>
+        </member>
         <member name="T:WFw.Middlewares.WFwErrorHandlingMiddleware">
             <summary>
             错误处理中间件

@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WFw.Common", "WFw.Common\WF
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WFw.TencentCloud", "WFw.TencentCloud\WFw.TencentCloud.csproj", "{F6BD9BBA-FB65-4B4F-9FED-E14CC837C5AE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WFw.SmsChinese", "WFw.SmsChinese\WFw.SmsChinese.csproj", "{4A6A7B5C-997D-49F9-B0FD-16D534EBEABA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -97,6 +99,10 @@ Global
 		{F6BD9BBA-FB65-4B4F-9FED-E14CC837C5AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6BD9BBA-FB65-4B4F-9FED-E14CC837C5AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6BD9BBA-FB65-4B4F-9FED-E14CC837C5AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A6A7B5C-997D-49F9-B0FD-16D534EBEABA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A6A7B5C-997D-49F9-B0FD-16D534EBEABA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A6A7B5C-997D-49F9-B0FD-16D534EBEABA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A6A7B5C-997D-49F9-B0FD-16D534EBEABA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

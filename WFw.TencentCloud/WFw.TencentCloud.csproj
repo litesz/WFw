@@ -1,11 +1,25 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Version>0.0.1</Version>
+    <Authors>litesz</Authors>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Tencent.QCloud.Cos.Sdk" Version="5.4.17" />
+    <PackageReference Include="Tencent.QCloud.Cos.Sts.Sdk" Version="3.0.4" />
     <PackageReference Include="TencentCloudSDK" Version="3.0.252" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Ocr\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WFw.Utils\WFw.Utils.csproj" />
+    <ProjectReference Include="..\WFw\WFw.csproj" />
   </ItemGroup>
 
 </Project>
