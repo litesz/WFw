@@ -1,9 +1,11 @@
 ﻿using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using WFw.ISms;
-using WFw.SmsChinese;
+using Microsoft.Extensions.Options;
+using WFw.SmsChinese.Options;
 
 namespace WFw.Http.Services
 {
@@ -14,18 +16,26 @@ namespace WFw.Http.Services
     {
         private readonly HttpClient _httpClient;
         private readonly SmsChineseOptions options;
-        private readonly Logger<SmsChineseApiClient> logger;
+        private readonly ILogger<SmsChineseApiClient> logger;
+
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="client"></param>
         /// <param name="configuration"></param>
-        public SmsChineseApiClient(HttpClient client, IOptions<SmsChineseOptions> op, Logger<SmsChineseApiClient> l)
+        public SmsChineseApiClient(HttpClient client, SmsChineseOptions op, ILogger<SmsChineseApiClient> l)
         {
             _httpClient = client;
-            options = op.Value;
+            options = op;
             logger = l;
         }
+
+        public SmsChineseApiClient(IServiceProvider sp) :
+            this(sp.GetService<IHttpClientFactory>().CreateClient(SmsChineseOptions.Position), sp.GetService<IOptions<SmsChineseOptions>>().Value, sp.GetService<ILogger<SmsChineseApiClient>>())
+        {
+        }
+
 
         /// <summary>
         /// 
@@ -48,7 +58,7 @@ namespace WFw.Http.Services
         /// <returns></returns>
         public async Task<(bool, string)> SendSms(string text, string phone, string templateId = "")
         {
-            var requestUri = $"/?Uid={options.Uid}&Key={options.Key}&smsMob={phone}&smsText={text}";
+            var requestUri = $"http://{(options.IsUtf8 ? "utf8" : "gbk")}.api.smschinese.cn/?Uid={options.Uid}&Key={options.Key}&smsMob={phone}&smsText={text}";
             var response = await _httpClient.GetStringAsync(requestUri);
 
             if (!int.TryParse(response, out int status))
@@ -105,6 +115,14 @@ namespace WFw.Http.Services
         public Task<(bool, string)> SendVerification(string code, int expireMin, string phone)
         {
             return SendSms($"验证码为：{code}，有效期{expireMin}分钟，若非本人操作，请忽略。", phone);
+        }
+
+
+        public async Task GetRemain()
+        {
+            var requestUri = $"http://www.smschinese.cn/web_api/SMS/{(options.IsUtf8 ? "":"GBK/" )}?Action=SMS_Num&Uid={options.Uid}&Key={options.Key}";
+            // var requestUri = $"http://{(options.IsUtf8 ? "utf8" : "gbk")}.api.smschinese.cn/?Uid={options.Uid}&Key={options.Key}&smsMob={phone}&smsText={text}";
+            var response = await _httpClient.GetStringAsync(requestUri);
         }
     }
 }

@@ -1,12 +1,22 @@
 ﻿using TencentCloud.Common;
+using WFw.TencentCloud.Options.Abstractions;
 
 namespace WFw.TencentCloud.Options
 {
+
+
     /// <summary>
     /// 腾讯云SDK设置
     /// </summary>
-    public class TencentCloudOptions
+    public class TencentCloudOptions : ITencentSecret
     {
+
+        private OcrOptions ocr;
+        private CosOptions cos;
+        private SmsOptions sms;
+        private StsOptions sts;
+
+
         /// <summary>
         /// 
         /// </summary>
@@ -25,89 +35,77 @@ namespace WFw.TencentCloud.Options
         /// <summary>
         /// cos设置
         /// </summary>
-        public CosOptions Cos { get; set; }
+        public CosOptions Cos
+        {
+            get
+            {
+                if (cos == null)
+                {
+                    cos = new CosOptions();
+                }
+
+                cos.TrySetSecre(this);
+
+                return cos;
+            }
+            set => cos = value;
+        }
 
         /// <summary>
         /// 短信设置
         /// </summary>
-        public SmsOptions Sms { get; set; }
+        public SmsOptions Sms
+        {
+            get
+            {
+                if (sms == null)
+                {
+                    sms = new SmsOptions();
+                }
+
+                sms.TrySetSecre(this);
+
+                return sms;
+            }
+            set => sms = value;
+        }
 
         /// <summary>
         /// ocr
         /// </summary>
-        public OcrOptions Ocr { get; set; }
+        public OcrOptions Ocr
+        {
+            get
+            {
+                if (ocr == null)
+                {
+                    ocr = new OcrOptions();
+                }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public Credential Credential => new Credential { SecretId = SecretId, SecretKey = SecretKey };
-    }
+                ocr.TrySetSecre(this);
 
-    /// <summary>
-    /// ocr
-    /// </summary>
-    public class OcrOptions
-    {
-        /// <summary>
-        /// 区域
-        /// </summary>
-        public string Regin { get; set; } = "ap-guangzhou";
-    }
+                return ocr;
+            }
+            set => ocr = value;
+        }
 
-    /// <summary>
-    /// cos设置
-    /// </summary>
-    public class CosOptions
-    {
-        /// <summary>
-        /// 区域
-        /// </summary>
-        public string Regin { get; set; } = "ap-shanghai";
 
-        /// <summary>
-        /// 桶
-        /// </summary>
-        public string Bucket { get; set; }
+        public StsOptions Sts
+        {
+            get
+            {
+                if (sts == null)
+                {
+                    sts = new StsOptions();
+                }
 
-        /// <summary>
-        /// 持续时间
-        /// </summary>
-        public long DurationSec { get; set; } = 600;
-    }
+                sts.TrySetSecre(this);
 
-    /// <summary>
-    /// 短信设置
-    /// </summary>
-    public class SmsOptions
-    {
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Regin { get; set; } = "ap-guangzhou";
+                return sts;
+            }
+            set => sts = value;
+        }
 
-        /// <summary>
-        /// 验证码
-        /// </summary>
-        public SmsTemplateOptions Verification { get; set; }
-    }
-
-    public class SmsTemplateOptions
-    {
-
-        /// <summary>
-        /// 模板
-        /// </summary>
-        public string TemplateId { get; set; }
-
-        /// <summary>
-        /// SDK AppID 
-        /// </summary>
-        public string SmsSdkAppid { get; set; }
-
-        /// <summary>
-        /// 签名
-        /// </summary>
-        public string Sign { get; set; }
     }
 
 }

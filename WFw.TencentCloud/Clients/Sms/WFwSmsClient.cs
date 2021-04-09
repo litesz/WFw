@@ -1,22 +1,19 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using TencentCloud.Sms.V20190711;
 using TencentCloud.Sms.V20190711.Models;
 using WFw.ISms;
 using WFw.TencentCloud.Options;
-using System.Linq;
 
-namespace WFw.TencentCloud
+namespace WFw.TencentCloud.Clients.Sms
 {
 
     public interface IWFwSmsClient : ISmsClient
     {
-
-
-
-
     }
 
     public class WFwSmsClient : ISmsClient, IWFwSmsClient
@@ -24,10 +21,15 @@ namespace WFw.TencentCloud
         private readonly SmsClient client;
         private readonly SmsOptions options;
         private readonly ILogger<WFwSmsClient> logger;
-        public WFwSmsClient(IOptions<TencentCloudOptions> op, ILogger<WFwSmsClient> l)
+
+        public WFwSmsClient(IServiceProvider sp) : this(sp.GetService<IOptions<TencentCloudOptions>>().Value.Sms, sp.GetService<ILogger<WFwSmsClient>>())
         {
-            options = op.Value.Sms;
-            client = new SmsClient(op.Value.Credential, options.Regin);
+        }
+
+        public WFwSmsClient(SmsOptions op, ILogger<WFwSmsClient> l)
+        {
+            options = op;
+            client = new SmsClient(options.GetCredential(), options.Regin);
             logger = l;
         }
 
@@ -49,15 +51,15 @@ namespace WFw.TencentCloud
         /// </summary>
         /// <param name="code"></param>
         /// <param name="expireMin"></param>
-        /// <param name="phones"></param>
+        /// <param name="phone"></param>
         /// <returns></returns>
-        public async Task<(bool, string)> SendVerification(string code, int expireMin, string phones)
+        public async Task<(bool, string)> SendVerification(string code, int expireMin, string phone)
         {
             try
             {
                 SendSmsRequest req = new SendSmsRequest
                 {
-                    PhoneNumberSet = phones.Select(u => $"+86{u}").ToArray(),
+                    PhoneNumberSet = new string[] { $"+86{phone}" },
                     SmsSdkAppid = options.Verification.SmsSdkAppid,
                     TemplateID = options.Verification.TemplateId,
                     TemplateParamSet = new string[] { code, expireMin.ToString() },

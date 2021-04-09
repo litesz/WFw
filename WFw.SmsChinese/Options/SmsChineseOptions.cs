@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace WFw.SmsChinese
+﻿namespace WFw.SmsChinese.Options
 {
     /// <summary>
     /// 
@@ -23,5 +19,9 @@ namespace WFw.SmsChinese
         /// </summary>
         public string Uid { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool IsUtf8 { get; set; } = true;
     }
 }

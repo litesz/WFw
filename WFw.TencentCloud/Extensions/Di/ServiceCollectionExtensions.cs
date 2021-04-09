@@ -2,8 +2,9 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using WFw.ISms;
-using WFw.TencentCloud;
-using WFw.TencentCloud.Cos;
+using WFw.TencentCloud.Clients.Cos;
+using WFw.TencentCloud.Clients.Sms;
+using WFw.TencentCloud.Clients.Sts;
 using WFw.TencentCloud.Options;
 
 namespace WFw
@@ -41,7 +42,7 @@ namespace WFw
         /// <param name="services"></param>
         /// <param name="configuration"></param>
         /// <returns></returns>
-        public static IServiceCollection AddWFwStsClient(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddTencentStsClient(this IServiceCollection services, IConfiguration configuration)
         {
             return services
                 .AddTencentCloudOptions(configuration)
@@ -54,7 +55,7 @@ namespace WFw
         /// <param name="services"></param>
         /// <param name="configuration"></param>
         /// <returns></returns>
-        public static IServiceCollection AddWFwCosClient(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddTencentCosClient(this IServiceCollection services, IConfiguration configuration)
         {
             return services
                 .AddTencentCloudOptions(configuration)
@@ -68,7 +69,7 @@ namespace WFw
         /// <param name="services"></param>
         /// <param name="configuration"></param>
         /// <returns></returns>
-        public static IServiceCollection AddWFwSmsClient(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddTencentSmsClient(this IServiceCollection services, IConfiguration configuration)
         {
             return services
               .AddTencentCloudOptions(configuration)

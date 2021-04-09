@@ -23,6 +23,8 @@ namespace Example
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+
             services.AddControllersWithViews();
 
             //添加sqlsugar
@@ -34,6 +36,11 @@ namespace Example
 
             //添加当前用户信息，审计基于此内容
             services.AddWFwCurrentUser();
+
+            services.AddTencentStsClient(Configuration);
+            services.AddSmsChineseClient(Configuration);
+            //services.AddTencentSmsClient(Configuration);
+
 
             //添加Cookier认证服务
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -80,7 +87,7 @@ namespace Example
 
             app.Init(scope =>
             {
-            
+
 
                 var d = scope.ServiceProvider.GetService<SingletonConfigModel>();
                 d.VisitNum++;

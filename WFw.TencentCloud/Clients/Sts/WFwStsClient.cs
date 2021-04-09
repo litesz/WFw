@@ -6,45 +6,8 @@ using System;
 using System.Collections.Generic;
 using WFw.TencentCloud.Options;
 
-namespace WFw.TencentCloud.Cos
+namespace WFw.TencentCloud.Clients.Sts
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public class TempCredentialResult
-    {
-        /// <summary>
-        /// 
-        /// </summary>
-        public TempCredential Credential { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public DateTimeOffset ExpiredTime { get; set; }
-
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    public class TempCredential
-    {
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Token { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string TmpSecretId { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string TmpSecretKey { get; set; }
-    }
 
     /// <summary>
     /// 
@@ -69,7 +32,7 @@ namespace WFw.TencentCloud.Cos
     public class WFwStsClient : IWFwStsClient
     {
 
-        private readonly TencentCloudOptions options;
+        private readonly StsOptions options;
         private readonly ILogger<WFwStsClient> logger;
 
         /// <summary>
@@ -78,9 +41,16 @@ namespace WFw.TencentCloud.Cos
         /// <param name="sp"></param>
         public WFwStsClient(IServiceProvider sp)
         {
-            options = sp.GetService<IOptions<TencentCloudOptions>>().Value;
+            options = sp.GetService<IOptions<TencentCloudOptions>>().Value.Sts;
             logger = sp.GetService<ILogger<WFwStsClient>>();
         }
+
+        public WFwStsClient(StsOptions stsOptions, ILogger<WFwStsClient> l)
+        {
+            options = stsOptions;
+            logger = l;
+        }
+
 
         private TempCredentialResult GetTempCredential(Dictionary<string, object> values)
         {
@@ -89,6 +59,7 @@ namespace WFw.TencentCloud.Cos
                 Dictionary<string, object> credential = STSClient.genCredential(values);
 
                 TempCredentialResult output = new TempCredentialResult();
+                output.Bucket = values["bucket"].ToString();
                 foreach (KeyValuePair<string, object> kvp in credential)
                 {
                     switch (kvp.Key)
@@ -96,9 +67,32 @@ namespace WFw.TencentCloud.Cos
                         case "Credentials":
                             output.Credential = JsonExtensions.Deserialize<TempCredential>(kvp.Value.ToString());
                             break;
-                        case "Expiration":
-                            output.ExpiredTime = new DateTimeOffset(1970, 1, 1, 0, 0, 0, TimeSpan.Zero).AddSeconds((long)kvp.Value);
+                        case "ExpiredTime":
+
+
+                            if (long.TryParse(kvp.Value.ToString(), out long et))
+                            {
+                                output.ExpiredTime = et;
+                            }
+                            else {
+                                logger.LogError($"ExpiredTime:{kvp.Value}");
+                            }
+
+                            output.Expiration = new DateTimeOffset(1970, 1, 1, 0, 0, 0, TimeSpan.Zero).AddSeconds(output.ExpiredTime);
                             break;
+                        case "StartTime":
+
+                            if (long.TryParse(kvp.Value.ToString(), out long st))
+                            {
+                                output.StartTime = st;
+                            }
+                            else
+                            {
+                                logger.LogError($"StartTime:{kvp.Value}");
+                            }
+                            break;
+                        case "RequestId": output.RequestId = kvp.Value.ToString(); break;
+                            //case "Expiration": output.Expiration = JsonConvert.DeserializeObject<DateTimeOffset>(kvp.Value.ToString()); break;
                     }
                 }
                 return output;
