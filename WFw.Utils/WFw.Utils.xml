@@ -4,36 +4,6 @@
         <name>WFw.Utils</name>
     </assembly>
     <members>
-        <member name="T:WFw.Utils.EncryptProvider">
-            <summary>
-            加密
-            </summary>
-        </member>
-        <member name="M:WFw.Utils.EncryptProvider.GetMd5Password(System.String)">
-            <summary>
-            MD5密码加密
-            md5+加盐+md5
-            </summary>
-            <param name="password"></param>
-            <returns></returns>
-        </member>
-        <member name="M:WFw.Utils.EncryptProvider.GetMd5Password(System.String,System.String)">
-            <summary>
-            MD5密码加密
-            md5+加盐+md5
-            </summary>
-            <param name="salt"></param>
-            <param name="password"></param>
-            <returns></returns>
-        </member>
-        <member name="M:WFw.Utils.EncryptProvider.GetMd5(System.String,System.Boolean)">
-            <summary>
-            md5加密
-            </summary>
-            <param name="source"></param>
-            <param name="isLower"></param>
-            <returns></returns>
-        </member>
         <member name="T:WFw.Utils.AutoExtensions">
             <summary>
             自动化
@@ -115,12 +85,12 @@
             <param name="other">对比类</param>
             <returns></returns>
         </member>
-        <member name="T:WFw.Utils.Extensions.FormatExtensions">
+        <member name="T:WFw.Utils.FormatExtensions">
             <summary>
             格式化
             </summary>
         </member>
-        <member name="M:WFw.Utils.Extensions.FormatExtensions.FormatFileSize(System.Double)">
+        <member name="M:WFw.Utils.FormatExtensions.FormatFileSize(System.Double)">
             <summary>
             转化为文件大小，取整
             </summary>
@@ -414,6 +384,36 @@
             <summary>
             
             </summary>
+            <returns></returns>
+        </member>
+        <member name="T:WFw.Utils.EncryptProvider">
+            <summary>
+            加密
+            </summary>
+        </member>
+        <member name="M:WFw.Utils.EncryptProvider.GetMd5Password(System.String)">
+            <summary>
+            MD5密码加密
+            md5+加盐+md5
+            </summary>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Utils.EncryptProvider.GetMd5Password(System.String,System.String)">
+            <summary>
+            MD5密码加密
+            md5+加盐+md5
+            </summary>
+            <param name="salt"></param>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Utils.EncryptProvider.GetMd5(System.String,System.Boolean)">
+            <summary>
+            md5加密
+            </summary>
+            <param name="source"></param>
+            <param name="isLower"></param>
             <returns></returns>
         </member>
         <member name="T:WFw.Utils.StringEncryptProvider">

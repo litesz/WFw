@@ -58,8 +58,7 @@ namespace WFw.Http.Services
         /// <returns></returns>
         public async Task<(bool, string)> SendSms(string text, string phone, string templateId = "")
         {
-            var requestUri = $"http://{(options.IsUtf8 ? "utf8" : "gbk")}.api.smschinese.cn/?Uid={options.Uid}&Key={options.Key}&smsMob={phone}&smsText={text}";
-            var response = await _httpClient.GetStringAsync(requestUri);
+            var response = await _httpClient.GetStringAsync($"http://{(options.IsUtf8 ? "utf8" : "gbk")}.api.smschinese.cn/?Uid={options.Uid}&Key={options.Key}&smsMob={phone}&smsText={text}");
 
             if (!int.TryParse(response, out int status))
             {
@@ -70,23 +69,7 @@ namespace WFw.Http.Services
             {
                 return (true, "");
             }
-            string err;
-            switch (status)
-            {
-                case -1: err = "没有该用户账户"; break;
-                case -2: err = "接口密钥不正确"; break;
-                case -21: err = "MD5接口密钥加密不正确"; break;
-                case -3: err = "短信数量不足"; break;
-                case -11: err = "该用户被禁用"; break;
-                case -14: err = "短信内容出现非法字符"; break;
-                case -4: err = "手机号格式不正确"; break;
-                case -41: err = "手机号码为空"; break;
-                case -42: err = "短信内容为空"; break;
-                case -51: err = "短信签名格式不正确"; break;
-                case -52: err = "短信签名太长"; break;
-                case -6: err = "IP限制"; break;
-                default: err = "错误代码:" + status; break;
-            }
+            string err = GetErr(status);
 
             logger.LogError($"发送短信失败[{phone}]:{err}");
 
@@ -118,11 +101,47 @@ namespace WFw.Http.Services
         }
 
 
-        public async Task GetRemain()
+        public async Task<int> GetMessageRemaining()
         {
-            var requestUri = $"http://www.smschinese.cn/web_api/SMS/{(options.IsUtf8 ? "":"GBK/" )}?Action=SMS_Num&Uid={options.Uid}&Key={options.Key}";
-            // var requestUri = $"http://{(options.IsUtf8 ? "utf8" : "gbk")}.api.smschinese.cn/?Uid={options.Uid}&Key={options.Key}&smsMob={phone}&smsText={text}";
-            var response = await _httpClient.GetStringAsync(requestUri);
+            var r = await _httpClient.GetAsync($"http://www.smschinese.cn/web_api/SMS/{(options.IsUtf8 ? "" : "GBK/")}?Action=SMS_Num&Uid={options.Uid}&Key={options.Key}");
+            var c = await r.Content.ReadAsStringAsync();
+            if (!int.TryParse(c, out int v))
+            {
+                throw new Exception("错误的返回值:" + c);
+            }
+
+            if (v > 0)
+            {
+                return v;
+            }
+
+            throw new Exception("查询出错:" + GetErr(v));
+        }
+
+
+        private string GetErr(int status)
+        {
+            if (status > 0)
+            {
+                return "";
+            }
+            switch (status)
+            {
+                case -1: return "没有该用户账户";
+                case -2: return "接口密钥不正确";
+                case -21: return "MD5接口密钥加密不正确";
+                case -3: return "短信数量不足";
+                case -11: return "该用户被禁用";
+                case -14: return "短信内容出现非法字符";
+                case -4: return "手机号格式不正确";
+                case -41: return "手机号码为空";
+                case -42: return "短信内容为空";
+                case -51: return "短信签名格式不正确";
+                case -52: return "短信签名太长";
+                case -6: return "IP限制";
+                default: return "错误代码:" + status;
+            }
+
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace WFw.Utils.Extensions
+﻿namespace WFw.Utils
 {
     /// <summary>
     /// 格式化

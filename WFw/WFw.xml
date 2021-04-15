@@ -1966,6 +1966,12 @@
             <param name="templateId"></param>
             <returns></returns>
         </member>
+        <member name="M:WFw.ISms.ISmsClient.GetMessageRemaining">
+            <summary>
+            剩余短信数
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:WFw.Middlewares.WFwErrorHandlingMiddleware">
             <summary>
             错误处理中间件

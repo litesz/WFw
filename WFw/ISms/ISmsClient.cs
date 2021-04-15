@@ -29,5 +29,11 @@ namespace WFw.ISms
         /// <param name="templateId"></param>
         /// <returns></returns>
         Task<(bool, string)> SendSms(string text, string phone, string templateId = "");
+
+        /// <summary>
+        /// 剩余短信数
+        /// </summary>
+        /// <returns></returns>
+        Task<int> GetMessageRemaining();
     }
 }

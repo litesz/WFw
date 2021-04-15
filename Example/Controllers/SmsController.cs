@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using WFw.Http.Services;
 using WFw.ISms;
@@ -25,6 +26,13 @@ namespace Example.Controllers
             return View();
         }
 
+        public async Task<IActionResult> GetNum()
+        {
+
+      
+
+            return Ok(await client.GetMessageRemaining());
+        }
 
         public async Task<IActionResult> Send(SmsViewModel model)
         {

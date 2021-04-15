@@ -2,9 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>0.0.2</Version>
+    <Version>1.0.0</Version>
     <Authors>litesz</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Description>对smschinese短信api的封装</Description>
   </PropertyGroup>
 
   <ItemGroup>

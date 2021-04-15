@@ -33,6 +33,11 @@ namespace WFw.TencentCloud.Clients.Sms
             logger = l;
         }
 
+        public Task<int> GetMessageRemaining()
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// 
         /// </summary>

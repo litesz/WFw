@@ -2,7 +2,7 @@
 
 namespace WFw.TencentCloud.Options
 {
-    public class StsOptions : ITencentRegion
+    public class StsOptions : ITencentSecret
     {
 
         /// <summary>
@@ -19,19 +19,7 @@ namespace WFw.TencentCloud.Options
         /// SecretKey
         /// </summary>
         public string SecretKey { get; set; }
-        /// <summary>
-        /// 区域
-        /// </summary>
-        public string Regin { get; set; } = "ap-guangzhou";
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Bucket { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public int DurationSeconds { get; set; } = 7200;
+       
     }
 
 }

@@ -30,5 +30,10 @@ namespace WFw.TencentCloud.Clients.Sts
         /// 
         /// </summary>
         public string Bucket { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Region { get; set; }
     }
 }

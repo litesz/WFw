@@ -1,5 +1,7 @@
 ﻿
 
+using Newtonsoft.Json;
+
 namespace WFw.Results
 {
     /// <summary>
@@ -7,18 +9,21 @@ namespace WFw.Results
     /// </summary>
     public class ApiResult
     {
+        [JsonProperty("code")]
         /// <summary>
         /// 状态
         /// </summary>
-        public OperationResultType code { get; set; }
+        public OperationResultType Code { get; set; }
         /// <summary>
         /// 消息
         /// </summary>
-        public string msg { get; set; } = "成功";
+        [JsonProperty("msg")]
+        public string Msg { get; set; } = "成功";
         /// <summary>
         /// 数据
         /// </summary>
-        public object data { get; set; }
+        [JsonProperty("data")]
+        public object Data { get; set; }
 
         /// <summary>
         /// 
@@ -33,8 +38,8 @@ namespace WFw.Results
         /// <param name="exception"></param>
         public ApiResult(WFwException exception)
         {
-            code = exception.OperationResult;
-            msg = exception.Message;
+            Code = exception.OperationResult;
+            Msg = exception.Message;
         }
 
         /// <summary>
@@ -44,8 +49,8 @@ namespace WFw.Results
         /// <param name="msg"></param>
         public ApiResult(OperationResultType code, string msg)
         {
-            this.code = code;
-            this.msg = string.Format(code.GetEnumDescription(), msg);
+            this.Code = code;
+            this.Msg = string.Format(code.GetEnumDescription(), msg);
         }
 
         /// <summary>
@@ -54,7 +59,7 @@ namespace WFw.Results
         /// <param name="data"></param>
         public ApiResult(object data)
         {
-            this.data = data;
+            this.Data = data;
         }
     }
     /// <summary>
@@ -66,15 +71,18 @@ namespace WFw.Results
         /// <summary>
         /// 状态
         /// </summary>
-        public OperationResultType code { get; set; }
+        [JsonProperty("code")]
+        public OperationResultType Code { get; set; }
         /// <summary>
         /// 消息
         /// </summary>
-        public string msg { get; set; } = "成功";
+        [JsonProperty("msg")]
+        public string Msg { get; set; } = "成功";
         /// <summary>
         /// 数据
         /// </summary>
-        public T data { get; set; }
+        [JsonProperty("data")]
+        public T Data { get; set; }
 
         /// <summary>
         /// 
@@ -89,8 +97,8 @@ namespace WFw.Results
         /// <param name="exception"></param>
         public ApiResult(WFwException exception)
         {
-            code = exception.OperationResult;
-            msg = exception.Message;
+            Code = exception.OperationResult;
+            Msg = exception.Message;
         }
 
         /// <summary>
@@ -100,8 +108,8 @@ namespace WFw.Results
         /// <param name="msg"></param>
         public ApiResult(OperationResultType code, string msg)
         {
-            this.code = code;
-            this.msg = string.Format(code.GetEnumDescription(), msg);
+            this.Code = code;
+            this.Msg = string.Format(code.GetEnumDescription(), msg);
         }
 
         /// <summary>
@@ -110,7 +118,7 @@ namespace WFw.Results
         /// <param name="data"></param>
         public ApiResult(T data)
         {
-            this.data = data;
+            this.Data = data;
         }
     }
 

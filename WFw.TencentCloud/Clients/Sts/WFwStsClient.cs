@@ -60,6 +60,7 @@ namespace WFw.TencentCloud.Clients.Sts
 
                 TempCredentialResult output = new TempCredentialResult();
                 output.Bucket = values["bucket"].ToString();
+                output.Region = values["region"].ToString();
                 foreach (KeyValuePair<string, object> kvp in credential)
                 {
                     switch (kvp.Key)
