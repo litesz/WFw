@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WFw;
 using WFw.GeTui.Services;
-
+using System.Linq;
 namespace Example
 {
     public class Startup
@@ -24,6 +24,7 @@ namespace Example
         public void ConfigureServices(IServiceCollection services)
         {
 
+            
 
             services.AddControllersWithViews();
 
@@ -38,8 +39,8 @@ namespace Example
             services.AddWFwCurrentUser();
 
             services.AddTencentStsClient(Configuration);
-            services.AddSmsChineseClient(Configuration);
-            //services.AddTencentSmsClient(Configuration);
+            //services.AddSmsChineseClient(Configuration);
+            services.AddTencentSmsClient(Configuration);
 
 
             //添加Cookier认证服务

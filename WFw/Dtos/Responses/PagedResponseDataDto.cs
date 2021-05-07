@@ -32,6 +32,11 @@ namespace WFw.Dtos.Responses
         /// <summary>
         /// 
         /// </summary>
+        public PagedResponseDataDto() { }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="items"></param>
         /// <param name="total"></param>
         /// <param name="pageIndex"></param>

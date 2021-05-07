@@ -12,11 +12,16 @@
         /// <returns></returns>
         public static string EncrpytPhone(string phone)
         {
+            phone = phone.Trim();
             if (string.IsNullOrWhiteSpace(phone) || phone.Length < 11)
             {
                 return "";
             }
-            return $"{phone.Substring(0, 3)}****{phone.Substring(phone.Length - 5, 4)}";
+            if (phone.Length > 11)
+            {
+                phone = phone.Substring(phone.Length - 11, 11);
+            }
+            return $"{phone.Substring(0, 3)}****{phone.Substring(7, 4)}";
         }
 
 

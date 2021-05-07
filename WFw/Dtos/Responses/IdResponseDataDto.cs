@@ -20,5 +20,9 @@ namespace WFw.Dtos.Responses
         {
             Id = id;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        public IdResponseDataDto() { }
     }
 }
