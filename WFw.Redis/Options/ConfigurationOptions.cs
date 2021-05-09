@@ -10,7 +10,7 @@ namespace WFw.Redis.Options
         /// <summary>
         /// IP:PORT
         /// </summary>
-        public string Server { get; set; }
+        public string Server { get; set; } = "127.0.0.1:6379";
         /// <summary>
         /// Redis server password
         /// </summary>
