@@ -13,7 +13,7 @@ namespace WFw.Redis
         /// </summary>
         /// <param name="key"></param>
         /// <param name="fields"></param>
-        /// <returns></returns>
+        /// <returns>被成功删除字段的数量，不包括被忽略的字段。 </returns>
         long HDel(string key, params string[] fields);
 
         /// <summary>
@@ -21,7 +21,7 @@ namespace WFw.Redis
         /// </summary>
         /// <param name="key"></param>
         /// <param name="field"></param>
-        /// <returns></returns>
+        /// <returns>如果哈希表含有给定字段，返回 1 。 如果哈希表不含有给定字段，或 key 不存在，返回 0 。 </returns>
         bool HExists(string key, string field);
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace WFw.Redis
         /// <typeparam name="T"></typeparam>
         /// <param name="key"></param>
         /// <param name="field"></param>
-        /// <returns></returns>
+        /// <returns>返回给定字段的值。如果给定的字段或 key 不存在时，返回 nil 。 </returns>
         T HGetValue<T>(string key, string field);
 
         /// <summary>
