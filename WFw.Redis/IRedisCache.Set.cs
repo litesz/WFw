@@ -7,7 +7,7 @@ namespace WFw.Redis
     /// <summary>
     /// set
     /// </summary>
-     partial interface IRedisCache : ICache
+    public partial interface IRedisCache : ICache
     {
         /// <summary>
         /// 将一个或多个成员元素加入到集合中，已经存在于集合的成员元素将被忽略。
