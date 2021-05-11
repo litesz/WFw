@@ -9,7 +9,7 @@ namespace WFw.Redis
     /// <summary>
     /// 
     /// </summary>
-    public static class WFwRedisCacheExtensions
+    public static class WFwRedisCacheHashExtensions
     {
         /// <summary>
         /// 

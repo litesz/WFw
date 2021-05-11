@@ -6,7 +6,7 @@ using CSRedis;
 namespace WFw.Redis
 {
     /// <summary>
-    /// 
+    /// hash
     /// </summary>
     public partial class WFwRedisCache : IRedisCache
     {
