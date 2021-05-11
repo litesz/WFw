@@ -15,12 +15,12 @@ namespace WFw
         /// <summary>
         /// 显示描述
         /// </summary>
-        public string ContentText { get; }
+        public string ParamName { get; }
 
         /// <summary>
-        /// 日志记录错误
+        /// 日志记录参数
         /// </summary>
-        public string LogContent { get; }
+        public string LogParam { get; set; }
 
         /// <summary>
         /// 
@@ -30,49 +30,34 @@ namespace WFw
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="msg"></param>
-        public WFwException(string msg) : this(OperationResultType.IsErr, msg)
-
-        { }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="result"></param>
-        public WFwException(OperationResultType result) : this(result, "")
-        {
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="result"></param>
-        /// <param name="msg"></param>
-        public WFwException(OperationResultType result, string msg) : this(result, msg, msg)
-        {
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="result"></param>
-        /// <param name="msg"></param>
-        /// <param name="logMsg"></param>
-        public WFwException(OperationResultType result, string msg, string logMsg) : base(string.Format(result.GetEnumDescription(), msg))
-        {
-            ContentText = msg;
-            LogContent = logMsg;
-            OperationResult = result;
-        }
+        /// <param name="param">返回值参数</param>
+        /// <param name="logParam">日志消息参数</param>
+        public WFwException(string param, string logParam) : this(OperationResultType.IsErr, param, logParam) { }
 
         ///// <summary>
         ///// 
         ///// </summary>
-        ///// <param name="result"></param>
-        ///// <param name="value"></param>
-        //public WFwException(OperationResultType result, string value) : base(string.Format(result.GetEnumDescription(), value))
+        ///// <param name="result">状态</param>
+        ///// <param name="logParam">日志消息参数</param>
+        //public WFwException(OperationResultType result, string logParam) : this(result, "", logParam)
         //{
-        //    ContentText = value;
-        //    OperationResult = result;
         //}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="result">状态</param>
+        /// <param name="param">返回值参数</param>
+        /// <param name="logParam">日志消息参数</param>
+        public WFwException(OperationResultType result, string param, string logParam) : base(string.Format(result.GetEnumDescription(), param))
+        {
+            OperationResult = result;
+            ParamName = param;
+            LogParam = logParam;
+        }
+
+
+     
 
     }
 }

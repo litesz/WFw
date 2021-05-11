@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System;
 
 namespace WFw.Results
 {
@@ -10,19 +11,19 @@ namespace WFw.Results
         /// <summary>
         /// 成功
         /// </summary>
-        [Description("成功")]
-        Success,
-        /// <summary>
-        /// 成功且消息文本有意义
-        /// </summary>
         [Description("{0}")]
-        Text,
+        Success,
+        ///// <summary>
+        ///// 成功且消息文本有意义
+        ///// </summary>
+        //[Description("{0}")]
+        //Text,
 
         /// <summary>
         /// 意外状态
         /// </summary>
         [Description("意外状态")]
-        Unexpected = 50,
+        Unexpected = 10001,
         /// <summary>
         /// 已存在
         /// </summary>
@@ -49,7 +50,7 @@ namespace WFw.Results
         /// 未登录或已超时
         /// </summary>
         [Description("未登录或已超时")]
-        Unauthorized = 101,
+        Unauthorized = 11001,
         /// <summary>
         /// 无权执行操作
         /// </summary>
@@ -61,7 +62,7 @@ namespace WFw.Results
         /// 参数为空
         /// </summary>
         [Description("参数为空:{0}")]
-        ParamIsEmpty = 201,
+        ParamIsEmpty = 12001,
         /// <summary>
         /// 参数错误
         /// </summary>
@@ -73,7 +74,7 @@ namespace WFw.Results
         /// 电话号码或密码错误
         /// </summary>
         [Description("电话号码或密码错误")]
-        PhoneOrPasswordErr = 301,
+        PhoneOrPasswordErr = 13001,
         /// <summary>
         /// 电话号码{0}不存在
         /// </summary>
@@ -109,6 +110,6 @@ namespace WFw.Results
         /// 腾讯接口请求错误
         /// </summary>
         [Description("腾讯接口请求错误:{0}")]
-        TencentHttpErr=400,
+        TencentHttpErr = 40000,
     }
 }

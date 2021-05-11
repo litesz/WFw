@@ -2006,10 +2006,11 @@
             <param name="logger"></param>
             <returns></returns>
         </member>
-        <member name="M:WFw.Middlewares.WFwErrorHandlingMiddleware.WriteError(Microsoft.AspNetCore.Http.HttpContext,WFw.Results.OperationResultType,System.String,System.Int32)">
+        <member name="M:WFw.Middlewares.WFwErrorHandlingMiddleware.WriteError(System.String,Microsoft.AspNetCore.Http.HttpContext,WFw.Results.OperationResultType,System.String,System.Int32)">
             <summary>
             
             </summary>
+            <param name="requestId"></param>
             <param name="context"></param>
             <param name="type"></param>
             <param name="message"></param>
