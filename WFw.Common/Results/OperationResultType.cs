@@ -23,7 +23,7 @@ namespace WFw.Results
         /// 意外状态
         /// </summary>
         [Description("意外状态")]
-        Unexpected = 10001,
+        Unexpected = 10000,
         /// <summary>
         /// 已存在
         /// </summary>
@@ -109,7 +109,7 @@ namespace WFw.Results
         /// <summary>
         /// 腾讯接口请求错误
         /// </summary>
-        [Description("腾讯接口请求错误:{0}")]
+        [Description("{0}")]
         TencentHttpErr = 40000,
     }
 }
