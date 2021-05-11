@@ -76,7 +76,7 @@ namespace WFw.TencentCloud.Clients.Sms
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, $"SendVerification:{code}");
+                logger.LogError(ex.ToLogMessage());
 
                 return (false, "发送失败");
             }

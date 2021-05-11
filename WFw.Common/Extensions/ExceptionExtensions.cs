@@ -8,6 +8,11 @@ namespace System
     /// </summary>
     public static class ExceptionExtensions
     {
+        public static string ToLogMessage(this Exception exception)
+        {
+
+            return ToLogMessage(exception, Guid.NewGuid().ToString("N"));
+        }
 
         public static string ToLogMessage(this Exception exception, string requestId)
         {

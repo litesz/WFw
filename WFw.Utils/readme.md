@@ -1,4 +1,4 @@
-### 0.0.6 --待提交
+### 0.0.6
 修正 StringEncryptProvider 中 EncrpytPhone
 添加 IdProvider
 

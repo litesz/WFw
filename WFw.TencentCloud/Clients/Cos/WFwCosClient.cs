@@ -261,7 +261,7 @@ namespace WFw.TencentCloud.Clients.Cos
             }
             catch (Exception e)
             {
-                logger.LogError(e, "DownloadObject");
+                logger.LogError(e.ToLogMessage());
             }
 
 
