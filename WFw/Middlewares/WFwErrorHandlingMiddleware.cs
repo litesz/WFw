@@ -80,7 +80,7 @@ namespace WFw.Middlewares
         {
             context.Response.ContentType = "application/json; charset=utf-8";
             context.Response.StatusCode = statusCode;
-            return context.Response.WriteAsync(new ErrApirResult(requestId, type, message).Serialize());
+            return context.Response.WriteAsync(new ErrApiResult(requestId, type, message).Serialize());
         }
     }
 }

@@ -51,25 +51,25 @@ namespace WFw.Results
     /// </summary>
     public class ApiResult : ApiResult<object>
     {
-       
+        public ApiResult()
+        {
+        }
+
+        public ApiResult(object data) : base(data) { }
     }
 
     /// <summary>
     /// 统一错误返回值
     /// </summary>
-    public class ErrApirResult : ApiResult<string>
+    public class ErrApiResult : ApiResult
     {
-        ///// <summary>
-        ///// 请求id
-        ///// </summary>
-        //[JsonProperty("requestId")]
-        //public string RequestId { get; set; }
+
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="exception"></param>
-        public ErrApirResult(WFwException exception)
+        public ErrApiResult(WFwException exception)
         {
             Code = exception.OperationResult;
             Msg = exception.Message;
@@ -80,13 +80,12 @@ namespace WFw.Results
         /// </summary>
         /// <param name="code"></param>
         /// <param name="msg"></param>
-        public ErrApirResult(OperationResultType code, string msg)
+        public ErrApiResult(OperationResultType code, string msg) : this("", code, msg)
         {
-            this.Code = code;
-            this.Msg = msg;
+
         }
 
-        public ErrApirResult(string requestId, OperationResultType code, string msg)
+        public ErrApiResult(string requestId, OperationResultType code, string msg)
         {
             this.RequestId = requestId;
             this.Code = code;

@@ -1,3 +1,7 @@
+### 0.0.5
+重命名 ErrApirResult 为 ErrApiResult
+修改 ApiResult及泛型
+
 ### 0.0.4
 修改 OperationResultType 枚举值
 修改 WFwException 构造函数,添加LogParam
