@@ -21,4 +21,8 @@
     <ProjectReference Include="..\WFw\WFw.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Middlewares\" />
+  </ItemGroup>
+
 </Project>

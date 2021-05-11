@@ -11,16 +11,16 @@ namespace WFw
     /// </summary>
     public static class ApplicationBuilderExtensions
     {
-        /// <summary>
-        /// 使用全局错误
-        /// </summary>
-        /// <param name="builder"></param>
-        /// <returns></returns>
-        public static IApplicationBuilder UseVerificationCode(this IApplicationBuilder builder)
-        {
-            builder.UseMiddleware<VerificationCodeMiddleware>();
-            return builder;
-        }
+        ///// <summary>
+        ///// 使用全局错误
+        ///// </summary>
+        ///// <param name="builder"></param>
+        ///// <returns></returns>
+        //public static IApplicationBuilder UseVerificationCode(this IApplicationBuilder builder)
+        //{
+        //    builder.UseMiddleware<VerificationCodeMiddleware>();
+        //    return builder;
+        //}
 
     }
 }
