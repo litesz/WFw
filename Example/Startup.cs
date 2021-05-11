@@ -41,7 +41,8 @@ namespace Example
             services.AddTencentStsClient(Configuration);
             //services.AddSmsChineseClient(Configuration);
             services.AddTencentSmsClient(Configuration);
-
+            services.AddTencentOcrClient(Configuration);
+            
 
             //添加Cookier认证服务
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

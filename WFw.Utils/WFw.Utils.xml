@@ -431,6 +431,35 @@
             <param name="isLower"></param>
             <returns></returns>
         </member>
+        <member name="T:WFw.Utils.IdProvider">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:WFw.Utils.IdProvider.MachineId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:WFw.Utils.IdProvider.DateTimeFormat">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WFw.Utils.IdProvider.NewGuidId(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="format"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Utils.IdProvider.SnowId(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
         <member name="T:WFw.Utils.StringEncryptProvider">
             <summary>
             字符串内容加密,如手机号，姓名

@@ -14,10 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Clients\Ocr\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\WFw.Utils\WFw.Utils.csproj" />
     <ProjectReference Include="..\WFw\WFw.csproj" />
   </ItemGroup>
