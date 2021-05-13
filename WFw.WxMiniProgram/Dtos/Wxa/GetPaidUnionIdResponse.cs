@@ -28,7 +28,8 @@ namespace WFw.WxMiniProgram.Dtos.Wxa
         {
             if (string.IsNullOrEmpty(AccessToken) || string.IsNullOrWhiteSpace(OpenId))
             {
-                throw new WFwException(Results.OperationResultType.IsEmpty, "AccessToken 或 OpenId", $"AccessToken:{AccessToken}|OpenId:{OpenId}");
+                //throw new WFwException(Results.OperationResultType.IsEmpty, "AccessToken 或 OpenId", $"AccessToken={AccessToken};OpenId={OpenId}");
+                throw new WFwException(Results.OperationResultType.IsEmpty, "AccessToken 或 OpenId", nameof(AccessToken), AccessToken, nameof(OpenId), OpenId);
             }
 
             if (!string.IsNullOrWhiteSpace(TransactionId))

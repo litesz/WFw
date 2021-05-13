@@ -15,7 +15,7 @@ namespace WFw.TencentCloud.Clients.Sts
     public interface IWFwStsClient
     {
         /// <summary>
-        /// 
+        /// 生成临时密钥
         /// </summary>
         /// <param name="bucket"></param>
         /// <param name="region"></param>
@@ -24,6 +24,16 @@ namespace WFw.TencentCloud.Clients.Sts
         /// <param name="durationSeconds"></param>
         /// <returns></returns>
         TempCredentialResult GetTempCredential(string bucket, string region, string allowPrefix, string[] allowActions, int durationSeconds = 7200);
+
+        /// <summary>
+        /// 默认action设置生成临时密钥
+        /// </summary>
+        /// <param name="bucket"></param>
+        /// <param name="region"></param>
+        /// <param name="allowPrefix"></param>
+        /// <param name="durationSeconds"></param>
+        /// <returns></returns>
+        TempCredentialResult GetDefaultTempCredential(string bucket, string region, string allowPrefix, int durationSeconds = 7200);
     }
 
     /// <summary>
@@ -52,15 +62,21 @@ namespace WFw.TencentCloud.Clients.Sts
         }
 
 
-        private TempCredentialResult GetTempCredential(Dictionary<string, object> values)
+        private TempCredentialResult GenTempCredential(Dictionary<string, object> values)
         {
+
+
+
             try
             {
                 Dictionary<string, object> credential = STSClient.genCredential(values);
 
-                TempCredentialResult output = new TempCredentialResult();
-                output.Bucket = values["bucket"].ToString();
-                output.Region = values["region"].ToString();
+                TempCredentialResult output = new TempCredentialResult
+                {
+                    Bucket = values["bucket"].ToString(),
+                    Region = values["region"].ToString()
+                };
+                IList<string> errs = new List<string>();
                 foreach (KeyValuePair<string, object> kvp in credential)
                 {
                     switch (kvp.Key)
@@ -75,8 +91,11 @@ namespace WFw.TencentCloud.Clients.Sts
                             {
                                 output.ExpiredTime = et;
                             }
-                            else {
-                                logger.LogError($"ExpiredTime:{kvp.Value}");
+                            else
+                            {
+                                errs.Add("ExpiredTime");
+                                errs.Add("kvp.Value.ToString()");
+                                // logger.LogError($"ExpiredTime:{kvp.Value}");
                             }
 
                             output.Expiration = new DateTimeOffset(1970, 1, 1, 0, 0, 0, TimeSpan.Zero).AddSeconds(output.ExpiredTime);
@@ -89,7 +108,8 @@ namespace WFw.TencentCloud.Clients.Sts
                             }
                             else
                             {
-                                logger.LogError($"StartTime:{kvp.Value}");
+                                errs.Add("StartTime");
+                                errs.Add("kvp.Value.ToString()");
                             }
                             break;
                         case "RequestId": output.RequestId = kvp.Value.ToString(); break;
@@ -100,8 +120,16 @@ namespace WFw.TencentCloud.Clients.Sts
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, "GetTempCredential");
-                return null;
+
+                string[] p = new string[] {
+                    "bucket",values["bucket"].ToString(),
+                    "region",values["region"].ToString(),
+                    "allowPrefix",values["allowPrefix"].ToString(),
+                    "allowActions",string.Join(",", values["allowActions"] as string[]),
+                    "ex",ex.Message
+                };
+
+                throw new WFwException(Results.OperationResultType.TencentCloudSdkStsErr, "", p);
             }
 
         }
@@ -117,57 +145,62 @@ namespace WFw.TencentCloud.Clients.Sts
         /// <returns></returns>
         public TempCredentialResult GetTempCredential(string bucket, string region, string allowPrefix, string[] allowActions, int durationSeconds = 7200)
         {
-            Dictionary<string, object> values = new Dictionary<string, object>();
-            values.Add("bucket", bucket);
-            values.Add("region", region);
-            values.Add("allowPrefix", allowPrefix);
-            values.Add("allowActions", allowActions);
-            values.Add("durationSeconds", durationSeconds);
-            values.Add("secretId", options.SecretId);
-            values.Add("secretKey", options.SecretKey);
+            if (string.IsNullOrWhiteSpace(bucket))
+            {
+                throw new WFwException(Results.OperationResultType.IsEmpty, "bucket");
+            }
+            if (string.IsNullOrWhiteSpace(region))
+            {
+                throw new WFwException(Results.OperationResultType.IsEmpty, "region");
+            }
+            if (string.IsNullOrWhiteSpace(allowPrefix))
+            {
+                throw new WFwException(Results.OperationResultType.IsEmpty, "allowPrefix");
+            }
+            if (allowActions == null || allowActions.Length == 0)
+            {
+                throw new WFwException(Results.OperationResultType.IsEmpty, "allowActions");
+            }
+            if (durationSeconds < 1 || durationSeconds > 129600)
+            {
+                throw new WFwException(Results.OperationResultType.IsErr, "持续时间错误", nameof(durationSeconds), durationSeconds.ToString());
+            }
 
-            return GetTempCredential(values);
+            Dictionary<string, object> values = new Dictionary<string, object>
+            {
+                { "bucket", bucket },
+                { "region", region },
+                { "allowPrefix", allowPrefix },
+                { "allowActions", allowActions },
+                { "durationSeconds", durationSeconds },
+                { "secretId", options.SecretId },
+                { "secretKey", options.SecretKey }
+            };
+
+
+
+
+            return GenTempCredential(values);
         }
 
-        private void GetTempCredential(string bucket, string region)
+        public TempCredentialResult GetDefaultTempCredential(string bucket, string region, string allowPrefix, int durationSeconds = 7200)
         {
 
-            //string bucket = "examplebucket-1253653367";  // 您的 bucket
-            //string region = "ap-guangzhou";  // bucket 所在区域
-            string allowPrefix = "*"; // 这里改成允许的路径前缀，可以根据自己网站的用户登录态判断允许上传的具体路径，例子： a.jpg 或者 a/* 或者 * (使用通配符*存在重大安全风险, 请谨慎评估使用)
+
+            //string allowPrefix = "*"; // 这里改成允许的路径前缀，可以根据自己网站的用户登录态判断允许上传的具体路径，例子： a.jpg 或者 a/* 或者 * (使用通配符*存在重大安全风险, 请谨慎评估使用)
             string[] allowActions = new string[] {  // 允许的操作范围，这里以上传操作为例
                 "name/cos:PutObject",
-                "name/cos:PostObject",
-                "name/cos:InitiateMultipartUpload",
-                "name/cos:ListMultipartUploads",
-                "name/cos:ListParts",
-                "name/cos:UploadPart",
-                "name/cos:CompleteMultipartUpload"
+                    "name/cos:PostObject",
+                    "name/cos:InitiateMultipartUpload",
+                    "name/cos:ListMultipartUploads",
+                    "name/cos:ListParts",
+                    "name/cos:UploadPart",
+                    "name/cos:CompleteMultipartUpload",
+                    "name/cos:HeadObject",//判断指定对象是否存在和有权限
+                    "name/cos:GetObject"//下载对象
             };
-            // Demo 这里是从环境变量读取，如果是直接硬编码在代码中，请参考：
-            // string secretId = "AKIDXXXXXXXXX";
-            string secretId = options.SecretId; // 云 API 密钥 Id
-            string secretKey = options.SecretKey; // 云 API 密钥 Key
-            Dictionary<string, object> values = new Dictionary<string, object>();
-            values.Add("bucket", bucket);
-            values.Add("region", region);
-            values.Add("allowPrefix", allowPrefix);
-            // 也可以通过 allowPrefixes 指定路径前缀的集合
-            // values.Add("allowPrefixes", new string[] {
-            //     "path/to/dir1/*",
-            //     "path/to/dir2/*",
-            // });
-            values.Add("allowActions", allowActions);
-            values.Add("durationSeconds", 1800);
 
-            values.Add("secretId", secretId);
-            values.Add("secretKey", secretKey);
-
-            Dictionary<string, object> credential = STSClient.genCredential(values);
-            foreach (KeyValuePair<string, object> kvp in credential)
-            {
-                Console.WriteLine("{0} = {1}", kvp.Key, kvp.Value);
-            }
+            return GetTempCredential(bucket, region, allowPrefix, allowActions, durationSeconds);
 
         }
 

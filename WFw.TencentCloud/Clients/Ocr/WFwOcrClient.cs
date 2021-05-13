@@ -65,7 +65,8 @@ namespace WFw.TencentCloud.Clients.Ocr
             catch (TencentCloudSDKException tce)
             {
                 var x = tce.Message.Split(new char[] { ' ', ':' }, StringSplitOptions.RemoveEmptyEntries);
-                throw new WFwException(Results.OperationResultType.TencentHttpErr, x.Last(), $"TRequestId:{tce.RequestId}|imageUrl:{imageUrl}");
+                //throw new WFwException(Results.OperationResultType.TencentHttpErr, x.Last(), $"TRequestId={tce.RequestId};imageUrl={imageUrl}");
+                throw new WFwException(Results.OperationResultType.TencentHttpErr, x.Last(), "TRequestId", tce.RequestId, "imageUrl", imageUrl);
             }
 
 

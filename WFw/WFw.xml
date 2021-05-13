@@ -1727,6 +1727,46 @@
             <param name="key"></param>
             <param name="value"></param>
         </member>
+        <member name="T:WFw.Identity.UserClaimTypes">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:WFw.Identity.UserClaimTypes.GroupId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:WFw.Identity.UserClaimTypes.PGroupId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:WFw.Identity.UserClaimTypes.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:WFw.Identity.UserClaimTypes.UserId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:WFw.Identity.UserClaimTypes.Phone">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:WFw.Identity.UserClaimTypes.Role">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:WFw.Identity.UserClaimTypes.SId">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:WFw.Identity.WFwCurrentUserEvents">
             <summary>
             

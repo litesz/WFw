@@ -2,9 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>0.0.7</Version>
+    <Version>0.0.8</Version>
     <Authors>litesz</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/litesz/WFw</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>

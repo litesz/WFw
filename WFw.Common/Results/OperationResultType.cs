@@ -111,5 +111,17 @@ namespace WFw.Results
         /// </summary>
         [Description("{0}")]
         TencentHttpErr = 40000,
+
+        /// <summary>
+        /// 腾讯云skd错误
+        /// </summary>
+        [Description("{0}")]
+        TencentCloudSdkErr = 50000,
+
+        /// <summary>
+        /// 腾讯云skdSts错误
+        /// </summary>
+        [Description("获得临时票据失败")]
+        TencentCloudSdkStsErr = 50001,
     }
 }

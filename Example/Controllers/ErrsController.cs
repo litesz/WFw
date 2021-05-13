@@ -16,7 +16,12 @@ namespace Example.Controllers
         [HttpGet]
         public string GetErr()
         {
-            throw new WFw.WFwException(WFw.Results.OperationResultType.IsEmpty, "a3", "Get x2");
+            throw new WFw.WFwException(WFw.Results.OperationResultType.IsEmpty, "a3", "x3", null);
+        }
+        [HttpGet("n")]
+        public string GetErrN()
+        {
+            throw new WFw.WFwException(WFw.Results.OperationResultType.IsEmpty, "a3", "only pt");
         }
 
         [HttpGet("old")]

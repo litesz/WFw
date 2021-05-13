@@ -1,3 +1,12 @@
+### 0.0.6
+ * JsonExtensions
+	+ 添加 Serialize<T>(this T entity, bool isIgnoreNull)
+ * WFwException
+	+ 添加 WFwException(OperationResultType result, string param, params string[] logKeyValues) 
+ * 新增 WFwIsEmptyException 
+ * 新增 WFwNotExistException 
+ * 新增 WFwIsExistException 
+
 ### 0.0.5
 重命名 ErrApirResult 为 ErrApiResult
 修改 ApiResult及泛型

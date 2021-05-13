@@ -25,45 +25,45 @@ namespace WFw.Identity
         /// <summary>
         /// 组id
         /// </summary>
-        public string GroupId => GetByOrder(ClaimTypes.GroupSid, "groupid");
+        public string GroupId => GetByOrder(ClaimTypes.GroupSid, UserClaimTypes.GroupId);
 
         /// <summary>
         /// 主组id
         /// </summary>
-        public string PGroupId => GetByOrder(ClaimTypes.PrimaryGroupSid, "pgroupid");
+        public string PGroupId => GetByOrder(ClaimTypes.PrimaryGroupSid, UserClaimTypes.PGroupId);
 
         /// <summary>
         /// 用户名
         /// </summary>
-        public string Name => GetByOrder(ClaimTypes.Name, "name");
+        public string Name => GetByOrder(ClaimTypes.Name, UserClaimTypes.Name);
 
         /// <summary>
         /// 组id
         /// </summary>
-        public string[] GroupIds => GetByOrder(ClaimTypes.GroupSid, "groupid")
+        public string[] GroupIds => GetByOrder(ClaimTypes.GroupSid, UserClaimTypes.GroupId)
             ?.Split(_separatingStrings, StringSplitOptions.RemoveEmptyEntries)
             ?? new string[0];
 
         /// <summary>
         /// 用户id
         /// </summary>
-        public string UserId => GetByOrder(ClaimTypes.NameIdentifier, "userid");
+        public string UserId => GetByOrder(ClaimTypes.NameIdentifier, UserClaimTypes.UserId);
 
         /// <summary>
         /// 安全id
         /// </summary>
-        public string SId => GetByOrder(ClaimTypes.Sid, "sid");
+        public string SId => GetByOrder(ClaimTypes.Sid, UserClaimTypes.SId);
 
 
         /// <summary>
         /// 手机号
         /// </summary>
-        public string Phone => GetByOrder(ClaimTypes.MobilePhone, "phone");
+        public string Phone => GetByOrder(ClaimTypes.MobilePhone, UserClaimTypes.Phone);
 
         /// <summary>
         /// 角色
         /// </summary>
-        public string[] Roles => GetByOrder(ClaimTypes.Role, "role")
+        public string[] Roles => GetByOrder(ClaimTypes.Role, UserClaimTypes.Role)
             ?.Split(_separatingStrings, StringSplitOptions.RemoveEmptyEntries)
             ?? new string[0];
 
