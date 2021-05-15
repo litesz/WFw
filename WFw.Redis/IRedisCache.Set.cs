@@ -217,7 +217,7 @@ namespace WFw.Redis
         /// <param name="pattern">匹配的模式</param>
         /// <param name="count">指定从数据集里返回多少元素，默认值为 10</param>
         /// <returns></returns>
-         RedisScan<string> SScan(string key, long cursor, string pattern = null, long count = 10);
+        ScanResult<string> SScan(string key, long cursor, string pattern = null, long count = 10);
 
         /// <summary>
         /// 用于迭代集合中键的元素，Sscan 继承自 Scan。 
@@ -228,6 +228,6 @@ namespace WFw.Redis
         /// <param name="pattern">匹配的模式</param>
         /// <param name="count">指定从数据集里返回多少元素，默认值为 10</param>
         /// <returns></returns>
-         RedisScan<T> SScan<T>(string key, long cursor, string pattern = null, long count = 10);
+        ScanResult<T> SScan<T>(string key, long cursor, string pattern = null, long count = 10);
     }
 }

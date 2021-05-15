@@ -96,7 +96,7 @@ namespace WFw.Redis
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="key"><不含prefix前缀/param>
+        /// <param name="key">不含prefix前缀</param>
         /// <returns></returns>
         public long Ttl(string key) => RedisHelper.Ttl(key);
 
@@ -127,11 +127,11 @@ namespace WFw.Redis
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="key">不含prefix前缀</param>
-        /// <param name="cursor"></param>
-        /// <param name="pattern"></param>
-        /// <param name="count"></param>
+        /// <param name="cursor">位置</param>
+        /// <param name="pattern">模式</param>
+        /// <param name="count">数量</param>
         /// <returns></returns>
-        public RedisScan<T> Scan<T>(string key, long cursor, string pattern = null, long? count = null) => RedisHelper.Scan<T>(key, cursor, pattern, count);
+        public ScanResult<T> Scan<T>(string key, long cursor, string pattern = null, long count = 10) => new ScanResult<T>(RedisHelper.Scan<T>(key, cursor, pattern, count));
 
 
         /// <summary>

@@ -137,7 +137,7 @@ namespace WFw.Redis
         /// <param name="key">不含prefix前缀</param>
         /// <param name="count">一个或多个随机元素</param>
         /// <returns>被移除的随机元素。 当集合不存在或是空集时，返回 nil </returns>
-        public string[] SPop(string key, long count ) => RedisHelper.SPop(key, count);
+        public string[] SPop(string key, long count) => RedisHelper.SPop(key, count);
 
         /// <summary>
         /// 用于移除集合中的指定 key 的一个或多个随机元素，移除后会返回移除的元素。
@@ -146,7 +146,7 @@ namespace WFw.Redis
         /// <param name="key">不含prefix前缀</param>
         /// <param name="count">一个或多个随机元素</param>
         /// <returns>被移除的随机元素。 当集合不存在或是空集时，返回 nil </returns>
-        public T[] SPop<T>(string key, long count ) => RedisHelper.SPop<T>(key, count);
+        public T[] SPop<T>(string key, long count) => RedisHelper.SPop<T>(key, count);
 
         /// <summary>
         /// 返回集合中的一个随机元素。
@@ -222,7 +222,7 @@ namespace WFw.Redis
         /// <param name="pattern">匹配的模式</param>
         /// <param name="count">指定从数据集里返回多少元素，默认值为 10</param>
         /// <returns></returns>
-        public RedisScan<string> SScan(string key, long cursor, string pattern = null, long count = 10) => RedisHelper.SScan(key, cursor, pattern, count);
+        public ScanResult<string> SScan(string key, long cursor, string pattern = null, long count = 10) => new ScanResult<string>(RedisHelper.SScan(key, cursor, pattern, count));
 
         /// <summary>
         /// 用于迭代集合中键的元素，Sscan 继承自 Scan。 
@@ -233,6 +233,6 @@ namespace WFw.Redis
         /// <param name="pattern">匹配的模式</param>
         /// <param name="count">指定从数据集里返回多少元素，默认值为 10</param>
         /// <returns></returns>
-        public RedisScan<T> SScan<T>(string key, long cursor, string pattern = null, long count = 10) => RedisHelper.SScan<T>(key, cursor, pattern, count);
+        public ScanResult<T> SScan<T>(string key, long cursor, string pattern = null, long count = 10) => new ScanResult<T>(RedisHelper.SScan<T>(key, cursor, pattern, count));
     }
 }

@@ -226,7 +226,7 @@ namespace WFw.Redis
         /// <param name="pattern"></param>
         /// <param name="count"></param>
         /// <returns></returns>
-        public RedisScan<(string, T)> HScan<T>(string key, long cursor, string pattern = null, long? count = null) => RedisHelper.HScan<T>(key, cursor, pattern, count);
+        public ScanResult<(string, T)> HScan<T>(string key, long cursor, string pattern = null, long count = 10) => new ScanResult<(string, T)>(RedisHelper.HScan<T>(key, cursor, pattern, count));
 
 
 

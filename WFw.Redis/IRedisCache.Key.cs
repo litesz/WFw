@@ -137,7 +137,7 @@ namespace WFw.Redis
         /// <param name="pattern">模式</param>
         /// <param name="count">数组长度</param>
         /// <returns>数组列表。</returns>
-        RedisScan<T> Scan<T>(string key, long cursor, string pattern = null, long? count = null);
+        ScanResult<T> Scan<T>(string key, long cursor, string pattern = null, long count = 10);
 
         /// <summary>
         /// 返回 key 所储存的值的类型。

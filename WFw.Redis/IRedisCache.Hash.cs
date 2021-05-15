@@ -139,6 +139,6 @@ namespace WFw.Redis
         /// <param name="pattern">指定模式</param>
         /// <param name="count">数组长度</param>
         /// <returns></returns>
-        CSRedis.RedisScan<(string, T)> HScan<T>(string key, long cursor, string pattern = null, long? count = null);
+        ScanResult<(string, T)> HScan<T>(string key, long cursor, string pattern = null, long count = 10);
     }
 }
