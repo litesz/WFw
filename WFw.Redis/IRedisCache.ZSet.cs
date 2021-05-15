@@ -25,7 +25,7 @@ namespace WFw.Redis
         /// </summary>
         /// <param name="key">不含prefix前辍</param>
         /// <returns>当 key 存在且是有序集类型时，返回有序集的基数。 当 key 不存在时，返回 0 。 </returns>
-         long ZCard(string key) => RedisHelper.ZCard(key);
+         long ZCard(string key) ;
 
         /// <summary>
         /// 计算有序集合中指定分数区间的成员数量。 
