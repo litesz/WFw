@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using WFw.Results;
 
 namespace WFw
 {
+
     /// <summary>
-    /// 错误请求
+    /// 自定义错误
     /// </summary>
     public class WFwException : Exception
     {
@@ -15,64 +18,124 @@ namespace WFw
         /// <summary>
         /// 显示描述
         /// </summary>
-        public string ContentText { get; }
+        public string ParamName { get; }
 
         /// <summary>
-        /// 日志记录错误
+        /// 日志记录参数
         /// </summary>
-        public string LogContent { get; }
+        public string LogParam { get; set; }
 
         /// <summary>
-        /// 
+        /// 自定义错误
         /// </summary>
         public WFwException() { }
 
         /// <summary>
-        /// 
+        /// 自定义错误
         /// </summary>
-        /// <param name="msg"></param>
-        public WFwException(string msg) : this(OperationResultType.IsErr, msg)
-
-        { }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="result"></param>
-        public WFwException(OperationResultType result) : this(result, "")
-        {
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="result"></param>
-        /// <param name="msg"></param>
-        public WFwException(OperationResultType result, string msg) : this(result, msg, msg)
-        {
-        }
+        /// <param name="param">返回值参数</param>
+        /// <param name="logParam">日志消息参数</param>
+        public WFwException(string param, string logParam = "") : this(OperationResultType.IsErr, param, logParam) { }
 
         /// <summary>
-        /// 
+        /// 自定义错误
         /// </summary>
-        /// <param name="result"></param>
-        /// <param name="msg"></param>
-        /// <param name="logMsg"></param>
-        public WFwException(OperationResultType result, string msg, string logMsg) : base(string.Format(result.GetEnumDescription(), msg))
+        /// <param name="result">状态</param>
+        /// <param name="param">返回值参数</param>
+        /// <param name="logParam">日志消息参数</param>
+        public WFwException(OperationResultType result, string param, string logParam = "") : base(string.Format(result.GetEnumDescription(), param))
         {
-            ContentText = msg;
-            LogContent = logMsg;
             OperationResult = result;
+            ParamName = param;
+            LogParam = $"logParam={logParam};";
         }
 
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        ///// <param name="result"></param>
-        ///// <param name="value"></param>
-        //public WFwException(OperationResultType result, string value) : base(string.Format(result.GetEnumDescription(), value))
+        /// <summary>
+        /// 自定义错误
+        /// </summary>
+        /// <param name="result">状态</param>
+        /// <param name="param">返回值参数</param>
+        /// <param name="logKeyValues">k-v键值对</param>
+        public WFwException(OperationResultType result, string param, params string[] logKeyValues) : base(string.Format(result.GetEnumDescription(), param))
+        {
+            OperationResult = result;
+            ParamName = param;
+
+            if (logKeyValues == null || logKeyValues.Length == 0)
+            {
+                return;
+            }
+
+            if (logKeyValues.Length == 1)
+            {
+                LogParam = $"logParam={logKeyValues[0]};";
+                return;
+            }
+
+            StringBuilder sb = new StringBuilder();
+            bool isKey = true;
+            foreach (var item in logKeyValues)
+            {
+                sb.Append(item);
+
+                if (isKey)
+                {
+                    sb.Append('=');
+                }
+                else
+                {
+                    sb.Append(';');
+                }
+                isKey = !isKey;
+            }
+            if (sb.Length > 0 && sb[sb.Length - 1] == '=')
+            {
+                sb.Replace('=', ';', sb.Length - 1, 1);
+            }
+
+            LogParam = sb.ToString();
+        }
+
+
+        //public static WFwException New<T>(OperationResultType result, string param, T item) where T : class
         //{
-        //    ContentText = value;
-        //    OperationResult = result;
+
+        //    if (item is string itemStr)
+        //    {
+        //        return new WFwException(result, param, itemStr);
+        //    }
+
+        //    return new WFwException(result, param, item.Serialize());
         //}
 
+
+        //private List<string> GetProperties<T>(T t)
+        //{
+        //    List<string> ListStr = new List<string>();
+        //    if (t == null)
+        //    {
+        //        return ListStr;
+        //    }
+        //    System.Reflection.PropertyInfo[] properties = t.GetType().GetProperties(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public);
+        //    if (properties.Length <= 0)
+        //    {
+        //        return ListStr;
+        //    }
+        //    foreach (System.Reflection.PropertyInfo item in properties)
+        //    {
+        //        string name = item.Name; //名称
+        //        object value = item.GetValue(t, null);  //值
+
+        //        if (item.PropertyType.IsValueType || item.PropertyType.Name.StartsWith("String"))
+        //        {
+        //            ListStr.Add(name);
+        //        }
+        //        else
+        //        {
+        //            GetProperties(value);
+        //        }
+        //    }
+        //    return ListStr;
+        //}
     }
 }

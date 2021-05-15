@@ -21,7 +21,9 @@ namespace WFw.Results
                 {
                     name = nameof(T);
                 }
-                throw new BadRequestException(OperationResultType.IsEmpty, name);
+            
+                throw new WFwException(OperationResultType.IsEmpty, name, "");
+
             }
         }
     }

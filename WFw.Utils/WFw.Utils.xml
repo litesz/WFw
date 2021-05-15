@@ -431,6 +431,35 @@
             <param name="isLower"></param>
             <returns></returns>
         </member>
+        <member name="T:WFw.Utils.IdProvider">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:WFw.Utils.IdProvider.MachineId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:WFw.Utils.IdProvider.DateTimeFormat">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WFw.Utils.IdProvider.NewGuidId(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="format"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Utils.IdProvider.SnowId(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
         <member name="T:WFw.Utils.StringEncryptProvider">
             <summary>
             字符串内容加密,如手机号，姓名
@@ -454,42 +483,6 @@
             <summary>
             扩展
             </summary>
-        </member>
-        <member name="M:WFw.ApplicationBuilderExtensions.UseVerificationCode(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
-            <summary>
-            使用全局错误
-            </summary>
-            <param name="builder"></param>
-            <returns></returns>
-        </member>
-        <member name="T:WFw.Middlewares.VerificationCodeMiddleware">
-            <summary>
-            验证码中间件
-            </summary>
-        </member>
-        <member name="M:WFw.Middlewares.VerificationCodeMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate)">
-            <summary>
-            
-            </summary>
-            <param name="next"></param>
-        </member>
-        <member name="M:WFw.Middlewares.VerificationCodeMiddleware.Invoke(Microsoft.AspNetCore.Http.HttpContext,Microsoft.Extensions.Logging.ILogger{WFw.Middlewares.VerificationCodeMiddleware})">
-            <summary>
-            执行
-            </summary>
-            <param name="context"></param>
-            <param name="logger"></param>
-            <returns></returns>
-        </member>
-        <member name="M:WFw.Middlewares.VerificationCodeMiddleware.WriteError(Microsoft.AspNetCore.Http.HttpContext,WFw.Results.OperationResultType,System.String,System.Int32)">
-            <summary>
-            
-            </summary>
-            <param name="context"></param>
-            <param name="type"></param>
-            <param name="message"></param>
-            <param name="statusCode"></param>
-            <returns></returns>
         </member>
     </members>
 </doc>

@@ -93,7 +93,8 @@ namespace WFw.Identity
         {
             if (currentUser.UserId == null)
             {
-                throw new BadRequestException(OperationResultType.NotExist, "签名用户");
+                throw new WFwException(OperationResultType.NotExist, "签名用户", "");
+
             }
             return (T)Convert.ChangeType(currentUser.UserId, typeof(T));
         }
@@ -107,7 +108,7 @@ namespace WFw.Identity
         {
             if (currentUser.GroupId == null)
             {
-                throw new BadRequestException(OperationResultType.NotExist, "签名组");
+                throw new WFwException(OperationResultType.NotExist, "签名组", "");
             }
             return (T)Convert.ChangeType(currentUser.GroupId, typeof(T));
         }

@@ -9,8 +9,13 @@ using Microsoft.Extensions.Hosting;
 using WFw;
 using WFw.GeTui.Services;
 using System.Linq;
+using System.Collections.Generic;
+
 namespace Example
 {
+ 
+
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -20,11 +25,14 @@ namespace Example
 
         public IConfiguration Configuration { get; }
 
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
 
-            
+        
+
+
 
             services.AddControllersWithViews();
 
@@ -41,6 +49,7 @@ namespace Example
             services.AddTencentStsClient(Configuration);
             //services.AddSmsChineseClient(Configuration);
             services.AddTencentSmsClient(Configuration);
+            services.AddTencentOcrClient(Configuration);
 
 
             //添加Cookier认证服务

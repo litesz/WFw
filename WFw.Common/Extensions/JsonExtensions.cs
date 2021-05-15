@@ -31,12 +31,26 @@ namespace WFw
             return JsonConvert.SerializeObject(entity);
         }
 
+        /// <summary>
+        /// 序列化
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="entity">对象</param>
+        /// <param name="isIgnoreNull">是否忽略值为null的对象</param>
+        /// <returns></returns>
+        public static string Serialize<T>(this T entity, bool isIgnoreNull) where T : class
+        {
+            return JsonConvert.SerializeObject(entity, Formatting.Indented, new JsonSerializerSettings
+            {
+                NullValueHandling = isIgnoreNull ? NullValueHandling.Ignore : NullValueHandling.Include
+            });
+        }
 
         /// <summary>
         /// 基于驼峰序列化
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="entity"></param>
+        /// <param name="entity">对象</param>
         /// <param name="isIgnoreNull">是否忽略值为null的对象</param>
         /// <returns></returns>
         public static string SerializeByCamelCase<T>(this T entity, bool isIgnoreNull = false) where T : class

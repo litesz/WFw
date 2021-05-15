@@ -2,19 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>0.0.6</Version>
+    <Version>0.0.8</Version>
     <Authors>litesz</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/litesz/WFw</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Tencent.QCloud.Cos.Sdk" Version="5.4.17" />
     <PackageReference Include="Tencent.QCloud.Cos.Sts.Sdk" Version="3.0.4" />
     <PackageReference Include="TencentCloudSDK" Version="3.0.252" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Clients\Ocr\" />
   </ItemGroup>
 
   <ItemGroup>

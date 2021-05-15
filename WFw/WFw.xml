@@ -481,6 +481,11 @@
             <param name="id"></param>
             <param name="name"></param>
         </member>
+        <member name="M:WFw.Dtos.Responses.IdNameResponseDataDto`1.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="P:WFw.Dtos.Responses.IdNameResponseDataDto`1.Name">
             <summary>
             名称
@@ -501,6 +506,11 @@
             
             </summary>
             <param name="id"></param>
+        </member>
+        <member name="M:WFw.Dtos.Responses.IdResponseDataDto`1.#ctor">
+            <summary>
+            
+            </summary>
         </member>
         <member name="T:WFw.Dtos.Responses.PagedResponseDataDto`1">
             <summary>
@@ -526,6 +536,11 @@
         <member name="P:WFw.Dtos.Responses.PagedResponseDataDto`1.PageSize">
             <summary>
             页尺寸
+            </summary>
+        </member>
+        <member name="M:WFw.Dtos.Responses.PagedResponseDataDto`1.#ctor">
+            <summary>
+            
             </summary>
         </member>
         <member name="M:WFw.Dtos.Responses.PagedResponseDataDto`1.#ctor(System.Collections.Generic.IEnumerable{`0},System.Int32,System.Int32,System.Int32)">
@@ -1712,6 +1727,46 @@
             <param name="key"></param>
             <param name="value"></param>
         </member>
+        <member name="T:WFw.Identity.UserClaimTypes">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:WFw.Identity.UserClaimTypes.GroupId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:WFw.Identity.UserClaimTypes.PGroupId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:WFw.Identity.UserClaimTypes.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:WFw.Identity.UserClaimTypes.UserId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:WFw.Identity.UserClaimTypes.Phone">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:WFw.Identity.UserClaimTypes.Role">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:WFw.Identity.UserClaimTypes.SId">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:WFw.Identity.WFwCurrentUserEvents">
             <summary>
             
@@ -1991,10 +2046,11 @@
             <param name="logger"></param>
             <returns></returns>
         </member>
-        <member name="M:WFw.Middlewares.WFwErrorHandlingMiddleware.WriteError(Microsoft.AspNetCore.Http.HttpContext,WFw.Results.OperationResultType,System.String,System.Int32)">
+        <member name="M:WFw.Middlewares.WFwErrorHandlingMiddleware.WriteError(System.String,Microsoft.AspNetCore.Http.HttpContext,WFw.Results.OperationResultType,System.String,System.Int32)">
             <summary>
             
             </summary>
+            <param name="requestId"></param>
             <param name="context"></param>
             <param name="type"></param>
             <param name="message"></param>

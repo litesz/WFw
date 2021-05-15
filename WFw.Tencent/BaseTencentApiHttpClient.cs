@@ -47,5 +47,24 @@ namespace WFw.Tencent
             return Post<T>(url, JsonExtensions.Serialize(data));
         }
 
+
+
+        protected async Task<T> Put<T>(string url, string putData) where T : BaseResponse
+        {
+            var response = await Client.PutAsync(url, new StringContent(putData));
+            T output = JsonExtensions.Deserialize<T>(await response.Content.ReadAsStringAsync());
+
+            if (output.Errcode != 0)
+            {
+                throw new TencentHttpException(url, putData, output);
+            }
+            return output;
+        }
+
+        protected Task<T> Put<T>(string url, object data) where T : BaseResponse
+        {
+            return Put<T>(url, JsonExtensions.Serialize(data));
+        }
+
     }
 }

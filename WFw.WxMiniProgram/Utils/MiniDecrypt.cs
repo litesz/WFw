@@ -19,18 +19,18 @@ namespace WFw.WxMiniProgram.Utils
 
             if (string.IsNullOrWhiteSpace(encryptedData.EncryptedData))
             {
-                throw new WFwException(Results.OperationResultType.ParamIsEmpty, "解码内容");
+                throw new WFwException(Results.OperationResultType.ParamIsEmpty, "解码内容", "");
             }
 
             if (string.IsNullOrWhiteSpace(sessionKey))
             {
-                throw new WFwException(Results.OperationResultType.ParamIsEmpty, "解码密钥");
+                throw new WFwException(Results.OperationResultType.ParamIsEmpty, "解码密钥", "");
 
             }
 
             if (string.IsNullOrWhiteSpace(encryptedData.Iv))
             {
-                throw new WFwException(Results.OperationResultType.ParamIsEmpty, "初始向量");
+                throw new WFwException(Results.OperationResultType.ParamIsEmpty, "初始向量", "");
             }
 
             try
@@ -57,7 +57,8 @@ namespace WFw.WxMiniProgram.Utils
             }
             catch
             {
-                throw new WFwException(Results.OperationResultType.IsErr, "解码失败");
+                //throw new WFwException(Results.OperationResultType.IsErr, "解码失败", $"Data={encryptedData.EncryptedData};Iv={encryptedData.Iv};sessionKey:{sessionKey}");
+                throw new WFwException(Results.OperationResultType.IsErr, "解码失败", nameof(encryptedData.EncryptedData), encryptedData.EncryptedData, nameof(encryptedData.Iv), encryptedData.Iv, nameof(sessionKey), sessionKey);
             }
         }
 
