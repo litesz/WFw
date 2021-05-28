@@ -8,7 +8,7 @@
     <PackageLicenseFile></PackageLicenseFile>
     <PackageProjectUrl>https://github.com/litesz/WFw</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Version>1.1.8</Version>
+    <Version>1.1.10</Version>
     <LangVersion>8.0</LangVersion>
   </PropertyGroup>
 

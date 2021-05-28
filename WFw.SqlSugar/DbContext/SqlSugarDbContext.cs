@@ -6,10 +6,11 @@ using WFw.IDbContext;
 
 namespace WFw.DbContext
 {
+
     /// <summary>
     /// 
     /// </summary>
-    public class SqlSugarDbContext : IWDbContext
+    public class SqlSugarDbContext : IWDbContext, ISqlSugarDbContext
     {
         /// <summary>
         /// 

@@ -10,6 +10,7 @@ namespace WFw.DbContext
     /// <typeparam name="T"></typeparam>
     public class SugarWInsertable<T> : IWInsertable<T>
     {
+        public IInsertable<T> Insertable => _insertable;
 
         /// <summary>
         /// 
@@ -97,7 +98,7 @@ namespace WFw.DbContext
             return _insertable.ExecuteReturnBigIdentityAsync();
         }
 
-     
+
     }
 
 }

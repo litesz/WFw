@@ -4,6 +4,16 @@
         <name>WFw.SqlSugar</name>
     </assembly>
     <members>
+        <member name="T:WFw.DbContext.ISqlSugarDbContext">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:WFw.DbContext.ISqlSugarDbContext.Db">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:WFw.DbContext.SqlSugarDbContext">
             <summary>
             
@@ -1140,6 +1150,30 @@
         <member name="M:WFw.ServiceCollectionExtensions.AddWFwSqlSugar(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{WFw.DbContext.DbOptions})">
             <summary>
             
+            </summary>
+            <param name="services"></param>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.ServiceCollectionExtensions.AddWFwSqlSugarDbContext(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            添加sqlsugarContext
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.ServiceCollectionExtensions.AddWFwSqlSugarDbContext(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfigurationSection)">
+            <summary>
+            添加sqlsugarContext
+            </summary>
+            <param name="services"></param>
+            <param name="configurationSection"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.ServiceCollectionExtensions.AddWFwSqlSugarDbContext(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{WFw.DbContext.DbOptions})">
+            <summary>
+            添加sqlsugarContext
             </summary>
             <param name="services"></param>
             <param name="action"></param>

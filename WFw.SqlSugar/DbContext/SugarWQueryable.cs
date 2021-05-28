@@ -15,6 +15,11 @@ namespace WFw.DbContext
     /// <typeparam name="T"></typeparam>
     public class SugarWQueryable<T> : IWQueryable<T>
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        public ISugarQueryable<T> Queryable => _queryable;
+
         private ISugarQueryable<T> _queryable;
 
         /// <summary>
