@@ -38,6 +38,14 @@ namespace WFw
         public WFwException(string param, string logParam = "") : this(OperationResultType.IsErr, param, logParam) { }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="param"></param>
+        /// <param name="logKeyValues"></param>
+        public WFwException(string param, params string[] logKeyValues) : this(OperationResultType.IsErr, param, logKeyValues) { }
+
+
+        /// <summary>
         /// 自定义错误
         /// </summary>
         /// <param name="result">状态</param>
@@ -96,46 +104,5 @@ namespace WFw
             LogParam = sb.ToString();
         }
 
-
-        //public static WFwException New<T>(OperationResultType result, string param, T item) where T : class
-        //{
-
-        //    if (item is string itemStr)
-        //    {
-        //        return new WFwException(result, param, itemStr);
-        //    }
-
-        //    return new WFwException(result, param, item.Serialize());
-        //}
-
-
-        //private List<string> GetProperties<T>(T t)
-        //{
-        //    List<string> ListStr = new List<string>();
-        //    if (t == null)
-        //    {
-        //        return ListStr;
-        //    }
-        //    System.Reflection.PropertyInfo[] properties = t.GetType().GetProperties(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public);
-        //    if (properties.Length <= 0)
-        //    {
-        //        return ListStr;
-        //    }
-        //    foreach (System.Reflection.PropertyInfo item in properties)
-        //    {
-        //        string name = item.Name; //名称
-        //        object value = item.GetValue(t, null);  //值
-
-        //        if (item.PropertyType.IsValueType || item.PropertyType.Name.StartsWith("String"))
-        //        {
-        //            ListStr.Add(name);
-        //        }
-        //        else
-        //        {
-        //            GetProperties(value);
-        //        }
-        //    }
-        //    return ListStr;
-        //}
     }
 }

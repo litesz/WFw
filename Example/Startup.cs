@@ -39,7 +39,7 @@ namespace Example
             //Ìí¼Ósqlsugar
             services.AddWFwSqlSugar(Option =>
             {
-                Option.ConnectionString = "Data Source=D:\\DB.db";
+                Option.ConnectionString = "Data Source=D:\\DB1.db";
                 Option.DatabaseType = "sqlite";
             });
 
@@ -103,6 +103,7 @@ namespace Example
                 d.VisitNum++;
                 var accountService = scope.ServiceProvider.GetService<IAccountService>();
                 accountService.InitTable();
+
 
             });
         }

@@ -1,7 +1,4 @@
-﻿
-
-using Newtonsoft.Json;
-using System;
+﻿using Newtonsoft.Json;
 
 namespace WFw.Results
 {
@@ -40,9 +37,24 @@ namespace WFw.Results
         {
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="data"></param>
         public ApiResult(T data)
         {
-            this.Data = data;
+            Data = data;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="data"></param>
+        public ApiResult(OperationResultType code, T data)
+        {
+            Data = data;
+            Code = code;
         }
     }
 
@@ -51,46 +63,25 @@ namespace WFw.Results
     /// </summary>
     public class ApiResult : ApiResult<object>
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public ApiResult()
         {
         }
 
-        public ApiResult(object data) : base(data) { }
-    }
-
-    /// <summary>
-    /// 统一错误返回值
-    /// </summary>
-    public class ErrApiResult : ApiResult
-    {
-
-
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="exception"></param>
-        public ErrApiResult(WFwException exception)
-        {
-            Code = exception.OperationResult;
-            Msg = exception.Message;
-        }
+        /// <param name="data"></param>
+        public ApiResult(object data) : base(data) { }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="code"></param>
-        /// <param name="msg"></param>
-        public ErrApiResult(OperationResultType code, string msg) : this("", code, msg)
-        {
-
-        }
-
-        public ErrApiResult(string requestId, OperationResultType code, string msg)
-        {
-            this.RequestId = requestId;
-            this.Code = code;
-            this.Msg = msg;
-        }
+        /// <param name="data"></param>
+        public ApiResult(OperationResultType code, object data) : base(code, data) { }
     }
 
 

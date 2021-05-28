@@ -9,6 +9,7 @@ using WFw.Utils;
 using Example.Core.Account.Dtos;
 using WFw.Results;
 using WFw.IDbContext;
+using WFw.DbContext;
 
 namespace Example.Core.Account
 {
@@ -23,6 +24,9 @@ namespace Example.Core.Account
         private readonly IServiceProvider _serviceProvider;
 
         private IRepository<User, int> UserRepository => _serviceProvider.GetService<IRepository<User, int>>();
+        private IRepository<UserAddress, int> UserAddressRepository => _serviceProvider.GetService<IRepository<UserAddress, int>>();
+
+        private ISqlSugarDbContext DbContext=> _serviceProvider.GetService<ISqlSugarDbContext>();
 
         public AccountService(IServiceProvider serviceProvider)
         {
@@ -31,7 +35,15 @@ namespace Example.Core.Account
 
         public void InitTable()
         {
-            UserRepository.Init();
+            //UserRepository.Init();
+            //UserAddressRepository.Init();
+            //UserRepository.Insert(new User("admin", "nick", "123123"));
+            //UserAddressRepository.Insert(new UserAddress { Address = "address1", UserId = 1 });
+            //UserAddressRepository.Insert(new UserAddress { Address = "address2", UserId = 1 });
+
+
+            var list = DbContext.Db.Queryable<User>().Mapper(it => it.Address, it => it.Id, it => it.Address.First().UserId).ToList();
+
         }
 
         public async Task<SignInOutputDto> SignInAsync(SignInInputDto inputDto)
@@ -39,12 +51,12 @@ namespace Example.Core.Account
             var entity = await UserRepository.GetFirstAsync(u => u.UserName == inputDto.UserName);
             if (entity == null)
             {
-                throw new BadRequestException(OperationResultType.IsErr, "用户名或密码");
+                throw new WFw.WFwException(OperationResultType.IsErr, "用户名或密码");
             }
 
             if (!entity.Pwd.Equals(EncryptProvider.GetMd5($"{ inputDto.Password}{entity.PwdSalt}")))
             {
-                throw new BadRequestException(OperationResultType.IsErr, "用户名或密码");
+                throw new WFw.WFwException(OperationResultType.IsErr, "用户名或密码");
             }
 
             return new SignInOutputDto

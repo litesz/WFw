@@ -1,3 +1,11 @@
+### 0.0.7
+ * ApiResult
+	+ 添加 ApiResult(OperationResultType code, T data)
+ * ErrApiResult
+	+ 添加 public ErrApiResult(string msg) : this("", OperationResultType.IsErr, msg)
+ * ExceptionExtensions
+	+ 修改 ToLogMessage 添加默认参数 string spiltStr = "\r\n"
+
 ### 0.0.6
  * JsonExtensions
 	+ 添加 Serialize<T>(this T entity, bool isIgnoreNull)

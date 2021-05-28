@@ -10,11 +10,10 @@ namespace System
     {
         public static string ToLogMessage(this Exception exception)
         {
-
             return ToLogMessage(exception, Guid.NewGuid().ToString("N"));
         }
 
-        public static string ToLogMessage(this Exception exception, string requestId)
+        public static string ToLogMessage(this Exception exception, string requestId, string spiltStr = "\r\n")
         {
             StackTrace st = new StackTrace(exception, true);
 
@@ -35,15 +34,15 @@ namespace System
 
             if (exception is ArgumentException ae)
             {
-                return $"{exception.Message}\r\nrequestId:{requestId}\r\nparamName:{ae.ParamName}\r\nfileName:{fileName}\r\nmethodName:{methodName}\r\nposition:{line}-{col}";
+                return $"{exception.Message}{spiltStr}requestId:{requestId}{spiltStr}paramName:{ae.ParamName}{spiltStr}fileName:{fileName}{spiltStr}methodName:{methodName}{spiltStr}position:{line}-{col}";
             }
             else if (exception is WFwException we)
             {
-                return $"{exception.Message}\r\nrequestId:{requestId}\r\nparamName:{we.LogParam}\r\nfileName:{fileName}\r\nmethodName:{methodName}\r\nposition:{line}-{col}";
+                return $"{exception.Message}{spiltStr}requestId:{requestId}{spiltStr}paramName:{we.LogParam}{spiltStr}fileName:{fileName}{spiltStr}methodName:{methodName}{spiltStr}position:{line}-{col}";
             }
             else
             {
-                return $"{exception.Message}\r\nrequestId:{requestId}\r\nparamName:{exception.Message}\r\nfileName:{fileName}\r\nmethodName:{methodName}\r\nposition:{line}-{col}";
+                return $"{exception.Message}{spiltStr}requestId:{requestId}{spiltStr}paramName:{exception.Message}{spiltStr}fileName:{fileName}{spiltStr}methodName:{methodName}{spiltStr}position:{line}-{col}";
             }
         }
 
