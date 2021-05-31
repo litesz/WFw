@@ -197,6 +197,11 @@
             </summary>
             <typeparam name="T"></typeparam>
         </member>
+        <member name="P:WFw.DbContext.SugarWDeletable`1.Deletable">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="F:WFw.DbContext.SugarWDeletable`1._deletable">
             <summary>
             
@@ -231,6 +236,11 @@
             插入接口
             </summary>
             <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:WFw.DbContext.SugarWInsertable`1.Insertable">
+            <summary>
+            
+            </summary>
         </member>
         <member name="F:WFw.DbContext.SugarWInsertable`1._insertable">
             <summary>
@@ -296,6 +306,11 @@
             查询接口
             </summary>
             <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:WFw.DbContext.SugarWQueryable`1.Queryable">
+            <summary>
+            
+            </summary>
         </member>
         <member name="M:WFw.DbContext.SugarWQueryable`1.#ctor(SqlSugar.SqlSugarClient)">
             <summary>
@@ -534,6 +549,11 @@
             
             </summary>
             <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:WFw.DbContext.SugarWUpdatable`1.Updateable">
+            <summary>
+            
+            </summary>
         </member>
         <member name="F:WFw.DbContext.SugarWUpdatable`1._updateable">
             <summary>
@@ -1126,6 +1146,85 @@
             主键
             </summary>
         </member>
+        <member name="T:WFw.IDbContext.DbContextExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WFw.IDbContext.DbContextExtensions.ToSugarQueryable``1(WFw.IDbContext.IWQueryable{``0})">
+            <summary>
+            获得sqlsugarQueryable
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.IDbContext.DbContextExtensions.ToSugarUpdateable``1(WFw.IDbContext.IWUpdatable{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="updatable"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.IDbContext.DbContextExtensions.ToSugarDeletable``1(WFw.IDbContext.IWDeletable{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="deletable"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.IDbContext.DbContextExtensions.ToSugarDeletable``1(WFw.IDbContext.IWInsertable{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="insertable"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WFw.IDbContext.QueryableExtensions">
+            <summary>
+            查询扩展
+            </summary>
+        </member>
+        <member name="M:WFw.IDbContext.QueryableExtensions.ToPageList``1(SqlSugar.ISugarQueryable{``0},System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="queryable"></param>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.IDbContext.QueryableExtensions.ToPageList``1(SqlSugar.ISugarQueryable{``0},WFw.IDtos.Requests.IPagedResultRequestDto)">
+            <summary>
+            分页结果
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="queryable"></param>
+            <param name="requestDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.IDbContext.QueryableExtensions.ToPageListAsync``1(SqlSugar.ISugarQueryable{``0},System.Int32,System.Int32)">
+            <summary>
+            分页结果
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="queryable"></param>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.IDbContext.QueryableExtensions.ToPageListAsync``1(SqlSugar.ISugarQueryable{``0},WFw.IDtos.Requests.IPagedResultRequestDto)">
+            <summary>
+            分页结果
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="queryable"></param>
+            <param name="requestDto"></param>
+            <returns></returns>
+        </member>
         <member name="T:WFw.ServiceCollectionExtensions">
             <summary>
             
@@ -1150,30 +1249,6 @@
         <member name="M:WFw.ServiceCollectionExtensions.AddWFwSqlSugar(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{WFw.DbContext.DbOptions})">
             <summary>
             
-            </summary>
-            <param name="services"></param>
-            <param name="action"></param>
-            <returns></returns>
-        </member>
-        <member name="M:WFw.ServiceCollectionExtensions.AddWFwSqlSugarDbContext(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
-            <summary>
-            添加sqlsugarContext
-            </summary>
-            <param name="services"></param>
-            <param name="configuration"></param>
-            <returns></returns>
-        </member>
-        <member name="M:WFw.ServiceCollectionExtensions.AddWFwSqlSugarDbContext(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfigurationSection)">
-            <summary>
-            添加sqlsugarContext
-            </summary>
-            <param name="services"></param>
-            <param name="configurationSection"></param>
-            <returns></returns>
-        </member>
-        <member name="M:WFw.ServiceCollectionExtensions.AddWFwSqlSugarDbContext(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{WFw.DbContext.DbOptions})">
-            <summary>
-            添加sqlsugarContext
             </summary>
             <param name="services"></param>
             <param name="action"></param>

@@ -8,6 +8,7 @@
     <PackageReference Include="log4net" Version="2.0.12" />
     <PackageReference Include="Microsoft.Extensions.Logging.Log4Net.AspNetCore" Version="5.0.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+    <PackageReference Include="MSTest.TestFramework" Version="2.2.4" />
     <PackageReference Include="Obfuscar" Version="2.2.26">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

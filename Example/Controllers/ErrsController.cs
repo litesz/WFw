@@ -36,5 +36,12 @@ namespace Example.Controllers
             throw new ArgumentOutOfRangeException("a2324");
         }
 
+        [HttpGet("e2")]
+        public string Exception2()
+        {
+            throw new NotImplementedException();
+        }
+
+
     }
 }

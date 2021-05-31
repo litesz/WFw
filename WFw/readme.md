@@ -1,3 +1,7 @@
+### 1.2.4
+ * WFwErrorHandlingMiddleware
+	修改 requestid 为context.TraceIdentifier
+
 ### 1.2.3
  * UserClaimTypes 新增
  * CurrentUser

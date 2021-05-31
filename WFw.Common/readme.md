@@ -5,6 +5,14 @@
 	+ 添加 public ErrApiResult(string msg) : this("", OperationResultType.IsErr, msg)
  * ExceptionExtensions
 	+ 修改 ToLogMessage 添加默认参数 string spiltStr = "\r\n"
+ * WFwException
+	+ 添加EVENTID
+ * WFwNotExistException
+	+ 添加EVENTID
+ * WFwIsExistException
+	+ 添加EVENTID
+ * WFwIsEmptyException
+	+ 添加EVENTID
 
 ### 0.0.6
  * JsonExtensions

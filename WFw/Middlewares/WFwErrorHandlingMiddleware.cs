@@ -33,7 +33,7 @@ namespace WFw.Middlewares
         /// <returns></returns>
         public async Task Invoke(HttpContext context, ILogger<WFwErrorHandlingMiddleware> logger)
         {
-            string requestId = Guid.NewGuid().ToString("N");
+
             try
             {
                 await _next(context);
@@ -46,8 +46,8 @@ namespace WFw.Middlewares
             //}
             catch (WFwException wf)
             {
-                logger?.LogError(wf.ToLogMessage(requestId));
-                await WriteError(requestId, context, wf.OperationResult, wf.Message);
+                logger?.LogError(wf.ToLogMessage(context.TraceIdentifier));
+                await WriteError(context, wf.OperationResult, wf.Message);
             }
             //catch (ArgumentNullException ae)
             //{
@@ -56,13 +56,13 @@ namespace WFw.Middlewares
             //}
             catch (Exception ex)
             {
-                logger?.LogError(ex.ToLogMessage(requestId));
-                await WriteError(requestId, context, OperationResultType.Unexpected, OperationResultType.Unexpected.GetEnumDescription(), 500);
+                logger?.LogError(ex.ToLineLogMessage(context.TraceIdentifier));
+                await WriteError(context, OperationResultType.Unexpected, OperationResultType.Unexpected.GetEnumDescription(), 500);
             }
 
             if (context.Response.StatusCode == 401)
             {
-                await WriteError(requestId, context, OperationResultType.Unauthorized, OperationResultType.Unauthorized.GetEnumDescription(), 401);
+                await WriteError(context, OperationResultType.Unauthorized, OperationResultType.Unauthorized.GetEnumDescription(), 401);
             }
 
         }
@@ -70,17 +70,16 @@ namespace WFw.Middlewares
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="requestId"></param>
         /// <param name="context"></param>
         /// <param name="type"></param>
         /// <param name="message"></param>
         /// <param name="statusCode"></param>
         /// <returns></returns>
-        private Task WriteError(string requestId, HttpContext context, OperationResultType type, string message, int statusCode = 400)
+        private Task WriteError(HttpContext context, OperationResultType type, string message, int statusCode = 400)
         {
             context.Response.ContentType = "application/json; charset=utf-8";
             context.Response.StatusCode = statusCode;
-            return context.Response.WriteAsync(new ErrApiResult(requestId, type, message).Serialize());
+            return context.Response.WriteAsync(new ErrApiResult(context.TraceIdentifier, type, message).Serialize());
         }
     }
 }

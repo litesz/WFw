@@ -46,5 +46,36 @@ namespace System
             }
         }
 
+        public static string ToLineLogMessage(this Exception exception, string requestId)
+        {
+            StackTrace st = new StackTrace(exception, true);
+
+            //Get the first stack frame
+            StackFrame frame = st.GetFrame(0);
+
+            //Get the file name
+            string fileName = frame.GetFileName();
+
+            //Get the method name
+            //string methodName = frame.GetMethod().Name;
+
+            ////Get the line number from the stack frame
+            int line = frame.GetFileLineNumber();
+
+            if (exception is ArgumentException ae)
+            {
+                return $" {requestId} {exception.TargetSite.DeclaringType.FullName}.{exception.TargetSite.Name} [{line}] [{ae.ParamName}] {ae.Message}";
+            }
+            else if (exception is WFwException we)
+            {
+                return $" {requestId} {exception.TargetSite.DeclaringType.FullName}.{exception.TargetSite.Name} [{line}] [{we.ParamName}] {we.Message}";
+            }
+            else
+            {
+                return $" {requestId} {exception.TargetSite.DeclaringType.FullName}.{exception.TargetSite.Name} [{line}] {exception.Message}";
+
+            }
+
+        }
     }
 }

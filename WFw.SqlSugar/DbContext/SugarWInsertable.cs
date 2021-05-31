@@ -10,6 +10,9 @@ namespace WFw.DbContext
     /// <typeparam name="T"></typeparam>
     public class SugarWInsertable<T> : IWInsertable<T>
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public IInsertable<T> Insertable => _insertable;
 
         /// <summary>

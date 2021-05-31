@@ -10,6 +10,9 @@ namespace WFw.DbContext
     /// <typeparam name="T"></typeparam>
     public class SugarWDeletable<T> : IWDeletable<T> where T : class, new()
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public IDeleteable<T> Deletable => _deletable;
 
         /// <summary>

@@ -1,3 +1,12 @@
+### 1.1.11
+---- 
+#####  功能
+ * 修改ISqlSugarDbContext和IWDbContext为同一实例
+ * 添加 DbContext/Extensions
+ * 添加 DbContext/QueryExtensions
+ * 移除 扩展ToISugarQueryable
+	
+
 ### 1.1.10
 添加 IRepository 扩展ToISugarQueryable
 

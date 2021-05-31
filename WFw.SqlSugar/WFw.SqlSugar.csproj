@@ -8,7 +8,7 @@
     <PackageLicenseFile></PackageLicenseFile>
     <PackageProjectUrl>https://github.com/litesz/WFw</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Version>1.1.10</Version>
+    <Version>1.1.11</Version>
     <LangVersion>8.0</LangVersion>
   </PropertyGroup>
 
@@ -26,6 +26,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\WFw\WFw.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Extensions\Queryable\" />
   </ItemGroup>
 
 </Project>

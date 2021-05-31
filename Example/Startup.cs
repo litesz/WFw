@@ -10,6 +10,9 @@ using WFw;
 using WFw.GeTui.Services;
 using System.Linq;
 using System.Collections.Generic;
+using WFw.DbContext;
+using WFw.IDbContext;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Example
 {
@@ -42,6 +45,8 @@ namespace Example
                 Option.ConnectionString = "Data Source=D:\\DB1.db";
                 Option.DatabaseType = "sqlite";
             });
+
+          
 
             //添加当前用户信息，审计基于此内容
             services.AddWFwCurrentUser();

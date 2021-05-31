@@ -10,7 +10,10 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using WFw.DbContext;
 using WFw.Exceptions;
+using WFw.IDbContext;
 
 namespace Example.Controllers
 {
@@ -19,8 +22,14 @@ namespace Example.Controllers
         private readonly IAccountService _accountService;
         private readonly SingletonConfigModel _singletonConfigModel;
         private readonly ILogger<IdentityController> _logger;
-        public IdentityController(IAccountService accountService, SingletonConfigModel singletonConfigModel, ILogger<IdentityController> logger)
+        public IdentityController(IAccountService accountService, SingletonConfigModel singletonConfigModel, ILogger<IdentityController> logger, ISqlSugarDbContext context, IWDbContext context1)
         {
+
+         
+
+         
+
+            Assert.AreSame(context, context1); // PASSES
 
             _accountService = accountService;
             _singletonConfigModel = singletonConfigModel;

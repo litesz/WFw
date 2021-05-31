@@ -12,7 +12,9 @@ namespace WFw.DbContext
     /// <typeparam name="T"></typeparam>
     public class SugarWUpdatable<T> : IWUpdatable<T> where T : class, new()
     {
-
+        /// <summary>
+        /// 
+        /// </summary>
         public IUpdateable<T> Updateable => _updateable;
 
         /// <summary>
