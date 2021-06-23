@@ -75,5 +75,16 @@ namespace WFw.Dtos.Responses
         public PagedResponseDataDto(IPagedResponseDataDto<TEntity> item) : this(item.Items, item.Total, item.PageIndex, item.PageSize)
         {
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="items"></param>
+        /// <param name="reponse"></param>
+        public PagedResponseDataDto(IEnumerable<TEntity> items, IPagedReponse reponse) : this(items, reponse.Total, reponse.PageIndex, reponse.PageSize)
+        {
+        }
+
+
     }
 }

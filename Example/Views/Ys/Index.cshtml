@@ -1,0 +1,37 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class=" form-group">
+    <button class="btn btn-primary">accessToken</button>
+    <div id="inputAccessToken"></div>
+ 
+</div>
+<div class=" form-group">
+    <button class="btn btn-secondary">url</button>
+    <input type="text" id="inputUrl" />
+
+</div>
+
+
+@section scripts{
+
+    <script>
+        $(".btn-primary").on('click', function () {
+
+            $.getJSON("/ys/GetAccessToken").then(r => $("#inputAccessToken").text(r))
+
+        })
+
+        $(".btn-secondary").on('click', function () {
+
+            $.getJSON("/ys/GetAddress?accessToken=" + $("#inputAccessToken").text()).then(r => $("#inputUrl").val(r))
+
+        })
+    </script>
+
+
+
+}

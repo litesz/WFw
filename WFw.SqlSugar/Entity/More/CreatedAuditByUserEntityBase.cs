@@ -36,6 +36,7 @@ namespace WFw.Entity
         /// <summary>
         /// 创建人
         /// </summary>
+        [SqlSugar.SugarColumn(IsNullable = true)]
         public string CreatedUserId { get; set; }
     }
 

@@ -572,6 +572,13 @@
             </summary>
             <param name="item"></param>
         </member>
+        <member name="M:WFw.Dtos.Responses.PagedResponseDataDto`1.#ctor(System.Collections.Generic.IEnumerable{`0},WFw.IDtos.Responses.IPagedReponse)">
+            <summary>
+            
+            </summary>
+            <param name="items"></param>
+            <param name="reponse"></param>
+        </member>
         <member name="T:WFw.IDbContext.Extensions">
             <summary>
             
@@ -1846,28 +1853,33 @@
             返回值数据对象dto标注
             </summary>
         </member>
+        <member name="T:WFw.IDtos.Responses.IPagedReponse">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:WFw.IDtos.Responses.IPagedReponse.Total">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:WFw.IDtos.Responses.IPagedReponse.PageIndex">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:WFw.IDtos.Responses.IPagedReponse.PageSize">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:WFw.IDtos.Responses.IPagedResponseDataDto`1">
             <summary>
             分页查询数据
             </summary>
             <typeparam name="TEntity"></typeparam>
         </member>
-        <member name="P:WFw.IDtos.Responses.IPagedResponseDataDto`1.Total">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="P:WFw.IDtos.Responses.IPagedResponseDataDto`1.Items">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:WFw.IDtos.Responses.IPagedResponseDataDto`1.PageIndex">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:WFw.IDtos.Responses.IPagedResponseDataDto`1.PageSize">
             <summary>
             
             </summary>

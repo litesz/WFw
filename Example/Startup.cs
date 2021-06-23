@@ -16,7 +16,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Example
 {
- 
+
 
 
     public class Startup
@@ -33,7 +33,7 @@ namespace Example
         public void ConfigureServices(IServiceCollection services)
         {
 
-        
+
 
 
 
@@ -46,11 +46,11 @@ namespace Example
                 Option.DatabaseType = "sqlite";
             });
 
-          
+
 
             //添加当前用户信息，审计基于此内容
             services.AddWFwCurrentUser();
-
+            services.AddYsApiClient(Configuration);
             services.AddTencentStsClient(Configuration);
             //services.AddSmsChineseClient(Configuration);
             services.AddTencentSmsClient(Configuration);

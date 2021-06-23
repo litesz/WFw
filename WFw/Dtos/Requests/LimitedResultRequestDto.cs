@@ -19,9 +19,9 @@ namespace WFw.Dtos.Requests
         {
             get
             {
-                if (pageSize > 1_000)
+                if (pageSize > 1_00)
                 {
-                    return 1_000;
+                    return 1_00;
                 }
                 else if (pageSize < 0)
                 {

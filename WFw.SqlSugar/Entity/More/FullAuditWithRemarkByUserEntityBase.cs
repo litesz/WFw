@@ -29,7 +29,7 @@ namespace WFw.Entity
     /// <summary>
     /// 审计，备注
     /// </summary>
-    public abstract class FullAuditWithRemarkByUserEntityBase : FullAduitByUserEntityBase, IRemark
+    public abstract class FullAuditWithRemarkByUserEntityBase : FullAuditByUserEntityBase, IRemark
     {
         /// <summary>
         /// 备注

@@ -1,3 +1,18 @@
+### 1.2.5
+---- 
+#####  功能
+ * LimitedResultRequestDto
+	+ 修改maxPageSize为100
+ * PagedResponseDataDto
+	+ 添加构造函数
+ * WFwErrorHandlingMiddleware
+	+ wfw为Unauthorized时，返回 StatusCode 401
+
+#####  BUG
+ * WFwErrorHandlingMiddleware
+	+ 修复记录BUG
+
+
 ### 1.2.4
  * WFwErrorHandlingMiddleware
 	修改 requestid 为context.TraceIdentifier

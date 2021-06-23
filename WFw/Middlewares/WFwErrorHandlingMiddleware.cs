@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Diagnostics;
 using System.Threading.Tasks;
-using WFw.Exceptions;
 using WFw.Results;
 
 
@@ -37,33 +35,23 @@ namespace WFw.Middlewares
             try
             {
                 await _next(context);
+                if (context.Response.StatusCode == 401)
+                {
+                    await WriteError(context, OperationResultType.Unauthorized, OperationResultType.Unauthorized.GetEnumDescription(), 401);
+                }
             }
-
-            //catch (BadRequestException bad)
-            //{
-            //    logger?.LogError(bad.ToLogMessage(requestId));
-            //    await WriteError(requestId, context, bad.OperationResult, bad.ParamName);
-            //}
             catch (WFwException wf)
             {
                 logger?.LogError(wf.ToLogMessage(context.TraceIdentifier));
-                await WriteError(context, wf.OperationResult, wf.Message);
+                await WriteError(context, wf.OperationResult, wf.Message, wf.OperationResult == OperationResultType.Unauthorized ? 401 : 400);
             }
-            //catch (ArgumentNullException ae)
-            //{
-            //    logger?.LogError(ae.ToString());
-            //    await WriteError(context, OperationResultType.IsEmpty, ae.ParamName);
-            //}
             catch (Exception ex)
             {
-                logger?.LogError(ex.ToLineLogMessage(context.TraceIdentifier));
+                logger?.LogError(ex.ToLogMessage(context.TraceIdentifier));
                 await WriteError(context, OperationResultType.Unexpected, OperationResultType.Unexpected.GetEnumDescription(), 500);
             }
 
-            if (context.Response.StatusCode == 401)
-            {
-                await WriteError(context, OperationResultType.Unauthorized, OperationResultType.Unauthorized.GetEnumDescription(), 401);
-            }
+
 
         }
 

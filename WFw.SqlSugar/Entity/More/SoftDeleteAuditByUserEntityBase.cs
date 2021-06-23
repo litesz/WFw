@@ -10,6 +10,7 @@ namespace WFw.Entity
         /// <summary>
         /// 
         /// </summary>
+        [SqlSugar.SugarColumn(IsNullable = true)]
         public string DeletedUserId { get; set; }
 
     }

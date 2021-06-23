@@ -37,11 +37,12 @@ namespace WFw.Entity
     /// <summary>
     /// 全审计
     /// </summary>
-    public abstract class FullAduitByUserEntityBase : OnlyNewAuditByUserEntityBase, IFullAuditByUser<string>
+    public abstract class FullAuditByUserEntityBase : OnlyNewAuditByUserEntityBase, IFullAuditByUser<string>
     {
         /// <summary>
         /// 删除用户
         /// </summary>
+        [SqlSugar.SugarColumn(IsNullable = true)]
         public string DeletedUserId { get; set; }
         /// <summary>
         /// 删除标志

@@ -22,6 +22,7 @@
     <ProjectReference Include="..\WFw.SqlSugar\WFw.SqlSugar.csproj" />
     <ProjectReference Include="..\WFw.TencentCloud\WFw.TencentCloud.csproj" />
     <ProjectReference Include="..\WFw.Utils\WFw.Utils.csproj" />
+    <ProjectReference Include="..\WFw.Ys\WFw.Ys.csproj" />
     <ProjectReference Include="..\WFw\WFw.csproj" />
   </ItemGroup>
 

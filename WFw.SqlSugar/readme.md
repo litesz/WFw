@@ -1,3 +1,13 @@
+### 1.1.13
+---- 
+#####  BUG
+ * 修复主键类型为string时，updateUserId和deleteUserId不能为空的错误
+
+### 1.1.12
+---- 
+#####  BUG
+ * 修复FullAuditByUserEntityBase 名称
+
 ### 1.1.11
 ---- 
 #####  功能

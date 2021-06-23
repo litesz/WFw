@@ -726,22 +726,22 @@
             </summary>
             <typeparam name="TPk"></typeparam>
         </member>
-        <member name="T:WFw.Entity.FullAduitByUserEntityBase">
+        <member name="T:WFw.Entity.FullAuditByUserEntityBase">
             <summary>
             全审计
             </summary>
         </member>
-        <member name="P:WFw.Entity.FullAduitByUserEntityBase.DeletedUserId">
+        <member name="P:WFw.Entity.FullAuditByUserEntityBase.DeletedUserId">
             <summary>
             删除用户
             </summary>
         </member>
-        <member name="P:WFw.Entity.FullAduitByUserEntityBase.IsDeleted">
+        <member name="P:WFw.Entity.FullAuditByUserEntityBase.IsDeleted">
             <summary>
             删除标志
             </summary>
         </member>
-        <member name="P:WFw.Entity.FullAduitByUserEntityBase.DeletedTime">
+        <member name="P:WFw.Entity.FullAuditByUserEntityBase.DeletedTime">
             <summary>
             删除时间
             </summary>
