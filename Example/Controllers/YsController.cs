@@ -29,12 +29,32 @@ namespace Example.Controllers
 
         public async Task<string> GetAddress(string accessToken)
         {
-            var r = await apiClient.GetAddress(new WFw.Ys.Dtos.GetAddresRequest
+            accessToken = "at.c44z5jxqbggfun9s1ccah76f7bjt0d1u-3nqagccksn-13kxqpx-jl3jvw6oo";
+            //var r = await apiClient.GetAddress(new WFw.Ys.Dtos.GetAddresRequest
+            //{
+            //    AccessToken = accessToken,
+            //    DeviceSerial = "247519475"
+            //});
+
+
+            //var r1 = await apiClient.UpdateName(new WFw.Ys.Dtos.UpdateNameRequestDto
+            //{
+
+            //    AccessToken = accessToken,
+            //    DeviceSerial = "C82517761",
+            //    DeviceName = "办公室测试"
+            //});
+
+
+            var r1 = await apiClient.DecryptCamera(new WFw.Ys.Dtos.DecryptCameraRequestDto
             {
                 AccessToken = accessToken,
-                DeviceSerial = "247519596"
+                DeviceSerial = "C82517761",
+                ValidateCode = "TBOHLM"
             });
-            return r.Data.Url;
+
+            return "";
+            //return r.Data.Url;
         }
     }
 }
