@@ -16,6 +16,8 @@ namespace WFw.Ys
         Task<(bool isOk, string msg)> DecryptCamera(DecryptCameraRequestDto requestDto);
         Task<(bool isOk, string msg)> EncryptCamera(EncryptCameraRequestDto requestDto);
         Task<(bool isOk, string msg)> UpdateName(UpdateNameRequestDto requestDto);
+
+        Task<(bool isOk, string msg)> AddDevice(AddDeviceRequestDto requestDto);
     }
 
 
@@ -118,6 +120,24 @@ namespace WFw.Ys
             }
             var r = JsonExtensions.Deserialize<ApiClientResult>(await response.Content.ReadAsStringAsync());
             if (r.IsSuccess)
+            {
+                return (true, "");
+            }
+            return (false, r.Msg);
+        }
+
+
+        public async Task<(bool isOk, string msg)> AddDevice(AddDeviceRequestDto requestDto)
+        {
+
+            var response = await Client.PostAsync("/api/lapp/device/add", GenerateStringContent(requestDto));
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new WFwException("添加摄像头网络请求失败", "响应", await response.Content.ReadAsStringAsync());
+            }
+            var r = JsonExtensions.Deserialize<ApiClientResult>(await response.Content.ReadAsStringAsync());
+            if (r.IsSuccess || r.Code == 20017)
             {
                 return (true, "");
             }

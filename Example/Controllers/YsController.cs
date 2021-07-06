@@ -46,13 +46,18 @@ namespace Example.Controllers
             //});
 
 
-            var r1 = await apiClient.DecryptCamera(new WFw.Ys.Dtos.DecryptCameraRequestDto
+            //var r1 = await apiClient.DecryptCamera(new WFw.Ys.Dtos.DecryptCameraRequestDto
+            //{
+            //    AccessToken = accessToken,
+            //    DeviceSerial = "C82517761",
+            //    ValidateCode = "TBOHLM"
+            //});
+            var xxx = await apiClient.AddDevice(new WFw.Ys.Dtos.AddDeviceRequestDto
             {
                 AccessToken = accessToken,
                 DeviceSerial = "C82517761",
                 ValidateCode = "TBOHLM"
             });
-
             return "";
             //return r.Data.Url;
         }

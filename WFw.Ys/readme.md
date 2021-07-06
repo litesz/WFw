@@ -1,3 +1,5 @@
+### 0.0.3
+Ìí¼Ó AddDevice
 
 ### 0.0.2
 Ìí¼Ó DecryptCamera 
