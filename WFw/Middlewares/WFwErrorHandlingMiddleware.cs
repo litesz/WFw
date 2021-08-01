@@ -12,7 +12,7 @@ namespace WFw.Middlewares
     /// </summary>
     public class WFwErrorHandlingMiddleware
     {
-        private readonly RequestDelegate _next;
+        readonly RequestDelegate _next;
 
         /// <summary>
         /// 
@@ -34,11 +34,22 @@ namespace WFw.Middlewares
 
             try
             {
+                if (string.IsNullOrWhiteSpace(context.Request.Headers[HttpHeaderConst.RequestId]))
+                {
+                    context.Request.Headers.Add(HttpHeaderConst.RequestId, context.TraceIdentifier);
+                }
+                if (!context.Response.HasStarted)
+                {
+                    context.Response.Headers.Add(HttpHeaderConst.RequestId, context.TraceIdentifier);
+                }
+
                 await _next(context);
+
                 if (context.Response.StatusCode == 401)
                 {
                     await WriteError(context, OperationResultType.Unauthorized, OperationResultType.Unauthorized.GetEnumDescription(), 401);
                 }
+
             }
             catch (WFwException wf)
             {
@@ -67,7 +78,7 @@ namespace WFw.Middlewares
         {
             context.Response.ContentType = "application/json; charset=utf-8";
             context.Response.StatusCode = statusCode;
-            return context.Response.WriteAsync(new ErrApiResult(context.TraceIdentifier, type, message).Serialize());
+            return context.Response.WriteAsync(new ErrApiResult(type, message).Serialize());
         }
     }
 }

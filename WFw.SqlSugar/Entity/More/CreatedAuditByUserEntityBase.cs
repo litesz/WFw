@@ -1,4 +1,5 @@
 ﻿using WFw.IEntity.IAudit;
+using SqlSugar;
 
 namespace WFw.Entity
 {
@@ -36,7 +37,7 @@ namespace WFw.Entity
         /// <summary>
         /// 创建人
         /// </summary>
-        [SqlSugar.SugarColumn(IsNullable = true)]
+        [SugarColumn(IsNullable = true)]
         public string CreatedUserId { get; set; }
     }
 

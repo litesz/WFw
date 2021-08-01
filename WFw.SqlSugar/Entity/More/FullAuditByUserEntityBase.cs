@@ -1,5 +1,6 @@
 ﻿using System;
 using WFw.IEntity;
+using SqlSugar;
 
 namespace WFw.Entity
 {
@@ -42,7 +43,7 @@ namespace WFw.Entity
         /// <summary>
         /// 删除用户
         /// </summary>
-        [SqlSugar.SugarColumn(IsNullable = true)]
+        [SugarColumn(IsNullable = true)]
         public string DeletedUserId { get; set; }
         /// <summary>
         /// 删除标志

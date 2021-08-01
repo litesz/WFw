@@ -81,7 +81,7 @@ namespace WFw.Dtos.Responses
         /// </summary>
         /// <param name="items"></param>
         /// <param name="reponse"></param>
-        public PagedResponseDataDto(IEnumerable<TEntity> items, IPagedReponse reponse) : this(items, reponse.Total, reponse.PageIndex, reponse.PageSize)
+        public PagedResponseDataDto(IEnumerable<TEntity> items, IPagedReponseDto reponse) : this(items, reponse.Total, reponse.PageIndex, reponse.PageSize)
         {
         }
 

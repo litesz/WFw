@@ -1,5 +1,23 @@
+### 1.2.6
+ * 拆分接口 ISoftDeletableFlag
+ * DefaultRepository
+	+ Init 接口可初始化数据
+ * IWQueryable
+	+ OrderByDescending
+	+ OrderByDescendingIF
+ * 新增 ConfigureModelStateResponse
+ * 新增 HttpHeaderConst
+ * 新增 WFwApiResult
+ * 新增 WFwErrApiResult
+ * 新增 RequestDto
+ * WFwErrorHandlingMiddleware 
+	+ request header添加 x-wfw-requestId
+	+ response header添加 x-wfw-requestId
+ * IRequestDto
+	+   (bool isOk, string errMsg) ValidateParams()
+
 ### 1.2.5
----- 
+
 #####  功能
  * LimitedResultRequestDto
 	+ 修改maxPageSize为100

@@ -55,7 +55,7 @@ namespace WFw.IDbContext
         /// <param name="expression"></param>
         /// <param name="isAsc"></param>
         /// <returns></returns>
-        IWQueryable<T> OrderBy(Expression<Func<T, object>> expression, bool isAsc = true);
+        IWQueryable<T> OrderBy(Expression<Func<T, object>> expression, bool isAsc);
 
         /// <summary>
         /// 排序
@@ -64,7 +64,38 @@ namespace WFw.IDbContext
         /// <param name="expression"></param>
         /// <param name="isAsc"></param>
         /// <returns></returns>
-        IWQueryable<T> OrderByIF(bool isOrderBy, Expression<Func<T, object>> expression, bool isAsc = true);
+        IWQueryable<T> OrderByIF(bool isOrderBy, Expression<Func<T, object>> expression, bool isAsc );
+
+        /// <summary>
+        /// 排序
+        /// </summary>
+        /// <param name="expression"></param>
+        /// <returns></returns>
+        IWQueryable<T> OrderBy(Expression<Func<T, object>> expression);
+
+        /// <summary>
+        /// 排序
+        /// </summary>
+        /// <param name="isOrderBy"></param>
+        /// <param name="expression"></param>
+        /// <returns></returns>
+        IWQueryable<T> OrderByIF(bool isOrderBy, Expression<Func<T, object>> expression);
+
+        /// <summary>
+        /// 倒叙排列
+        /// </summary>
+        /// <param name="expression"></param>
+        /// <returns></returns>
+        IWQueryable<T> OrderByDescending(Expression<Func<T, object>> expression);
+
+        /// <summary>
+        /// 排序
+        /// </summary>
+        /// <param name="isOrderBy"></param>
+        /// <param name="expression"></param>
+        /// <returns></returns>
+        IWQueryable<T> OrderByDescendingIF(bool isOrderBy, Expression<Func<T, object>> expression);
+
 
         /// <summary>
         /// 跳过

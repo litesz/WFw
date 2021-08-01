@@ -24,9 +24,9 @@ namespace Example.Core.Account
         private readonly IServiceProvider _serviceProvider;
 
         private IRepository<User, int> UserRepository => _serviceProvider.GetService<IRepository<User, int>>();
-        private IRepository<UserAddress, int> UserAddressRepository => _serviceProvider.GetService<IRepository<UserAddress, int>>();
+        private IRepository<UserAddress, short> UserAddressRepository => _serviceProvider.GetService<IRepository<UserAddress, short>>();
 
-        private ISqlSugarDbContext DbContext=> _serviceProvider.GetService<ISqlSugarDbContext>();
+        private ISqlSugarDbContext DbContext => _serviceProvider.GetService<ISqlSugarDbContext>();
 
         public AccountService(IServiceProvider serviceProvider)
         {
@@ -41,8 +41,8 @@ namespace Example.Core.Account
             //UserAddressRepository.Insert(new UserAddress { Address = "address1", UserId = 1 });
             //UserAddressRepository.Insert(new UserAddress { Address = "address2", UserId = 1 });
 
-
-            var list = DbContext.Db.Queryable<User>().Mapper(it => it.Address, it => it.Id, it => it.Address.First().UserId).ToList();
+            UserAddressRepository.Init(new UserAddress { Address = "aaa", UserId = 2 });
+            // var list = DbContext.Db.Queryable<User>().Mapper(it => it.Address, it => it.Id, it => it.Address.First().UserId).ToList();
 
         }
 
@@ -58,7 +58,8 @@ namespace Example.Core.Account
             {
                 throw new WFw.WFwException(OperationResultType.IsErr, "用户名或密码");
             }
-
+            entity.Remark = "a";
+            await UserRepository.UpdateAsync(entity);
             return new SignInOutputDto
             {
                 Id = entity.Id,

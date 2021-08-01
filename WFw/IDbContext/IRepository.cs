@@ -11,7 +11,7 @@ namespace WFw.IDbContext
     /// 数据库上下文
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
-    public partial interface IRepository<TEntity> : IRepository<TEntity, int> where TEntity : class, IEntity<int>, new()
+    public interface IRepository<TEntity> : IRepository<TEntity, int> where TEntity : class, IEntity<int>, new()
     {
 
     }
@@ -22,7 +22,7 @@ namespace WFw.IDbContext
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
     /// <typeparam name="TPrimary"></typeparam>
-    public partial interface IRepository<TEntity, TPrimary> where TEntity : class, IEntity<TPrimary>, new()
+    public interface IRepository<TEntity, TPrimary> where TEntity : class, IEntity<TPrimary>, new()
     {
         /// <summary>
         /// 初始化表格
@@ -167,7 +167,7 @@ namespace WFw.IDbContext
         /// </summary>
         IWQueryable<TEntity> QueryNoFlag { get; }
 
-     
+
 
         /// <summary>
         /// 查询

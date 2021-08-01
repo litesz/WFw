@@ -1,5 +1,6 @@
 ﻿using System;
 using WFw.IEntity.IAudit;
+using SqlSugar;
 
 namespace WFw.Entity
 {
@@ -38,7 +39,7 @@ namespace WFw.Entity
         /// <summary>
         /// 更新人
         /// </summary>
-        [SqlSugar.SugarColumn(IsNullable = true)]
+        [SugarColumn(IsNullable = true)]
         public string UpdatedUserId { get; set; }
 
         /// <summary>

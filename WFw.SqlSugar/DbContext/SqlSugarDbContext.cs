@@ -3,6 +3,7 @@ using Microsoft.Extensions.Options;
 using SqlSugar;
 using System;
 using WFw.IDbContext;
+using WFw.SqlSugar.DbContext.Config;
 
 namespace WFw.DbContext
 {
@@ -37,6 +38,7 @@ namespace WFw.DbContext
                 InitKeyType = dbOptions.InitKeyType == "attribute" ? InitKeyType.Attribute : InitKeyType.SystemTable,
                 IsAutoCloseConnection = dbOptions.IsAutoCloseConnection,
                 IsShardSameThread = dbOptions.IsShardSameThread,
+                ConfigureExternalServices = new WfwConfigureExternalServices(dbOptions)
             });
 
         }

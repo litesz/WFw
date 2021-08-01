@@ -5,7 +5,7 @@ namespace WFw.Dtos.Requests
     /// <summary>
     /// 限制查询大小
     /// </summary>
-    public class LimitedResultRequestDto : ILimitedResultRequestDto, IRequestDto
+    public class LimitedResultRequestDto : RequestDto, ILimitedResultRequestDto, IRequestDto
     {
         /// <summary>
         /// 

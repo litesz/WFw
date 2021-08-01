@@ -35,7 +35,7 @@
  
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="CD $(TargetDir)&#xD;&#xA;&quot;$(Obfuscar)&quot; obfuscar.xml" />
+    <!--<Exec Command="CD $(TargetDir)&#xD;&#xA;&quot;$(Obfuscar)&quot; obfuscar.xml" />-->
   </Target>
 
 </Project>

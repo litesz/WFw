@@ -3,7 +3,7 @@
     /// <summary>
     /// 统一错误返回值
     /// </summary>
-    public class ErrApiResult : ApiResult
+    public class ErrApiResult : ApiResultBase, IErrApirResult
     {
         /// <summary>
         /// 
@@ -19,7 +19,7 @@
         /// 
         /// </summary>
         /// <param name="msg"></param>
-        public ErrApiResult(string msg) : this("", OperationResultType.IsErr, msg)
+        public ErrApiResult(string msg) : this(OperationResultType.IsErr, msg)
         {
         }
 
@@ -28,23 +28,15 @@
         /// </summary>
         /// <param name="code"></param>
         /// <param name="msg"></param>
-        public ErrApiResult(OperationResultType code, string msg) : this("", code, msg)
+        public ErrApiResult(OperationResultType code, string msg)
         {
-
-        }
-
-
-
-        public ErrApiResult(string requestId, OperationResultType code, string msg)
-        {
-            RequestId = requestId;
             Code = code;
             Msg = msg;
         }
+
+      
+
     }
-
-
-
 
 
 

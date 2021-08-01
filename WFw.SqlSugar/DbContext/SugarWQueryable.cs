@@ -172,7 +172,7 @@ namespace WFw.DbContext
         /// <param name="expression"></param>
         /// <param name="isAsc"></param>
         /// <returns></returns>
-        public IWQueryable<T> OrderBy(Expression<Func<T, object>> expression, bool isAsc = true)
+        public IWQueryable<T> OrderBy(Expression<Func<T, object>> expression, bool isAsc )
         {
             _queryable = _queryable.OrderBy(expression, isAsc ? OrderByType.Asc : OrderByType.Desc);
             return this;
@@ -185,7 +185,7 @@ namespace WFw.DbContext
         /// <param name="expression"></param>
         /// <param name="isAsc"></param>
         /// <returns></returns>
-        public IWQueryable<T> OrderByIF(bool isOrderBy, Expression<Func<T, object>> expression, bool isAsc = true)
+        public IWQueryable<T> OrderByIF(bool isOrderBy, Expression<Func<T, object>> expression, bool isAsc )
         {
             if (isOrderBy)
             {
@@ -193,6 +193,61 @@ namespace WFw.DbContext
             }
             return this;
         }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="expression"></param>
+        /// <returns></returns>
+        public IWQueryable<T> OrderBy(Expression<Func<T, object>> expression)
+        {
+            _queryable = _queryable.OrderBy(expression, OrderByType.Asc);
+            return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="isOrderBy"></param>
+        /// <param name="expression"></param>
+        /// <returns></returns>
+        public IWQueryable<T> OrderByIF(bool isOrderBy, Expression<Func<T, object>> expression)
+        {
+            if (isOrderBy)
+            {
+                _queryable = _queryable.OrderBy(expression, OrderByType.Asc);
+            }
+            return this;
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="expression"></param>
+        /// <returns></returns>
+        public IWQueryable<T> OrderByDescending(Expression<Func<T, object>> expression)
+        {
+            _queryable = _queryable.OrderBy(expression, OrderByType.Desc);
+            return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="isOrderBy"></param>
+        /// <param name="expression"></param>
+        /// <returns></returns>
+        public IWQueryable<T> OrderByDescendingIF(bool isOrderBy, Expression<Func<T, object>> expression)
+        {
+            if (isOrderBy)
+            {
+                _queryable = _queryable.OrderBy(expression, OrderByType.Desc);
+            }
+            return this;
+        }
+
 
         /// <summary>
         /// 

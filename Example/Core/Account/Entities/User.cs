@@ -29,11 +29,14 @@ namespace Example.Core.Account.Entities
     }
 
     [SqlSugar.SugarTable("Account_User_Address")]
-    public class UserAddress : IncrFullAuditByUserEntityBase<int>
+    public class UserAddress : IncrFullAuditByUserEntityBase<short>
     {
+      
         public string Address { get; set; }
         public int UserId { get; set; }
 
+      
+        public decimal Rating { get; set; }
     }
 
 

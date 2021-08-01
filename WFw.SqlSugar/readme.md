@@ -1,5 +1,7 @@
 ### 1.1.13
 ---- 
+#####  功能
+ * 适配部分efcore特性标签
 #####  BUG
  * 修复主键类型为string时，updateUserId和deleteUserId不能为空的错误
 

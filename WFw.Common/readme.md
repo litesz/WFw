@@ -1,3 +1,22 @@
+### 0.0.8
+ * ErrApiResult
+	+ 基类改为ApiResultBase
+	- 删除RequestId
+ 新增 ModelStateErrApiResult
+ 新增 IApiResult
+ 新增 IErrApirResult 
+ 新增 ApiResultBase
+ 新增 AutoExtensions
+ 新增 FormatExtensions
+ 新增 RandomExtensions
+ 新增 StringExtensions
+ 新增 TimeStampExtenisons
+ 新增 ValidateExtenisons
+ 新增 EncryptProvider
+ 新增 IdProvider
+ 新增 StringEncryptProvider
+ 
+
 ### 0.0.7
  * ApiResult
 	+ 添加 ApiResult(OperationResultType code, T data)

@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using WFw.Identity;
 
@@ -21,6 +23,21 @@ namespace WFw
             return services;
         }
 
+
+        /// <summary>
+        /// 统一模型验证返回值
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="configuration"></param>
+        /// <returns></returns>
+        public static IServiceCollection ConfigureModelStateResponse(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.Configure<ApiBehaviorOptions>(options =>
+            {
+                options.InvalidModelStateResponseFactory = (context) => context.ToWFwErrApiResult();
+            });
+            return services;
+        }
 
 
     }

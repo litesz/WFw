@@ -10,11 +10,12 @@ using WFw.IEntity.IAudit;
 
 namespace WFw.DbContext
 {
+
     /// <summary>
     /// 默认仓储
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
-    public partial class DefaultRepository<TEntity> : DefaultRepository<TEntity, int>, IRepository<TEntity> where TEntity : class, IEntity<int>, new()
+    public class DefaultRepository<TEntity> : DefaultRepository<TEntity, int>, IRepository<TEntity> where TEntity : class, IEntity<int>, new()
     {
         /// <summary>
         /// 
@@ -30,34 +31,14 @@ namespace WFw.DbContext
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
     /// <typeparam name="TPrimary"></typeparam>
-    public partial class DefaultRepository<TEntity, TPrimary> : IRepository<TEntity, TPrimary> where TEntity : class, IEntity<TPrimary>, new()
+    public class DefaultRepository<TEntity, TPrimary> : IRepository<TEntity, TPrimary> where TEntity : class, IEntity<TPrimary>, new()
     {
 
-        private static readonly bool IsAddAudited;
-        private static readonly bool IsAddAuditedByUser;
-        private static readonly bool IsSoftDelete;
-        private static readonly bool IsSoftDeleteByUser;
-        private static readonly bool IsUpdateAudited;
-        private static readonly bool IsUpdateAuditedByUser;
+        IAuditHandler<TEntity, TPrimary> AuditHandler => _serviceProvider.GetService<IAuditHandler<TEntity, TPrimary>>();
 
-        static DefaultRepository()
-        {
-            var type = typeof(TEntity);
+        IWDbContext DbContext => _serviceProvider.GetService<IWDbContext>();
 
-            IsSoftDelete = typeof(ISoftDeletable).IsAssignableFrom(type);
-            IsSoftDeleteByUser = typeof(ISoftDeletableByUser<TPrimary>).IsAssignableFrom(type);
-
-            IsUpdateAudited = typeof(IUpdatedAudited).IsAssignableFrom(type);
-            IsUpdateAuditedByUser = typeof(IUpdatedAuditedByUser<TPrimary>).IsAssignableFrom(type);
-
-            IsAddAudited = typeof(ICreatedAudited).IsAssignableFrom(type);
-            IsAddAuditedByUser = typeof(ICreatedAuditedByUser<TPrimary>).IsAssignableFrom(type);
-        }
-
-
-        private ICurrentUser User => _serviceProvider.GetService<ICurrentUser>();
-        private IWDbContext DbContext => _serviceProvider.GetService<IWDbContext>();
-        private readonly IServiceProvider _serviceProvider;
+        readonly IServiceProvider _serviceProvider;
 
         /// <summary>
         /// 
@@ -74,22 +55,17 @@ namespace WFw.DbContext
         /// </summary>
         public IWQueryable<TEntity> Query => DbContext
             .Queryable<TEntity>()
-            .WhereIF(IsSoftDelete, $"({nameof(ISoftDeletable.IsDeleted)}=0)");
+            .WhereIF(AuditHandler.IsSoftDelete, $"({nameof(ISoftDeletable.IsDeleted)}=0)");
 
         /// <summary>
         /// 查询(包含软删除)
         /// </summary>
         public IWQueryable<TEntity> QueryNoFlag => DbContext.Queryable<TEntity>();
 
-
-
         /// <summary>
         /// ado
         /// </summary>
         public IAdo Ado => DbContext.Ado;
-
-
-        
 
         /// <summary>
         /// 
@@ -146,7 +122,7 @@ namespace WFw.DbContext
         /// <returns></returns>
         public int Delete(params TEntity[] entities)
         {
-            if (DeleteEntitiesAudit(entities))
+            if (AuditHandler.DeleteEntitiesAudit(entities))
             {
                 dynamic[] ids = new dynamic[entities.Length];
                 for (int i = 0; i < entities.Length; i++)
@@ -156,7 +132,7 @@ namespace WFw.DbContext
                 return DbContext.Deletable<TEntity>(ids).ExecuteCommand();
             }
 
-            return    DbContext.Updatable(entities).ExecuteCommand();
+            return DbContext.Updatable(entities).ExecuteCommand();
         }
         /// <summary>
         /// 
@@ -175,7 +151,7 @@ namespace WFw.DbContext
         /// <returns></returns>
         public Task<int> DeleteAsync(params TEntity[] entities)
         {
-            if (DeleteEntitiesAudit(entities))
+            if (AuditHandler.DeleteEntitiesAudit(entities))
             {
                 dynamic[] ids = new dynamic[entities.Length];
                 for (int i = 0; i < entities.Length; i++)
@@ -258,6 +234,10 @@ namespace WFw.DbContext
         public void Init(params TEntity[] initData)
         {
             DbContext.Init<TEntity>(initData);
+            if (initData != null && Query.First() == null)
+            {
+                DbContext.Insertable<TEntity>(initData).ExecuteCommand();
+            }
         }
         /// <summary>
         /// 
@@ -266,7 +246,7 @@ namespace WFw.DbContext
         /// <returns></returns>
         public bool Insert(params TEntity[] entities)
         {
-            InsertEntitiesAudit(entities);
+            AuditHandler.InsertEntitiesAudit(entities);
             return DbContext.Insertable<TEntity>(entities).ExecuteCommand() == entities.Length;
         }
         /// <summary>
@@ -276,7 +256,7 @@ namespace WFw.DbContext
         /// <returns></returns>
         public async Task<bool> InsertAsync(params TEntity[] entities)
         {
-            InsertEntitiesAudit(entities);
+            AuditHandler.InsertEntitiesAudit(entities);
             return await DbContext.Insertable<TEntity>(entities).ExecuteCommandAsync() == entities.Length;
         }
         /// <summary>
@@ -286,7 +266,7 @@ namespace WFw.DbContext
         /// <returns></returns>
         public TPrimary InsertReturnId(TEntity entity)
         {
-            InsertEntitiesAudit(entity);
+            AuditHandler.InsertEntitiesAudit(entity);
             DbContext.Insertable(entity).ExecuteCommandIdentityIntoEntity();
             return entity.Id;
         }
@@ -297,7 +277,7 @@ namespace WFw.DbContext
         /// <returns></returns>
         public async Task<TPrimary> InsertReturnIdAsync(TEntity entity)
         {
-            InsertEntitiesAudit(entity);
+            AuditHandler.InsertEntitiesAudit(entity);
             await DbContext.Insertable(entity).ExecuteCommandIdentityIntoEntityAsync();
             return entity.Id;
         }
@@ -308,7 +288,7 @@ namespace WFw.DbContext
         /// <returns></returns>
         public int Update(params TEntity[] entities)
         {
-            UpdateEntitiesAudit(entities);
+            AuditHandler.UpdateEntitiesAudit(entities);
 
             return DbContext.Updatable(entities).ExecuteCommand();
         }
@@ -319,7 +299,7 @@ namespace WFw.DbContext
         /// <returns></returns>
         public Task<int> UpdateAsync(params TEntity[] entities)
         {
-            UpdateEntitiesAudit(entities);
+            AuditHandler.UpdateEntitiesAudit(entities);
             return DbContext.Updatable(entities).ExecuteCommandAsync();
         }
 
@@ -351,111 +331,5 @@ namespace WFw.DbContext
         {
             return Where(predicate).AnyAsync();
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="entities"></param>
-        protected void InsertEntitiesAudit(params TEntity[] entities)
-        {
-            if (!IsAddAudited)
-            {
-                return;
-            }
-            DateTime now = DateTime.Now;
-            if (IsAddAuditedByUser)
-            {
-                TPrimary id = User != null && User.IsAuthenticated ? User.UserIdAs<TPrimary>() : default;
-                foreach (TEntity entity in entities)
-                {
-                    ICreatedAuditedByUser<TPrimary> audited = (ICreatedAuditedByUser<TPrimary>)entity;
-                    audited.CreatedUserId = id;
-                    if (audited.CreatedTime == default)
-                    {
-                        audited.CreatedTime = now;
-                    }
-                }
-            }
-            else
-            {
-                foreach (TEntity entity in entities)
-                {
-                    ICreatedAudited audited = (ICreatedAudited)entity;
-                    if (audited.CreatedTime == default)
-                    {
-                        audited.CreatedTime = now;
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="entities"></param>
-        protected void UpdateEntitiesAudit(params TEntity[] entities)
-        {
-            if (!IsUpdateAudited)
-            {
-                return;
-            }
-            DateTime now = DateTime.Now;
-
-            if (IsUpdateAuditedByUser)
-            {
-                foreach (TEntity entity in entities)
-                {
-                    IUpdatedAuditedByUser<TPrimary> audited = (IUpdatedAuditedByUser<TPrimary>)entity;
-                    audited.UpdatedTime = now;
-                    audited.UpdatedUserId = User.UserIdAs<TPrimary>();
-                }
-            }
-            else
-            {
-                foreach (TEntity entity in entities)
-                {
-                    IUpdatedAudited audited = (IUpdatedAudited)entity;
-                    audited.UpdatedTime = now;
-                }
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="entities"></param>
-        /// <returns></returns>
-        protected bool DeleteEntitiesAudit(params TEntity[] entities)
-        {
-            if (!IsSoftDelete)
-            {
-                return true;
-            }
-            DateTime now = DateTime.Now;
-            if (IsSoftDeleteByUser)
-            {
-                foreach (TEntity entity in entities)
-                {
-                    ISoftDeletableByUser<TPrimary> deleteAudited = (ISoftDeletableByUser<TPrimary>)entity;
-                    deleteAudited.IsDeleted = true;
-                    deleteAudited.DeletedTime = now;
-                    deleteAudited.DeletedUserId = User.UserIdAs<TPrimary>();
-                }
-            }
-            else
-            {
-                foreach (TEntity entity in entities)
-                {
-                    ISoftDeletable deleteAudited = (ISoftDeletable)entity;
-                    deleteAudited.IsDeleted = true;
-                    deleteAudited.DeletedTime = now;
-                }
-
-            }
-
-            return false;
-        }
-
-
     }
 }

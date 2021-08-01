@@ -27,7 +27,7 @@ namespace WFw.Utils
         /// </summary>
         /// <param name="format"></param>
         /// <returns></returns>
-        public static string NewGuidId(string format = "N")
+        public static string NewGuid(string format = "N")
         {
             return Guid.NewGuid().ToString(format);
         }
@@ -37,9 +37,20 @@ namespace WFw.Utils
         /// </summary>
         /// <param name="length"></param>
         /// <returns></returns>
-        public static string SnowId(int length = 4)
+        public static string NewSnowId(int length = 4)
         {
             return MachineId + DateTime.UtcNow.ToString(DateTimeFormat) + random.NextNumberString(length);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="alphabet"></param>
+        /// <param name="size"></param>
+        /// <returns></returns>
+        public static string NewNanoId(string alphabet = "_-0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", int size = 21)
+        {
+            return Nanoid.Nanoid.Generate(alphabet, size);
         }
 
     }

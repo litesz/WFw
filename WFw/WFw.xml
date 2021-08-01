@@ -207,6 +207,73 @@
             共享内存
             </summary>
         </member>
+        <member name="T:WFw.DbContext.DefaultAuditHandler`2">
+            <summary>
+            默认审计信息处理程序
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TPrimary"></typeparam>
+        </member>
+        <member name="P:WFw.DbContext.DefaultAuditHandler`2.IsSoftDelete">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:WFw.DbContext.DefaultAuditHandler`2.IConcurrencyStamp">
+            <summary>
+            同步标记
+            </summary>
+        </member>
+        <member name="F:WFw.DbContext.DefaultAuditHandler`2.AddAuditedType">
+            <summary>
+            新增
+            0 无
+            1 时间
+            2 时间 操作者
+            </summary>
+        </member>
+        <member name="F:WFw.DbContext.DefaultAuditHandler`2.SoftAuditedType">
+            <summary>
+            删除
+            0 无
+            1 标识
+            2 标识 时间
+            3 标识 时间 操作者
+            </summary>
+        </member>
+        <member name="F:WFw.DbContext.DefaultAuditHandler`2.UpdateAuditedType">
+            <summary>
+            更新
+            0 无
+            1 时间
+            2 时间 操作者
+            </summary>
+        </member>
+        <member name="M:WFw.DbContext.DefaultAuditHandler`2.#ctor(System.IServiceProvider)">
+            <summary>
+            
+            </summary>
+            <param name="serviceProvider"></param>
+        </member>
+        <member name="M:WFw.DbContext.DefaultAuditHandler`2.InsertEntitiesAudit(`0[])">
+            <summary>
+            
+            </summary>
+            <param name="entities"></param>
+        </member>
+        <member name="M:WFw.DbContext.DefaultAuditHandler`2.UpdateEntitiesAudit(`0[])">
+            <summary>
+            
+            </summary>
+            <param name="entities"></param>
+        </member>
+        <member name="M:WFw.DbContext.DefaultAuditHandler`2.DeleteEntitiesAudit(`0[])">
+            <summary>
+            
+            </summary>
+            <param name="entities"></param>
+            <returns></returns>
+        </member>
         <member name="T:WFw.DbContext.DefaultRepository`1">
             <summary>
             默认仓储
@@ -400,25 +467,6 @@
             <param name="predicate"></param>
             <returns></returns>
         </member>
-        <member name="M:WFw.DbContext.DefaultRepository`2.InsertEntitiesAudit(`0[])">
-            <summary>
-            
-            </summary>
-            <param name="entities"></param>
-        </member>
-        <member name="M:WFw.DbContext.DefaultRepository`2.UpdateEntitiesAudit(`0[])">
-            <summary>
-            
-            </summary>
-            <param name="entities"></param>
-        </member>
-        <member name="M:WFw.DbContext.DefaultRepository`2.DeleteEntitiesAudit(`0[])">
-            <summary>
-            
-            </summary>
-            <param name="entities"></param>
-            <returns></returns>
-        </member>
         <member name="T:WFw.Dtos.Requests.LimitedResultRequestDto">
             <summary>
             限制查询大小
@@ -468,6 +516,17 @@
             <summary>
             索引，最小为1
             </summary>
+        </member>
+        <member name="T:WFw.Dtos.Requests.RequestDto">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WFw.Dtos.Requests.RequestDto.ValidateParams">
+            <summary>
+            
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:WFw.Dtos.Responses.IdNameResponseDataDto`1">
             <summary>
@@ -572,7 +631,7 @@
             </summary>
             <param name="item"></param>
         </member>
-        <member name="M:WFw.Dtos.Responses.PagedResponseDataDto`1.#ctor(System.Collections.Generic.IEnumerable{`0},WFw.IDtos.Responses.IPagedReponse)">
+        <member name="M:WFw.Dtos.Responses.PagedResponseDataDto`1.#ctor(System.Collections.Generic.IEnumerable{`0},WFw.IDtos.Responses.IPagedReponseDto)">
             <summary>
             
             </summary>
@@ -762,6 +821,37 @@
             <typeparam name="T"></typeparam>
             <param name="action"></param>
             <param name="errorCallBack"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WFw.IDbContext.IAuditHandler`2">
+            <summary>
+            默认审计信息处理程序
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TPrimary"></typeparam>
+        </member>
+        <member name="P:WFw.IDbContext.IAuditHandler`2.IsSoftDelete">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WFw.IDbContext.IAuditHandler`2.InsertEntitiesAudit(`0[])">
+            <summary>
+            
+            </summary>
+            <param name="entities"></param>
+        </member>
+        <member name="M:WFw.IDbContext.IAuditHandler`2.UpdateEntitiesAudit(`0[])">
+            <summary>
+            
+            </summary>
+            <param name="entities"></param>
+        </member>
+        <member name="M:WFw.IDbContext.IAuditHandler`2.DeleteEntitiesAudit(`0[])">
+            <summary>
+            
+            </summary>
+            <param name="entities"></param>
             <returns></returns>
         </member>
         <member name="T:WFw.IDbContext.IRepository`1">
@@ -1128,6 +1218,36 @@
             <param name="isAsc"></param>
             <returns></returns>
         </member>
+        <member name="M:WFw.IDbContext.IWQueryable`1.OrderBy(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+            <summary>
+            排序
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.IDbContext.IWQueryable`1.OrderByIF(System.Boolean,System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+            <summary>
+            排序
+            </summary>
+            <param name="isOrderBy"></param>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.IDbContext.IWQueryable`1.OrderByDescending(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+            <summary>
+            倒叙排列
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.IDbContext.IWQueryable`1.OrderByDescendingIF(System.Boolean,System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+            <summary>
+            排序
+            </summary>
+            <param name="isOrderBy"></param>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
         <member name="M:WFw.IDbContext.IWQueryable`1.Skip(System.Int32)">
             <summary>
             跳过
@@ -1405,6 +1525,14 @@
             添加当前用户信息中间件
             </summary>
             <param name="services"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.ServiceCollectionExtensions.ConfigureModelStateResponse(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            统一模型验证返回值
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
             <returns></returns>
         </member>
         <member name="T:WFw.Identity.Extensions">
@@ -1798,6 +1926,33 @@
             <param name="_currentIdentity"></param>
             <returns></returns>
         </member>
+        <member name="T:WFw.WFwResultExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WFw.WFwResultExtensions.ToWFwErrApiResult(Microsoft.AspNetCore.Mvc.ActionContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WFw.HttpHeaderConst">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:WFw.HttpHeaderConst.RequestId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:WFw.HttpHeaderConst.ErrResultType">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:WFw.IDtos.IDto">
             <summary>
             dto约束
@@ -1848,27 +2003,28 @@
             请求dto
             </summary>
         </member>
-        <member name="T:WFw.IDtos.Responses.IResponseDataDto">
+        <member name="M:WFw.IDtos.Requests.IRequestDto.ValidateParams">
             <summary>
-            返回值数据对象dto标注
+            
             </summary>
+            <returns></returns>
         </member>
-        <member name="T:WFw.IDtos.Responses.IPagedReponse">
+        <member name="T:WFw.IDtos.Responses.IPagedReponseDto">
             <summary>
             
             </summary>
         </member>
-        <member name="P:WFw.IDtos.Responses.IPagedReponse.Total">
+        <member name="P:WFw.IDtos.Responses.IPagedReponseDto.Total">
             <summary>
             
             </summary>
         </member>
-        <member name="P:WFw.IDtos.Responses.IPagedReponse.PageIndex">
+        <member name="P:WFw.IDtos.Responses.IPagedReponseDto.PageIndex">
             <summary>
             
             </summary>
         </member>
-        <member name="P:WFw.IDtos.Responses.IPagedReponse.PageSize">
+        <member name="P:WFw.IDtos.Responses.IPagedReponseDto.PageSize">
             <summary>
             
             </summary>
@@ -1882,6 +2038,11 @@
         <member name="P:WFw.IDtos.Responses.IPagedResponseDataDto`1.Items">
             <summary>
             
+            </summary>
+        </member>
+        <member name="T:WFw.IDtos.Responses.IResponseDataDto">
+            <summary>
+            返回值数据对象dto标注
             </summary>
         </member>
         <member name="T:WFw.IDtos.Responses.IResponseDto">
@@ -1921,14 +2082,19 @@
             </summary>
             <typeparam name="T"></typeparam>
         </member>
+        <member name="T:WFw.IEntity.IAudit.ISoftDeletableFlag">
+            <summary>
+            仅软删除标志
+            </summary>
+        </member>
+        <member name="P:WFw.IEntity.IAudit.ISoftDeletableFlag.IsDeleted">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:WFw.IEntity.IAudit.ISoftDeletable">
             <summary>
             软删除
-            </summary>
-        </member>
-        <member name="P:WFw.IEntity.IAudit.ISoftDeletable.IsDeleted">
-            <summary>
-            
             </summary>
         </member>
         <member name="P:WFw.IEntity.IAudit.ISoftDeletable.DeletedTime">
@@ -2067,6 +2233,67 @@
             <param name="message"></param>
             <param name="statusCode"></param>
             <returns></returns>
+        </member>
+        <member name="T:WFw.Mvc.ApiController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WFw.Mvc.ApiController.WFwErrApiResult(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="content"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.Mvc.ApiController.WFwErrApiResult(WFw.Results.OperationResultType,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="code"></param>
+            <param name="msg"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WFw.Mvc.WFwApiResult`1">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WFw.Mvc.WFwApiResult`1.#ctor(`0)">
+            <summary>
+            
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="T:WFw.Mvc.WFwErrApiResult">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WFw.Mvc.WFwErrApiResult.#ctor(WFw.Results.IErrApirResult)">
+            <summary>
+            
+            </summary>
+            <param name="errApirResult"></param>
+        </member>
+        <member name="M:WFw.Mvc.WFwErrApiResult.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="content"></param>
+        </member>
+        <member name="M:WFw.Mvc.WFwErrApiResult.#ctor(WFw.Results.OperationResultType,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="code"></param>
+            <param name="msg"></param>
+        </member>
+        <member name="M:WFw.Mvc.WFwErrApiResult.#ctor(System.Collections.Generic.IList{System.Collections.Generic.KeyValuePair{System.String,System.String[]}})">
+            <summary>
+            
+            </summary>
+            <param name="errors"></param>
         </member>
         <member name="T:WFw.Results.CheckParam">
             <summary>

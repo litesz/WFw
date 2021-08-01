@@ -426,6 +426,36 @@
             <param name="isAsc"></param>
             <returns></returns>
         </member>
+        <member name="M:WFw.DbContext.SugarWQueryable`1.OrderBy(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+            <summary>
+            
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarWQueryable`1.OrderByIF(System.Boolean,System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+            <summary>
+            
+            </summary>
+            <param name="isOrderBy"></param>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarWQueryable`1.OrderByDescending(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+            <summary>
+            
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarWQueryable`1.OrderByDescendingIF(System.Boolean,System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+            <summary>
+            
+            </summary>
+            <param name="isOrderBy"></param>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
         <member name="M:WFw.DbContext.SugarWQueryable`1.Select``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
             <summary>
             

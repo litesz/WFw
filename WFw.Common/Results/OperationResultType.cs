@@ -61,12 +61,12 @@ namespace WFw.Results
         /// <summary>
         /// 参数为空
         /// </summary>
-        [Description("参数为空:{0}")]
+        [Description("参数{0}为空")]
         ParamIsEmpty = 12001,
         /// <summary>
         /// 参数错误
         /// </summary>
-        [Description("参数错误:{0}")]
+        [Description("参数{0}错误")]
         ParamIsErr,
 
         //手机及验证码300+

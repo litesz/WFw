@@ -1,4 +1,5 @@
 ﻿using WFw.IEntity.IAudit;
+using SqlSugar;
 
 namespace WFw.Entity
 {
@@ -10,7 +11,7 @@ namespace WFw.Entity
         /// <summary>
         /// 
         /// </summary>
-        [SqlSugar.SugarColumn(IsNullable = true)]
+        [SugarColumn(IsNullable = true)]
         public string DeletedUserId { get; set; }
 
     }
