@@ -112,9 +112,10 @@ namespace WFw.SqlSugar.DbContext.Config
     internal class WfwConfigureExternalServices : ConfigureExternalServices
     {
         readonly WFwEntityColumnInfoCache columnInfoCache = new WFwEntityColumnInfoCache();
+        readonly WFw.DbContext.DbOptions options;
         public WfwConfigureExternalServices(WFw.DbContext.DbOptions dbOptions)
         {
-
+            options = dbOptions;
             EntityService = HandleEntityColumn;
 
 
@@ -129,6 +130,10 @@ namespace WFw.SqlSugar.DbContext.Config
             {
                 return;
             }
+            //if (options.StringDefaultIsNull && property.PropertyType.Name == "String")
+            //{
+
+            //}
             var co = columnInfoCache.GetOrCreate(property);
             if (co.IsEmpty)
             {

@@ -207,6 +207,11 @@
             共享内存
             </summary>
         </member>
+        <member name="P:WFw.DbContext.DbOptions.StringDefaultIsNull">
+            <summary>
+            默认string在数据库中是否可为空
+            </summary>
+        </member>
         <member name="T:WFw.DbContext.DefaultAuditHandler`2">
             <summary>
             默认审计信息处理程序
@@ -249,28 +254,25 @@
             2 时间 操作者
             </summary>
         </member>
-        <member name="M:WFw.DbContext.DefaultAuditHandler`2.#ctor(System.IServiceProvider)">
+        <member name="M:WFw.DbContext.DefaultAuditHandler`2.InsertEntitiesAudit(WFw.Identity.ICurrentUser,`0[])">
             <summary>
             
             </summary>
-            <param name="serviceProvider"></param>
-        </member>
-        <member name="M:WFw.DbContext.DefaultAuditHandler`2.InsertEntitiesAudit(`0[])">
-            <summary>
-            
-            </summary>
+            <param name="user"></param>
             <param name="entities"></param>
         </member>
-        <member name="M:WFw.DbContext.DefaultAuditHandler`2.UpdateEntitiesAudit(`0[])">
+        <member name="M:WFw.DbContext.DefaultAuditHandler`2.UpdateEntitiesAudit(WFw.Identity.ICurrentUser,`0[])">
             <summary>
             
             </summary>
+            <param name="user"></param>
             <param name="entities"></param>
         </member>
-        <member name="M:WFw.DbContext.DefaultAuditHandler`2.DeleteEntitiesAudit(`0[])">
+        <member name="M:WFw.DbContext.DefaultAuditHandler`2.DeleteEntitiesAudit(WFw.Identity.ICurrentUser,`0[])">
             <summary>
             
             </summary>
+            <param name="user"></param>
             <param name="entities"></param>
             <returns></returns>
         </member>
@@ -835,22 +837,25 @@
             
             </summary>
         </member>
-        <member name="M:WFw.IDbContext.IAuditHandler`2.InsertEntitiesAudit(`0[])">
+        <member name="M:WFw.IDbContext.IAuditHandler`2.InsertEntitiesAudit(WFw.Identity.ICurrentUser,`0[])">
             <summary>
             
             </summary>
+            <param name="user"></param>
             <param name="entities"></param>
         </member>
-        <member name="M:WFw.IDbContext.IAuditHandler`2.UpdateEntitiesAudit(`0[])">
+        <member name="M:WFw.IDbContext.IAuditHandler`2.UpdateEntitiesAudit(WFw.Identity.ICurrentUser,`0[])">
             <summary>
             
             </summary>
+            <param name="user"></param>
             <param name="entities"></param>
         </member>
-        <member name="M:WFw.IDbContext.IAuditHandler`2.DeleteEntitiesAudit(`0[])">
+        <member name="M:WFw.IDbContext.IAuditHandler`2.DeleteEntitiesAudit(WFw.Identity.ICurrentUser,`0[])">
             <summary>
             
             </summary>
+            <param name="user"></param>
             <param name="entities"></param>
             <returns></returns>
         </member>

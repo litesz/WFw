@@ -33,5 +33,9 @@
         /// 共享内存
         /// </summary>
         public bool IsShardSameThread { get; set; }
+        /// <summary>
+        /// 默认string在数据库中是否可为空
+        /// </summary>
+        public bool StringDefaultIsNull { get; set; } = false;
     }
 }

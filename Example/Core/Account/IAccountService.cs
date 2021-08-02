@@ -24,7 +24,7 @@ namespace Example.Core.Account
         private readonly IServiceProvider _serviceProvider;
 
         private IRepository<User, int> UserRepository => _serviceProvider.GetService<IRepository<User, int>>();
-        private IRepository<UserAddress, short> UserAddressRepository => _serviceProvider.GetService<IRepository<UserAddress, short>>();
+        private IRepository<UserAddress, int> UserAddressRepository => _serviceProvider.GetService<IRepository<UserAddress, int>>();
 
         private ISqlSugarDbContext DbContext => _serviceProvider.GetService<ISqlSugarDbContext>();
 
@@ -40,7 +40,15 @@ namespace Example.Core.Account
             //UserRepository.Insert(new User("admin", "nick", "123123"));
             //UserAddressRepository.Insert(new UserAddress { Address = "address1", UserId = 1 });
             //UserAddressRepository.Insert(new UserAddress { Address = "address2", UserId = 1 });
+            UserRepository.Init(new User
+            {
+                NickName = "admin",
+                UserName = "admin",
+                Pwd = "123",
+                Role = "a",
 
+
+            });
             UserAddressRepository.Init(new UserAddress { Address = "aaa", UserId = 2 });
             // var list = DbContext.Db.Queryable<User>().Mapper(it => it.Address, it => it.Id, it => it.Address.First().UserId).ToList();
 

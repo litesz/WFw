@@ -1,3 +1,5 @@
+### 1.2.7
+ * 修复使用scope注入时，审计接口失败
 ### 1.2.6
  * 拆分接口 ISoftDeletableFlag
  * DefaultRepository

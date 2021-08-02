@@ -1,4 +1,5 @@
-﻿using WFw.IEntity;
+﻿using WFw.Identity;
+using WFw.IEntity;
 
 namespace WFw.IDbContext
 {
@@ -17,20 +18,23 @@ namespace WFw.IDbContext
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="user"></param>
         /// <param name="entities"></param>
-        void InsertEntitiesAudit(params TEntity[] entities);
+        void InsertEntitiesAudit(ICurrentUser user, params TEntity[] entities);
 
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="user"></param>
         /// <param name="entities"></param>
-        void UpdateEntitiesAudit(params TEntity[] entities);
+        void UpdateEntitiesAudit(ICurrentUser user, params TEntity[] entities);
 
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="user"></param>
         /// <param name="entities"></param>
         /// <returns></returns>
-        bool DeleteEntitiesAudit(params TEntity[] entities);
+        bool DeleteEntitiesAudit(ICurrentUser user, params TEntity[] entities);
     }
 }

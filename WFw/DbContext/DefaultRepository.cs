@@ -36,6 +36,7 @@ namespace WFw.DbContext
 
         IAuditHandler<TEntity, TPrimary> AuditHandler => _serviceProvider.GetService<IAuditHandler<TEntity, TPrimary>>();
 
+        ICurrentUser CurrentUser => _serviceProvider.GetService<ICurrentUser>();
         IWDbContext DbContext => _serviceProvider.GetService<IWDbContext>();
 
         readonly IServiceProvider _serviceProvider;
@@ -122,7 +123,7 @@ namespace WFw.DbContext
         /// <returns></returns>
         public int Delete(params TEntity[] entities)
         {
-            if (AuditHandler.DeleteEntitiesAudit(entities))
+            if (AuditHandler.DeleteEntitiesAudit(CurrentUser, entities))
             {
                 dynamic[] ids = new dynamic[entities.Length];
                 for (int i = 0; i < entities.Length; i++)
@@ -151,7 +152,7 @@ namespace WFw.DbContext
         /// <returns></returns>
         public Task<int> DeleteAsync(params TEntity[] entities)
         {
-            if (AuditHandler.DeleteEntitiesAudit(entities))
+            if (AuditHandler.DeleteEntitiesAudit(CurrentUser, entities))
             {
                 dynamic[] ids = new dynamic[entities.Length];
                 for (int i = 0; i < entities.Length; i++)
@@ -246,7 +247,7 @@ namespace WFw.DbContext
         /// <returns></returns>
         public bool Insert(params TEntity[] entities)
         {
-            AuditHandler.InsertEntitiesAudit(entities);
+            AuditHandler.InsertEntitiesAudit(CurrentUser, entities);
             return DbContext.Insertable<TEntity>(entities).ExecuteCommand() == entities.Length;
         }
         /// <summary>
@@ -256,7 +257,7 @@ namespace WFw.DbContext
         /// <returns></returns>
         public async Task<bool> InsertAsync(params TEntity[] entities)
         {
-            AuditHandler.InsertEntitiesAudit(entities);
+            AuditHandler.InsertEntitiesAudit(CurrentUser, entities);
             return await DbContext.Insertable<TEntity>(entities).ExecuteCommandAsync() == entities.Length;
         }
         /// <summary>
@@ -264,9 +265,9 @@ namespace WFw.DbContext
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        public TPrimary InsertReturnId(TEntity entity)
+        public TPrimary InsertReturnId( TEntity entity)
         {
-            AuditHandler.InsertEntitiesAudit(entity);
+            AuditHandler.InsertEntitiesAudit(CurrentUser,entity);
             DbContext.Insertable(entity).ExecuteCommandIdentityIntoEntity();
             return entity.Id;
         }
@@ -277,7 +278,7 @@ namespace WFw.DbContext
         /// <returns></returns>
         public async Task<TPrimary> InsertReturnIdAsync(TEntity entity)
         {
-            AuditHandler.InsertEntitiesAudit(entity);
+            AuditHandler.InsertEntitiesAudit(CurrentUser, entity);
             await DbContext.Insertable(entity).ExecuteCommandIdentityIntoEntityAsync();
             return entity.Id;
         }
@@ -288,7 +289,7 @@ namespace WFw.DbContext
         /// <returns></returns>
         public int Update(params TEntity[] entities)
         {
-            AuditHandler.UpdateEntitiesAudit(entities);
+            AuditHandler.UpdateEntitiesAudit(CurrentUser, entities);
 
             return DbContext.Updatable(entities).ExecuteCommand();
         }
@@ -299,7 +300,7 @@ namespace WFw.DbContext
         /// <returns></returns>
         public Task<int> UpdateAsync(params TEntity[] entities)
         {
-            AuditHandler.UpdateEntitiesAudit(entities);
+            AuditHandler.UpdateEntitiesAudit(CurrentUser, entities);
             return DbContext.Updatable(entities).ExecuteCommandAsync();
         }
 

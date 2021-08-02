@@ -109,7 +109,7 @@ namespace Example
                 var accountService = scope.ServiceProvider.GetService<IAccountService>();
                 accountService.InitTable();
 
-
+              
             });
         }
     }

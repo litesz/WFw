@@ -8,7 +8,7 @@ using WFw.Utils;
 namespace Example.Core.Account.Entities
 {
     [SqlSugar.SugarTable("Account_User")]
-    public class User : FullAuditWithRemarkEntityBase<int>
+    public class User : FullAuditWithRemarkByUserEntityBase<int>
     {
         public string UserName { get; set; }
         public string NickName { get; set; }
@@ -29,7 +29,7 @@ namespace Example.Core.Account.Entities
     }
 
     [SqlSugar.SugarTable("Account_User_Address")]
-    public class UserAddress : IncrFullAuditByUserEntityBase<short>
+    public class UserAddress : IncrFullAuditByUserEntityBase<int>
     {
       
         public string Address { get; set; }

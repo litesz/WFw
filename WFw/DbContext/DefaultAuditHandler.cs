@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using System;
+﻿using System;
 using WFw.IDbContext;
 using WFw.Identity;
 using WFw.IEntity;
@@ -82,24 +81,13 @@ namespace WFw.DbContext
             IConcurrencyStamp = typeof(IConcurrencyStamp).IsAssignableFrom(type);
         }
 
-        private ICurrentUser User => _serviceProvider.GetService<ICurrentUser>();
-        private readonly IServiceProvider _serviceProvider;
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="serviceProvider"></param>
-        public DefaultAuditHandler(IServiceProvider serviceProvider)
-        {
-            _serviceProvider = serviceProvider;
-
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
+        /// <param name="user"></param>
         /// <param name="entities"></param>
-        public void InsertEntitiesAudit(params TEntity[] entities)
+        public void InsertEntitiesAudit(ICurrentUser user, params TEntity[] entities)
         {
             if (AddAuditedType == 0)
             {
@@ -120,7 +108,7 @@ namespace WFw.DbContext
                     break;
 
                 case 2:
-                    TPrimary id = User != null && User.IsAuthenticated ? User.UserIdAs<TPrimary>() : default;
+                    TPrimary id = user != null && user.IsAuthenticated ? user.UserIdAs<TPrimary>() : default;
                     foreach (TEntity entity in entities)
                     {
                         ICreatedAuditedByUser<TPrimary> audited = (ICreatedAuditedByUser<TPrimary>)entity;
@@ -140,8 +128,9 @@ namespace WFw.DbContext
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="user"></param>
         /// <param name="entities"></param>
-        public void UpdateEntitiesAudit(params TEntity[] entities)
+        public void UpdateEntitiesAudit(ICurrentUser user, params TEntity[] entities)
         {
             if (UpdateAuditedType == 0)
             {
@@ -160,7 +149,7 @@ namespace WFw.DbContext
                     break;
 
                 case 2:
-                    TPrimary id = User.UserIdAs<TPrimary>();
+                    TPrimary id = user.UserIdAs<TPrimary>();
                     foreach (TEntity entity in entities)
                     {
                         IUpdatedAuditedByUser<TPrimary> audited = (IUpdatedAuditedByUser<TPrimary>)entity;
@@ -177,9 +166,10 @@ namespace WFw.DbContext
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="user"></param>
         /// <param name="entities"></param>
         /// <returns></returns>
-        public bool DeleteEntitiesAudit(params TEntity[] entities)
+        public bool DeleteEntitiesAudit(ICurrentUser user ,params TEntity[] entities)
         {
             if (SoftAuditedType == 0)
             {
@@ -206,7 +196,7 @@ namespace WFw.DbContext
                     break;
                 case 3:
 
-                    TPrimary id = User.UserIdAs<TPrimary>();
+                    TPrimary id = user.UserIdAs<TPrimary>();
                     foreach (TEntity entity in entities)
                     {
                         ISoftDeletableByUser<TPrimary> deleteAudited = (ISoftDeletableByUser<TPrimary>)entity;
