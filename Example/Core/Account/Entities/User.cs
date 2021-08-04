@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WFw.Entity;
+using WFw.IEntity;
 using WFw.Utils;
 
 namespace Example.Core.Account.Entities
@@ -29,14 +30,22 @@ namespace Example.Core.Account.Entities
     }
 
     [SqlSugar.SugarTable("Account_User_Address")]
-    public class UserAddress : IncrFullAuditByUserEntityBase<int>
+    public class UserAddress : FullAuditByUserEntityBase<int, string>
     {
-      
         public string Address { get; set; }
         public int UserId { get; set; }
-
-      
         public decimal Rating { get; set; }
+
+
+    }
+
+    [SqlSugar.SugarTable("Account_Test")]
+    public class UserTest : IEntity<string>
+    {
+        [SqlSugar.SugarColumn(IsPrimaryKey = true)]
+        public string Id { get; set; }
+
+
     }
 
 

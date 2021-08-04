@@ -11,7 +11,7 @@ namespace WFw.DbContext
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
     /// <typeparam name="TPrimary"></typeparam>
-    public class DefaultAuditHandler<TEntity, TPrimary> : IAuditHandler<TEntity, TPrimary> where TEntity : class, IEntity<TPrimary>, new()
+    public class DefaultAuditHandler<TEntity, TPrimary> : IAuditHandler<TEntity, TPrimary>
     {
         /// <summary>
         /// 

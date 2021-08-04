@@ -23,8 +23,9 @@ namespace Example.Core.Account
     {
         private readonly IServiceProvider _serviceProvider;
 
+        private IRepository<UserTest, string> UserTestRepository => _serviceProvider.GetService<IRepository<UserTest, string>>();
         private IRepository<User, int> UserRepository => _serviceProvider.GetService<IRepository<User, int>>();
-        private IRepository<UserAddress, int> UserAddressRepository => _serviceProvider.GetService<IRepository<UserAddress, int>>();
+        private IRepository<UserAddress, int, string> UserAddressRepository => _serviceProvider.GetService<IRepository<UserAddress, int, string>>();
 
         private ISqlSugarDbContext DbContext => _serviceProvider.GetService<ISqlSugarDbContext>();
 
@@ -40,6 +41,7 @@ namespace Example.Core.Account
             //UserRepository.Insert(new User("admin", "nick", "123123"));
             //UserAddressRepository.Insert(new UserAddress { Address = "address1", UserId = 1 });
             //UserAddressRepository.Insert(new UserAddress { Address = "address2", UserId = 1 });
+            UserTestRepository.Init();
             UserRepository.Init(new User
             {
                 NickName = "admin",
@@ -49,7 +51,7 @@ namespace Example.Core.Account
 
 
             });
-            UserAddressRepository.Init(new UserAddress { Address = "aaa", UserId = 2 });
+            UserAddressRepository.Init(new UserAddress { Address = "aaa", UserId = 1 });
             // var list = DbContext.Db.Queryable<User>().Mapper(it => it.Address, it => it.Id, it => it.Address.First().UserId).ToList();
 
         }
@@ -68,6 +70,11 @@ namespace Example.Core.Account
             }
             entity.Remark = "a";
             await UserRepository.UpdateAsync(entity);
+
+            var xxx = await UserAddressRepository.Where(u => u.UserId == entity.Id).FirstAsync();
+            xxx.Rating = 12.4M;
+            UserAddressRepository.Update(xxx);
+
             return new SignInOutputDto
             {
                 Id = entity.Id,

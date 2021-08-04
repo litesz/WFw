@@ -22,15 +22,8 @@ namespace Example.Controllers
         private readonly IAccountService _accountService;
         private readonly SingletonConfigModel _singletonConfigModel;
         private readonly ILogger<IdentityController> _logger;
-        public IdentityController(IAccountService accountService, SingletonConfigModel singletonConfigModel, ILogger<IdentityController> logger, ISqlSugarDbContext context, IWDbContext context1)
+        public IdentityController(IAccountService accountService, SingletonConfigModel singletonConfigModel, ILogger<IdentityController> logger)
         {
-
-         
-
-         
-
-            Assert.AreSame(context, context1); // PASSES
-
             _accountService = accountService;
             _singletonConfigModel = singletonConfigModel;
             _logger = logger;

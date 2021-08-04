@@ -27,16 +27,42 @@ namespace WFw.DbContext
     }
 
     /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="TEntity"></typeparam>
+    /// <typeparam name="TPrimary"></typeparam>
+    public class DefaultRepository<TEntity, TPrimary> : DefaultRepository<TEntity, TPrimary, TPrimary>, IRepository<TEntity, TPrimary> where TEntity : class, IEntity<TPrimary>, new()
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="serviceProvider"></param>
+        public DefaultRepository(IServiceProvider serviceProvider) : base(serviceProvider)
+        {
+        }
+    }
+
+    /// <summary>
     /// 默认仓储
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
     /// <typeparam name="TPrimary"></typeparam>
-    public class DefaultRepository<TEntity, TPrimary> : IRepository<TEntity, TPrimary> where TEntity : class, IEntity<TPrimary>, new()
+    /// <typeparam name="TAdudit"></typeparam>
+    public class DefaultRepository<TEntity, TPrimary, TAdudit> : IRepository<TEntity, TPrimary, TAdudit> where TEntity : class, IEntity<TPrimary>, new()
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        IAuditHandler<TEntity, TAdudit> AuditHandler => _serviceProvider.GetService<IAuditHandler<TEntity, TAdudit>>();
 
-        IAuditHandler<TEntity, TPrimary> AuditHandler => _serviceProvider.GetService<IAuditHandler<TEntity, TPrimary>>();
-
+        /// <summary>
+        /// 
+        /// </summary>
         ICurrentUser CurrentUser => _serviceProvider.GetService<ICurrentUser>();
+
+        /// <summary>
+        /// 
+        /// </summary>
         IWDbContext DbContext => _serviceProvider.GetService<IWDbContext>();
 
         readonly IServiceProvider _serviceProvider;
@@ -48,7 +74,6 @@ namespace WFw.DbContext
         public DefaultRepository(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
-
         }
 
         /// <summary>
@@ -234,10 +259,11 @@ namespace WFw.DbContext
         /// <param name="initData"></param>
         public void Init(params TEntity[] initData)
         {
-            DbContext.Init<TEntity>(initData);
-            if (initData != null && Query.First() == null)
+            DbContext.Init(initData);
+            if (initData != null && initData.Length > 0 && Query.First() == null)
             {
-                DbContext.Insertable<TEntity>(initData).ExecuteCommand();
+                Insert(initData);
+                //DbContext.Insertable<TEntity>(initData).ExecuteCommand();
             }
         }
         /// <summary>
@@ -248,6 +274,7 @@ namespace WFw.DbContext
         public bool Insert(params TEntity[] entities)
         {
             AuditHandler.InsertEntitiesAudit(CurrentUser, entities);
+
             return DbContext.Insertable<TEntity>(entities).ExecuteCommand() == entities.Length;
         }
         /// <summary>
@@ -265,9 +292,9 @@ namespace WFw.DbContext
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        public TPrimary InsertReturnId( TEntity entity)
+        public TPrimary InsertReturnId(TEntity entity)
         {
-            AuditHandler.InsertEntitiesAudit(CurrentUser,entity);
+            AuditHandler.InsertEntitiesAudit(CurrentUser, entity);
             DbContext.Insertable(entity).ExecuteCommandIdentityIntoEntity();
             return entity.Id;
         }

@@ -31,7 +31,7 @@ namespace WFw.SqlSugar.DbContext.Config
 
     internal class WFwEntityColumnInfoCacheItem
     {
-        public bool IsEmpty { get; set; }
+        public bool IsEmpty { get; set; } = true;
         public bool IsIgnore { get; }
         public bool IsPrimarykey { get; }
         public bool IsNullable { get; } = true;
@@ -44,21 +44,19 @@ namespace WFw.SqlSugar.DbContext.Config
         public WFwEntityColumnInfoCacheItem(PropertyInfo property)
         {
             var attributes = property.GetCustomAttributes(true);
-            if (attributes.Length == 0)
-            {
-                IsEmpty = true;
-                return;
-            }
+
             foreach (var a in attributes)
             {
                 if (a is NotMappedAttribute)
                 {
+                    IsEmpty = false;
                     IsIgnore = true;
                     return;
                 }
 
                 if (a is ColumnAttribute ca)
                 {
+                    IsEmpty = false;
                     DbColumnName = ca.Name;
                     if (!string.IsNullOrWhiteSpace(ca.TypeName))
                     {
@@ -82,22 +80,39 @@ namespace WFw.SqlSugar.DbContext.Config
                 }
                 if (a is KeyAttribute)
                 {
+                    IsEmpty = false;
                     IsPrimarykey = true;
                     IsNullable = false;
-                    if (property.PropertyType.Name == "Int32" || property.PropertyType.Name == "Int64" || property.PropertyType.Name == "Int16")
-                    {
-                        IsIdentity = true;
-                    }
+                 
                     continue;
+                }
+                if (a is DatabaseGeneratedAttribute dga)
+                {
+                    IsEmpty = false;
+                    switch (dga.DatabaseGeneratedOption)
+                    {
+                        case DatabaseGeneratedOption.None: break;
+                        case DatabaseGeneratedOption.Identity:
+                            IsIdentity = true;
+                            break;
+                        case DatabaseGeneratedOption.Computed:
+                            IsIdentity = true;
+                            break;
+                    }
+                    //if(dga.DatabaseGeneratedOption== )
+                    //
+                    //IsIdentity = true;
                 }
 
                 if (a is RequiredAttribute)
                 {
+                    IsEmpty = false;
                     IsNullable = false;
                 }
                 else if (property.PropertyType.IsGenericType && property.PropertyType.GetGenericTypeDefinition() == typeof(Nullable<>))
                 {
                     // If it is NULLABLE, then get the underlying type. eg if "Nullable<int>" then this will return just "int"
+                    IsEmpty = false;
                     IsNullable = true;
                 }
                 //Comment
@@ -116,11 +131,9 @@ namespace WFw.SqlSugar.DbContext.Config
         public WfwConfigureExternalServices(WFw.DbContext.DbOptions dbOptions)
         {
             options = dbOptions;
+
             EntityService = HandleEntityColumn;
-
-
             EntityNameService = HandleEntity;
-
         }
 
 
@@ -130,10 +143,7 @@ namespace WFw.SqlSugar.DbContext.Config
             {
                 return;
             }
-            //if (options.StringDefaultIsNull && property.PropertyType.Name == "String")
-            //{
 
-            //}
             var co = columnInfoCache.GetOrCreate(property);
             if (co.IsEmpty)
             {

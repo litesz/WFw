@@ -58,8 +58,8 @@ namespace WFw
             services.TryAddScoped<IWDbContext>(x => x.GetRequiredService<SqlSugarDbContext>());
 
             services.TryAddSingleton(typeof(IAuditHandler<,>), typeof(DefaultAuditHandler<,>));
+            services.TryAddScoped(typeof(IRepository<,,>), typeof(DefaultRepository<,,>));
             services.TryAddScoped(typeof(IRepository<,>), typeof(DefaultRepository<,>));
-            services.TryAddScoped(typeof(IRepository<>), typeof(DefaultRepository<>));
             return services;
         }
 

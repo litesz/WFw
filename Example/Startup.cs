@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using WFw.DbContext;
 using WFw.IDbContext;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace Example
 {
@@ -32,8 +33,6 @@ namespace Example
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-
 
 
 
@@ -109,7 +108,7 @@ namespace Example
                 var accountService = scope.ServiceProvider.GetService<IAccountService>();
                 accountService.InitTable();
 
-              
+
             });
         }
     }

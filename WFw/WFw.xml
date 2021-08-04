@@ -290,7 +290,7 @@
         </member>
         <member name="T:WFw.DbContext.DefaultRepository`2">
             <summary>
-            默认仓储
+            
             </summary>
             <typeparam name="TEntity"></typeparam>
             <typeparam name="TPrimary"></typeparam>
@@ -301,22 +301,51 @@
             </summary>
             <param name="serviceProvider"></param>
         </member>
-        <member name="P:WFw.DbContext.DefaultRepository`2.Query">
+        <member name="T:WFw.DbContext.DefaultRepository`3">
+            <summary>
+            默认仓储
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TPrimary"></typeparam>
+            <typeparam name="TAdudit"></typeparam>
+        </member>
+        <member name="P:WFw.DbContext.DefaultRepository`3.AuditHandler">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:WFw.DbContext.DefaultRepository`3.CurrentUser">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:WFw.DbContext.DefaultRepository`3.DbContext">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WFw.DbContext.DefaultRepository`3.#ctor(System.IServiceProvider)">
+            <summary>
+            
+            </summary>
+            <param name="serviceProvider"></param>
+        </member>
+        <member name="P:WFw.DbContext.DefaultRepository`3.Query">
             <summary>
             查询
             </summary>
         </member>
-        <member name="P:WFw.DbContext.DefaultRepository`2.QueryNoFlag">
+        <member name="P:WFw.DbContext.DefaultRepository`3.QueryNoFlag">
             <summary>
             查询(包含软删除)
             </summary>
         </member>
-        <member name="P:WFw.DbContext.DefaultRepository`2.Ado">
+        <member name="P:WFw.DbContext.DefaultRepository`3.Ado">
             <summary>
             ado
             </summary>
         </member>
-        <member name="M:WFw.DbContext.DefaultRepository`2.CheckExists(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},`1)">
+        <member name="M:WFw.DbContext.DefaultRepository`3.CheckExists(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},`1)">
             <summary>
             
             </summary>
@@ -324,7 +353,7 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:WFw.DbContext.DefaultRepository`2.CheckExistsAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},`1)">
+        <member name="M:WFw.DbContext.DefaultRepository`3.CheckExistsAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},`1)">
             <summary>
             
             </summary>
@@ -332,137 +361,137 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:WFw.DbContext.DefaultRepository`2.Delete(`0[])">
+        <member name="M:WFw.DbContext.DefaultRepository`3.Delete(`0[])">
             <summary>
             
             </summary>
             <param name="entities"></param>
             <returns></returns>
         </member>
-        <member name="M:WFw.DbContext.DefaultRepository`2.Delete(`1)">
+        <member name="M:WFw.DbContext.DefaultRepository`3.Delete(`1)">
             <summary>
             
             </summary>
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="M:WFw.DbContext.DefaultRepository`2.DeleteAsync(`0[])">
+        <member name="M:WFw.DbContext.DefaultRepository`3.DeleteAsync(`0[])">
             <summary>
             
             </summary>
             <param name="entities"></param>
             <returns></returns>
         </member>
-        <member name="M:WFw.DbContext.DefaultRepository`2.DeleteAsync(`1)">
+        <member name="M:WFw.DbContext.DefaultRepository`3.DeleteAsync(`1)">
             <summary>
             
             </summary>
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="M:WFw.DbContext.DefaultRepository`2.GetAll">
+        <member name="M:WFw.DbContext.DefaultRepository`3.GetAll">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
-        <member name="M:WFw.DbContext.DefaultRepository`2.GetAllAsync">
+        <member name="M:WFw.DbContext.DefaultRepository`3.GetAllAsync">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
-        <member name="M:WFw.DbContext.DefaultRepository`2.GetFirst(`1)">
+        <member name="M:WFw.DbContext.DefaultRepository`3.GetFirst(`1)">
             <summary>
             
             </summary>
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="M:WFw.DbContext.DefaultRepository`2.GetFirst(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+        <member name="M:WFw.DbContext.DefaultRepository`3.GetFirst(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
             <summary>
             
             </summary>
             <param name="predicate"></param>
             <returns></returns>
         </member>
-        <member name="M:WFw.DbContext.DefaultRepository`2.GetFirstAsync(`1)">
+        <member name="M:WFw.DbContext.DefaultRepository`3.GetFirstAsync(`1)">
             <summary>
             
             </summary>
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="M:WFw.DbContext.DefaultRepository`2.GetFirstAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+        <member name="M:WFw.DbContext.DefaultRepository`3.GetFirstAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
             <summary>
             
             </summary>
             <param name="predicate"></param>
             <returns></returns>
         </member>
-        <member name="M:WFw.DbContext.DefaultRepository`2.Init(`0[])">
+        <member name="M:WFw.DbContext.DefaultRepository`3.Init(`0[])">
             <summary>
             
             </summary>
             <param name="initData"></param>
         </member>
-        <member name="M:WFw.DbContext.DefaultRepository`2.Insert(`0[])">
+        <member name="M:WFw.DbContext.DefaultRepository`3.Insert(`0[])">
             <summary>
             
             </summary>
             <param name="entities"></param>
             <returns></returns>
         </member>
-        <member name="M:WFw.DbContext.DefaultRepository`2.InsertAsync(`0[])">
+        <member name="M:WFw.DbContext.DefaultRepository`3.InsertAsync(`0[])">
             <summary>
             
             </summary>
             <param name="entities"></param>
             <returns></returns>
         </member>
-        <member name="M:WFw.DbContext.DefaultRepository`2.InsertReturnId(`0)">
+        <member name="M:WFw.DbContext.DefaultRepository`3.InsertReturnId(`0)">
             <summary>
             
             </summary>
             <param name="entity"></param>
             <returns></returns>
         </member>
-        <member name="M:WFw.DbContext.DefaultRepository`2.InsertReturnIdAsync(`0)">
+        <member name="M:WFw.DbContext.DefaultRepository`3.InsertReturnIdAsync(`0)">
             <summary>
             
             </summary>
             <param name="entity"></param>
             <returns></returns>
         </member>
-        <member name="M:WFw.DbContext.DefaultRepository`2.Update(`0[])">
+        <member name="M:WFw.DbContext.DefaultRepository`3.Update(`0[])">
             <summary>
             
             </summary>
             <param name="entities"></param>
             <returns></returns>
         </member>
-        <member name="M:WFw.DbContext.DefaultRepository`2.UpdateAsync(`0[])">
+        <member name="M:WFw.DbContext.DefaultRepository`3.UpdateAsync(`0[])">
             <summary>
             
             </summary>
             <param name="entities"></param>
             <returns></returns>
         </member>
-        <member name="M:WFw.DbContext.DefaultRepository`2.Where(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+        <member name="M:WFw.DbContext.DefaultRepository`3.Where(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
             <summary>
             
             </summary>
             <param name="expression"></param>
             <returns></returns>
         </member>
-        <member name="M:WFw.DbContext.DefaultRepository`2.Any(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+        <member name="M:WFw.DbContext.DefaultRepository`3.Any(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
             <summary>
             
             </summary>
             <param name="predicate"></param>
             <returns></returns>
         </member>
-        <member name="M:WFw.DbContext.DefaultRepository`2.AnyAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+        <member name="M:WFw.DbContext.DefaultRepository`3.AnyAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
             <summary>
             
             </summary>
@@ -863,163 +892,171 @@
             <summary>
             数据库上下文
             </summary>
-            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TEntity">实体</typeparam>
         </member>
         <member name="T:WFw.IDbContext.IRepository`2">
             <summary>
             数据库上下文
             </summary>
-            <typeparam name="TEntity"></typeparam>
-            <typeparam name="TPrimary"></typeparam>
+            <typeparam name="TEntity">实体</typeparam>
+            <typeparam name="TPrimary">主键</typeparam>
         </member>
-        <member name="M:WFw.IDbContext.IRepository`2.Init(`0[])">
+        <member name="T:WFw.IDbContext.IRepository`3">
+            <summary>
+            数据库上下文
+            </summary>
+            <typeparam name="TEntity">实体</typeparam>
+            <typeparam name="TPrimary">主键</typeparam>
+            <typeparam name="TAdudit">账号主键</typeparam>
+        </member>
+        <member name="M:WFw.IDbContext.IRepository`3.Init(`0[])">
             <summary>
             初始化表格
             </summary>
             <param name="initData"></param>
         </member>
-        <member name="M:WFw.IDbContext.IRepository`2.InsertReturnId(`0)">
+        <member name="M:WFw.IDbContext.IRepository`3.InsertReturnId(`0)">
             <summary>
             插入实体并返回主键
             </summary>
             <param name="entity">实体对象</param>
             <returns>实体对象主键</returns>
         </member>
-        <member name="M:WFw.IDbContext.IRepository`2.Insert(`0[])">
+        <member name="M:WFw.IDbContext.IRepository`3.Insert(`0[])">
             <summary>
             插入实体
             </summary>
             <param name="entities">实体对象集合</param>
             <returns>操作影响的行数是否大于0</returns>
         </member>
-        <member name="M:WFw.IDbContext.IRepository`2.Delete(`0[])">
+        <member name="M:WFw.IDbContext.IRepository`3.Delete(`0[])">
             <summary>
             删除实体
             </summary>
             <param name="entities">实体对象集合</param>
             <returns>操作影响的行数</returns>
         </member>
-        <member name="M:WFw.IDbContext.IRepository`2.Delete(`1)">
+        <member name="M:WFw.IDbContext.IRepository`3.Delete(`1)">
             <summary>
             删除指定编号的实体
             </summary>
             <param name="key">实体主键</param>
             <returns>操作影响的行数</returns>
         </member>
-        <member name="M:WFw.IDbContext.IRepository`2.Update(`0[])">
+        <member name="M:WFw.IDbContext.IRepository`3.Update(`0[])">
             <summary>
             更新实体对象
             </summary>
             <param name="entities">更新后的实体对象</param>
             <returns>操作影响的行数</returns>
         </member>
-        <member name="M:WFw.IDbContext.IRepository`2.GetFirst(`1)">
+        <member name="M:WFw.IDbContext.IRepository`3.GetFirst(`1)">
             <summary>
             查找指定主键的实体
             </summary>
             <param name="key">实体主键</param>
             <returns>符合主键的实体，不存在时返回null</returns>
         </member>
-        <member name="M:WFw.IDbContext.IRepository`2.GetFirst(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+        <member name="M:WFw.IDbContext.IRepository`3.GetFirst(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
             <summary>
             查找第一个符合条件的数据
             </summary>
             <param name="predicate">数据查询谓语表达式</param>
             <returns>符合条件的实体，不存在时返回null</returns>
         </member>
-        <member name="M:WFw.IDbContext.IRepository`2.Any(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+        <member name="M:WFw.IDbContext.IRepository`3.Any(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
             <summary>
             是否存在
             </summary>
             <param name="predicate"></param>
             <returns></returns>
         </member>
-        <member name="M:WFw.IDbContext.IRepository`2.GetAll">
+        <member name="M:WFw.IDbContext.IRepository`3.GetAll">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
-        <member name="M:WFw.IDbContext.IRepository`2.InsertReturnIdAsync(`0)">
+        <member name="M:WFw.IDbContext.IRepository`3.InsertReturnIdAsync(`0)">
             <summary>
             插入实体并返回主键
             </summary>
             <param name="entity">实体对象</param>
             <returns>实体对象主键</returns>
         </member>
-        <member name="M:WFw.IDbContext.IRepository`2.InsertAsync(`0[])">
+        <member name="M:WFw.IDbContext.IRepository`3.InsertAsync(`0[])">
             <summary>
             插入实体
             </summary>
             <param name="entities">实体对象集合</param>
             <returns>操作影响的行数是否大于0</returns>
         </member>
-        <member name="M:WFw.IDbContext.IRepository`2.DeleteAsync(`0[])">
+        <member name="M:WFw.IDbContext.IRepository`3.DeleteAsync(`0[])">
             <summary>
             删除实体
             </summary>
             <param name="entities">实体对象集合</param>
             <returns>操作影响的行数</returns>
         </member>
-        <member name="M:WFw.IDbContext.IRepository`2.DeleteAsync(`1)">
+        <member name="M:WFw.IDbContext.IRepository`3.DeleteAsync(`1)">
             <summary>
             删除指定编号的实体
             </summary>
             <param name="key">实体主键</param>
             <returns>操作影响的行数</returns>
         </member>
-        <member name="M:WFw.IDbContext.IRepository`2.UpdateAsync(`0[])">
+        <member name="M:WFw.IDbContext.IRepository`3.UpdateAsync(`0[])">
             <summary>
             更新实体对象
             </summary>
             <param name="entities">更新后的实体对象</param>
             <returns>操作影响的行数</returns>
         </member>
-        <member name="M:WFw.IDbContext.IRepository`2.GetFirstAsync(`1)">
+        <member name="M:WFw.IDbContext.IRepository`3.GetFirstAsync(`1)">
             <summary>
             查找指定主键的实体
             </summary>
             <param name="key">实体主键</param>
             <returns>符合主键的实体，不存在时返回null</returns>
         </member>
-        <member name="M:WFw.IDbContext.IRepository`2.GetFirstAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+        <member name="M:WFw.IDbContext.IRepository`3.GetFirstAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
             <summary>
             查找第一个符合条件的数据
             </summary>
             <param name="predicate">数据查询谓语表达式</param>
             <returns>符合条件的实体，不存在时返回null</returns>
         </member>
-        <member name="M:WFw.IDbContext.IRepository`2.AnyAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+        <member name="M:WFw.IDbContext.IRepository`3.AnyAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
             <summary>
             是否存在
             </summary>
             <param name="predicate"></param>
             <returns></returns>
         </member>
-        <member name="M:WFw.IDbContext.IRepository`2.GetAllAsync">
+        <member name="M:WFw.IDbContext.IRepository`3.GetAllAsync">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
-        <member name="P:WFw.IDbContext.IRepository`2.Query">
+        <member name="P:WFw.IDbContext.IRepository`3.Query">
             <summary>
             查询
             </summary>
         </member>
-        <member name="P:WFw.IDbContext.IRepository`2.QueryNoFlag">
+        <member name="P:WFw.IDbContext.IRepository`3.QueryNoFlag">
             <summary>
             查询(包含软删除)
             </summary>
         </member>
-        <member name="M:WFw.IDbContext.IRepository`2.Where(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+        <member name="M:WFw.IDbContext.IRepository`3.Where(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
             <summary>
             查询
             </summary>
             <param name="expression"></param>
             <returns></returns>
         </member>
-        <member name="P:WFw.IDbContext.IRepository`2.Ado">
+        <member name="P:WFw.IDbContext.IRepository`3.Ado">
             <summary>
             ADO
             </summary>
@@ -2087,16 +2124,6 @@
             </summary>
             <typeparam name="T"></typeparam>
         </member>
-        <member name="T:WFw.IEntity.IAudit.ISoftDeletableFlag">
-            <summary>
-            仅软删除标志
-            </summary>
-        </member>
-        <member name="P:WFw.IEntity.IAudit.ISoftDeletableFlag.IsDeleted">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="T:WFw.IEntity.IAudit.ISoftDeletable">
             <summary>
             软删除
@@ -2116,6 +2143,16 @@
         <member name="P:WFw.IEntity.IAudit.ISoftDeletableByUser`1.DeletedUserId">
             <summary>
             删除人
+            </summary>
+        </member>
+        <member name="T:WFw.IEntity.IAudit.ISoftDeletableFlag">
+            <summary>
+            仅软删除标志
+            </summary>
+        </member>
+        <member name="P:WFw.IEntity.IAudit.ISoftDeletableFlag.IsDeleted">
+            <summary>
+            
             </summary>
         </member>
         <member name="T:WFw.IEntity.IAudit.IUpdatedAudited">

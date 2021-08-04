@@ -1,5 +1,4 @@
 ﻿using WFw.Identity;
-using WFw.IEntity;
 
 namespace WFw.IDbContext
 {
@@ -8,7 +7,7 @@ namespace WFw.IDbContext
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
     /// <typeparam name="TPrimary"></typeparam>
-    public interface IAuditHandler<TEntity, TPrimary> where TEntity : class, IEntity<TPrimary>, new()
+    public interface IAuditHandler<TEntity, TPrimary>
     {
         /// <summary>
         /// 

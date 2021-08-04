@@ -10,19 +10,29 @@ namespace WFw.IDbContext
     /// <summary>
     /// 数据库上下文
     /// </summary>
-    /// <typeparam name="TEntity"></typeparam>
-    public interface IRepository<TEntity> : IRepository<TEntity, int> where TEntity : class, IEntity<int>, new()
+    /// <typeparam name="TEntity">实体</typeparam>
+    public interface IRepository<TEntity> : IRepository<TEntity, int, int> where TEntity : class, IEntity<int>, new()
     {
 
+    }
+
+    /// <summary>
+    /// 数据库上下文
+    /// </summary>
+    /// <typeparam name="TEntity">实体</typeparam>
+    /// <typeparam name="TPrimary">主键</typeparam>
+    public interface IRepository<TEntity, TPrimary> : IRepository<TEntity, TPrimary, TPrimary> where TEntity : class, IEntity<TPrimary>, new()
+    {
     }
 
 
     /// <summary>
     /// 数据库上下文
     /// </summary>
-    /// <typeparam name="TEntity"></typeparam>
-    /// <typeparam name="TPrimary"></typeparam>
-    public interface IRepository<TEntity, TPrimary> where TEntity : class, IEntity<TPrimary>, new()
+    /// <typeparam name="TEntity">实体</typeparam>
+    /// <typeparam name="TPrimary">主键</typeparam>
+    /// <typeparam name="TAdudit">账号主键</typeparam>
+    public interface IRepository<TEntity, TPrimary, TAdudit> where TEntity : class, IEntity<TPrimary>, new()
     {
         /// <summary>
         /// 初始化表格
