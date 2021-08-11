@@ -44,7 +44,7 @@ namespace WFw.Entity
         /// 删除用户
         /// </summary>
         [SugarColumn(IsNullable = true)]
-        public string DeletedUserId { get; set; }
+        public string DeletedUserId { get; set; } = string.Empty;
         /// <summary>
         /// 删除标志
         /// </summary>

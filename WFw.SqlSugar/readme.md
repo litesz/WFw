@@ -1,3 +1,6 @@
+### 1.1.15
+ * IWQueryable
+  + 添加 GroupBy
 ### 1.1.14
  * Repository 可独立设置审计用户id类型
 ### 1.1.13

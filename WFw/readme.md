@@ -1,7 +1,16 @@
+### 1.2.9
+ * IWQueryable
+  + 添加 GroupBy
+ * DefaultRepository
+  + 改为虚方法
+ -  DefaultRepository<TEntity>
+
 ### 1.2.8
  * Repository 可独立设置审计用户id类型
+
 ### 1.2.7
  * 修复使用scope注入时，审计接口失败
+
 ### 1.2.6
  * 拆分接口 ISoftDeletableFlag
  * DefaultRepository

@@ -197,5 +197,21 @@ namespace WFw.IDbContext
         /// ADO
         /// </summary>
         IAdo Ado { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="expression"></param>
+        /// <returns></returns>
+        IWQueryable<TEntity> GroupBy(Expression<Func<TEntity, object>> expression);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="groupFileds"></param>
+        /// <returns></returns>
+        IWQueryable<TEntity> GroupBy(string groupFileds);
+
+
     }
 }

@@ -276,18 +276,6 @@
             <param name="entities"></param>
             <returns></returns>
         </member>
-        <member name="T:WFw.DbContext.DefaultRepository`1">
-            <summary>
-            默认仓储
-            </summary>
-            <typeparam name="TEntity"></typeparam>
-        </member>
-        <member name="M:WFw.DbContext.DefaultRepository`1.#ctor(System.IServiceProvider)">
-            <summary>
-            
-            </summary>
-            <param name="serviceProvider"></param>
-        </member>
         <member name="T:WFw.DbContext.DefaultRepository`2">
             <summary>
             
@@ -320,6 +308,11 @@
             </summary>
         </member>
         <member name="P:WFw.DbContext.DefaultRepository`3.DbContext">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:WFw.DbContext.DefaultRepository`3._serviceProvider">
             <summary>
             
             </summary>
@@ -496,6 +489,20 @@
             
             </summary>
             <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.DefaultRepository`3.GroupBy(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+            <summary>
+            
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.DefaultRepository`3.GroupBy(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="groupFileds"></param>
             <returns></returns>
         </member>
         <member name="T:WFw.Dtos.Requests.LimitedResultRequestDto">
@@ -1061,6 +1068,20 @@
             ADO
             </summary>
         </member>
+        <member name="M:WFw.IDbContext.IRepository`3.GroupBy(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+            <summary>
+            
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.IDbContext.IRepository`3.GroupBy(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="groupFileds"></param>
+            <returns></returns>
+        </member>
         <member name="T:WFw.IDbContext.IWDbContext">
             <summary>
             抽象上下文
@@ -1454,6 +1475,20 @@
             <summary>
             获得sql
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.IDbContext.IWQueryable`1.GroupBy(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+            <summary>
+            
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.IDbContext.IWQueryable`1.GroupBy(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="groupFileds"></param>
             <returns></returns>
         </member>
         <member name="T:WFw.IDbContext.IWUpdatable`1">

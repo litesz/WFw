@@ -12,7 +12,7 @@ namespace WFw.Entity
         /// 
         /// </summary>
         [SugarColumn(IsNullable = true)]
-        public string DeletedUserId { get; set; }
+        public string DeletedUserId { get; set; } = string.Empty;
 
     }
 

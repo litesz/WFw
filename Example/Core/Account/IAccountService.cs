@@ -42,6 +42,8 @@ namespace Example.Core.Account
             //UserAddressRepository.Insert(new UserAddress { Address = "address1", UserId = 1 });
             //UserAddressRepository.Insert(new UserAddress { Address = "address2", UserId = 1 });
             UserTestRepository.Init();
+            UserTestRepository.Init(new UserTest { Id = "a" });
+
             UserRepository.Init(new User
             {
                 NickName = "admin",

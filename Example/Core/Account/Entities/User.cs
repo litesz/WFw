@@ -45,7 +45,13 @@ namespace Example.Core.Account.Entities
         [SqlSugar.SugarColumn(IsPrimaryKey = true)]
         public string Id { get; set; }
 
+        public string NullStr { get; set; } = string.Empty;
 
+     
+        public int? NullableInt { get; set; }
+
+        [SqlSugar.SugarColumn(ColumnName = "CreateDateTime")]
+        public DateTime Time { get; set; }
     }
 
 

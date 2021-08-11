@@ -172,7 +172,7 @@ namespace WFw.DbContext
         /// <param name="expression"></param>
         /// <param name="isAsc"></param>
         /// <returns></returns>
-        public IWQueryable<T> OrderBy(Expression<Func<T, object>> expression, bool isAsc )
+        public IWQueryable<T> OrderBy(Expression<Func<T, object>> expression, bool isAsc)
         {
             _queryable = _queryable.OrderBy(expression, isAsc ? OrderByType.Asc : OrderByType.Desc);
             return this;
@@ -185,7 +185,7 @@ namespace WFw.DbContext
         /// <param name="expression"></param>
         /// <param name="isAsc"></param>
         /// <returns></returns>
-        public IWQueryable<T> OrderByIF(bool isOrderBy, Expression<Func<T, object>> expression, bool isAsc )
+        public IWQueryable<T> OrderByIF(bool isOrderBy, Expression<Func<T, object>> expression, bool isAsc)
         {
             if (isOrderBy)
             {
@@ -445,6 +445,28 @@ namespace WFw.DbContext
             {
                 _queryable = _queryable.Where(expression);
             }
+            return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="expression"></param>
+        /// <returns></returns>
+        public IWQueryable<T> GroupBy(Expression<Func<T, object>> expression)
+        {
+            _queryable = _queryable.GroupBy(expression);
+            return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="groupFileds"></param>
+        /// <returns></returns>
+        public IWQueryable<T> GroupBy(string groupFileds)
+        {
+            _queryable = _queryable.GroupBy(groupFileds);
             return this;
         }
     }

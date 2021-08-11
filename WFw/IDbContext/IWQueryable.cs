@@ -64,7 +64,7 @@ namespace WFw.IDbContext
         /// <param name="expression"></param>
         /// <param name="isAsc"></param>
         /// <returns></returns>
-        IWQueryable<T> OrderByIF(bool isOrderBy, Expression<Func<T, object>> expression, bool isAsc );
+        IWQueryable<T> OrderByIF(bool isOrderBy, Expression<Func<T, object>> expression, bool isAsc);
 
         /// <summary>
         /// 排序
@@ -246,10 +246,24 @@ namespace WFw.IDbContext
         /// <returns></returns>
         Task<IPagedResponseDataDto<T>> ToPageListAsync(int pageIndex, int pageSize);
 
-       /// <summary>
-       /// 获得sql
-       /// </summary>
-       /// <returns></returns>
+        /// <summary>
+        /// 获得sql
+        /// </summary>
+        /// <returns></returns>
         string ToSql();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="expression"></param>
+        /// <returns></returns>
+        IWQueryable<T> GroupBy(Expression<Func<T, object>> expression);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="groupFileds"></param>
+        /// <returns></returns>
+        IWQueryable<T> GroupBy(string groupFileds);
     }
 }

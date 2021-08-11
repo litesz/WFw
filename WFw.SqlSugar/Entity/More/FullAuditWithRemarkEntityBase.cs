@@ -13,7 +13,7 @@ namespace WFw.Entity
         /// 备注
         /// </summary>
         [SugarColumn(IsNullable = true)]
-        public string Remark { get; set; }
+        public string Remark { get; set; } = string.Empty;
     }
 
     /// <summary>
@@ -25,7 +25,7 @@ namespace WFw.Entity
         /// 备注
         /// </summary>
         [SugarColumn(IsNullable = true)]
-        public string Remark { get; set; }
+        public string Remark { get; set; } = string.Empty;
     }
 
 }

@@ -574,6 +574,20 @@
             <param name="expression"></param>
             <returns></returns>
         </member>
+        <member name="M:WFw.DbContext.SugarWQueryable`1.GroupBy(System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+            <summary>
+            
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.DbContext.SugarWQueryable`1.GroupBy(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="groupFileds"></param>
+            <returns></returns>
+        </member>
         <member name="T:WFw.DbContext.SugarWUpdatable`1">
             <summary>
             

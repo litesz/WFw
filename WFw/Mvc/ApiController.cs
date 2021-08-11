@@ -21,9 +21,9 @@ namespace WFw.Mvc
         /// </summary>
         /// <param name="content"></param>
         /// <returns></returns>
-        public virtual WFwErrApiResult WFwErrApiResult(string content)
+        public virtual WFwBadRequestObjectResult WFwErrApiResult(string content)
         {
-            return new WFwErrApiResult(content);
+            return new WFwBadRequestObjectResult(content);
         }
 
         /// <summary>
@@ -32,9 +32,9 @@ namespace WFw.Mvc
         /// <param name="code"></param>
         /// <param name="msg"></param>
         /// <returns></returns>
-        public virtual WFwErrApiResult WFwErrApiResult(OperationResultType code, string msg)
+        public virtual WFwBadRequestObjectResult WFwErrApiResult(OperationResultType code, string msg)
         {
-            return new WFwErrApiResult(code, msg);
+            return new WFwBadRequestObjectResult(code, msg);
         }
 
     }
@@ -57,13 +57,13 @@ namespace WFw.Mvc
     /// <summary>
     /// 
     /// </summary>
-    public class WFwErrApiResult : BadRequestObjectResult
+    public class WFwBadRequestObjectResult : UnprocessableEntityObjectResult
     {
         /// <summary>
         /// 
         /// </summary>
         /// <param name="errApirResult"></param>
-        public WFwErrApiResult(IErrApirResult errApirResult) : base(errApirResult)
+        public WFwBadRequestObjectResult(IErrApirResult errApirResult) : base(errApirResult)
         {
 
         }
@@ -72,7 +72,7 @@ namespace WFw.Mvc
         /// 
         /// </summary>
         /// <param name="content"></param>
-        public WFwErrApiResult(string content) : this(new ErrApiResult(content))
+        public WFwBadRequestObjectResult(string content) : this(new ErrApiResult(content))
         {
         }
 
@@ -81,7 +81,7 @@ namespace WFw.Mvc
         /// </summary>
         /// <param name="code"></param>
         /// <param name="msg"></param>
-        public WFwErrApiResult(OperationResultType code, string msg) : this(new ErrApiResult(code, msg))
+        public WFwBadRequestObjectResult(OperationResultType code, string msg) : this(new ErrApiResult(code, msg))
         {
 
         }
@@ -90,7 +90,7 @@ namespace WFw.Mvc
         /// 
         /// </summary>
         /// <param name="errors"></param>
-        public WFwErrApiResult(IList<KeyValuePair<string, string[]>> errors) : this(new ModelStateErrApiResult(errors))
+        public WFwBadRequestObjectResult(IList<KeyValuePair<string, string[]>> errors) : this(new ModelStateErrApiResult(errors))
         {
 
         }

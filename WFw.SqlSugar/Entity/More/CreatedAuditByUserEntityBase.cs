@@ -38,7 +38,7 @@ namespace WFw.Entity
         /// 创建人
         /// </summary>
         [SugarColumn(IsNullable = true)]
-        public string CreatedUserId { get; set; }
+        public string CreatedUserId { get; set; } = string.Empty;
     }
 
 

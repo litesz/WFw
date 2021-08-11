@@ -33,17 +33,31 @@ namespace WFw.SqlSugar.DbContext.Config
     {
         public bool IsEmpty { get; set; } = true;
         public bool IsIgnore { get; }
-        public bool IsPrimarykey { get; }
-        public bool IsNullable { get; } = true;
-        public bool IsIdentity { get; }
+        public bool? IsNullable { get; }
+        public bool? IsPrimarykey { get; }
+        public bool? IsIdentity { get; }
+        public int? DecimalDigits { get; }
+        public int? Length { get; }
+        public string DefaultValue { get; set; }
         public string DbColumnName { get; }
         public string DataType { get; }
-        public int DecimalDigits { get; }
-        public int Length { get; }
 
         public WFwEntityColumnInfoCacheItem(PropertyInfo property)
         {
             var attributes = property.GetCustomAttributes(true);
+
+
+            if (property.PropertyType.IsGenericType && property.PropertyType.GetGenericTypeDefinition() == typeof(Nullable<>))
+            {
+                // If it is NULLABLE, then get the underlying type. eg if "Nullable<int>" then this will return just "int"
+                IsEmpty = false;
+                IsNullable = true;
+            }
+            //if (property.PropertyType.Name == "String")
+            //{
+            //    IsEmpty = false;
+            //    DefaultValue = "aaa";
+            //}
 
             foreach (var a in attributes)
             {
@@ -83,7 +97,7 @@ namespace WFw.SqlSugar.DbContext.Config
                     IsEmpty = false;
                     IsPrimarykey = true;
                     IsNullable = false;
-                 
+
                     continue;
                 }
                 if (a is DatabaseGeneratedAttribute dga)
@@ -109,12 +123,7 @@ namespace WFw.SqlSugar.DbContext.Config
                     IsEmpty = false;
                     IsNullable = false;
                 }
-                else if (property.PropertyType.IsGenericType && property.PropertyType.GetGenericTypeDefinition() == typeof(Nullable<>))
-                {
-                    // If it is NULLABLE, then get the underlying type. eg if "Nullable<int>" then this will return just "int"
-                    IsEmpty = false;
-                    IsNullable = true;
-                }
+                //else 
                 //Comment
                 //if(property.)
             }
@@ -154,31 +163,39 @@ namespace WFw.SqlSugar.DbContext.Config
                 column.IsIgnore = true;
                 return;
             }
-            column.IsNullable = co.IsNullable;
-            if (string.IsNullOrWhiteSpace(column.DbColumnName))
+            if (co.IsNullable.HasValue)
+            {
+                column.IsNullable = co.IsNullable.Value;
+            }
+            if (string.IsNullOrWhiteSpace(column.DbColumnName) && co.DbColumnName != null)
             {
                 column.DbColumnName = co.DbColumnName;
             }
-            if (string.IsNullOrWhiteSpace(column.DataType))
+            if (string.IsNullOrWhiteSpace(column.DataType) && co.DataType != null)
             {
                 column.DataType = co.DataType;
             }
-            if (!column.IsPrimarykey)
+            if (!column.IsPrimarykey && co.IsPrimarykey.HasValue)
             {
-                column.IsPrimarykey = co.IsPrimarykey;
+                column.IsPrimarykey = co.IsPrimarykey.Value;
             }
-            if (!column.IsIdentity)
+            if (!column.IsIdentity && co.IsIdentity.HasValue)
             {
-                column.IsIdentity = co.IsIdentity;
+                column.IsIdentity = co.IsIdentity.Value;
             }
-            if (column.DecimalDigits == 0)
+            if (column.DecimalDigits == 0 && co.DecimalDigits.HasValue)
             {
-                column.DecimalDigits = co.DecimalDigits;
+                column.DecimalDigits = co.DecimalDigits.Value;
             }
-            if (column.Length == 0)
+            if (column.Length == 0 && co.Length.HasValue)
             {
-                column.Length = co.Length;
+                column.Length = co.Length.Value;
             }
+
+            //if (column.IsPrimarykey == false && column.DefaultValue == null && co.DefaultValue != null)
+            //{
+            //    column.DefaultValue = co.DefaultValue;
+            //}
         }
 
         private void HandleEntity(Type type, EntityInfo entity)

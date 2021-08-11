@@ -29,10 +29,10 @@ namespace WFw
                     output.Add(new KeyValuePair<string, string[]>(err.Key, err.Value.Errors.Select(u => u.ErrorMessage).ToArray()));
                 }
 
-                return new WFwErrApiResult(output);
+                return new WFwBadRequestObjectResult(output);
             }
 
-            return new WFwErrApiResult(OperationResultType.ParamIsErr, errors.First().Value.Errors[0].ErrorMessage);
+            return new WFwBadRequestObjectResult(OperationResultType.ParamIsErr, errors.First().Value.Errors[0].ErrorMessage);
 
         }
 
