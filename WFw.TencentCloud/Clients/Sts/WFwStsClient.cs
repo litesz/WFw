@@ -43,7 +43,7 @@ namespace WFw.TencentCloud.Clients.Sts
     {
 
         private readonly StsOptions options;
-        private readonly ILogger<WFwStsClient> logger;
+    
 
         /// <summary>
         /// 
@@ -52,13 +52,13 @@ namespace WFw.TencentCloud.Clients.Sts
         public WFwStsClient(IServiceProvider sp)
         {
             options = sp.GetService<IOptions<TencentCloudOptions>>().Value.Sts;
-            logger = sp.GetService<ILogger<WFwStsClient>>();
+         
         }
 
-        public WFwStsClient(StsOptions stsOptions, ILogger<WFwStsClient> l)
+        public WFwStsClient(StsOptions stsOptions)
         {
             options = stsOptions;
-            logger = l;
+          
         }
 
 

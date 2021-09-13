@@ -2342,31 +2342,31 @@
             </summary>
             <param name="data"></param>
         </member>
-        <member name="T:WFw.Mvc.WFwErrApiResult">
+        <member name="T:WFw.Mvc.WFwBadRequestObjectResult">
             <summary>
             
             </summary>
         </member>
-        <member name="M:WFw.Mvc.WFwErrApiResult.#ctor(WFw.Results.IErrApirResult)">
+        <member name="M:WFw.Mvc.WFwBadRequestObjectResult.#ctor(WFw.Results.IErrApirResult)">
             <summary>
             
             </summary>
             <param name="errApirResult"></param>
         </member>
-        <member name="M:WFw.Mvc.WFwErrApiResult.#ctor(System.String)">
+        <member name="M:WFw.Mvc.WFwBadRequestObjectResult.#ctor(System.String)">
             <summary>
             
             </summary>
             <param name="content"></param>
         </member>
-        <member name="M:WFw.Mvc.WFwErrApiResult.#ctor(WFw.Results.OperationResultType,System.String)">
+        <member name="M:WFw.Mvc.WFwBadRequestObjectResult.#ctor(WFw.Results.OperationResultType,System.String)">
             <summary>
             
             </summary>
             <param name="code"></param>
             <param name="msg"></param>
         </member>
-        <member name="M:WFw.Mvc.WFwErrApiResult.#ctor(System.Collections.Generic.IList{System.Collections.Generic.KeyValuePair{System.String,System.String[]}})">
+        <member name="M:WFw.Mvc.WFwBadRequestObjectResult.#ctor(System.Collections.Generic.IList{System.Collections.Generic.KeyValuePair{System.String,System.String[]}})">
             <summary>
             
             </summary>

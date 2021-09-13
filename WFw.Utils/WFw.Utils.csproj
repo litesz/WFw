@@ -18,11 +18,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WFw\WFw.csproj" />
+    <Compile Remove="Middlewares\**" />
+    <EmbeddedResource Remove="Middlewares\**" />
+    <None Remove="Middlewares\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Middlewares\" />
+    <ProjectReference Include="..\WFw\WFw.csproj" />
   </ItemGroup>
 
 </Project>

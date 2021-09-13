@@ -1,15 +1,12 @@
-﻿using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using WFw.TencentCloud.Options;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using TencentCloud.Ocr.V20181119;
-using TencentCloud.Common;
-using TencentCloud.Ocr.V20181119.Models;
-using System.Threading.Tasks;
+using System;
 using System.Linq;
+using System.Threading.Tasks;
+using TencentCloud.Common;
+using TencentCloud.Ocr.V20181119;
+using TencentCloud.Ocr.V20181119.Models;
+using WFw.TencentCloud.Options;
 
 namespace WFw.TencentCloud.Clients.Ocr
 {
@@ -23,25 +20,23 @@ namespace WFw.TencentCloud.Clients.Ocr
     public class WFwOcrClient : IWFwOcrClient
     {
 
-        private readonly ILogger<WFwOcrClient> logger;
-        private readonly OcrOptions ocrOptions;
+       
         private readonly OcrClient client;
 
-        public WFwOcrClient(IServiceProvider sp) : this(sp.GetService<IOptions<TencentCloudOptions>>().Value.Ocr, sp.GetService<ILogger<WFwOcrClient>>())
+        public WFwOcrClient(IServiceProvider sp) : this(sp.GetService<IOptions<TencentCloudOptions>>().Value.Ocr)
         {
         }
 
-        public WFwOcrClient(OcrOptions ocr, ILogger<WFwOcrClient> l)
+        public WFwOcrClient(OcrOptions ocr)
         {
-            ocrOptions = ocr;
-            logger = l;
+          
             Credential cred = new Credential
             {
                 SecretId = ocr.SecretId,
                 SecretKey = ocr.SecretKey
             };
 
-            client = new OcrClient(cred, "ap-guangzhou");
+            client = new OcrClient(cred, ocr.Regin);
         }
 
 

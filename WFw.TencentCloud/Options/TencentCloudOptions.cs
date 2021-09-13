@@ -1,5 +1,4 @@
-﻿using TencentCloud.Common;
-using WFw.TencentCloud.Options.Abstractions;
+﻿using WFw.TencentCloud.Options.Abstractions;
 
 namespace WFw.TencentCloud.Options
 {

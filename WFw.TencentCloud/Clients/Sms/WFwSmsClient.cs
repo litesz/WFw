@@ -14,23 +14,24 @@ namespace WFw.TencentCloud.Clients.Sms
 
     public interface IWFwSmsClient : ISmsClient
     {
+        Task SendVerification(string code, int expireMin, params string[] phones);
     }
 
     public class WFwSmsClient : ISmsClient, IWFwSmsClient
     {
         private readonly SmsClient client;
         private readonly SmsOptions options;
-        private readonly ILogger<WFwSmsClient> logger;
 
-        public WFwSmsClient(IServiceProvider sp) : this(sp.GetService<IOptions<TencentCloudOptions>>().Value.Sms, sp.GetService<ILogger<WFwSmsClient>>())
+
+        public WFwSmsClient(IServiceProvider sp) : this(sp.GetService<IOptions<TencentCloudOptions>>().Value.Sms)
         {
         }
 
-        public WFwSmsClient(SmsOptions op, ILogger<WFwSmsClient> l)
+        public WFwSmsClient(SmsOptions op)
         {
             options = op;
             client = new SmsClient(options.GetCredential(), options.Regin);
-            logger = l;
+
         }
 
         public Task<int> GetMessageRemaining()
@@ -45,9 +46,9 @@ namespace WFw.TencentCloud.Clients.Sms
         /// <param name="phone"></param>
         /// <param name="templateId"></param>
         /// <returns></returns>
-        public async Task<(bool, string)> SendSms(string text, string phone, string templateId = "")
+        public Task<(bool, string)> SendSms(string text, string phone, string templateId = "")
         {
-            return (false, "发送失败");
+            return Task.FromResult((false, "发送失败"));
         }
 
 
@@ -76,10 +77,43 @@ namespace WFw.TencentCloud.Clients.Sms
             }
             catch (Exception ex)
             {
-                logger.LogError(ex.ToLogMessage());
+                ////   logger.LogError(ex.ToLogMessage());
 
-                return (false, "发送失败");
+                return (false, ex.Message);
             }
+        }
+
+        public async Task SendVerification(string code, int expireMin, params string[] phones)
+        {
+
+            try
+            {
+                SendSmsRequest req = new SendSmsRequest
+                {
+                    PhoneNumberSet = phones.Select(u => $"+86{u}").ToArray(),
+                    SmsSdkAppid = options.Verification.SmsSdkAppid,
+                    TemplateID = options.Verification.TemplateId,
+                    TemplateParamSet = new string[] { code, expireMin.ToString() },
+                    Sign = options.Verification.Sign
+                };
+
+                SendSmsResponse resp = await client.SendSms(req);
+
+            }
+            catch (Exception ex)
+            {
+                string[] p = new string[] {
+                    //"bucket",values["bucket"].ToString(),
+                    //"region",values["region"].ToString(),
+                    //"allowPrefix",values["allowPrefix"].ToString(),
+                    //"allowActions",string.Join(",", values["allowActions"] as string[]),
+                    "phones",string.Join(",",phones),
+                    "ex",ex.Message
+                };
+
+                throw new WFwException(Results.OperationResultType.TencentCloudSdkStsErr, "", p);
+            }
+
         }
     }
 }

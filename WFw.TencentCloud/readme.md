@@ -1,3 +1,7 @@
+### 0.0.9
+* 更新 Tencent Sdk
+* 将异常抛出
+
 ### 0.0.8
  * IWFwStsClient
 	+ 添加  TempCredentialResult GetDefaultTempCredential(string bucket, string region, string allowPrefix, int durationSeconds = 7200)
