@@ -12,28 +12,28 @@ namespace WFw.ISms
     {
 
         /// <summary>
-        /// 发送验证码
-        /// </summary>
-        /// <param name="code"></param>
-        /// <param name="expireMin"></param>
-        /// <param name="phone"></param>
-        /// <returns></returns>
-        Task<(bool, string)> SendVerification(string code, int expireMin, string phone);
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="text"></param>
-        /// <param name="phone"></param>
-        /// <param name="templateId"></param>
-        /// <returns></returns>
-        Task<(bool, string)> SendSms(string text, string phone, string templateId = "");
-
-        /// <summary>
         /// 剩余短信数
         /// </summary>
         /// <returns></returns>
         Task<int> GetMessageRemaining();
+
+        /// <summary>
+        /// 群发短信
+        /// </summary>
+        /// <param name="phones">手机号</param>
+        /// <param name="values">内容键值对</param>
+        /// <param name="template">签名、模板ID等</param>
+        /// <returns></returns>
+        Task SendMsg(string[] phones, IList<KeyValuePair<string, string>> values, ISmsTemplate template = null);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="phone"></param>
+        /// <param name="code"></param>
+        /// <param name="expireMin"></param>
+        /// <param name="template">签名、模板ID等</param>
+        /// <returns></returns>
+        Task SendVerificationCode(string phone, string code, int expireMin, ISmsTemplate template = null);
     }
 }

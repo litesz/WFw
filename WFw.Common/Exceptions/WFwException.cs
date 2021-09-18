@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.Text;
 using WFw.Results;
 
@@ -12,6 +12,8 @@ namespace WFw
     /// </summary>
     public class WFwException : Exception
     {
+        private string logParam;
+        private bool dataChanged = false;
         /// <summary>
         /// 错误类型
         /// </summary>
@@ -24,7 +26,30 @@ namespace WFw
         /// <summary>
         /// 日志记录参数
         /// </summary>
-        public string LogParam { get; protected set; }
+        public string LogParam
+        {
+            get
+            {
+                if (LogParam == null || dataChanged)
+                {
+
+                    if (Data.Count == 0)
+                    {
+                        logParam = "";
+                        dataChanged = false;
+                        return logParam;
+                    }
+                    StringBuilder sb = new StringBuilder();
+                    foreach (DictionaryEntry item in Data)
+                    {
+                        sb.Append($"{item.Key}={item.Value};");
+                    }
+                    logParam = sb.ToString();
+                    dataChanged = false;
+                }
+                return logParam;
+            }
+        }
 
         /// <summary>
         /// 事件id
@@ -111,40 +136,44 @@ namespace WFw
         {
             OperationResult = result;
             ParamName = param;
-            EventId = eventId;
+
+            if (eventId.Id > 0)
+            {
+                EventId = eventId;
+                Data.Add("eventId", eventId);
+            }
+
             if (logKeyValues == null || logKeyValues.Length == 0)
             {
                 return;
             }
-
+            dataChanged = true;
             if (logKeyValues.Length == 1)
             {
-                LogParam = $"logParam={logKeyValues[0]};";
+                logParam = $"logParam={logKeyValues[0]};";
+                Data.Add("logParam", logKeyValues[0]);
                 return;
             }
 
-            StringBuilder sb = new StringBuilder();
-            bool isKey = true;
-            foreach (var item in logKeyValues)
+            int index = 0;
+            while (index < logKeyValues.Length)
             {
-                sb.Append(item);
-
-                if (isKey)
+                if (index + 1 >= logKeyValues.Length)
                 {
-                    sb.Append('=');
+                    Data.Add(logKeyValues[index], "");
+                    return;
                 }
-                else
-                {
-                    sb.Append(';');
-                }
-                isKey = !isKey;
-            }
-            if (sb.Length > 0 && sb[sb.Length - 1] == '=')
-            {
-                sb.Replace('=', ';', sb.Length - 1, 1);
-            }
 
-            LogParam = sb.ToString();
+                Data.Add(logKeyValues[index], logKeyValues[index + 1]);
+                index += 2;
+            }
+        }
+
+
+        public void AddData(string key, object value)
+        {
+            dataChanged = true;
+            Data.Add(key, value);
         }
 
     }

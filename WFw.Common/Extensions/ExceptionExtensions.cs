@@ -54,26 +54,25 @@ namespace System
             StackFrame frame = st.GetFrame(0);
 
             //Get the file name
-            string fileName = frame.GetFileName();
+            //  string fileName = frame.GetFileName();
 
             //Get the method name
             //string methodName = frame.GetMethod().Name;
 
             ////Get the line number from the stack frame
             int line = frame.GetFileLineNumber();
-
+            int col = frame.GetFileColumnNumber();
             if (exception is ArgumentException ae)
             {
-                return $" {requestId} {exception.TargetSite.DeclaringType.FullName}.{exception.TargetSite.Name} [{line}] [{ae.ParamName}] {ae.Message}";
+                return $" {requestId} {exception.TargetSite.DeclaringType.FullName}.{exception.TargetSite.Name} [{line}-{col}] [{ae.ParamName}] {ae.Message}";
             }
             else if (exception is WFwException we)
             {
-                return $" {requestId} {exception.TargetSite.DeclaringType.FullName}.{exception.TargetSite.Name} [{line}] [{we.ParamName}] {we.Message}";
+                return $" {requestId} {exception.TargetSite.DeclaringType.FullName}.{exception.TargetSite.Name} [{line}-{col}] [{we.LogParam}] {we.Message}";
             }
             else
             {
-                return $" {requestId} {exception.TargetSite.DeclaringType.FullName}.{exception.TargetSite.Name} [{line}] {exception.Message}";
-
+                return $" {requestId} {exception.TargetSite.DeclaringType.FullName}.{exception.TargetSite.Name} [{line}-{col}] {exception.Message}";
             }
 
         }

@@ -10,22 +10,6 @@ using WFw.IEntity.IAudit;
 
 namespace WFw.DbContext
 {
-
-    ///// <summary>
-    ///// 默认仓储
-    ///// </summary>
-    ///// <typeparam name="TEntity"></typeparam>
-    //public class DefaultRepository<TEntity> : DefaultRepository<TEntity, int>, IRepository<TEntity> where TEntity : class, IEntity<int>, new()
-    //{
-    //    /// <summary>
-    //    /// 
-    //    /// </summary>
-    //    /// <param name="serviceProvider"></param>
-    //    public DefaultRepository(IServiceProvider serviceProvider) : base(serviceProvider)
-    //    {
-    //    }
-    //}
-
     /// <summary>
     /// 
     /// </summary>

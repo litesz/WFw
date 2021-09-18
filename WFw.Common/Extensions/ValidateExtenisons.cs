@@ -9,6 +9,8 @@ namespace WFw.Utils
     /// </summary>
     public static class ValidateExtenisons
     {
+        readonly static string[] pictureFormatArray = { ".png", ".jpg", ".jpeg", ".bmp", ".gif", ".ico" };
+
         /// <summary>
         /// 是否是ip地址
         /// </summary>
@@ -16,11 +18,21 @@ namespace WFw.Utils
         /// <returns></returns>
         public static bool IsIp(this string strIp)
         {
-            if (string.IsNullOrWhiteSpace(strIp))
-                return false;
+            if (string.IsNullOrWhiteSpace(strIp)) { return false; }
 
             return Regex.IsMatch(strIp,
                 @"^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$");
+        }
+
+        /// <summary>
+        /// 是否是手机号
+        /// </summary>
+        /// <param name="strPhone"></param>
+        /// <returns></returns>
+        public static bool IsMobile(this string strPhone)
+        {
+            if (string.IsNullOrWhiteSpace(strPhone)) { return false; }
+            return Regex.IsMatch(strPhone, @"^1[1-9][0-9]{9}$");
         }
 
         /// <summary>
@@ -78,9 +90,9 @@ namespace WFw.Utils
         public static bool IsImage(this string fileName)
         {
             if (string.IsNullOrWhiteSpace(fileName)) { return false; }
-            string[] pictureFormatArray = { "png", "jpg", "jpeg", "bmp", "gif", "ico", "PNG", "JPG", "JPEG", "BMP", "GIF", "ICO" };
-            var name = fileName.Split('.');
-            var exName = name[name.Length - 1];
+            //var name = fileName.Split('.');
+            //var exName = name[name.Length - 1];
+            var exName = System.IO.Path.GetExtension(fileName).ToLower();
             return pictureFormatArray.Contains(exName);
         }
     }

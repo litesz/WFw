@@ -1,11 +1,7 @@
 ﻿using Example.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
-using WFw.Http.Services;
 using WFw.ISms;
 
 namespace Example.Controllers
@@ -29,7 +25,7 @@ namespace Example.Controllers
         public async Task<IActionResult> GetNum()
         {
 
-      
+
 
             return Ok(await client.GetMessageRemaining());
         }
@@ -38,10 +34,10 @@ namespace Example.Controllers
         {
             try
             {
+                await client.SendVerificationCode(model.Phone, model.Code, 10);
+                //var (isSucc, errMsg) = await client.SendVerification(model.Code, 10, model.Phone);
 
-                var (isSucc, errMsg) = await client.SendVerification(model.Code, 10, model.Phone);
-
-                ModelState.AddModelError("", errMsg);
+                //ModelState.AddModelError("", errMsg);
 
             }
             catch (Exception ex)

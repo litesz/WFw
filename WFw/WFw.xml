@@ -167,6 +167,41 @@
             <param name="value"></param>
             <param name="options"></param>
         </member>
+        <member name="T:WFw.HttpHeaderConst">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:WFw.HttpHeaderConst.RequestId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:WFw.HttpHeaderConst.ErrResultType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:WFw.SmsClientConst">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:WFw.SmsClientConst.KEY_TEXT">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:WFw.SmsClientConst.KEY_CODE">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:WFw.SmsClientConst.KEY_EXPIREMIN">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:WFw.DbContext.DbOptions">
             <summary>
             数据库连接参数
@@ -675,6 +710,41 @@
             </summary>
             <param name="items"></param>
             <param name="reponse"></param>
+        </member>
+        <member name="T:WFw.Dtos.Responses.PagedResponseDataWithTimeStampDto`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+        </member>
+        <member name="P:WFw.Dtos.Responses.PagedResponseDataWithTimeStampDto`1.TimeStamp">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WFw.Dtos.Responses.PagedResponseDataWithTimeStampDto`1.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WFw.Dtos.Responses.PagedResponseDataWithTimeStampDto`1.#ctor(System.Collections.Generic.IEnumerable{`0},System.Int32,System.Int32,System.Int32,System.Int64)">
+            <summary>
+            
+            </summary>
+            <param name="items"></param>
+            <param name="total"></param>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <param name="timeStamp"></param>
+        </member>
+        <member name="M:WFw.Dtos.Responses.PagedResponseDataWithTimeStampDto`1.#ctor(System.Collections.Generic.IEnumerable{`0},System.Int32,System.Int64,WFw.IDtos.Requests.IPagedResultRequestDto)">
+            <summary>
+            
+            </summary>
+            <param name="items"></param>
+            <param name="total"></param>
+            <param name="timeStamp"></param>
+            <param name="request"></param>
         </member>
         <member name="T:WFw.IDbContext.Extensions">
             <summary>
@@ -2003,6 +2073,82 @@
             <param name="_currentIdentity"></param>
             <returns></returns>
         </member>
+        <member name="T:WFw.ISms.SmsExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WFw.ISms.SmsExtensions.SendMsg(WFw.ISms.ISmsClient,System.String,System.String,System.String,WFw.ISms.ISmsTemplate)">
+            <summary>
+            发短信
+            </summary>
+            <param name="c">客户端</param>
+            <param name="text">消息</param>
+            <param name="phone">电话号码</param>
+            <param name="key">属性名，极光模板用</param>
+            <param name="template">模板id、签名等</param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.ISms.SmsExtensions.SendMsg(WFw.ISms.ISmsClient,System.String,System.Collections.Generic.IList{System.Collections.Generic.KeyValuePair{System.String,System.String}},WFw.ISms.ISmsTemplate)">
+            <summary>
+            发短信
+            </summary>
+            <param name="c">客户端</param>
+            <param name="values">消息键值对，模板用</param>
+            <param name="phone">电话号码</param>
+            <param name="template">模板id、签名等</param>
+            <returns></returns>
+        </member>
+        <member name="T:WFw.ISms.ISmsClient">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WFw.ISms.ISmsClient.GetMessageRemaining">
+            <summary>
+            剩余短信数
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.ISms.ISmsClient.SendMsg(System.String[],System.Collections.Generic.IList{System.Collections.Generic.KeyValuePair{System.String,System.String}},WFw.ISms.ISmsTemplate)">
+            <summary>
+            群发短信
+            </summary>
+            <param name="phones">手机号</param>
+            <param name="values">内容键值对</param>
+            <param name="template">签名、模板ID等</param>
+            <returns></returns>
+        </member>
+        <member name="M:WFw.ISms.ISmsClient.SendVerificationCode(System.String,System.String,System.Int32,WFw.ISms.ISmsTemplate)">
+            <summary>
+            
+            </summary>
+            <param name="phone"></param>
+            <param name="code"></param>
+            <param name="expireMin"></param>
+            <param name="template">签名、模板ID等</param>
+            <returns></returns>
+        </member>
+        <member name="T:WFw.ISms.ISmsTemplate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:WFw.ISms.ISmsTemplate.TemplateId">
+            <summary>
+            模板
+            </summary>
+        </member>
+        <member name="P:WFw.ISms.ISmsTemplate.SmsSdkAppid">
+            <summary>
+            SDK AppID 
+            </summary>
+        </member>
+        <member name="P:WFw.ISms.ISmsTemplate.Sign">
+            <summary>
+            签名
+            </summary>
+        </member>
         <member name="T:WFw.WFwResultExtensions">
             <summary>
             
@@ -2014,21 +2160,6 @@
             </summary>
             <param name="context"></param>
             <returns></returns>
-        </member>
-        <member name="T:WFw.HttpHeaderConst">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:WFw.HttpHeaderConst.RequestId">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:WFw.HttpHeaderConst.ErrResultType">
-            <summary>
-            
-            </summary>
         </member>
         <member name="T:WFw.IDtos.IDto">
             <summary>
@@ -2117,9 +2248,25 @@
             
             </summary>
         </member>
+        <member name="T:WFw.IDtos.Responses.IPagedResponseDataWithTimeStampDto`1">
+            <summary>
+            分页查询数据,带时间戳
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+        </member>
         <member name="T:WFw.IDtos.Responses.IResponseDataDto">
             <summary>
             返回值数据对象dto标注
+            </summary>
+        </member>
+        <member name="T:WFw.IDtos.Responses.IResponseDataWithTimeStampDto">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:WFw.IDtos.Responses.IResponseDataWithTimeStampDto.TimeStamp">
+            <summary>
+            时间戳
             </summary>
         </member>
         <member name="T:WFw.IDtos.Responses.IResponseDto">
@@ -2253,35 +2400,6 @@
             备注信息
             </summary>
         </member>
-        <member name="T:WFw.ISms.ISmsClient">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:WFw.ISms.ISmsClient.SendVerification(System.String,System.Int32,System.String)">
-            <summary>
-            发送验证码
-            </summary>
-            <param name="code"></param>
-            <param name="expireMin"></param>
-            <param name="phone"></param>
-            <returns></returns>
-        </member>
-        <member name="M:WFw.ISms.ISmsClient.SendSms(System.String,System.String,System.String)">
-            <summary>
-            
-            </summary>
-            <param name="text"></param>
-            <param name="phone"></param>
-            <param name="templateId"></param>
-            <returns></returns>
-        </member>
-        <member name="M:WFw.ISms.ISmsClient.GetMessageRemaining">
-            <summary>
-            剩余短信数
-            </summary>
-            <returns></returns>
-        </member>
         <member name="T:WFw.Middlewares.WFwErrorHandlingMiddleware">
             <summary>
             错误处理中间件
@@ -2371,19 +2489,6 @@
             
             </summary>
             <param name="errors"></param>
-        </member>
-        <member name="T:WFw.Results.CheckParam">
-            <summary>
-            参数检查
-            </summary>
-        </member>
-        <member name="M:WFw.Results.CheckParam.NotNull``1(``0,System.String)">
-            <summary>
-            不为空
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="model"></param>
-            <param name="name"></param>
         </member>
         <member name="T:System.Linq.HttpContextExtensions">
             <summary>

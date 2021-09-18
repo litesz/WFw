@@ -1,3 +1,7 @@
+### 0.0.10
+* 重构 WFwSmsClient
+* 重构 注入改为TryXXXX
+
 ### 0.0.9
 * 更新 Tencent Sdk
 * 将异常抛出

@@ -1,27 +1,24 @@
-﻿using WFw.ISms;
-
-namespace WFw.TencentCloud.Options
+﻿namespace WFw.ISms
 {
     /// <summary>
     /// 
     /// </summary>
-    public class SmsTemplateOptions : ISmsTemplate
+    public interface ISmsTemplate
     {
 
         /// <summary>
         /// 模板
         /// </summary>
-        public string TemplateId { get; set; }
+        string TemplateId { get; set; }
 
         /// <summary>
         /// SDK AppID 
         /// </summary>
-        public string SmsSdkAppid { get; set; }
+        string SmsSdkAppid { get; set; }
 
         /// <summary>
         /// 签名
         /// </summary>
-        public string Sign { get; set; }
+        string Sign { get; set; }
     }
-
 }

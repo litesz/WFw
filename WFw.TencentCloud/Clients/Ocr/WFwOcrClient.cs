@@ -11,12 +11,6 @@ using WFw.TencentCloud.Options;
 namespace WFw.TencentCloud.Clients.Ocr
 {
 
-    public interface IWFwOcrClient
-    {
-
-        Task<BizLicenseOCRResponse> BizLicenseOCR(string imageUrl);
-    }
-
     public class WFwOcrClient : IWFwOcrClient
     {
 

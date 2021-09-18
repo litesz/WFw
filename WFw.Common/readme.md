@@ -1,3 +1,9 @@
+### 0.0.9
+* WFwException
+	+ 缓存错误信息至Exception.Data
+* BadRequestException
+	- 删除默认构造函数
+	+ 默认错误类型改为 OperationResultType.ParamIsErr
 ### 0.0.8
  * ErrApiResult
 	+ 基类改为ApiResultBase

@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using WFw.ISms;
 using WFw.TencentCloud.Clients.Cos;
 using WFw.TencentCloud.Clients.Ocr;
@@ -16,7 +17,7 @@ namespace WFw
     public static class ServiceCollectionExtensions
     {
 
-        private static bool isConfigureTencentCloudOptions = false;
+        static bool isConfigureTencentCloudOptions = false;
 
 
         /// <summary>
@@ -43,9 +44,13 @@ namespace WFw
         /// <param name="services"></param>
         /// <param name="configuration"></param>
         /// <returns></returns>
-        public static IServiceCollection AddTencentStsClient(this IServiceCollection services, IConfiguration configuration) => services
-                .AddTencentCloudOptions(configuration)
-                .AddSingleton<IWFwStsClient, WFwStsClient>();
+        public static IServiceCollection AddTencentStsClient(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddTencentCloudOptions(configuration);
+            services.TryAddSingleton<IWFwStsClient, WFwStsClient>();
+            return services;
+
+        }
 
         /// <summary>
         /// 
@@ -53,9 +58,12 @@ namespace WFw
         /// <param name="services"></param>
         /// <param name="configuration"></param>
         /// <returns></returns>
-        public static IServiceCollection AddTencentCosClient(this IServiceCollection services, IConfiguration configuration) => services
-                .AddTencentCloudOptions(configuration)
-                .AddSingleton<IWFwCosClient, WFwCosClient>();
+        public static IServiceCollection AddTencentCosClient(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddTencentCloudOptions(configuration);
+            services.TryAddSingleton<IWFwCosClient, WFwCosClient>();
+            return services;
+        }
 
 
         /// <summary>
@@ -64,11 +72,15 @@ namespace WFw
         /// <param name="services"></param>
         /// <param name="configuration"></param>
         /// <returns></returns>
-        public static IServiceCollection AddTencentSmsClient(this IServiceCollection services, IConfiguration configuration) => services
-              .AddTencentCloudOptions(configuration)
-              .AddSingleton<WFwSmsClient>()
-              .AddSingleton<IWFwSmsClient>(op => op.GetRequiredService<WFwSmsClient>())
-              .AddSingleton<ISmsClient>(op => op.GetRequiredService<WFwSmsClient>());
+        public static IServiceCollection AddTencentSmsClient(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddTencentCloudOptions(configuration);
+            services.TryAddSingleton<WFwSmsClient>();
+            services.TryAddSingleton<IWFwSmsClient>(op => op.GetRequiredService<WFwSmsClient>());
+            services.TryAddSingleton<ISmsClient>(op => op.GetRequiredService<WFwSmsClient>());
+
+            return services;
+        }
 
         /// <summary>
         /// 
@@ -76,9 +88,11 @@ namespace WFw
         /// <param name="services"></param>
         /// <param name="configuration"></param>
         /// <returns></returns>
-        public static IServiceCollection AddTencentOcrClient(this IServiceCollection services, IConfiguration configuration) => services
-            .AddTencentCloudOptions(configuration)
-            .AddSingleton<IWFwOcrClient, WFwOcrClient>();
-
+        public static IServiceCollection AddTencentOcrClient(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddTencentCloudOptions(configuration);
+            services.TryAddSingleton<IWFwOcrClient, WFwOcrClient>();
+            return services;
+        }
     }
 }

@@ -11,13 +11,9 @@ namespace WFw.Results
         /// <summary>
         /// 成功
         /// </summary>
-        [Description("{0}")]
+        [Description("成功")]
         Success,
-        ///// <summary>
-        ///// 成功且消息文本有意义
-        ///// </summary>
-        //[Description("{0}")]
-        //Text,
+
 
         /// <summary>
         /// 意外状态
@@ -54,19 +50,19 @@ namespace WFw.Results
         /// <summary>
         /// 无权执行操作
         /// </summary>
-        [Description("无权执行操作{0}")]
+        [Description("无权执行操作")]
         UnauthorizedOperation,
 
         //参数200+
         /// <summary>
         /// 参数为空
         /// </summary>
-        [Description("参数{0}为空")]
+        [Description("参数为空")]
         ParamIsEmpty = 12001,
         /// <summary>
         /// 参数错误
         /// </summary>
-        [Description("参数{0}错误")]
+        [Description("参数错误")]
         ParamIsErr,
 
         //手机及验证码300+
@@ -78,17 +74,17 @@ namespace WFw.Results
         /// <summary>
         /// 电话号码{0}不存在
         /// </summary>
-        [Description("电话号码{0}不存在")]
+        [Description("电话号码不存在")]
         PhoneNotExist,
         /// <summary>
         /// 电话号码{0}已存在
         /// </summary>
-        [Description("电话号码{0}已存在")]
+        [Description("电话号码已存在")]
         PhoneIsExist,
         /// <summary>
         /// 电话号[0}码错误
         /// </summary>
-        [Description("电话号[0}码错误")]
+        [Description("电话号码错误")]
         PhoneIsWrong,
         /// <summary>
         /// 验证码错误或已过期
@@ -116,12 +112,12 @@ namespace WFw.Results
         /// 腾讯云skd错误
         /// </summary>
         [Description("{0}")]
-        TencentCloudSdkErr = 50000,
+        TencentCloudSdkErr = 41000,
 
         /// <summary>
         /// 腾讯云skdSts错误
         /// </summary>
-        [Description("获得临时票据失败")]
-        TencentCloudSdkStsErr = 50001,
+        [Description("获得腾讯云临时票据失败")]
+        TencentCloudSdkStsErr = 42000,
     }
 }

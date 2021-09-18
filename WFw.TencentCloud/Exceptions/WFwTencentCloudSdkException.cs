@@ -15,7 +15,7 @@ namespace WFw.TencentCloud.Exceptions
         /// </summary>
         /// <param name="param">返回值参数</param>
         /// <param name="logParam">日志消息参数</param>
-        public WFwTencentCloudSdkException(string param, string logParam = "") : base(OperationResultType.TencentCloudSdkErr, param, logParam)
+        public WFwTencentCloudSdkException(string param) : base(OperationResultType.TencentCloudSdkErr, param)
         {
 
         }

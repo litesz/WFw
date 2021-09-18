@@ -1,9 +1,18 @@
+
+
 ### 1.2.9
  * IWQueryable
   + 添加 GroupBy
  * DefaultRepository
   + 改为虚方法
  -  DefaultRepository<TEntity>
+ * 删除 CheckParams
+ * 新增 PagedResponseDataWithTimeStampDto
+ * 新增 IPagedResponseDataWithTimeStampDto
+ * 新增 IResponseDataWithTimeStampDto
+ * 新增 SmsExtensions
+ * 重构 注入改为TryXXXX
+
 
 ### 1.2.8
  * Repository 可独立设置审计用户id类型
