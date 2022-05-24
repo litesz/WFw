@@ -14,6 +14,7 @@ using WFw.DbContext;
 using WFw.IDbContext;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using WFw.Redis;
 
 namespace Example
 {
@@ -55,7 +56,10 @@ namespace Example
             services.AddTencentSmsClient(Configuration);
             services.AddTencentOcrClient(Configuration);
             services.ConfigureModelStateResponse(Configuration);
-
+            services.AddWFwRedis(act =>
+            {
+                act.Configuration = "127.0.0.1:6379";
+            });
             //添加Cookier认证服务
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(o =>
@@ -105,8 +109,11 @@ namespace Example
 
                 var d = scope.ServiceProvider.GetService<SingletonConfigModel>();
                 d.VisitNum++;
-                var accountService = scope.ServiceProvider.GetService<IAccountService>();
-                accountService.InitTable();
+
+                var c = scope.ServiceProvider.GetService<IRedisCache>();
+                var bb = c.GeoDist("zza", "b", "c", GeoUnit.ft);
+                //var accountService = scope.ServiceProvider.GetService<IAccountService>();
+                //accountService.InitTable();
 
 
             });

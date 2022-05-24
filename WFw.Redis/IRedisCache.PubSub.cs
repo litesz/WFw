@@ -4,7 +4,7 @@ using WFw.Cache;
 namespace WFw.Redis
 {
     /// <summary>
-    /// Geo
+    /// pubsub
     /// </summary>
     public partial interface IRedisCache : ICache
     {

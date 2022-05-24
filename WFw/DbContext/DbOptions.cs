@@ -17,10 +17,10 @@
         /// 数据库类型
         /// </summary>
         public string DatabaseType { get; set; } = "mysql";
-        /// <summary>
-        /// 自动保存
-        /// </summary>
-        public bool IsAutoSave { get; set; } = true;
+        ///// <summary>
+        ///// 自动保存
+        ///// </summary>
+        //public bool IsAutoSave { get; set; } = true;
         /// <summary>
         /// 自动关闭连接
         /// </summary>
@@ -29,13 +29,13 @@
         /// 表初始化类型
         /// </summary>
         public string InitKeyType { get; set; } = "attribute";
-        /// <summary>
-        /// 共享内存
-        /// </summary>
-        public bool IsShardSameThread { get; set; }
-        /// <summary>
-        /// 默认string在数据库中是否可为空
-        /// </summary>
-        public bool StringDefaultIsNull { get; set; } = false;
+        ///// <summary>
+        ///// 共享内存
+        ///// </summary>
+        //public bool IsShardSameThread { get; set; }
+        ///// <summary>
+        ///// 默认string在数据库中是否可为空
+        ///// </summary>
+        //public bool StringDefaultIsNull { get; set; } = false;
     }
 }

@@ -10,7 +10,7 @@ namespace WFw.DbContext
         /// <summary>
         /// 
         /// </summary>
-        SqlSugarClient Db
+        ISqlSugarClient Db
         {
             get;
         }

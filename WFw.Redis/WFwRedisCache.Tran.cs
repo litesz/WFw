@@ -7,10 +7,10 @@ using CSRedis;
 namespace WFw.Redis
 {
     /// <summary>
-    /// 
+    /// tran
     /// </summary>
     public partial class WFwRedisCache : IRedisCache
     {
-       
+
     }
 }

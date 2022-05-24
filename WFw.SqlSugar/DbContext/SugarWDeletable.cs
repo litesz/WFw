@@ -24,7 +24,7 @@ namespace WFw.DbContext
         /// 
         /// </summary>
         /// <param name="client"></param>
-        public SugarWDeletable(SqlSugarClient client)
+        public SugarWDeletable(ISqlSugarClient client)
         {
             _deletable = client.Deleteable<T>();
         }

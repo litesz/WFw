@@ -1,8 +1,4 @@
-﻿using Microsoft.Extensions.Options;
-using WFw.Cache;
-using WFw.Redis.Options;
-using System.Linq;
-using CSRedis;
+﻿using CSRedis;
 
 namespace WFw.Redis
 {
@@ -122,16 +118,25 @@ namespace WFw.Redis
         /// <returns></returns>
         public bool RenameNx(string key, string newKey) => RedisHelper.RenameNx(key, newKey);
 
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <typeparam name="T"></typeparam>
+        ///// <param name="key">不含prefix前缀</param>
+        ///// <param name="cursor">位置</param>
+        ///// <param name="pattern">模式</param>
+        ///// <param name="count">数量</param>
+        ///// <returns></returns>
+        //public ScanResult<T> Scan<T>(string key, long cursor, string pattern = null, long count = 10) => new ScanResult<T>(RedisHelper.Scan<T>(key, cursor, pattern, count));
+
         /// <summary>
         /// 
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="key">不含prefix前缀</param>
-        /// <param name="cursor">位置</param>
-        /// <param name="pattern">模式</param>
-        /// <param name="count">数量</param>
+        /// <param name="cursor"></param>
+        /// <param name="pattern"></param>
+        /// <param name="count"></param>
         /// <returns></returns>
-        public ScanResult<T> Scan<T>(string key, long cursor, string pattern = null, long count = 10) => new ScanResult<T>(RedisHelper.Scan<T>(key, cursor, pattern, count));
+        public ScanResult<string> Scan(long cursor, string pattern = null, long count = 10) => new ScanResult<string>(RedisHelper.Scan(cursor, pattern, count));
 
 
         /// <summary>
@@ -139,6 +144,6 @@ namespace WFw.Redis
         /// </summary>
         /// <param name="key">不含prefix前缀</param>
         /// <returns></returns>
-        public KeyType Type(string key) => RedisHelper.Type(key);
+        public KeyType Type(string key) => RedisHelper.Type(key).ToKeyType();
     }
 }

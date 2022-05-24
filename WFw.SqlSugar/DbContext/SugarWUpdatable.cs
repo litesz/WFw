@@ -27,11 +27,11 @@ namespace WFw.DbContext
         /// 
         /// </summary>
         /// <param name="client"></param>
-        public SugarWUpdatable(SqlSugarClient client)
+        public SugarWUpdatable(ISqlSugarClient client)
         {
             _updateable = client.Updateable<T>();
         }
-   
+
         /// <summary>
         /// 
         /// </summary>

@@ -16,7 +16,7 @@ namespace WFw.DbContext
         /// <summary>
         /// 
         /// </summary>
-        public SqlSugarClient Db { get; private set; }
+        public ISqlSugarClient Db { get; private set; }
 
         /// <summary>
         /// 
@@ -26,34 +26,13 @@ namespace WFw.DbContext
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sp"></param>
-        public SqlSugarDbContext(IServiceProvider sp)
+        /// <param name="sqlSugarClient"></param>
+
+        public SqlSugarDbContext(ISqlSugarClient sqlSugarClient)
         {
-            var dbOptions = sp.GetService<IOptions<DbOptions>>().Value;
-            //IOptions<DbOptions> dbOptions
-            Db = new SqlSugarClient(new ConnectionConfig()
-            {
-                ConnectionString = dbOptions.ConnectionString,
-                DbType = GetDbType(dbOptions.DatabaseType),
-                InitKeyType = dbOptions.InitKeyType == "attribute" ? InitKeyType.Attribute : InitKeyType.SystemTable,
-                IsAutoCloseConnection = dbOptions.IsAutoCloseConnection,
-                IsShardSameThread = dbOptions.IsShardSameThread,
-                ConfigureExternalServices = new WfwConfigureExternalServices(dbOptions)
-            });
-
+            Db = sqlSugarClient;
         }
-
-
-        private DbType GetDbType(string type)
-        {
-            return (type.ToLower()) switch
-            {
-                "mysql" => DbType.MySql,
-                "sqlserver" => DbType.SqlServer,
-                "sqlite" => DbType.Sqlite,
-                _ => throw new ArgumentOutOfRangeException("无法使用数据库类型:" + type),
-            };
-        }
+          
         /// <summary>
         /// 
         /// </summary>

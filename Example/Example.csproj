@@ -18,6 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\WFw.GeTui\WFw.GeTui.csproj" />
     <ProjectReference Include="..\WFw.MemoryCache\WFw.MemoryCache.csproj" />
+    <ProjectReference Include="..\WFw.Redis\WFw.Redis.csproj" />
     <ProjectReference Include="..\WFw.SmsChinese\WFw.SmsChinese.csproj" />
     <ProjectReference Include="..\WFw.SqlSugar\WFw.SqlSugar.csproj" />
     <ProjectReference Include="..\WFw.TencentCloud\WFw.TencentCloud.csproj" />

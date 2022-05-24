@@ -36,15 +36,6 @@ namespace WFw.Redis
         string[] SDiff(params string[] keys);
 
         /// <summary>
-        /// 返回第一个集合与其他集合之间的差异，也可以认为说第一个集合中独有的元素。不存在的集合 key 将视为空集。
-        /// 差集的结果来自前面的 FIRST_KEY, 而不是后面的 OTHER_KEY1，也不是整个 FIRST_KEY OTHER_KEY1..OTHER_KEYN 的差集。
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="keys">不含prefix前缀</param>
-        /// <returns>包含差集成员的列表。</returns>
-        T[] SDiff<T>(params string[] keys);
-
-        /// <summary>
         /// 将给定集合之间的差集存储在指定的集合中。如果指定的集合 key 已存在，则会被覆盖
         /// </summary>
         /// <param name="destination">指定的集合</param>
@@ -57,15 +48,7 @@ namespace WFw.Redis
         /// </summary>
         /// <param name="keys">不含prefix前缀</param>
         /// <returns>交集成员的列表</returns>
-         string[] SInter(params string[] keys);
-
-        /// <summary>
-        /// 返回给定所有给定集合的交集。 不存在的集合 key 被视为空集。 当给定集合当中有一个空集时，结果也为空集(根据集合运算定律)。 
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="keys">不含prefix前缀</param>
-        /// <returns>交集成员的列表</returns>
-         T[] SInter<T>(params string[] keys);
+        string[] SInter(params string[] keys);
 
         /// <summary>
         /// 将给定集合之间的交集存储在指定的集合中。如果指定的集合已经存在，则将其覆盖。
@@ -73,7 +56,7 @@ namespace WFw.Redis
         /// <param name="destination">指定的集合</param>
         /// <param name="keys">不含prefix前缀</param>
         /// <returns>返回存储交集的集合的元素数量</returns>
-         long SInterStore(string destination, params string[] keys);
+        long SInterStore(string destination, params string[] keys);
 
         /// <summary>
         /// 判断成员元素是否是集合的成员。 
@@ -82,22 +65,14 @@ namespace WFw.Redis
         /// <param name="key">不含prefix前缀</param>
         /// <param name="member">成员</param>
         /// <returns>如果成员元素是集合的成员，返回 1 。 如果成员元素不是集合的成员，或 key 不存在，返回 0</returns>
-         bool SIsMember<T>(string key, T member);
+        bool SIsMember<T>(string key, T member);
 
         /// <summary>
         /// 返回集合中的所有的成员。 不存在的集合 key 被视为空集合。 
         /// </summary>
         /// <param name="key">不含prefix前缀</param>
         /// <returns>集合中的所有成员。</returns>
-         string[] SMembers(string key);
-
-        /// <summary>
-        /// 返回集合中的所有的成员。 不存在的集合 key 被视为空集合。 
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="key">不含prefix前缀</param>
-        /// <returns>集合中的所有成员。</returns>
-         T[] SMembers<T>(string key);
+        string[] SMembers(string key);
 
         /// <summary>
         /// 将指定成员 member 元素从 source 集合移动到 destination 集合。
@@ -110,22 +85,14 @@ namespace WFw.Redis
         /// <param name="destination">不含prefix前缀</param>
         /// <param name="memeber">成员</param>
         /// <returns></returns>
-         bool SMove(string source, string destination, object memeber);
+        bool SMove(string source, string destination, object memeber);
 
         /// <summary>
         /// 用于移除集合中的指定 key 的一个随机元素，移除后会返回移除的元素。
         /// </summary>
         /// <param name="key">不含prefix前缀</param>
         /// <returns>被移除的随机元素。 当集合不存在或是空集时，返回 nil </returns>
-         string SPop(string key);
-
-        /// <summary>
-        /// 用于移除集合中的指定 key 的一个随机元素，移除后会返回移除的元素。
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="key">不含prefix前缀</param>
-        /// <returns>被移除的随机元素。 当集合不存在或是空集时，返回 nil </returns>
-         T SPop<T>(string key);
+        string SPop(string key);
 
         /// <summary>
         /// 用于移除集合中的指定 key 的一个或多个随机元素，移除后会返回移除的元素。
@@ -133,31 +100,14 @@ namespace WFw.Redis
         /// <param name="key">不含prefix前缀</param>
         /// <param name="count">一个或多个随机元素</param>
         /// <returns>被移除的随机元素。 当集合不存在或是空集时，返回 nil </returns>
-         string[] SPop(string key, long count );
-
-        /// <summary>
-        /// 用于移除集合中的指定 key 的一个或多个随机元素，移除后会返回移除的元素。
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="key">不含prefix前缀</param>
-        /// <param name="count">一个或多个随机元素</param>
-        /// <returns>被移除的随机元素。 当集合不存在或是空集时，返回 nil </returns>
-         T[] SPop<T>(string key, long count );
+        string[] SPop(string key, long count);
 
         /// <summary>
         /// 返回集合中的一个随机元素。
         /// </summary>
         /// <param name="key">不含prefix前缀</param>
         /// <returns>返回一个元素；如果集合为空，返回 nil 。</returns>
-         string SRandMember(string key);
-
-        /// <summary>
-        /// 返回集合中的一个随机元素。
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="key">不含prefix前缀</param>
-        /// <returns>返回一个元素；如果集合为空，返回 nil 。</returns>
-         T SRandMember<T>(string key);
+        string SRandMember(string key);
 
         /// <summary>
         /// 返回集合中的一个或多个随机元素。
@@ -165,17 +115,7 @@ namespace WFw.Redis
         /// <param name="key">不含prefix前缀</param>
         /// <param name="count">一个或多个随机元素</param>
         /// <returns>那么返回一个数组；如果集合为空，返回空数组</returns>
-         string[] SRandMembers(string key, int count = 1);
-
-        /// <summary>
-        /// 返回集合中的一个或多个随机元素。
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="key">不含prefix前缀</param>
-        /// <param name="count">一个或多个随机元素</param>
-        /// <returns>那么返回一个数组；如果集合为空，返回空数组</returns>
-         T[] SRandMembers<T>(string key, int count = 1);
-
+        string[] SRandMembers(string key, int count = 1);
 
         /// <summary>
         /// 于移除集合中的一个或多个成员元素，不存在的成员元素会被忽略。当 key 不是集合类型，返回一个错误。
@@ -184,22 +124,14 @@ namespace WFw.Redis
         /// <param name="key">不含prefix前缀</param>
         /// <param name="members">一个或多个成员</param>
         /// <returns></returns>
-         long SRem<T>(string key, params T[] members);
+        long SRem<T>(string key, params T[] members);
 
         /// <summary>
         /// 返回给定集合的并集。不存在的集合 key 被视为空集
         /// </summary>
         /// <param name="keys">不含prefix前缀</param>
         /// <returns>并集成员的列表。 </returns>
-         string[] SUnion(params string[] keys);
-
-        /// <summary>
-        /// 返回给定集合的并集。不存在的集合 key 被视为空集
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="keys">不含prefix前缀</param>
-        /// <returns>并集成员的列表。 </returns>
-         T[] SUnion<T>(params string[] keys);
+        string[] SUnion(params string[] keys);
 
         /// <summary>
         /// 将给定集合的并集存储在指定的集合 destination 中。如果 destination 已经存在，则将其覆盖。 
@@ -207,7 +139,7 @@ namespace WFw.Redis
         /// <param name="destination">指定的集合</param>
         /// <param name="keys">不含prefix前缀</param>
         /// <returns>结果集中的元素数量</returns>
-         long SUnionStore(string destination, params string[] keys);
+        long SUnionStore(string destination, params string[] keys);
 
         /// <summary>
         /// 用于迭代集合中键的元素，Sscan 继承自 Scan。 
@@ -219,15 +151,5 @@ namespace WFw.Redis
         /// <returns></returns>
         ScanResult<string> SScan(string key, long cursor, string pattern = null, long count = 10);
 
-        /// <summary>
-        /// 用于迭代集合中键的元素，Sscan 继承自 Scan。 
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="key">不含prefix前缀</param>
-        /// <param name="cursor">游标</param>
-        /// <param name="pattern">匹配的模式</param>
-        /// <param name="count">指定从数据集里返回多少元素，默认值为 10</param>
-        /// <returns></returns>
-        ScanResult<T> SScan<T>(string key, long cursor, string pattern = null, long count = 10);
     }
 }

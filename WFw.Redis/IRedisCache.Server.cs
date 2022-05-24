@@ -4,7 +4,7 @@ using WFw.Cache;
 namespace WFw.Redis
 {
     /// <summary>
-    /// sortedset
+    /// server
     /// </summary>
     public partial interface IRedisCache : ICache
     {

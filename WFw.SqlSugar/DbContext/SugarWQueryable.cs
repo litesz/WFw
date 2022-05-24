@@ -26,7 +26,7 @@ namespace WFw.DbContext
         /// 
         /// </summary>
         /// <param name="client"></param>
-        public SugarWQueryable(SqlSugarClient client)
+        public SugarWQueryable(ISqlSugarClient client)
         {
             _queryable = client.Queryable<T>();
         }

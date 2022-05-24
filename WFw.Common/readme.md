@@ -1,3 +1,6 @@
+### 0.0.10
+* 包
+ 升级至2.1
 ### 0.0.9
 * WFwException
 	+ 缓存错误信息至Exception.Data

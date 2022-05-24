@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using WFw.Cache;
+﻿using WFw.Cache;
 
 namespace WFw.Redis
 {

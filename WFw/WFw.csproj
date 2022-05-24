@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <Configurations>Debug;Release</Configurations>
     <Description>为自己简单封装的webapi开发框架</Description>
     <Authors>litesz</Authors>
@@ -9,7 +9,7 @@
     <PackageLicenseFile></PackageLicenseFile>
     <PackageProjectUrl>https://github.com/litesz/WFw</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Version>1.2.9</Version>
+    <Version>1.2.10</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace WFw.Cache
+﻿namespace WFw.Redis
 {
     /// <summary>
-    /// 
+    /// scan结果
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class ScanResult<T>
@@ -39,4 +35,6 @@ namespace WFw.Cache
         }
 
     }
+
+    
 }

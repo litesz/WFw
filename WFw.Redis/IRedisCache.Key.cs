@@ -1,5 +1,4 @@
-﻿using CSRedis;
-using WFw.Cache;
+﻿using WFw.Cache;
 
 namespace WFw.Redis
 {
@@ -121,23 +120,17 @@ namespace WFw.Redis
         /// <param name="newKey">新key，不含prefix前缀</param>
         /// <returns>修改成功时，返回 true 。 如果 NEW_KEY_NAME 已经存在，返回 false 。 </returns>
         bool RenameNx(string key, string newKey);
-
+      
         /// <summary>
         ///  Redis Scan 命令用于迭代数据库中的数据库键。
         ///  SCAN 命令是一个基于游标的迭代器，每次被调用之后， 都会向用户返回一个新的游标， 用户在下次迭代时需要使用这个新游标作为 SCAN 命令的游标参数， 以此来延续之前的迭代过程。
         ///  SCAN 返回一个包含两个元素的数组， 第一个元素是用于进行下一次迭代的新游标， 而第二个元素则是一个数组， 这个数组中包含了所有被迭代的元素。如果新游标返回 0 表示迭代已结束。
-        ///  相关命令：
-        ///  SSCAN 命令用于迭代集合键中的元素。
-        ///  HSCAN 命令用于迭代哈希键中的键值对。
-        ///  ZSCAN 命令用于迭代有序集合中的元素（包括元素成员和元素分值）。
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="key">不含prefix前缀</param>
         /// <param name="cursor">指针</param>
         /// <param name="pattern">模式</param>
         /// <param name="count">数组长度</param>
         /// <returns>数组列表。</returns>
-        ScanResult<T> Scan<T>(string key, long cursor, string pattern = null, long count = 10);
+        ScanResult<string> Scan(long cursor, string pattern = null, long count = 10);
 
         /// <summary>
         /// 返回 key 所储存的值的类型。
